@@ -1,7 +1,7 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 
-	import { agg } from '$lib/stores';
+	import { store } from '$lib/stores';
 </script>
 
 <PageHeader title="Matches" />

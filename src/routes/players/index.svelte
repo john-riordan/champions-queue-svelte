@@ -9,7 +9,6 @@
 	$: list = Object.values(players)
 		.sort((a, b) => b.lp - a.lp)
 		.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
-	$: console.log(list);
 </script>
 
 <PageHeader title="Players" />
