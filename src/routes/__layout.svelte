@@ -3,6 +3,11 @@
 
 	import { store } from '$lib/stores';
 	import { page } from '$app/stores';
+	import Players from '$lib/components/icons/Players.svelte';
+	import Champions from '$lib/components/icons/Champions.svelte';
+	import Matches from '$lib/components/icons/Matches.svelte';
+	import Leaderboard from '$lib/components/icons/Leaderboard.svelte';
+	import Refresh from '$lib/components/icons/Refresh.svelte';
 	import '../app.css';
 
 	async function fetchData() {
@@ -19,23 +24,32 @@
 		store.set(data);
 	});
 
+	async function fetchNewData() {
+		const newData = await fetchData();
+		store.set(newData);
+	}
+
 	$: currURL = $page.url.pathname;
 	const routes = [
 		{
 			url: '/players',
-			title: 'Players'
+			title: 'Players',
+			icon: Players
 		},
 		{
 			url: '/champions',
-			title: 'Champions'
+			title: 'Champions',
+			icon: Champions
 		},
 		{
 			url: '/matches',
-			title: 'Matches'
+			title: 'Matches',
+			icon: Matches
 		},
 		{
 			url: '/leaderboard',
-			title: 'Leaderboard'
+			title: 'Leaderboard',
+			icon: Leaderboard
 		}
 	];
 </script>
@@ -44,9 +58,14 @@
 	<nav class="nav">
 		{#each routes as route}
 			<a href={route.url} class:active={currURL.includes(route.url)}>
+				<svelte:component this={route.icon} />
 				{route.title}
 			</a>
 		{/each}
+		<button on:click={fetchNewData}>
+			<Refresh />
+			Refresh Data
+		</button>
 	</nav>
 	<section class="content">
 		<slot />

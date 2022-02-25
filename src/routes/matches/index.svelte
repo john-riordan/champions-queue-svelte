@@ -5,3 +5,8 @@
 </script>
 
 <PageHeader title="Matches" />
+<ol>
+	{#each $store.matches as match}
+		<p>match</p>
+	{/each}
+</ol>

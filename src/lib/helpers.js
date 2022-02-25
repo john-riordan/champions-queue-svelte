@@ -66,6 +66,7 @@ export function aggregateData(data = {}) {
 	);
 
 	return {
+		fetchedAt: Date.now(),
 		matches,
 		totalGames: matches.length,
 		players: Object.values(aggregate.players)

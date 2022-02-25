@@ -100,6 +100,7 @@ button {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	background: var(--c2);
+	outline: 1px solid var(--c3);
 	cursor: pointer;
 }
 button:hover {
