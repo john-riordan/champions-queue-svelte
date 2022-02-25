@@ -21,18 +21,18 @@ export function aggregateData(data = {}) {
 				const champ = player.championIcon;
 				const role = player.laneIndex;
 
-				if (!acc.players[player.summonerId]) acc.players[player.summonerId] = {};
+				if (!acc.players[player.name]) acc.players[player.name] = {};
 				const win = player.winner ? 1 : 0;
 				const lpEarned = win ? 10 : -5;
 
-				acc.players[player.summonerId] = {
+				acc.players[player.name] = {
 					name: player.name,
-					lp: (acc.players[player.summonerId]?.lp || 0) + lpEarned,
-					games: (acc.players[player.summonerId]?.games || 0) + 1,
-					wins: (acc.players[player.summonerId]?.wins || 0) + win,
-					kills: player.kills + (acc.players[player.summonerId]?.kills || 0),
-					deaths: player.deaths + (acc.players[player.summonerId]?.deaths || 0),
-					assists: player.assists + (acc.players[player.summonerId]?.assists || 0)
+					lp: (acc.players[player.name]?.lp || 0) + lpEarned,
+					games: (acc.players[player.name]?.games || 0) + 1,
+					wins: (acc.players[player.name]?.wins || 0) + win,
+					kills: player.kills + (acc.players[player.name]?.kills || 0),
+					deaths: player.deaths + (acc.players[player.name]?.deaths || 0),
+					assists: player.assists + (acc.players[player.name]?.assists || 0)
 					// champions: [
 					// 	...champs,
 					// 	{
@@ -55,8 +55,8 @@ export function aggregateData(data = {}) {
 					kills: player.kills + (champRole?.kills || 0),
 					deaths: player.deaths + (champRole?.deaths || 0),
 					assists: player.assists + (champRole?.assists || 0),
-					cs: player.cs + (champRole?.cs || 0),
-					players: [...champPlayers, player.summonerId]
+					cs: player.cs + (champRole?.cs || 0)
+					// players: [...champPlayers, player.name]
 				};
 			}
 

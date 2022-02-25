@@ -7,7 +7,7 @@
 	let sort = 'lp';
 	let desc = true;
 
-	$: players = $store.players || {};
+	$: players = $store.players || [];
 	$: list = players
 		.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
 		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
@@ -24,9 +24,7 @@
 </div>
 <div class="sort">
 	<span class="nameSort">Name</span>
-	<span class="stat">
-		Rank
-	</span>
+	<span class="stat"> Rank </span>
 	<span class="stat" on:click={() => setSort('lp')}>
 		LP
 		{#if sort === 'lp'}
@@ -130,7 +128,6 @@
 		background: var(--c3);
 	}
 
-
 	.list .name {
 		width: 15rem;
 		font-weight: 800;
@@ -142,7 +139,6 @@
 	.stat {
 		flex: 1;
 	}
-
 
 	.sort {
 		background: transparent;
