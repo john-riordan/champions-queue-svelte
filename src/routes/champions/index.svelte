@@ -9,8 +9,8 @@
 	let sort = 'games';
 	let desc = true;
 
-	$: champions = $store.aggregate?.champions || {};
-	$: totalGames = $store.aggregate?.totalGames || 1;
+	$: champions = $store.champions || {};
+	$: totalGames = $store.totalGames || 1;
 	$: list = Object.values(champions)
 		.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
 		.map((champ) => ({
@@ -29,7 +29,9 @@
 </script>
 
 <PageHeader title="Champions" />
-
+<div class="controls">
+	<input class="search" placeholder="Search Champions" bind:value={search} />
+</div>
 <div class="sort">
 	<span class="nameSort">Name</span>
 	<span class="stat" on:click={() => setSort('games')}>
@@ -68,7 +70,7 @@
 		<li>
 			<a href={`/champions/${champ.name}`}>
 				<div class="info">
-					<ChampImg name={champ.name} />
+					<ChampImg name={champ.name} --size={40} />
 					<h4 class="name">{champ.name}</h4>
 				</div>
 				<span class="stat">
@@ -109,29 +111,6 @@
 </ul>
 
 <style>
-	.statBlocks {
-		display: flex;
-		margin-bottom: 2rem;
-		gap: 1rem;
-	}
-	.statBlock {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding: 2rem;
-		background: var(--c2);
-	}
-	.statBlock .stat {
-		font-size: 3rem;
-	}
-	.statBlock span {
-		display: block;
-		color: var(--c4);
-		text-transform: uppercase;
-		letter-spacing: 2px;
-	}
-
 	.list {
 		display: flex;
 		flex-direction: column;
@@ -151,6 +130,10 @@
 		background: var(--c2);
 	}
 
+	.list li {
+		font-size: 1.175rem;
+	}
+
 	.list li a:hover {
 		background: var(--c3);
 	}
@@ -162,8 +145,7 @@
 	}
 
 	.list .name {
-		width: 15rem;
-		font-size: 1.25rem;
+		width: 14rem;
 		font-weight: 800;
 		text-transform: uppercase;
 		text-align: left;
@@ -171,16 +153,13 @@
 	}
 
 	.stat {
-		width: 10rem;
-	}
-
-	.list .stat {
-		font-size: 1.25rem;
+		flex: 1;
 	}
 
 	.sort {
 		background: transparent;
 		font-weight: 700;
+		font-size: 0.875rem;
 		padding-bottom: 1rem;
 		user-select: none;
 	}
@@ -196,8 +175,8 @@
 		height: 1rem;
 	}
 	.nameSort {
-		width: 15rem;
-		margin-left: 4rem;
-		text-align: left;
+		justify-content: flex-start;
+		width: 14rem;
+		margin-left: 3.5rem;
 	}
 </style>

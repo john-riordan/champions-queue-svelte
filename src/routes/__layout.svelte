@@ -43,7 +43,7 @@
 <div class="container">
 	<nav class="nav">
 		{#each routes as route}
-			<a href={route.url} class:active={currURL === route.url}>
+			<a href={route.url} class:active={currURL.includes(route.url)}>
 				{route.title}
 			</a>
 		{/each}
@@ -84,7 +84,7 @@
 		box-sizing: border-box;
 		padding: var(--gap);
 		padding-left: var(--nav-width);
-		padding-right: 2rem;
+		padding-right: 1rem;
 		padding-top: 0;
 	}
 

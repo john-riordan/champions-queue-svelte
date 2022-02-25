@@ -16,6 +16,8 @@
 <style>
 	.champ-img {
 		overflow: hidden;
+		width: calc(var(--size) * 1px);
+		max-width: calc(var(--size) * 1px);
 	}
 	.champ-img,
 	.champ-img img {

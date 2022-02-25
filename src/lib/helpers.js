@@ -67,7 +67,11 @@ export function aggregateData(data = {}) {
 
 	return {
 		matches,
-		aggregate
+		totalGames: matches.length,
+		players: Object.values(aggregate.players)
+			.sort((a, b) => b.lp - a.lp)
+			.map((p, i) => ({ ...p, rank: i + 1 })),
+		champions: aggregate.champions
 	};
 }
 

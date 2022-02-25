@@ -4,12 +4,11 @@
 	import { store } from '$lib/stores';
 
 	let search = '';
-	let list = [];
 	let sort = 'lp';
 	let desc = true;
 
-	$: players = $store.aggregate?.players || {};
-	$: list = Object.values(players)
+	$: players = $store.players || {};
+	$: list = players
 		.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
 		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
 
@@ -25,6 +24,9 @@
 </div>
 <div class="sort">
 	<span class="nameSort">Name</span>
+	<span class="stat">
+		Rank
+	</span>
 	<span class="stat" on:click={() => setSort('lp')}>
 		LP
 		{#if sort === 'lp'}
@@ -43,19 +45,16 @@
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat"> W/L </span>
-	<span class="stat" on:click={() => setSort('cs')}>
-		Games
-		{#if sort === 'games'}
-			<SortDirection class={desc ? 'desc' : 'asc'} />
-		{/if}
-	</span>
+	<span class="stat">W/L</span>
 </div>
 <ul class="list">
 	{#each list as player}
 		<li>
 			<a href={`/players/${player.name}`}>
 				<p class="name">{player.name}</p>
+				<span class="stat">
+					{player.rank}
+				</span>
 				<span class="stat">
 					{player.lp}
 				</span>
@@ -75,23 +74,36 @@
 				<span class="stat">
 					{player.wins} / {player.games - player.wins}
 				</span>
-				<span class="stat">
-					{player.games}
-				</span>
 			</a>
 		</li>
 	{/each}
 </ul>
 
 <style>
-	.controls {
+	.statBlocks {
 		display: flex;
-		align-items: center;
+		margin-bottom: 2rem;
 		gap: 1rem;
-		margin-bottom: 1rem;
 	}
-	.list,
-	.matchlist {
+	.statBlock {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 2rem;
+		background: var(--c2);
+	}
+	.statBlock .stat {
+		font-size: 3rem;
+	}
+	.statBlock span {
+		display: block;
+		color: var(--c4);
+		text-transform: uppercase;
+		letter-spacing: 2px;
+	}
+
+	.list {
 		display: flex;
 		flex-direction: column;
 		gap: calc(var(--gap) / 3);
@@ -99,30 +111,43 @@
 
 	.list li a,
 	.sort {
-		--player-bg: var(--c2);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 2rem;
 		font-weight: 300;
+		text-transform: uppercase;
 		letter-spacing: 1px;
-		background: var(--player-bg);
-	}
-	.list li a:hover {
-		--player-bg: var(--c3);
+		text-align: center;
+		background: var(--c2);
 	}
 
+	.list li {
+		font-size: 1.175rem;
+	}
+
+	.list li a:hover {
+		background: var(--c3);
+	}
+
+
 	.list .name {
-		width: 20ch;
-		font-size: 1.25rem;
+		width: 15rem;
 		font-weight: 800;
 		text-transform: uppercase;
+		text-align: left;
 		letter-spacing: 2px;
 	}
+
+	.stat {
+		flex: 1;
+	}
+
 
 	.sort {
 		background: transparent;
 		font-weight: 700;
+		font-size: 0.875rem;
 		padding-bottom: 1rem;
 		user-select: none;
 	}
@@ -137,52 +162,8 @@
 		width: 1rem;
 		height: 1rem;
 	}
-
-	.list .stat {
-		font-size: 1.25rem;
-	}
-
-	.list .champs {
-		display: flex;
-		gap: 0.25rem;
-	}
-
-	.champBlock {
-		position: relative;
-	}
-
-	.winPip,
-	.lossPip {
-		position: absolute;
-		width: 8px;
-		height: 8px;
-		top: 0;
-		left: 0;
-		box-shadow: 0 0 0 4px var(--player-bg);
-	}
-	.winPip {
-		background: var(--green);
-	}
-	.lossPip {
-		background: var(--red);
-	}
-
-	.match {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.matchlist li {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 2rem;
-		font-weight: 300;
-		letter-spacing: 1px;
-		background: var(--c2);
-	}
-	.matchlist .champs {
-		display: flex;
-		gap: 0.25rem;
+	.nameSort {
+		justify-content: flex-start;
+		width: 15rem;
 	}
 </style>

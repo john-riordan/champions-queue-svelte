@@ -11,8 +11,8 @@
 	--green: hsl(120deg 75% 54%);
 	--red: hsl(346deg 100% 50%);
 
-	--nav-width: 20vw;
-	--gap: 2vw;
+	--nav-width: 18vw;
+	--gap: 2rem;
 }
 
 html,
@@ -22,6 +22,7 @@ body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
 		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-size: 1em;
 	background: var(--app-bg);
 	color: var(--c7);
 }
