@@ -70,7 +70,7 @@
 {/if}
 <ul class="matchlist">
 	{#each list as match}
-		<Match {match} />
+		<Match {match} isChampion />
 	{/each}
 </ul>
 {#if list.length}

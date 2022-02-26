@@ -4,6 +4,7 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 
 	export let match;
+	export let isChampion = false;
 
 	const relativeTime = new RelativeTime();
 	const dateRelative = relativeTime.from(new Date(match.matchStart));
@@ -21,6 +22,9 @@
 					<span class="stat timeago">{dateRelative}</span>
 				</div>
 				<div class="statline">
+					{#if isChampion}
+						<span class="stat-player">{stats.name}</span>
+					{/if}
 					<span class="stat">
 						<span class="stat-prefix">KDA:</span>
 						<span>{stats.kills} / {stats.deaths} / {stats.assists}</span>
@@ -73,7 +77,7 @@
 	}
 	.statline {
 		display: flex;
-		gap: 1rem;
+		gap: 1.5rem;
 	}
 	.stat-prefix {
 		color: var(--c4);
@@ -84,7 +88,8 @@
 		letter-spacing: 2px;
 		color: var(--red);
 	}
-	.timeago {
+	.stat-player {
+		font-weight: 600;
 	}
 	.outcome.victory {
 		color: var(--blue);
