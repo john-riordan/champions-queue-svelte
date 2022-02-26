@@ -10,6 +10,7 @@
 	$: players = $store.players || [];
 	$: list = players
 		.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
+		.map((p) => ({ ...p, winrate: p.wins / p.games, kda: (p.kills + p.assists) / (p.deaths || 1) }))
 		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
 
 	function setSort(col) {

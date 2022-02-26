@@ -62,7 +62,7 @@ export function aggregateData(data = {}) {
 
 			return acc;
 		},
-		{ players: {}, champions: {}, totalGames: data.matches.length }
+		{ players: {}, champions: {}, totalGames: matches.length }
 	);
 
 	return {

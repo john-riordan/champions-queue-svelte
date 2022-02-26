@@ -89,6 +89,7 @@
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
+		gap: 0.5rem;
 		font-size: 1.25rem;
 		font-weight: 300;
 		letter-spacing: 1px;
@@ -97,6 +98,11 @@
 
 	.nav > *:hover {
 		background: var(--c2);
+	}
+
+	.nav :global(svg) {
+		width: 1.75rem;
+		height: 1.75rem;
 	}
 
 	.content {

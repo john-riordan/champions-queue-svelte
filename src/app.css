@@ -10,6 +10,7 @@
 	--c7: hsl(var(--h) var(--s) 85%);
 	--green: hsl(120deg 75% 54%);
 	--red: hsl(346deg 100% 50%);
+	--blue: hsl(220deg 85% 60%);
 
 	--nav-width: 18vw;
 	--gap: 2rem;
