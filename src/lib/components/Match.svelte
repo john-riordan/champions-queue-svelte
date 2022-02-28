@@ -9,7 +9,7 @@
 	const relativeTime = new RelativeTime();
 	const dateRelative = relativeTime.from(new Date(match.matchStart));
 	const stats = match.stats;
-	const outcome = stats.winner ? 'Victory' : 'Defeat';
+	const outcome = stats?.winner ? 'Victory' : 'Defeat';
 </script>
 
 <li class="match">
@@ -36,18 +36,26 @@
 				</div>
 			</div>
 		</div>
+	{:else}
+		<div class="info">
+			<div class="match-stats">
+				<div class="statline">
+					<span class="stat timeago">{dateRelative}</span>
+				</div>
+			</div>
+		</div>
 	{/if}
 	<div class="champslist">
 		<div class="champs">
 			{#each match.teams[0].players as player}
-				<div class:highlight={player.championIcon === stats.championIcon}>
+				<div class:highlight={player.championIcon === stats?.championIcon}>
 					<ChampImg name={player.championIcon} --size={36} />
 				</div>
 			{/each}
 		</div>
 		<div class="champs">
 			{#each match.teams[1].players as player}
-				<div class:highlight={player.championIcon === stats.championIcon}>
+				<div class:highlight={player.championIcon === stats?.championIcon}>
 					<ChampImg name={player.championIcon} --size={36} />
 				</div>
 			{/each}
@@ -61,7 +69,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 2rem;
-		font-weight: 300;
+		font-weight: 400;
 		letter-spacing: 1px;
 		background: var(--c2);
 	}
@@ -103,6 +111,6 @@
 		gap: 0.5rem;
 	}
 	.highlight {
-		box-shadow: 0 0 0 1px var(--c2), 0 0 0 2px var(--blue);
+		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--yellow);
 	}
 </style>

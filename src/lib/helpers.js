@@ -76,42 +76,11 @@ export function aggregateData(data = {}) {
 	};
 }
 
-export function findPlayerMatches(matches, name) {
-	return (matches || []).filter((match) => {
-		const team1 = match.teams[0].players.map((p) => p.name);
-		const team2 = match.teams[1].players.map((p) => p.name);
-		const teams = team1.concat(team2);
-
-		return teams.includes(name);
-	});
-}
-
-export function findChampionMatches(matches, champName) {
-	return (matches || []).reduce(
-		(acc, curr) => {
-			const t1 = curr.teams[0];
-			const t2 = curr.teams[1];
-			const t1Players = t1.players.map((p) => ({ ...p, winner: t1.winner }));
-			const t2Players = t2.players.map((p) => ({ ...p, winner: t2.winner }));
-			const teams = t1Players.concat(t2Players);
-			const champ = teams.find((p) => p.championIcon === champName);
-
-			if (!champ) return acc;
-
-			const winner = champ.winner ? 1 : 0;
-
-			return {
-				matches: [...acc.matches, curr],
-				stats: {
-					kills: champ.kills + (acc.players.kills || 0),
-					deaths: champ.deaths + (acc.players.deaths || 0),
-					assists: champ.assists + (acc.players.assists || 0),
-					cs: champ.cs + (acc.players.cs || 0),
-					games: (acc.players.games || 0) + 1,
-					wins: (acc.players.wins || 0) + winner
-				}
-			};
-		},
-		{ matches: [], stats: {} }
-	);
+export function ordinal(i) {
+	const j = i % 10,
+		k = i % 100;
+	if (j == 1 && k != 11) return i + 'st';
+	if (j == 2 && k != 12) return i + 'nd';
+	if (j == 3 && k != 13) return i + 'rd';
+	return i + 'th';
 }

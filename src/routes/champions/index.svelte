@@ -1,9 +1,16 @@
+<script context="module">
+	export const prerender = true;
+	export const load = async () => ({ props: { title: 'Champions' } });
+</script>
+
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
 
 	import { store } from '$lib/stores';
+
+	export let title;
 
 	let search = '';
 	let sort = 'games';
@@ -28,7 +35,7 @@
 	}
 </script>
 
-<PageHeader title="Champions" />
+<PageHeader {title} />
 <div class="controls">
 	<input class="search" placeholder="Search Champions" bind:value={search} />
 </div>

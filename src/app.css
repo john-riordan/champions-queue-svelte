@@ -11,9 +11,10 @@
 	--green: hsl(120deg 75% 54%);
 	--red: hsl(346deg 100% 50%);
 	--blue: hsl(220deg 85% 60%);
+	--yellow: hsl(48deg 92% 42%);
 
 	--nav-width: 18vw;
-	--gap: 2rem;
+	--gap: 1.5rem;
 }
 
 html,
@@ -117,4 +118,26 @@ button.active {
 .btn-grp button:last-child {
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+}
+
+.statBlocks {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+.statBlock {
+	flex: 1;
+}
+.statBlock .stat {
+	font-size: 2rem;
+}
+.statBlock .stat span {
+	color: var(--c4);
+	font-size: 1.5rem;
+}
+.statBlock .stat-name {
+	display: block;
+	color: var(--c4);
+	text-transform: uppercase;
+	letter-spacing: 2px;
 }

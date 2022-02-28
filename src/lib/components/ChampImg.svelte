@@ -1,6 +1,9 @@
 <script>
 	export let name;
 	export let size = 40;
+
+	// Fix the buggy namign of fiddle
+	name = name === 'FiddleSticks' ? 'Fiddlesticks' : name;
 </script>
 
 <div class="champ-img">

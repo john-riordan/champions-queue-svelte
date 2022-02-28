@@ -1,11 +1,19 @@
-<script>
-	import { page } from '$app/stores';
+<script context="module">
+	export const load = async ({ params }) => {
+		return { props: { name: params.name } };
+	};
+</script>
 
+<script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Match from '$lib/components/Match.svelte';
+	import { ordinal } from '$lib/helpers';
 	import { store } from '$lib/stores';
 
-	$: name = $page.params.name;
+	export let name;
+	const perPage = 100;
+	let pageIndex = 0;
+
 	$: matches = $store.matches || [];
 
 	$: list = matches
@@ -16,6 +24,7 @@
 
 			return teams.includes(name);
 		})
+		.slice(0, (pageIndex + 1) * perPage)
 		.map((match) => {
 			const t1 = match.teams[0].players.map((p) => ({ ...p, winner: match.teams[0].winner }));
 			const t2 = match.teams[1].players.map((p) => ({ ...p, winner: match.teams[1].winner }));
@@ -30,18 +39,34 @@
 		});
 
 	$: playerStats = ($store.players || []).find((p) => p.name === name);
+	// $: lpHistory = list.reduce((acc, curr) => {
+	// 	const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+	// 	const firstDate = new Date();
+	// 	const secondDate = new Date(curr.matchStart);
+	// 	const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+
+	// 	if (!acc[diffDays]) acc[diffDays] = 0;
+	// 	const win = curr.victory ? 10 : -5;
+	// 	acc[diffDays] += win;
+
+	// 	return acc;
+	// }, {});
 </script>
 
 <PageHeader title={name} />
 {#if playerStats}
 	<div class="statBlocks">
 		<div class="statBlock">
+			<h3 class="stat">{ordinal(playerStats.rank)} <span>/ {$store.players.length}</span></h3>
+			<span class="stat-name">Rank</span>
+		</div>
+		<div class="statBlock">
 			<h3 class="stat">{playerStats.lp.toLocaleString('en-us')}</h3>
-			<span>LP</span>
+			<span class="stat-name">LP</span>
 		</div>
 		<div class="statBlock">
 			<h3 class="stat">{playerStats.games.toLocaleString('en-us')}</h3>
-			<span>Games</span>
+			<span class="stat-name">Games</span>
 		</div>
 		<div class="statBlock">
 			<h3 class="stat">
@@ -51,7 +76,7 @@
 					style: 'percent'
 				})}
 			</h3>
-			<span>Win-Rate</span>
+			<span class="stat-name">Win-Rate</span>
 		</div>
 		<div class="statBlock">
 			<h3 class="stat">
@@ -63,7 +88,7 @@
 					}
 				)}
 			</h3>
-			<span>KDA</span>
+			<span class="stat-name">KDA</span>
 		</div>
 	</div>
 {/if}
@@ -72,30 +97,11 @@
 		<Match {match} />
 	{/each}
 </ul>
+{#if list.length}
+	<button on:click={() => pageIndex++}>Load More</button>
+{/if}
 
 <style>
-	.statBlocks {
-		display: flex;
-		margin-bottom: 2rem;
-		gap: 1rem;
-	}
-	.statBlock {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding: 2rem;
-		background: var(--c2);
-	}
-	.statBlock .stat {
-		font-size: 2.5rem;
-	}
-	.statBlock span {
-		display: block;
-		color: var(--c4);
-		text-transform: uppercase;
-		letter-spacing: 2px;
-	}
 	.matchlist {
 		display: flex;
 		flex-direction: column;

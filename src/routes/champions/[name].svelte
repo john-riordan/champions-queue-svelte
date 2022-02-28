@@ -1,14 +1,18 @@
-<script>
-	import { page } from '$app/stores';
+<script context="module">
+	export const load = async ({ params }) => {
+		return { props: { name: params.name } };
+	};
+</script>
 
+<script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import { store } from '$lib/stores';
 
+	export let name;
 	const perPage = 20;
 	let pageIndex = 0;
 
-	$: name = $page.params.name;
 	$: matches = $store.matches || [];
 
 	$: list = matches
@@ -78,28 +82,6 @@
 {/if}
 
 <style>
-	.statBlocks {
-		display: flex;
-		margin-bottom: 2rem;
-		gap: 1rem;
-	}
-	.statBlock {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding: 2rem;
-		background: var(--c2);
-	}
-	.statBlock .stat {
-		font-size: 2.5rem;
-	}
-	.statBlock span {
-		display: block;
-		color: var(--c4);
-		text-transform: uppercase;
-		letter-spacing: 2px;
-	}
 	.matchlist {
 		display: flex;
 		flex-direction: column;

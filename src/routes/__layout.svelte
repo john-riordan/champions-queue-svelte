@@ -17,6 +17,7 @@
 		return json;
 	}
 
+	export let url;
 	let data;
 
 	onMount(async () => {
@@ -80,7 +81,7 @@
 		gap: 1rem;
 		height: 100vh;
 		width: var(--nav-width);
-		padding: calc(var(--gap) / 2);
+		padding: var(--gap);
 	}
 
 	.nav > * {
@@ -108,7 +109,7 @@
 	.content {
 		box-sizing: border-box;
 		padding: var(--gap);
-		padding-left: var(--nav-width);
+		padding-left: calc(var(--nav-width) + var(--gap));
 		padding-right: 1rem;
 		padding-top: 0;
 	}

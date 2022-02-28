@@ -1,5 +1,5 @@
 <script>
-	export let title = 'Page Title';
+	export let title = '';
 </script>
 
 <header class="pageHeader">
@@ -17,6 +17,6 @@
 		z-index: 1;
 	}
 	.pageHeader h1 {
-		font-size: 2rem;
+		font-size: 2.5rem;
 	}
 </style>
