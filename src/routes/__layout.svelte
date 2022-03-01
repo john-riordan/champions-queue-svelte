@@ -18,7 +18,6 @@
 		return json;
 	}
 
-	export let url;
 	let data;
 
 	onMount(async () => {
@@ -27,8 +26,9 @@
 	});
 
 	async function fetchNewData() {
+		store.set({ ...data, loading: true });
 		const newData = await fetchData();
-		store.set(newData);
+		store.set({ ...newData, loading: false });
 	}
 
 	$: currURL = $page.url.pathname;
@@ -71,6 +71,11 @@
 	</nav>
 	<section class="content">
 		<slot />
+		{#if $store.loading}
+			<div class="loading">
+				<h1>Loading...</h1>
+			</div>
+		{/if}
 	</section>
 </div>
 <MatchModal />
@@ -83,6 +88,7 @@
 		height: 100vh;
 		width: var(--nav-width);
 		padding: var(--gap);
+		z-index: 1;
 	}
 
 	.nav > * {
@@ -108,6 +114,7 @@
 	}
 
 	.content {
+		position: relative;
 		box-sizing: border-box;
 		padding: var(--gap);
 		padding-left: calc(var(--nav-width) + var(--gap));
@@ -118,5 +125,13 @@
 	.nav > .active {
 		background: var(--c3);
 		border-color: var(--c4);
+	}
+
+	.loading {
+		position: fixed;
+		inset: 0;
+		display: grid;
+		place-content: center;
+		background-color: var(--c1);
 	}
 </style>
