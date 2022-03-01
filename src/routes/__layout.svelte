@@ -112,7 +112,7 @@
 		padding: var(--gap);
 		padding-left: calc(var(--nav-width) + var(--gap));
 		padding-right: 1rem;
-		padding-top: 0;
+		padding-top: 2rem;
 	}
 
 	.nav > .active {

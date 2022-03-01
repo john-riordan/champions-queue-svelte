@@ -8,6 +8,7 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
+	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import { store } from '$lib/stores';
 	import { TEAMS } from '$lib/constants';
@@ -17,6 +18,7 @@
 	let team = null;
 	let sort = 'lp';
 	let desc = true;
+	const champSize = 56;
 
 	$: players = $store.players || [];
 	$: list = players
@@ -85,7 +87,11 @@
 	{#each list as player}
 		<li>
 			<a href={`/players/${player.name}`}>
-				<p class="name">{player.name}</p>
+				<div class="info">
+					<PlayerImg name={player.name} --size={champSize} size={champSize} />
+					<p class="name">{player.name}</p>
+				</div>
+
 				<span class="stat">
 					{player.rank}
 				</span>
@@ -130,9 +136,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 2rem;
+		padding: 1rem;
 		font-weight: 300;
-		text-transform: uppercase;
 		letter-spacing: 1px;
 		text-align: center;
 		background: var(--c2);
@@ -146,12 +151,16 @@
 		background: var(--c3);
 	}
 
+	.list .info {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
 	.list .name {
 		width: 15rem;
-		font-weight: 800;
-		text-transform: uppercase;
+		font-weight: 700;
 		text-align: left;
-		letter-spacing: 2px;
 	}
 
 	.stat {
@@ -162,6 +171,7 @@
 		background: transparent;
 		font-weight: 700;
 		font-size: 0.875rem;
+		text-transform: uppercase;
 		padding-bottom: 1rem;
 		user-select: none;
 	}
@@ -178,6 +188,7 @@
 	}
 	.nameSort {
 		justify-content: flex-start;
-		width: 15rem;
+		width: 14rem;
+		margin-left: 4.5rem;
 	}
 </style>

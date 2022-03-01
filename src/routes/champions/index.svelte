@@ -15,6 +15,7 @@
 	let search = '';
 	let sort = 'games';
 	let desc = true;
+	const champSize = 56;
 
 	$: champions = $store.champions || {};
 	$: totalGames = $store.totalGames || 1;
@@ -37,7 +38,7 @@
 
 <PageHeader {title} />
 <div class="controls">
-	<input class="search" placeholder="Search Champions" bind:value={search} />
+	<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
 </div>
 <div class="sort">
 	<span class="nameSort">Name</span>
@@ -77,7 +78,7 @@
 		<li>
 			<a href={`/champions/${champ.name}`}>
 				<div class="info">
-					<ChampImg name={champ.name} --size={40} />
+					<ChampImg name={champ.name} --size={champSize} size={champSize} />
 					<h4 class="name">{champ.name}</h4>
 				</div>
 				<span class="stat">
@@ -121,7 +122,6 @@
 	.list {
 		display: flex;
 		flex-direction: column;
-		gap: calc(var(--gap) / 3);
 	}
 
 	.list li a,
@@ -129,12 +129,17 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 2rem;
+		padding: 1.25rem;
 		font-weight: 300;
-		text-transform: uppercase;
 		letter-spacing: 1px;
 		text-align: center;
 		background: var(--c2);
+		transition: background ease 0.15s;
+	}
+
+	.list li a {
+		border-top: 2px solid var(--app-bg);
+		border-bottom: 2px solid var(--app-bg);
 	}
 
 	.list li {
@@ -153,10 +158,8 @@
 
 	.list .name {
 		width: 14rem;
-		font-weight: 800;
-		text-transform: uppercase;
+		font-weight: 700;
 		text-align: left;
-		letter-spacing: 2px;
 	}
 
 	.stat {
@@ -167,6 +170,7 @@
 		background: transparent;
 		font-weight: 700;
 		font-size: 0.875rem;
+		text-transform: uppercase;
 		padding-bottom: 1rem;
 		user-select: none;
 	}

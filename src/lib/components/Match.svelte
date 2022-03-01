@@ -18,15 +18,23 @@
 	$: stats = champion
 		? teams.find((p) => p.championIcon === champion)
 		: teams.find((p) => p.name === player);
+	$: nonSpecificMatch = !champion && !player;
 	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
 	$: patch = formatchPatch(match?.gameVersion);
+
+	$: playerChampSize = nonSpecificMatch ? 48 : 32;
 
 	function updateModal() {
 		matchModal.set(match);
 	}
 </script>
 
-<li class="match" class:victory={stats?.winner} on:click={updateModal}>
+<li
+	class="match"
+	class:victory={stats?.winner}
+	class:noHighlight={nonSpecificMatch}
+	on:click={updateModal}
+>
 	{#if stats}
 		<div class="info">
 			<div class="champ-container" class:victory={stats.winner}>
@@ -66,22 +74,23 @@
 		<div class="champs">
 			{#each match.teams[0].players as player}
 				<div class:highlight={player.championIcon === stats?.championIcon}>
-					<ChampImg name={player.championIcon} --size={32} />
+					<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
 				</div>
 			{/each}
 		</div>
 		<div class="champs">
 			{#each match.teams[1].players as player}
 				<div class:highlight={player.championIcon === stats?.championIcon}>
-					<ChampImg name={player.championIcon} --size={32} />
+					<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
 				</div>
 			{/each}
 		</div>
 	</div>
 </li>
 
-<style>
+<style lang="scss">
 	.match {
+		--transition: ease 0.15s;
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -90,26 +99,38 @@
 		border-top: 2px solid var(--app-bg);
 		border-bottom: 2px solid var(--app-bg);
 		background: var(--c2);
+		transition: background var(--transition);
 		cursor: pointer;
-	}
-	.match:hover::before {
-		opacity: 0.2;
+
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0 15% 0 0;
+			opacity: 0.075;
+			transition: opacity var(--transition);
+		}
+		&:hover {
+			&::before {
+				opacity: 0.25;
+			}
+		}
+		&.victory::before {
+			background: linear-gradient(to right, var(--blue), transparent);
+		}
+		&:not(.victory)::before {
+			background: linear-gradient(to right, var(--red), transparent);
+		}
+		&.noHighlight {
+			&::before {
+				content: none;
+			}
+			&:hover {
+				background: var(--c3);
+			}
+		}
 	}
 	.match > * {
 		position: relative;
-	}
-	.match::before {
-		content: '';
-		position: absolute;
-		inset: 0 50% 0 0;
-		opacity: 0.1;
-		transition: opacity ease 0.15s;
-	}
-	.match.victory::before {
-		background: linear-gradient(to right, var(--blue), transparent);
-	}
-	.match:not(.victory)::before {
-		background: linear-gradient(to right, var(--red), transparent);
 	}
 	.info {
 		display: flex;

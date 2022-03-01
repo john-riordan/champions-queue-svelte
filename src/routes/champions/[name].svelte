@@ -41,7 +41,7 @@
 	$: champStats = champions[name];
 </script>
 
-<PageHeader title={name} />
+<PageHeader title={name} champion={name} />
 {#if champStats}
 	<div class="statblocks">
 		<div class="statblock">

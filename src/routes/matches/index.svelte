@@ -30,6 +30,5 @@
 	.matchlist {
 		display: flex;
 		flex-direction: column;
-		gap: calc(var(--gap) / 3);
 	}
 </style>

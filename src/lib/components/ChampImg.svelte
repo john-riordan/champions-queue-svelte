@@ -2,7 +2,7 @@
 	export let name;
 	export let size = 40;
 
-	// Fix the buggy namign of fiddle
+	// Fix the buggy naming of fiddle
 	name = name === 'FiddleSticks' ? 'Fiddlesticks' : name;
 </script>
 
