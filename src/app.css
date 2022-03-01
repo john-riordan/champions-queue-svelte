@@ -1,20 +1,22 @@
 :root {
-	--h: 185deg;
-	--s: 7%;
-	--c1: hsl(var(--h) var(--s) 7%);
+	--h: 215deg;
+	--s: 15%;
+	--c1: hsl(var(--h) var(--s) 6%);
 	--c2: hsl(var(--h) var(--s) 9%);
-	--c3: hsl(var(--h) var(--s) 12%);
-	--c4: hsl(var(--h) var(--s) 45%);
-	--c5: hsl(var(--h) var(--s) 65%);
-	--c6: hsl(var(--h) var(--s) 75%);
-	--c7: hsl(var(--h) var(--s) 85%);
+	--c3: hsl(var(--h) var(--s) 15%);
+	--c4: hsl(var(--h) var(--s) 20%);
+	--c5: hsl(var(--h) var(--s) 35%);
+	--c6: hsl(var(--h) var(--s) 50%);
+	--c7: hsl(var(--h) var(--s) 60%);
+	--c8: hsl(var(--h) var(--s) 75%);
+	--c9: hsl(var(--h) var(--s) 95%);
 	--green: hsl(120deg 75% 54%);
 	--red: hsl(346deg 100% 50%);
 	--blue: hsl(220deg 85% 60%);
 	--yellow: hsl(48deg 92% 42%);
 
 	--nav-width: 18vw;
-	--gap: 1.5rem;
+	--gap: 1rem;
 }
 
 html,
@@ -26,7 +28,15 @@ body {
 		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	font-size: 1em;
 	background: var(--app-bg);
-	color: var(--c7);
+	color: var(--c9);
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--c4);
+	border: 4px solid var(--app-bg);
+}
+body::-webkit-scrollbar {
+	width: 0.75rem;
 }
 
 input,
@@ -120,24 +130,27 @@ button.active {
 	border-bottom-right-radius: 5px;
 }
 
-.statBlocks {
+.statblocks {
 	display: flex;
 	gap: 1rem;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 }
-.statBlock {
+.statblock {
 	flex: 1;
 }
-.statBlock .stat {
-	font-size: 2rem;
-}
-.statBlock .stat span {
-	color: var(--c4);
+.statblock .stat {
 	font-size: 1.5rem;
 }
-.statBlock .stat-name {
+.statblock .stat span {
+	color: var(--c6);
+	font-weight: 500;
+	font-size: 1rem;
+}
+.statblock .stat-name {
 	display: block;
-	color: var(--c4);
+	font-weight: 600;
+	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
+	color: var(--c7);
 }

@@ -8,6 +8,7 @@
 	import Matches from '$lib/components/icons/Matches.svelte';
 	import Leaderboard from '$lib/components/icons/Leaderboard.svelte';
 	import Refresh from '$lib/components/icons/Refresh.svelte';
+	import MatchModal from '$lib/components/MatchModal.svelte';
 	import '../app.css';
 
 	async function fetchData() {
@@ -72,13 +73,13 @@
 		<slot />
 	</section>
 </div>
+<MatchModal />
 
 <style>
 	.nav {
 		position: fixed;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
 		height: 100vh;
 		width: var(--nav-width);
 		padding: var(--gap);
@@ -91,7 +92,7 @@
 		justify-content: center;
 		flex-direction: column;
 		gap: 0.5rem;
-		font-size: 1.25rem;
+		font-size: 1rem;
 		font-weight: 300;
 		letter-spacing: 1px;
 		border-right: 2px solid transparent;
@@ -102,8 +103,8 @@
 	}
 
 	.nav :global(svg) {
-		width: 1.75rem;
-		height: 1.75rem;
+		width: 1.25rem;
+		height: 1.25rem;
 	}
 
 	.content {

@@ -87,12 +87,12 @@
 </ul>
 
 <style>
-	.statBlocks {
+	.statblocks {
 		display: flex;
 		margin-bottom: 2rem;
 		gap: 1rem;
 	}
-	.statBlock {
+	.statblock {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
@@ -100,10 +100,10 @@
 		padding: 2rem;
 		background: var(--c2);
 	}
-	.statBlock .stat {
+	.statblock .stat {
 		font-size: 3rem;
 	}
-	.statBlock span {
+	.statblock span {
 		display: block;
 		color: var(--c4);
 		text-transform: uppercase;

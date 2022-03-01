@@ -11,7 +11,7 @@
 	import { store } from '$lib/stores';
 
 	export let name;
-	const perPage = 100;
+	const perPage = 20;
 	let pageIndex = 0;
 
 	$: matches = $store.matches || [];
@@ -24,19 +24,7 @@
 
 			return teams.includes(name);
 		})
-		.slice(0, (pageIndex + 1) * perPage)
-		.map((match) => {
-			const t1 = match.teams[0].players.map((p) => ({ ...p, winner: match.teams[0].winner }));
-			const t2 = match.teams[1].players.map((p) => ({ ...p, winner: match.teams[1].winner }));
-			const teams = t1.concat(t2);
-			const player = teams.find((p) => p.name === name);
-
-			return {
-				...match,
-				stats: player,
-				victory: player.winner
-			};
-		});
+		.slice(0, (pageIndex + 1) * perPage);
 
 	$: playerStats = ($store.players || []).find((p) => p.name === name);
 	// $: lpHistory = list.reduce((acc, curr) => {
@@ -55,30 +43,31 @@
 
 <PageHeader title={name} />
 {#if playerStats}
-	<div class="statBlocks">
-		<div class="statBlock">
+	<div class="statblocks">
+		<div class="statblock">
 			<h3 class="stat">{ordinal(playerStats.rank)} <span>/ {$store.players.length}</span></h3>
 			<span class="stat-name">Rank</span>
 		</div>
-		<div class="statBlock">
+		<div class="statblock">
 			<h3 class="stat">{playerStats.lp.toLocaleString('en-us')}</h3>
 			<span class="stat-name">LP</span>
 		</div>
-		<div class="statBlock">
+		<div class="statblock">
 			<h3 class="stat">{playerStats.games.toLocaleString('en-us')}</h3>
 			<span class="stat-name">Games</span>
 		</div>
-		<div class="statBlock">
+		<div class="statblock">
 			<h3 class="stat">
 				{(playerStats.wins / (playerStats.games || 1)).toLocaleString('en-us', {
 					minimumFractionDigits: 1,
 					maximumFractionDigits: 1,
 					style: 'percent'
 				})}
+				<span>{playerStats.wins}/{playerStats.games - playerStats.wins}</span>
 			</h3>
 			<span class="stat-name">Win-Rate</span>
 		</div>
-		<div class="statBlock">
+		<div class="statblock">
 			<h3 class="stat">
 				{((playerStats.kills + playerStats.assists) / (playerStats.deaths || 1)).toLocaleString(
 					'en-us',
@@ -94,7 +83,7 @@
 {/if}
 <ul class="matchlist">
 	{#each list as match}
-		<Match {match} />
+		<Match {match} player={name} />
 	{/each}
 </ul>
 {#if list.length}
@@ -105,6 +94,6 @@
 	.matchlist {
 		display: flex;
 		flex-direction: column;
-		gap: calc(var(--gap) / 3);
+		/* gap: calc(var(--gap) / 3); */
 	}
 </style>

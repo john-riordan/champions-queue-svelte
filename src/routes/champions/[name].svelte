@@ -43,22 +43,23 @@
 
 <PageHeader title={name} />
 {#if champStats}
-	<div class="statBlocks">
-		<div class="statBlock">
+	<div class="statblocks">
+		<div class="statblock">
 			<h3 class="stat">{champStats.games.toLocaleString('en-us')}</h3>
-			<span>Games</span>
+			<span class="stat-name">Games</span>
 		</div>
-		<div class="statBlock">
+		<div class="statblock">
 			<h3 class="stat">
 				{(champStats.wins / (champStats.games || 1)).toLocaleString('en-us', {
 					minimumFractionDigits: 1,
 					maximumFractionDigits: 1,
 					style: 'percent'
 				})}
+				<span>{champStats.wins}/{champStats.games - champStats.wins}</span>
 			</h3>
-			<span>Win-Rate</span>
+			<span class="stat-name">Win-Rate</span>
 		</div>
-		<div class="statBlock">
+		<div class="statblock">
 			<h3 class="stat">
 				{((champStats.kills + champStats.assists) / (champStats.deaths || 1)).toLocaleString(
 					'en-us',
@@ -68,13 +69,13 @@
 					}
 				)}
 			</h3>
-			<span>KDA</span>
+			<span class="stat-name">KDA</span>
 		</div>
 	</div>
 {/if}
 <ul class="matchlist">
 	{#each list as match}
-		<Match {match} isChampion />
+		<Match {match} champion={name} />
 	{/each}
 </ul>
 {#if list.length}

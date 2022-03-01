@@ -84,3 +84,11 @@ export function ordinal(i) {
 	if (j == 3 && k != 13) return i + 'rd';
 	return i + 'th';
 }
+
+export function formatchPatch(version) {
+	const patch = version.split('.');
+	const major = patch[0] ?? 12;
+	const minor = patch[1] ?? 'x';
+
+	return `${major}.${minor}`;
+}

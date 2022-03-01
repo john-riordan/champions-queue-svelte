@@ -28,6 +28,6 @@
 	}
 	.champ-img img {
 		display: block;
-		transform: scale(1.2);
+		transform: scale(1.2) translate3d(0, 0, 0);
 	}
 </style>
