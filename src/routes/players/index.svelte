@@ -8,16 +8,24 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
+	import Select from '$lib/components/Select.svelte';
 	import { store } from '$lib/stores';
+	import { TEAMS } from '$lib/constants';
 
 	export let title;
 	let search = '';
+	let team = null;
 	let sort = 'lp';
 	let desc = true;
 
 	$: players = $store.players || [];
 	$: list = players
-		.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
+		.filter((p) => {
+			if (team) {
+				return p.name.toLowerCase().startsWith(team.toLowerCase());
+			}
+			return p.name.toLowerCase().includes(search.toLowerCase());
+		})
 		.map((p) => ({ ...p, winrate: p.wins / p.games, kda: (p.kills + p.assists) / (p.deaths || 1) }))
 		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
 
@@ -25,11 +33,30 @@
 		if (sort !== col) sort = col;
 		else desc = !desc;
 	}
+
+	function updateTeam(event) {
+		team = event.detail;
+		search = '';
+	}
+
+	const teamOptions = TEAMS.map((t) => ({ value: t.tag, text: t.name, image: t.logo }));
 </script>
 
 <PageHeader {title} />
 <div class="controls">
-	<input class="search" placeholder="Search Players" bind:value={search} />
+	<input
+		type="text"
+		class="search"
+		class:disabled={team}
+		placeholder="Search Players"
+		bind:value={search}
+	/>
+	<Select
+		defaultText="Select an LCS Team"
+		value={team}
+		options={teamOptions}
+		on:select={updateTeam}
+	/>
 </div>
 <div class="sort">
 	<span class="nameSort">Name</span>
@@ -87,27 +114,9 @@
 </ul>
 
 <style>
-	.statblocks {
+	.controls {
 		display: flex;
-		margin-bottom: 2rem;
-		gap: 1rem;
-	}
-	.statblock {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding: 2rem;
-		background: var(--c2);
-	}
-	.statblock .stat {
-		font-size: 3rem;
-	}
-	.statblock span {
-		display: block;
-		color: var(--c4);
-		text-transform: uppercase;
-		letter-spacing: 2px;
+		gap: 0.5rem;
 	}
 
 	.list {

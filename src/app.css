@@ -17,6 +17,7 @@
 
 	--nav-width: 18vw;
 	--gap: 1rem;
+	--btn-height: 1.75rem;
 }
 
 html,
@@ -100,11 +101,12 @@ svg {
 .search {
 	all: unset;
 	display: inline-block;
+	height: var(--btn-height);
 	padding: 0.5rem 1rem;
-	background: var(--c2);
 }
 
-button {
+button,
+input[type='text'] {
 	all: unset;
 	display: inline-block;
 	padding: 0.5rem 1rem;
@@ -112,7 +114,9 @@ button {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	background: var(--c2);
-	outline: 1px solid var(--c3);
+	border: 1px solid var(--c3);
+}
+button {
 	cursor: pointer;
 }
 button:hover {
@@ -121,13 +125,10 @@ button:hover {
 button.active {
 	background: var(--c7);
 }
-.btn-grp button:first-child {
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-.btn-grp button:last-child {
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+button.disabled,
+input[type='text'].disabled {
+	opacity: 0.38;
+	pointer-events: none;
 }
 
 .statblocks {
