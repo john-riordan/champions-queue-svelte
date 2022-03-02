@@ -19,8 +19,10 @@
 		? teams.find((p) => p.championIcon === champion)
 		: teams.find((p) => p.name === player);
 	$: nonSpecificMatch = !champion && !player;
-	$: outcome = !nonSpecificMatch && !stats?.winner ? 'Victory' : 'Defeat';
+	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
 	$: patch = formatchPatch(match?.gameVersion);
+
+	$: console.log('xxx stats', teams, stats.winner);
 
 	$: playerChampSize = nonSpecificMatch ? 52 : 32;
 
