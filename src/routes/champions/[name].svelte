@@ -74,7 +74,7 @@
 		</div>
 	</div>
 {/if}
-<ul class="matchlist">
+<ul class="list">
 	{#each list as match}
 		<Match {match} champion={name} />
 	{/each}
@@ -82,11 +82,3 @@
 {#if list.length}
 	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}
-
-<style>
-	.matchlist {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 1rem;
-	}
-</style>

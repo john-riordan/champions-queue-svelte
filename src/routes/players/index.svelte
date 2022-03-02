@@ -125,16 +125,10 @@
 	{/each}
 </ul>
 
-<style>
+<style lang="scss">
 	.controls {
 		display: flex;
 		gap: 0.5rem;
-	}
-
-	.list {
-		display: flex;
-		flex-direction: column;
-		gap: calc(var(--gap) / 3);
 	}
 
 	.list li a,
@@ -151,6 +145,11 @@
 
 	.list li {
 		font-size: 1.175rem;
+
+		a {
+			border-top: 2px solid var(--app-bg);
+			border-bottom: 2px solid var(--app-bg);
+		}
 	}
 
 	.list li a:hover {

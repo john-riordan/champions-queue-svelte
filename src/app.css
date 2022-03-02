@@ -160,3 +160,9 @@ input[type='text'].disabled {
 	letter-spacing: 2px;
 	color: var(--c7);
 }
+
+.list {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}

@@ -119,11 +119,6 @@
 </ul>
 
 <style>
-	.list {
-		display: flex;
-		flex-direction: column;
-	}
-
 	.list li a,
 	.sort {
 		display: flex;
