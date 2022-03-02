@@ -22,56 +22,60 @@ export const ROLE_TO_INDEX = {
 	Sup: 4
 };
 
+export function teamImg(size, logo) {
+	return `https://am-a.akamaihd.net/image?resize=${size}:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2${logo}`;
+}
+
 export const TEAMS = [
 	{
 		name: 'TSM',
 		tag: 'TSM',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1592590917094_TSMTSM-01-FullonDark.png'
+		logo: 'F1592590917094_TSMTSM-01-FullonDark.png'
 	},
 	{
 		name: 'Team Liquid',
 		tag: 'TL',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631820014208_tl-2021-worlds.png'
+		logo: 'F1631820014208_tl-2021-worlds.png'
 	},
 	{
 		name: 'Cloud 9',
 		tag: 'C9',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631820065346_cloud9-2021-worlds.png'
+		logo: 'F1631820065346_cloud9-2021-worlds.png'
 	},
 	{
 		name: '100 Thieves',
 		tag: '100',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631819887423_100t-2021-worlds.png'
+		logo: 'F1631819887423_100t-2021-worlds.png'
 	},
 	{
 		name: 'Evil Geniuses',
 		tag: 'EG',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1592590374862_EvilGeniusesEG-01-FullonDark.png'
+		logo: 'F1592590374862_EvilGeniusesEG-01-FullonDark.png'
 	},
 	{
 		name: 'FlyQuest',
 		tag: 'FLY',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2Fflyquest-new-on-dark.png'
+		logo: 'Fflyquest-new-on-dark.png'
 	},
 	{
 		name: 'Golden Guardians',
 		tag: 'GG',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1592590586919_GoldenGuardiansGGS-01-FullonDark.png'
+		logo: 'F1592590586919_GoldenGuardiansGGS-01-FullonDark.png'
 	},
 	{
 		name: 'Immortals Progressive',
 		tag: 'IMT',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2Fimt-new-color.png'
+		logo: 'Fimt-new-color.png'
 	},
 	{
 		name: 'Dignitas QNTMPAY',
 		tag: 'DIG',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2FDIG-FullonDark.png'
+		logo: 'FDIG-FullonDark.png'
 	},
 	{
 		name: 'Counter Logic Gaming',
 		tag: 'CLG',
-		logo: 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1592590248482_CounterLogicGamingCLG-01-FullonDark.png'
+		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png'
 	}
 ];
 

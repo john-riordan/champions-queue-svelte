@@ -9,29 +9,33 @@
 </script>
 
 <header class="pageHeader">
-	{#if player}
-		<div class="image-container round">
-			<PlayerImg name={player} size={imageSize} --size={imageSize} />
-		</div>
-	{/if}
-	{#if champion}
-		<div class="image-container">
-			<ChampImg name={champion} size={imageSize} --size={imageSize} />
-		</div>
-	{/if}
-	<h1>{title}</h1>
+	<div class="info">
+		{#if player}
+			<div class="image-container round">
+				<PlayerImg name={player} size={imageSize} --size={imageSize} />
+			</div>
+		{/if}
+		{#if champion}
+			<div class="image-container">
+				<ChampImg name={champion} size={imageSize} --size={imageSize} />
+			</div>
+		{/if}
+		<h1>{title}</h1>
+	</div>
+	<slot name="controls" />
 </header>
 
 <style lang="scss">
 	.pageHeader {
-		position: sticky;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 6rem;
+	}
+	.info {
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
-		top: 0;
-		height: 6rem;
-		background: var(--app-bg);
-		z-index: 1;
 	}
 	.pageHeader h1 {
 		font-size: 2rem;

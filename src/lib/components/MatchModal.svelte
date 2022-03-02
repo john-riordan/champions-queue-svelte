@@ -18,10 +18,20 @@
 		matchModal.set(null);
 	});
 
-	const champSize = 48;
+	const champSize = 40;
 	const relativeTime = new RelativeTime();
 	$: dateRelative = match && relativeTime.from(new Date(match.matchStart));
 </script>
+
+<svelte:head>
+	{#if match}
+		<style>
+			body {
+				overflow: hidden;
+			}
+		</style>
+	{/if}
+</svelte:head>
 
 {#if match}
 	<div class="container" in:fade={{ duration: 150 }} out:fade={{ duration: 150 }}>
@@ -31,37 +41,55 @@
 			<div class="bg left" class:victory={match.teams[0].winner} />
 			<div class="bg right" class:victory={match.teams[1].winner} />
 			<div class="teams">
-				<ul class="players">
-					{#each match.teams[0].players as player}
-						<li>
-							<a class="player" href={`/players/${player.name}`}>
-								<ChampImg name={player.championIcon} --size={champSize} size={champSize} />
-								<span class="name">{player.name}</span>
-								<div class="stats">
-									<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
-									<span class="cs">{player.cs.toLocaleString('en-us')}</span>
-									<span class="gold">{player.gold.toLocaleString('en-us')}</span>
-								</div>
-							</a>
-						</li>
-					{/each}
-				</ul>
+				<div class="team" class:victory={match.teams[0].winner}>
+					<h3 class="outcome">{match.teams[0].winner ? 'Victory' : 'Defeat'}</h3>
+					<div class="cols-header">
+						<span class="name">Player</span>
+						<span class="kda">KDA</span>
+						<span class="cs">CS</span>
+						<span class="gold">Gold</span>
+					</div>
+					<ul class="players">
+						{#each match.teams[0].players as player}
+							<li>
+								<a class="player" href={`/players/${player.name}`}>
+									<ChampImg name={player.championIcon} --size={champSize} size={champSize} />
+									<span class="name">{player.name}</span>
+									<div class="stats">
+										<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
+										<span class="cs">{player.cs.toLocaleString('en-us')}</span>
+										<span class="gold">{player.gold.toLocaleString('en-us')}</span>
+									</div>
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
 				<div class="line" />
-				<ul class="players right">
-					{#each match.teams[1].players as player}
-						<li>
-							<a class="player" href={`/players/${player.name}`}>
-								<ChampImg name={player.championIcon} --size={champSize} size={champSize} />
-								<span class="name">{player.name}</span>
-								<div class="stats">
-									<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
-									<span class="cs">{player.cs.toLocaleString('en-us')}</span>
-									<span class="gold">{player.gold.toLocaleString('en-us')}</span>
-								</div>
-							</a>
-						</li>
-					{/each}
-				</ul>
+				<div class="team right" class:victory={match.teams[1].winner}>
+					<h3 class="outcome">{match.teams[1].winner ? 'Victory' : 'Defeat'}</h3>
+					<div class="cols-header">
+						<span class="name">Player</span>
+						<span class="kda">KDA</span>
+						<span class="cs">CS</span>
+						<span class="gold">Gold</span>
+					</div>
+					<ul class="players ">
+						{#each match.teams[1].players as player}
+							<li>
+								<a class="player" href={`/players/${player.name}`}>
+									<ChampImg name={player.championIcon} --size={champSize} size={champSize} />
+									<span class="name">{player.name}</span>
+									<div class="stats">
+										<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
+										<span class="cs">{player.cs.toLocaleString('en-us')}</span>
+										<span class="gold">{player.gold.toLocaleString('en-us')}</span>
+									</div>
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -73,22 +101,73 @@
 		inset: 0;
 		display: grid;
 		place-content: center;
-		z-index: 1;
+		z-index: 10;
 	}
 	.backdrop {
 		position: fixed;
 		inset: 0;
 		background: var(--app-bg);
 		opacity: 0.8;
-		cursor: pointer;
 	}
 	.match-container {
 		position: relative;
 		background: var(--c1);
 		padding: 2rem;
 		border: 3px solid var(--c2);
-		box-shadow: 0 0px 300px 115px var(--c1);
-		z-index: 1;
+		box-shadow: 0 0px 200px 115px var(--c1);
+		z-index: 10;
+	}
+
+	.outcome {
+		text-align: right;
+		color: var(--red);
+
+		.right & {
+			text-align: left;
+		}
+
+		.victory & {
+			color: var(--blue);
+		}
+	}
+
+	.cols-header {
+		display: flex;
+		justify-content: space-between;
+		margin: 1.5rem 0 1rem;
+		font-weight: 700;
+		font-size: 0.875rem;
+		color: var(--c7);
+
+		> * {
+			text-align: center;
+		}
+		.name {
+			width: 12ch;
+			text-align: left;
+			margin-left: 4.5rem;
+
+			.right & {
+				text-align: right;
+				margin-left: 0;
+				margin-right: 4.5rem;
+			}
+		}
+		.kda {
+			width: 12ch;
+		}
+		.gold,
+		.cs {
+			width: 9ch;
+		}
+
+		.right & {
+			flex-direction: row-reverse;
+		}
+	}
+
+	.right {
+		text-align: right;
 	}
 
 	.teams {
@@ -97,11 +176,13 @@
 		justify-content: space-between;
 		gap: 2rem;
 	}
+
 	.players {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 	}
+
 	.player {
 		display: flex;
 		align-items: center;
@@ -109,7 +190,7 @@
 		transition: background 0.15s ease;
 
 		&:hover {
-			background: hsla(0, 0, 0, 0.2);
+			background: hsla(0deg 0% 0% / 0.2);
 
 			.name {
 				text-decoration: underline;
@@ -127,6 +208,15 @@
 		.right & {
 			flex-direction: row-reverse;
 			text-align: right;
+		}
+	}
+
+	:global(.champ-img) {
+		--border-color: var(--red);
+		box-shadow: 0 0 0 2px var(--c1), 0 0 0 3px var(--border-color);
+
+		.victory & {
+			--border-color: var(--blue);
 		}
 	}
 
@@ -160,15 +250,17 @@
 
 	.bg {
 		--dir: to right;
+		--shadow: 3px;
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		width: 65%;
-		background: linear-gradient(var(--dir), var(--blue), transparent);
-		opacity: 0.1;
+		background: linear-gradient(var(--dir), hsla(var(--blue-hsl) / 0.15), transparent);
+		box-shadow: inset var(--shadow) 0 0 0 var(--blue);
 
 		&:not(.victory) {
 			background: none;
+			box-shadow: none;
 		}
 
 		&.left {
@@ -177,6 +269,7 @@
 		&.right {
 			right: 0;
 			--dir: to left;
+			--shadow: -3px;
 		}
 	}
 </style>

@@ -36,10 +36,12 @@
 	}
 </script>
 
-<PageHeader {title} />
-<div class="controls">
-	<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
-</div>
+<PageHeader {title}>
+	<div class="controls" slot="controls">
+		<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
+	</div>
+</PageHeader>
+
 <div class="sort">
 	<span class="nameSort">Name</span>
 	<span class="stat" on:click={() => setSort('games')}>
@@ -188,6 +190,6 @@
 	.nameSort {
 		justify-content: flex-start;
 		width: 14rem;
-		margin-left: 3.5rem;
+		margin-left: 4.5rem;
 	}
 </style>

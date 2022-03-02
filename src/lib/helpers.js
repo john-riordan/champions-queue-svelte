@@ -24,10 +24,11 @@ export function aggregateData(data = {}) {
 				if (!acc.players[player.name]) acc.players[player.name] = {};
 				const win = player.winner ? 1 : 0;
 				const lpEarned = win ? 10 : -5;
+				const currLP = acc.players[player.name]?.lp ?? 0;
 
 				acc.players[player.name] = {
 					name: player.name,
-					lp: (acc.players[player.name]?.lp || 0) + lpEarned,
+					lp: currLP + lpEarned <= 0 ? 0 : currLP + lpEarned,
 					games: (acc.players[player.name]?.games || 0) + 1,
 					wins: (acc.players[player.name]?.wins || 0) + win,
 					kills: player.kills + (acc.players[player.name]?.kills || 0),
@@ -56,7 +57,6 @@ export function aggregateData(data = {}) {
 					deaths: player.deaths + (champRole?.deaths || 0),
 					assists: player.assists + (champRole?.assists || 0),
 					cs: player.cs + (champRole?.cs || 0)
-					// players: [...champPlayers, player.name]
 				};
 			}
 
@@ -70,7 +70,7 @@ export function aggregateData(data = {}) {
 		matches,
 		totalGames: matches.length,
 		players: Object.values(aggregate.players)
-			.sort((a, b) => b.lp - a.lp)
+			.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
 			.map((p, i) => ({ ...p, rank: i + 1 })),
 		champions: aggregate.champions
 	};

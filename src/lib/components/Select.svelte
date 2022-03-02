@@ -4,6 +4,7 @@
 	export let value;
 	export let options;
 	export let defaultText = 'Select an option...';
+	export let position = 'left';
 
 	const dispatch = createEventDispatcher();
 
@@ -25,6 +26,19 @@
 	}
 </script>
 
+<svelte:head>
+	{#if open}
+		<style>
+			body {
+				overflow: hidden;
+			}
+		</style>
+	{/if}
+</svelte:head>
+
+{#if open && options}
+	<div class="backdrop" on:click={() => (open = false)} />
+{/if}
 <div class="container">
 	<button on:click={toggleOpen} class="select-trigger">
 		{#if selectedOption?.image}
@@ -33,7 +47,7 @@
 		<span>{selectedOption?.text ?? defaultText}</span>
 	</button>
 	{#if open && options}
-		<ul class="options">
+		<ul class="options" data-position={position}>
 			{#each options as option}
 				<li>
 					<button
@@ -53,6 +67,13 @@
 </div>
 
 <style lang="scss">
+	.backdrop {
+		position: fixed;
+		inset: 0;
+		background: var(--c1);
+		opacity: 0.8;
+		z-index: 2;
+	}
 	.container {
 		position: relative;
 	}
@@ -75,6 +96,12 @@
 		background: var(--c1);
 		border: 3px solid var(--c2);
 		box-shadow: 0 0 30px 5px var(--c1);
+		z-index: 2;
+
+		&[data-position='right'] {
+			left: unset;
+			right: 0;
+		}
 
 		.option {
 			box-sizing: border-box;
@@ -84,6 +111,7 @@
 			padding: 0.5rem 1rem;
 			padding-right: 1.5rem;
 			width: 100%;
+			white-space: nowrap;
 			border: none;
 			background: none;
 

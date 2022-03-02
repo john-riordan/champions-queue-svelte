@@ -5,10 +5,14 @@
 </script>
 
 <script>
+	import { onMount } from 'svelte';
+
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Match from '$lib/components/Match.svelte';
+	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { ordinal } from '$lib/helpers';
-	import { store } from '$lib/stores';
+	import { store, pageBackground } from '$lib/stores';
+	import { TEAMS, teamImg } from '$lib/constants';
 
 	export let name;
 	const perPage = 20;
@@ -27,6 +31,22 @@
 		.slice(0, (pageIndex + 1) * perPage);
 
 	$: playerStats = ($store.players || []).find((p) => p.name === name);
+	$: team = TEAMS.find((team) => {
+		return name.toLowerCase().startsWith(team.tag.toLowerCase());
+	});
+
+	$: {
+		if (team) {
+			pageBackground.set(teamImg(500, team.logo));
+		}
+	}
+
+	onMount(() => {
+		return () => {
+			pageBackground.set(null);
+		};
+	});
+
 	// $: lpHistory = list.reduce((acc, curr) => {
 	// 	const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 	// 	const firstDate = new Date();
@@ -87,13 +107,13 @@
 	{/each}
 </ul>
 {#if list.length}
-	<button on:click={() => pageIndex++}>Load More</button>
+	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}
 
 <style>
 	.matchlist {
 		display: flex;
 		flex-direction: column;
-		/* gap: calc(var(--gap) / 3); */
+		margin-bottom: 1rem;
 	}
 </style>

@@ -13,11 +13,12 @@
 	--green: hsl(120deg 75% 54%);
 	--red: hsl(346deg 100% 50%);
 	--blue: hsl(220deg 85% 60%);
+	--blue-hsl: 220deg 85% 60%;
 	--yellow: hsl(48deg 92% 42%);
 
 	--nav-width: 18vw;
 	--gap: 1rem;
-	--btn-height: 1.75rem;
+	--btn-height: 2.75rem;
 }
 
 html,
@@ -30,6 +31,7 @@ body {
 	font-size: 1em;
 	background: var(--app-bg);
 	color: var(--c9);
+	overflow-x: hidden;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -108,6 +110,7 @@ svg {
 button,
 input[type='text'] {
 	all: unset;
+	box-sizing: border-box;
 	display: inline-block;
 	padding: 0.5rem 1rem;
 	font-weight: 700;
@@ -124,6 +127,11 @@ button:hover {
 }
 button.active {
 	background: var(--c7);
+}
+button.block {
+	display: block;
+	width: 100%;
+	text-align: center;
 }
 button.disabled,
 input[type='text'].disabled {

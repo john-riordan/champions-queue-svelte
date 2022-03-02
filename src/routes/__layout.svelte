@@ -1,8 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
-
-	import { store } from '$lib/stores';
 	import { page } from '$app/stores';
+
+	import { store, pageBackground } from '$lib/stores';
 	import Players from '$lib/components/icons/Players.svelte';
 	import Champions from '$lib/components/icons/Champions.svelte';
 	import Matches from '$lib/components/icons/Matches.svelte';
@@ -56,6 +56,9 @@
 	];
 </script>
 
+{#if $pageBackground}
+	<img src={$pageBackground} class="background" loading="lazy" alt="background" />
+{/if}
 <div class="container">
 	<nav class="nav">
 		{#each routes as route}
@@ -73,14 +76,27 @@
 		<slot />
 		{#if $store.loading}
 			<div class="loading">
-				<h1>Loading...</h1>
+				<svg
+					width="48"
+					height="48"
+					viewBox="0 0 48 48"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M10.0237 27.9323C8.36689 21.73 11.1071 15.1923 16.6948 12.0158C22.2826 8.83927 29.3133 9.82255 33.8115 14.4096L27.3457 19.3941L44 20.6042L42.7781 4L37.756 10.4431C31.9757 4.61419 23.182 2.97077 15.6808 6.31758C8.17965 9.66439 3.54095 17.3009 4.03607 25.488C4.53119 33.6751 10.0565 40.6991 17.9066 43.1208C25.7566 45.5424 34.2883 42.8549 39.3242 36.3741L34.9852 32.8398C32.3196 36.3515 28.1617 38.4161 23.748 38.4198C17.3178 38.4424 11.6805 34.1347 10.0237 27.9323Z"
+						fill="#FFFFFF"
+					/>
+				</svg>
 			</div>
 		{/if}
 	</section>
 </div>
 <MatchModal />
 
-<style>
+<style lang="scss">
 	.nav {
 		position: fixed;
 		display: flex;
@@ -127,11 +143,33 @@
 		border-color: var(--c4);
 	}
 
+	@keyframes spin {
+		to {
+			transform: rotate(1turn);
+		}
+	}
+
 	.loading {
 		position: fixed;
-		inset: 0;
+		inset: 0 0 0 calc(var(--nav-width) + var(--gap));
 		display: grid;
 		place-content: center;
 		background-color: var(--c1);
+		opacity: 0.75;
+
+		svg {
+			width: 4rem;
+			height: 4rem;
+			animation: spin 1s linear forwards infinite;
+		}
+	}
+	.background {
+		position: absolute;
+		top: -10%;
+		right: -7%;
+		width: 25vw;
+		height: auto;
+		opacity: 0.05;
+		filter: saturate(0);
 	}
 </style>

@@ -11,7 +11,7 @@
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS } from '$lib/constants';
+	import { TEAMS, teamImg } from '$lib/constants';
 
 	export let title;
 	let search = '';
@@ -41,28 +41,38 @@
 		search = '';
 	}
 
-	const teamOptions = TEAMS.map((t) => ({ value: t.tag, text: t.name, image: t.logo }));
+	const teamOptions = TEAMS.map((t) => ({
+		value: t.tag,
+		text: t.name,
+		image: teamImg(70, t.logo)
+	}));
 </script>
 
-<PageHeader {title} />
-<div class="controls">
-	<input
-		type="text"
-		class="search"
-		class:disabled={team}
-		placeholder="Search Players"
-		bind:value={search}
-	/>
-	<Select
-		defaultText="Select an LCS Team"
-		value={team}
-		options={teamOptions}
-		on:select={updateTeam}
-	/>
-</div>
+<PageHeader {title}>
+	<div class="controls" slot="controls">
+		<input
+			type="text"
+			class="search"
+			class:disabled={team}
+			placeholder="Search Players"
+			bind:value={search}
+		/>
+		<Select
+			defaultText="Select an LCS Team"
+			value={team}
+			options={teamOptions}
+			position="right"
+			on:select={updateTeam}
+		/>
+	</div>
+</PageHeader>
+
 <div class="sort">
 	<span class="nameSort">Name</span>
-	<span class="stat"> Rank </span>
+	<span class="stat" on:click={() => setSort('rank')}>
+		Rank
+		<SortDirection class={desc ? 'desc' : 'asc'} />
+	</span>
 	<span class="stat" on:click={() => setSort('lp')}>
 		LP
 		{#if sort === 'lp'}
@@ -189,6 +199,6 @@
 	.nameSort {
 		justify-content: flex-start;
 		width: 14rem;
-		margin-left: 4.5rem;
+		margin-left: 5.5rem;
 	}
 </style>

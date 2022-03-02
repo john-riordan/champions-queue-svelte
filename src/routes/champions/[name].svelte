@@ -7,6 +7,7 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Match from '$lib/components/Match.svelte';
+	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { store } from '$lib/stores';
 
 	export let name;
@@ -79,13 +80,13 @@
 	{/each}
 </ul>
 {#if list.length}
-	<button on:click={() => pageIndex++}>Load More</button>
+	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}
 
 <style>
 	.matchlist {
 		display: flex;
 		flex-direction: column;
-		gap: calc(var(--gap) / 3);
+		margin-bottom: 1rem;
 	}
 </style>
