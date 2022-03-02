@@ -36,11 +36,10 @@
 	}
 </script>
 
-<PageHeader {title}>
-	<div class="controls" slot="controls">
-		<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
-	</div>
-</PageHeader>
+<PageHeader {title} />
+<div class="controls">
+	<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
+</div>
 
 <div class="sort">
 	<span class="nameSort">Name</span>

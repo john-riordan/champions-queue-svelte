@@ -48,25 +48,22 @@
 	}));
 </script>
 
-<PageHeader {title}>
-	<div class="controls" slot="controls">
-		<input
-			type="text"
-			class="search"
-			class:disabled={team}
-			placeholder="Search Players"
-			bind:value={search}
-		/>
-		<Select
-			defaultText="Select an LCS Team"
-			value={team}
-			options={teamOptions}
-			position="right"
-			on:select={updateTeam}
-		/>
-	</div>
-</PageHeader>
-
+<PageHeader {title} />
+<div class="controls">
+	<input
+		type="text"
+		class="search"
+		class:disabled={team}
+		placeholder="Search Players"
+		bind:value={search}
+	/>
+	<Select
+		defaultText="Select an LCS Team"
+		value={team}
+		options={teamOptions}
+		on:select={updateTeam}
+	/>
+</div>
 <div class="sort">
 	<span class="nameSort">Name</span>
 	<span class="stat" on:click={() => setSort('rank')}>

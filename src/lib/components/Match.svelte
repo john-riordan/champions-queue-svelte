@@ -19,10 +19,10 @@
 		? teams.find((p) => p.championIcon === champion)
 		: teams.find((p) => p.name === player);
 	$: nonSpecificMatch = !champion && !player;
-	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
+	$: outcome = !nonSpecificMatch && !stats?.winner ? 'Victory' : 'Defeat';
 	$: patch = formatchPatch(match?.gameVersion);
 
-	$: playerChampSize = nonSpecificMatch ? 48 : 32;
+	$: playerChampSize = nonSpecificMatch ? 52 : 32;
 
 	function updateModal() {
 		matchModal.set(match);
@@ -70,18 +70,28 @@
 			</div>
 		</div>
 	{/if}
-	<div class="champslist">
-		<div class="champs">
+	<div class="playerlist">
+		<div class="players">
 			{#each match.teams[0].players as player}
-				<div class:highlight={player.championIcon === stats?.championIcon}>
-					<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
+				<div class="player">
+					<div class:highlight={player.championIcon === stats?.championIcon}>
+						<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
+					</div>
+					{#if nonSpecificMatch}
+						<span class="player-name">{player.name}</span>
+					{/if}
 				</div>
 			{/each}
 		</div>
-		<div class="champs">
+		<div class="players">
 			{#each match.teams[1].players as player}
-				<div class:highlight={player.championIcon === stats?.championIcon}>
-					<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
+				<div class="player">
+					<div class:highlight={player.championIcon === stats?.championIcon}>
+						<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
+					</div>
+					{#if nonSpecificMatch}
+						<span class="player-name">{player.name}</span>
+					{/if}
 				</div>
 			{/each}
 		</div>
@@ -129,9 +139,11 @@
 			}
 		}
 	}
+
 	.match > * {
 		position: relative;
 	}
+
 	.info {
 		display: flex;
 		align-items: center;
@@ -171,15 +183,41 @@
 	.outcome.victory {
 		color: var(--blue);
 	}
-	.champslist {
+	.playerlist {
 		display: flex;
 		gap: 2rem;
+
+		.noHighlight & {
+			gap: 4rem;
+		}
 	}
-	.champs {
+	.players {
 		display: flex;
-		gap: 0.5rem;
+		gap: 0.75rem;
+
+		.noHighlight & {
+			gap: 0.25rem;
+		}
+
+		.player {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 0.5rem;
+		}
 	}
 	.highlight {
 		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--yellow);
+	}
+	.player-name {
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		width: 11ch;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		text-align: center;
+		color: var(--c7);
 	}
 </style>

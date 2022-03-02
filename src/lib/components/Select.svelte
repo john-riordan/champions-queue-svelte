@@ -56,7 +56,7 @@
 						on:click={(e) => emitSelect(option.value)}
 					>
 						{#if option.image}
-							<img src={option.image} alt={option.text} width="40" height="40" />
+							<img src={option.image} alt={option.text} />
 						{/if}
 						<span>{option.text}</span>
 					</button>
@@ -76,9 +76,10 @@
 	}
 	.container {
 		position: relative;
+		width: 100%;
 	}
 	.select-trigger {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
 		height: var(--btn-height);
