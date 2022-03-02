@@ -128,6 +128,7 @@
 
 		.victory & {
 			color: var(--blue);
+			text-shadow: 0 0 30px var(--blue);
 		}
 	}
 
