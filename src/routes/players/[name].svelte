@@ -61,7 +61,7 @@
 	// }, {});
 </script>
 
-<PageHeader title={name} player={name} imageSize={62} />
+<PageHeader title={name} player={name} />
 {#if playerStats}
 	<div class="statblocks">
 		<div class="statblock">

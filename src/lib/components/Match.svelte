@@ -186,10 +186,6 @@
 	.playerlist {
 		display: flex;
 		gap: 2rem;
-
-		.noHighlight & {
-			gap: 4rem;
-		}
 	}
 	.players {
 		display: flex;

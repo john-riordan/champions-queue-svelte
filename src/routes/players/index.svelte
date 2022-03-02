@@ -129,6 +129,7 @@
 	.controls {
 		display: flex;
 		gap: 0.5rem;
+		margin-bottom: 2rem;
 	}
 
 	.list li a,

@@ -1,6 +1,6 @@
 import { INDEX_TO_ROLE } from './constants';
 
-export function aggregateData(data = {}) {
+export function aggregateData(data = {}, leaderboard) {
 	const matches = data.matches || [];
 
 	const aggregate = matches.reduce(
@@ -65,6 +65,8 @@ export function aggregateData(data = {}) {
 		{ players: {}, champions: {}, totalGames: matches.length }
 	);
 
+	const currSeason = leaderboard.leaderboards[0];
+
 	return {
 		fetchedAt: Date.now(),
 		matches,
@@ -72,7 +74,10 @@ export function aggregateData(data = {}) {
 		players: Object.values(aggregate.players)
 			.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
 			.map((p, i) => ({ ...p, rank: i + 1 })),
-		champions: aggregate.champions
+		champions: aggregate.champions,
+		seasonTitle: currSeason?.title,
+		splitTitle: currSeason?.split?.title,
+		splitEnd: currSeason?.split?.closeDate
 	};
 }
 

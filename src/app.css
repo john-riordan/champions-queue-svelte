@@ -1,15 +1,18 @@
 :root {
-	--h: 215deg;
+	--h: 205deg;
 	--s: 15%;
-	--c1: hsl(var(--h) var(--s) 6%);
-	--c2: hsl(var(--h) var(--s) 9%);
+	--c1: hsl(var(--h) var(--s) 5%);
+	--c2: hsl(var(--h) var(--s) 10%);
 	--c3: hsl(var(--h) var(--s) 15%);
 	--c4: hsl(var(--h) var(--s) 20%);
-	--c5: hsl(var(--h) var(--s) 35%);
-	--c6: hsl(var(--h) var(--s) 50%);
-	--c7: hsl(var(--h) var(--s) 60%);
-	--c8: hsl(var(--h) var(--s) 75%);
-	--c9: hsl(var(--h) var(--s) 95%);
+	--c5: hsl(var(--h) var(--s) 25%);
+	--c6: hsl(var(--h) var(--s) 35%);
+	--c7: hsl(var(--h) var(--s) 50%);
+	--c8: hsl(var(--h) var(--s) 65%);
+	--c9: hsl(var(--h) var(--s) 75%);
+	--c10: hsl(var(--h) var(--s) 80%);
+	--c11: hsl(var(--h) var(--s) 90%);
+
 	--green: hsl(120deg 75% 54%);
 	--red: hsl(346deg 100% 50%);
 	--blue: hsl(220deg 85% 60%);
@@ -30,7 +33,7 @@ body {
 		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	font-size: 1em;
 	background: var(--app-bg);
-	color: var(--c9);
+	color: var(--c11);
 	overflow-x: hidden;
 }
 
