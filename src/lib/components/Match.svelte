@@ -22,8 +22,6 @@
 	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
 	$: patch = formatchPatch(match?.gameVersion);
 
-	$: console.log('xxx stats', teams, stats.winner);
-
 	$: playerChampSize = nonSpecificMatch ? 52 : 32;
 
 	function updateModal() {
