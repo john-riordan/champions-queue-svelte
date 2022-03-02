@@ -1,5 +1,4 @@
 <script context="module">
-	export const prerender = true;
 	export const load = async () => {
 		return { props: { title: 'Players' } };
 	};
@@ -48,25 +47,22 @@
 	}));
 </script>
 
-<PageHeader {title}>
-	<div class="controls" slot="controls">
-		<input
-			type="text"
-			class="search"
-			class:disabled={team}
-			placeholder="Search Players"
-			bind:value={search}
-		/>
-		<Select
-			defaultText="Select an LCS Team"
-			value={team}
-			options={teamOptions}
-			position="right"
-			on:select={updateTeam}
-		/>
-	</div>
-</PageHeader>
-
+<PageHeader {title} />
+<div class="controls">
+	<input
+		type="text"
+		class="search"
+		class:disabled={team}
+		placeholder="Search Players"
+		bind:value={search}
+	/>
+	<Select
+		defaultText="Select an LCS Team"
+		value={team}
+		options={teamOptions}
+		on:select={updateTeam}
+	/>
+</div>
 <div class="sort">
 	<span class="nameSort">Name</span>
 	<span class="stat" on:click={() => setSort('rank')}>
@@ -129,16 +125,10 @@
 	{/each}
 </ul>
 
-<style>
+<style lang="scss">
 	.controls {
 		display: flex;
 		gap: 0.5rem;
-	}
-
-	.list {
-		display: flex;
-		flex-direction: column;
-		gap: calc(var(--gap) / 3);
 	}
 
 	.list li a,
@@ -155,6 +145,11 @@
 
 	.list li {
 		font-size: 1.175rem;
+
+		a {
+			border-top: 2px solid var(--app-bg);
+			border-bottom: 2px solid var(--app-bg);
+		}
 	}
 
 	.list li a:hover {

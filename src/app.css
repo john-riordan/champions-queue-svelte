@@ -95,11 +95,6 @@ svg {
 	transform: scale(1.2);
 }
 
-.container {
-	width: 100%;
-	margin-inline: auto;
-}
-
 .search {
 	all: unset;
 	display: inline-block;
@@ -113,6 +108,7 @@ input[type='text'] {
 	box-sizing: border-box;
 	display: inline-block;
 	padding: 0.5rem 1rem;
+	height: var(--btn-height);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -154,6 +150,7 @@ input[type='text'].disabled {
 	color: var(--c6);
 	font-weight: 500;
 	font-size: 1rem;
+	margin-left: 1rem;
 }
 .statblock .stat-name {
 	display: block;
@@ -162,4 +159,10 @@ input[type='text'].disabled {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	color: var(--c7);
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
 }

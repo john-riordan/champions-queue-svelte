@@ -1,5 +1,4 @@
 <script context="module">
-	export const prerender = true;
 	export const load = async () => {
 		return { props: { title: 'Matches' } };
 	};
@@ -8,6 +7,7 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Match from '$lib/components/Match.svelte';
+	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { store } from '$lib/stores';
 
 	export let title;
@@ -17,18 +17,11 @@
 </script>
 
 <PageHeader {title} />
-<ol class="matchlist">
+<ol class="li">
 	{#each list as match}
 		<Match {match} />
 	{/each}
 </ol>
 {#if list.length}
-	<button on:click={() => pageIndex++}>Load More</button>
+	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}
-
-<style>
-	.matchlist {
-		display: flex;
-		flex-direction: column;
-	}
-</style>

@@ -166,8 +166,8 @@
 	.background {
 		position: absolute;
 		top: -10%;
-		right: -7%;
-		width: 25vw;
+		left: calc(var(--nav-width) - 2rem);
+		width: 500px;
 		height: auto;
 		opacity: 0.05;
 		filter: saturate(0);

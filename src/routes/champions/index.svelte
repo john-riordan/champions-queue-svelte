@@ -1,5 +1,4 @@
 <script context="module">
-	export const prerender = true;
 	export const load = async () => ({ props: { title: 'Champions' } });
 </script>
 
@@ -36,11 +35,10 @@
 	}
 </script>
 
-<PageHeader {title}>
-	<div class="controls" slot="controls">
-		<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
-	</div>
-</PageHeader>
+<PageHeader {title} />
+<div class="controls">
+	<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
+</div>
 
 <div class="sort">
 	<span class="nameSort">Name</span>
@@ -121,11 +119,6 @@
 </ul>
 
 <style>
-	.list {
-		display: flex;
-		flex-direction: column;
-	}
-
 	.list li a,
 	.sort {
 		display: flex;
