@@ -4,6 +4,8 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
+	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
 
@@ -14,6 +16,7 @@
 	let search = '';
 	let sort = 'games';
 	let desc = true;
+	let commonOnly = false;
 	const champSize = 56;
 
 	$: champions = $store.champions || {};
@@ -27,7 +30,8 @@
 			kda: (champ.kills + champ.assists) / champ.games,
 			cs: champ.cs / champ.games
 		}))
-		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
+		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]))
+		.filter((c) => (commonOnly ? c.games / totalGames > 0.02 : true));
 
 	function setSort(col) {
 		if (sort !== col) sort = col;
@@ -38,6 +42,15 @@
 <PageHeader {title} />
 <div class="controls">
 	<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
+	<label class="boolean-btn" class:checked={commonOnly} for="hide-low">
+		<span>Hide Low Play-Rate</span>
+		<input type="checkbox" bind:checked={commonOnly} id="hide-low" />
+		{#if commonOnly}
+			<CheckChecked />
+		{:else}
+			<CheckUnchecked />
+		{/if}
+	</label>
 </div>
 
 <div class="sort">

@@ -94,6 +94,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
+		padding: 0.5rem 0;
 		background: var(--c1);
 		border: 3px solid var(--c2);
 		box-shadow: 0 0 30px 5px var(--c1);

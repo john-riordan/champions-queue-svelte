@@ -207,13 +207,13 @@
 	}
 	.player-name {
 		display: block;
+		width: 11ch;
 		font-size: 0.75rem;
 		font-weight: 600;
-		width: 11ch;
-		overflow: hidden;
+		color: var(--c8);
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		text-align: center;
-		color: var(--c7);
+		overflow: hidden;
 	}
 </style>

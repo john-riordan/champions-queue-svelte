@@ -6,6 +6,8 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
+	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import Select from '$lib/components/Select.svelte';
@@ -17,9 +19,11 @@
 	let team = null;
 	let sort = 'lp';
 	let desc = true;
+	let commonOnly = false;
 	const champSize = 56;
 
 	$: players = $store.players || [];
+	$: totalGames = $store.totalGames || 1;
 	$: list = players
 		.filter((p) => {
 			if (team) {
@@ -28,7 +32,8 @@
 			return p.name.toLowerCase().includes(search.toLowerCase());
 		})
 		.map((p) => ({ ...p, winrate: p.wins / p.games, kda: (p.kills + p.assists) / (p.deaths || 1) }))
-		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
+		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]))
+		.filter((c) => (commonOnly ? c.games / totalGames > 0.02 : true));
 
 	function setSort(col) {
 		if (sort !== col) sort = col;
@@ -56,6 +61,15 @@
 		placeholder="Search Players"
 		bind:value={search}
 	/>
+	<label class="boolean-btn" class:checked={commonOnly} for="hide-low">
+		<span>Hide Low Game-Count</span>
+		<input type="checkbox" bind:checked={commonOnly} id="hide-low" />
+		{#if commonOnly}
+			<CheckChecked />
+		{:else}
+			<CheckUnchecked />
+		{/if}
+	</label>
 	<Select
 		defaultText="Select an LCS Team"
 		value={team}

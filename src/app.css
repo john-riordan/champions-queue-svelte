@@ -13,11 +13,14 @@
 	--c10: hsl(var(--h) var(--s) 80%);
 	--c11: hsl(var(--h) var(--s) 90%);
 
-	--green: hsl(120deg 75% 54%);
-	--red: hsl(346deg 100% 50%);
-	--blue: hsl(220deg 85% 60%);
+	--green-hsl: 145deg 95% 45%;
+	--green: hsl(var(--green-hsl));
+	--red-hsl: 346deg 100% 50%;
+	--red: hsl(var(--red-hsl));
 	--blue-hsl: 220deg 85% 60%;
-	--yellow: hsl(48deg 92% 42%);
+	--blue: hsl(var(--blue-hsl));
+	--yellow-hsl: hsl(48deg 92% 42%);
+	--yellow: hsl(var(--yellow-hsl));
 
 	--nav-width: 18vw;
 	--gap: 1rem;
@@ -32,6 +35,7 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
 		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	font-size: 1em;
+	line-height: 1.5;
 	background: var(--app-bg);
 	color: var(--c11);
 	overflow-x: hidden;
@@ -106,19 +110,26 @@ svg {
 }
 
 button,
-input[type='text'] {
+input[type='text'],
+.boolean-btn {
 	all: unset;
+	position: relative;
 	box-sizing: border-box;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 	padding: 0.5rem 1rem;
 	height: var(--btn-height);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	line-height: 1;
+	white-space: nowrap;
 	background: var(--c2);
 	border: 1px solid var(--c3);
 }
-button {
+button,
+.boolean-btn {
+	user-select: none;
 	cursor: pointer;
 }
 button:hover {
@@ -136,6 +147,25 @@ button.disabled,
 input[type='text'].disabled {
 	opacity: 0.38;
 	pointer-events: none;
+}
+.boolean-btn.checked {
+	background: hsla(var(--green-hsl) / 0.1);
+	color: var(--green);
+	border-color: hsla(var(--green-hsl) / 0.25);
+}
+.boolean-btn input[type='checkbox'] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	opacity: 0;
+	visibility: hidden;
+}
+.boolean-btn svg {
+	width: 1rem;
+	margin-left: 1rem;
+	color: currentColor;
 }
 
 .statblocks {
