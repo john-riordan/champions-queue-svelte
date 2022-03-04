@@ -72,9 +72,9 @@
 	{/if}
 	<div class="playerlist">
 		<div class="players">
-			{#each match.teams[0].players as player}
-				<div class="player">
-					<div class:highlight={player.championIcon === stats?.championIcon}>
+			{#each t1 as player}
+				<div class="player" class:highlight={player.winner}>
+					<div>
 						<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
 					</div>
 					{#if nonSpecificMatch}
@@ -84,9 +84,9 @@
 			{/each}
 		</div>
 		<div class="players">
-			{#each match.teams[1].players as player}
-				<div class="player">
-					<div class:highlight={player.championIcon === stats?.championIcon}>
+			{#each t2 as player}
+				<div class="player" class:highlight={player.winner}>
+					<div>
 						<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
 					</div>
 					{#if nonSpecificMatch}
@@ -202,8 +202,13 @@
 			gap: 0.5rem;
 		}
 	}
-	.highlight {
-		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--yellow);
+	.champ-img {
+		.noHighlight .highlight & {
+			box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue);
+		}
+	}
+	.highlight :global(.champ-img) {
+		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue);
 	}
 	.player-name {
 		display: block;
@@ -215,5 +220,9 @@
 		white-space: nowrap;
 		text-align: center;
 		overflow: hidden;
+
+		.noHighlight .highlight & {
+			color: var(--blue);
+		}
 	}
 </style>

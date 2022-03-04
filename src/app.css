@@ -17,9 +17,9 @@
 	--green: hsl(var(--green-hsl));
 	--red-hsl: 346deg 100% 50%;
 	--red: hsl(var(--red-hsl));
-	--blue-hsl: 220deg 85% 60%;
+	--blue-hsl: 220deg 85% 65%;
 	--blue: hsl(var(--blue-hsl));
-	--yellow-hsl: hsl(48deg 92% 42%);
+	--yellow-hsl: 37deg 90% 50%;
 	--yellow: hsl(var(--yellow-hsl));
 
 	--nav-width: 18vw;

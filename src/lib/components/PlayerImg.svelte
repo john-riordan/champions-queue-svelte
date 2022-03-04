@@ -14,7 +14,7 @@
 <style>
 	.player-img {
 		position: relative;
-		background: var(--c2);
+		background: var(--c1);
 		height: calc(var(--size) * 1px);
 		max-height: calc(var(--size) * 1px);
 		aspect-ratio: 1;
