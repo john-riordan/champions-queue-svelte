@@ -136,9 +136,9 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 1.5rem 0 1rem;
-		font-weight: 700;
+		font-weight: 900;
 		font-size: 0.875rem;
-		color: var(--c7);
+		color: var(--c9);
 
 		> * {
 			text-align: center;
@@ -216,7 +216,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		color: var(--c7);
+		color: var(--c8);
 
 		> * {
 			text-align: center;

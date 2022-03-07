@@ -7,19 +7,19 @@
 	--c4: hsl(var(--h) var(--s) 20%);
 	--c5: hsl(var(--h) var(--s) 25%);
 	--c6: hsl(var(--h) var(--s) 35%);
-	--c7: hsl(var(--h) var(--s) 50%);
+	--c7: hsl(var(--h) var(--s) 45%);
 	--c8: hsl(var(--h) var(--s) 65%);
 	--c9: hsl(var(--h) var(--s) 75%);
 	--c10: hsl(var(--h) var(--s) 80%);
 	--c11: hsl(var(--h) var(--s) 90%);
 
-	--green-hsl: 145deg 95% 45%;
+	--green-hsl: 145deg 70% 45%;
 	--green: hsl(var(--green-hsl));
 	--red-hsl: 346deg 100% 50%;
 	--red: hsl(var(--red-hsl));
 	--blue-hsl: 220deg 85% 65%;
 	--blue: hsl(var(--blue-hsl));
-	--yellow-hsl: 37deg 90% 50%;
+	--yellow-hsl: 45deg 70% 50%;
 	--yellow: hsl(var(--yellow-hsl));
 
 	--nav-width: 18vw;
@@ -32,9 +32,9 @@ body {
 	--app-bg: var(--c1);
 	padding: 0;
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1em;
+	font-weight: 500;
 	line-height: 1.5;
 	background: var(--app-bg);
 	color: var(--c11);
@@ -116,6 +116,7 @@ input[type='text'],
 	position: relative;
 	box-sizing: border-box;
 	display: inline-flex;
+	gap: 0.5rem;
 	align-items: center;
 	padding: 0.5rem 1rem;
 	height: var(--btn-height);
@@ -126,6 +127,9 @@ input[type='text'],
 	white-space: nowrap;
 	background: var(--c2);
 	border: 1px solid var(--c3);
+}
+button svg {
+	width: 1em;
 }
 button,
 .boolean-btn {
@@ -139,7 +143,8 @@ button.active {
 	background: var(--c7);
 }
 button.block {
-	display: block;
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	text-align: center;
 }
@@ -147,6 +152,9 @@ button.disabled,
 input[type='text'].disabled {
 	opacity: 0.38;
 	pointer-events: none;
+}
+.boolean-btn {
+	gap: 1rem;
 }
 .boolean-btn.checked {
 	background: hsla(var(--green-hsl) / 0.1);
@@ -164,30 +172,38 @@ input[type='text'].disabled {
 }
 .boolean-btn svg {
 	width: 1rem;
-	margin-left: 1rem;
 	color: currentColor;
 }
 
+.controls,
 .statblocks {
 	display: flex;
-	gap: 1rem;
-	margin: 1rem 0 2rem;
+	gap: 0.5rem;
+	padding: 1rem 0;
+	margin: 1rem 0;
+	border-top: 2px solid var(--c2);
+	border-bottom: 2px solid var(--c2);
+}
+
+.statblocks {
+	gap: 4rem;
 }
 .statblock {
 	flex: 1;
+	padding-bottom: 0.5rem;
 }
 .statblock .stat {
 	font-size: 1.75rem;
 }
 .statblock .stat span {
-	color: var(--c6);
-	font-weight: 500;
+	color: var(--c8);
+	font-weight: 400;
 	font-size: 1rem;
 	margin-left: 1rem;
 }
 .statblock .stat-name {
 	display: block;
-	font-weight: 600;
+	font-weight: 900;
 	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;

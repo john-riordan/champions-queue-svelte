@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 
 	import { store, pageBackground } from '$lib/stores';
+	import { fetchData } from '$lib/helpers';
 	import Players from '$lib/components/icons/Players.svelte';
 	import Champions from '$lib/components/icons/Champions.svelte';
 	import Matches from '$lib/components/icons/Matches.svelte';
@@ -11,25 +12,10 @@
 	import MatchModal from '$lib/components/MatchModal.svelte';
 	import '../app.css';
 
-	async function fetchData() {
-		const res = await fetch('/api');
-		const json = await res.json();
-
-		return json;
-	}
-
-	let data;
-
 	onMount(async () => {
-		data = await fetchData();
-		store.set(data);
+		const mountedData = await fetchData();
+		store.set(mountedData);
 	});
-
-	async function fetchNewData() {
-		store.set({ ...data, loading: true });
-		const newData = await fetchData();
-		store.set({ ...newData, loading: false });
-	}
 
 	$: currURL = $page.url.pathname;
 	const routes = [
@@ -60,18 +46,23 @@
 	<img src={$pageBackground} class="background" loading="lazy" alt="background" />
 {/if}
 <div class="container">
-	<nav class="nav">
-		{#each routes as route}
-			<a href={route.url} class:active={currURL.includes(route.url)}>
-				<svelte:component this={route.icon} />
-				{route.title}
-			</a>
-		{/each}
-		<button on:click={fetchNewData}>
-			<Refresh />
-			Refresh Data
-		</button>
-	</nav>
+	<div class="nav">
+		<div class="top">
+			<img class="logo" src="/logo.webp" width="124" alt="Champions Queue Logo" />
+			<nav>
+				{#each routes as route}
+					<a href={route.url} class:active={currURL.includes(route.url)}>
+						<svelte:component this={route.icon} />
+						{route.title}
+					</a>
+				{/each}
+			</nav>
+		</div>
+
+		<div class="bottom">
+			<p>Favorites go here</p>
+		</div>
+	</div>
 	<section class="content">
 		<slot />
 		{#if $store.loading}
@@ -88,30 +79,42 @@
 		position: fixed;
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		height: 100vh;
 		width: var(--nav-width);
 		padding: var(--gap);
 		z-index: 1;
 	}
 
-	.nav > * {
-		flex: 1;
+	.top {
 		display: flex;
-		align-items: center;
-		justify-content: center;
 		flex-direction: column;
-		gap: 0.5rem;
-		font-size: 1rem;
-		font-weight: 300;
-		letter-spacing: 1px;
-		border-right: 2px solid transparent;
+
+		.logo {
+			margin: 1rem auto 2rem;
+		}
+
+		a {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 0.25rem;
+			padding: 1rem;
+			color: var(--c9);
+
+			&:hover {
+				background: var(--c2);
+			}
+			&.active {
+				background: var(--c2);
+				color: var(--c11);
+				box-shadow: inset 0 0 0 1px var(--c4);
+			}
+		}
 	}
 
-	.nav > *:hover {
-		background: var(--c2);
-	}
-
-	.nav :global(svg) {
+	.top :global(svg) {
 		width: 1.25rem;
 		height: 1.25rem;
 	}

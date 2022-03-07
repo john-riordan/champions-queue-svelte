@@ -6,11 +6,13 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import Select from '$lib/components/Select.svelte';
+	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
 	import { TEAMS, teamImg } from '$lib/constants';
 
@@ -40,7 +42,7 @@
 		else desc = !desc;
 	}
 
-	function updateTeam(event) {
+	function setTeam(event) {
 		team = event.detail;
 		search = '';
 	}
@@ -52,7 +54,12 @@
 	}));
 </script>
 
-<PageHeader {title} />
+<PageHeader {title}>
+	<div slot="controls">
+		<RefreshBtn />
+	</div>
+</PageHeader>
+
 <div class="controls">
 	<input
 		type="text"
@@ -70,13 +77,9 @@
 			<CheckUnchecked />
 		{/if}
 	</label>
-	<Select
-		defaultText="Select an LCS Team"
-		value={team}
-		options={teamOptions}
-		on:select={updateTeam}
-	/>
+	<Select defaultText="Select an LCS Team" value={team} options={teamOptions} on:select={setTeam} />
 </div>
+
 <div class="sort">
 	<span class="nameSort">Name</span>
 	<span class="stat" on:click={() => setSort('rank')}>
@@ -103,6 +106,7 @@
 	</span>
 	<span class="stat">W/L</span>
 </div>
+
 <ul class="list">
 	{#each list as player}
 		<li>
@@ -113,7 +117,7 @@
 				</div>
 
 				<span class="stat">
-					{player.rank}
+					<RankBadge rank={player.rank} />
 				</span>
 				<span class="stat">
 					{player.lp}
@@ -140,19 +144,12 @@
 </ul>
 
 <style lang="scss">
-	.controls {
-		display: flex;
-		gap: 0.5rem;
-		margin-bottom: 2rem;
-	}
-
 	.list li a,
 	.sort {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 1rem;
-		font-weight: 300;
 		letter-spacing: 1px;
 		text-align: center;
 		background: var(--c2);

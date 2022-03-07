@@ -5,10 +5,12 @@
 </script>
 
 <script>
+	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
+	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
-	import { store } from '$lib/stores';
 
 	export let name;
 	const perPage = 20;
@@ -42,7 +44,13 @@
 	$: champStats = champions[name];
 </script>
 
-<PageHeader title={name} champion={name} />
+<PageHeader title={name} champion={name}>
+	<div slot="controls">
+		<RefreshBtn />
+		<FavoriteBtn />
+	</div>
+</PageHeader>
+
 {#if champStats}
 	<div class="statblocks">
 		<div class="statblock">
@@ -74,11 +82,13 @@
 		</div>
 	</div>
 {/if}
+
 <ul class="list">
 	{#each list as match}
 		<Match {match} champion={name} />
 	{/each}
 </ul>
+
 {#if list.length}
 	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}

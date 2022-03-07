@@ -1,5 +1,12 @@
 import { INDEX_TO_ROLE } from './constants';
 
+export async function fetchData() {
+	const res = await fetch('/api');
+	const json = await res.json();
+
+	return json;
+}
+
 export function aggregateData(data = {}, leaderboard) {
 	const matches = data.matches || [];
 
@@ -16,6 +23,9 @@ export function aggregateData(data = {}, leaderboard) {
 				winner: curr.teams[1].winner
 			}));
 			const players = [...team1, ...team2];
+			const patch = formatchPatch(curr.gameVersion);
+
+			if (!acc.patches.includes(patch)) acc.patches.push(patch);
 
 			for (const player of players) {
 				const champ = player.championIcon;
@@ -34,20 +44,12 @@ export function aggregateData(data = {}, leaderboard) {
 					kills: player.kills + (acc.players[player.name]?.kills || 0),
 					deaths: player.deaths + (acc.players[player.name]?.deaths || 0),
 					assists: player.assists + (acc.players[player.name]?.assists || 0)
-					// champions: [
-					// 	...champs,
-					// 	{
-					// 		championIcon: champ,
-					// 		win: player.winner,
-					// 		lane: role
-					// 	}
-					// ]
 				};
 
 				if (!acc.champions[champ]) acc.champions[champ] = {};
 
 				const champRole = acc.champions[champ];
-				const champPlayers = acc.champions[champ].players || [];
+				const champPatches = champRole.patches || {};
 
 				acc.champions[champ] = {
 					name: champ,
@@ -56,13 +58,17 @@ export function aggregateData(data = {}, leaderboard) {
 					kills: player.kills + (champRole?.kills || 0),
 					deaths: player.deaths + (champRole?.deaths || 0),
 					assists: player.assists + (champRole?.assists || 0),
-					cs: player.cs + (champRole?.cs || 0)
+					cs: player.cs + (champRole?.cs || 0),
+					patches: {
+						...champPatches,
+						[patch]: true
+					}
 				};
 			}
 
 			return acc;
 		},
-		{ players: {}, champions: {}, totalGames: matches.length }
+		{ players: {}, champions: {}, totalGames: matches.length, patches: [] }
 	);
 
 	const currSeason = leaderboard.leaderboards[0];
@@ -74,6 +80,7 @@ export function aggregateData(data = {}, leaderboard) {
 		players: Object.values(aggregate.players)
 			.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
 			.map((p, i) => ({ ...p, rank: i + 1 })),
+		patches: aggregate.patches,
 		champions: aggregate.champions,
 		seasonTitle: currSeason?.title,
 		splitTitle: currSeason?.split?.title,

@@ -7,11 +7,13 @@
 <script>
 	import { onMount } from 'svelte';
 
+	import { store, pageBackground } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
+	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { ordinal } from '$lib/helpers';
-	import { store, pageBackground } from '$lib/stores';
 	import { TEAMS, teamImg } from '$lib/constants';
 
 	export let name;
@@ -46,22 +48,15 @@
 			pageBackground.set(null);
 		};
 	});
-
-	// $: lpHistory = list.reduce((acc, curr) => {
-	// 	const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-	// 	const firstDate = new Date();
-	// 	const secondDate = new Date(curr.matchStart);
-	// 	const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-
-	// 	if (!acc[diffDays]) acc[diffDays] = 0;
-	// 	const win = curr.victory ? 10 : -5;
-	// 	acc[diffDays] += win;
-
-	// 	return acc;
-	// }, {});
 </script>
 
-<PageHeader title={name} player={name} />
+<PageHeader title={name} player={name}>
+	<div slot="controls">
+		<RefreshBtn />
+		<FavoriteBtn />
+	</div>
+</PageHeader>
+
 {#if playerStats}
 	<div class="statblocks">
 		<div class="statblock">
@@ -101,11 +96,13 @@
 		</div>
 	</div>
 {/if}
+
 <ul class="list">
 	{#each list as match}
 		<Match {match} player={name} />
 	{/each}
 </ul>
+
 {#if list.length}
 	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}

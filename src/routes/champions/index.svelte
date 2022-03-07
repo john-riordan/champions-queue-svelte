@@ -4,6 +4,8 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
+	import Select from '$lib/components/Select.svelte';
 	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
@@ -13,14 +15,18 @@
 
 	export let title;
 
+	const champSize = 56;
+
 	let search = '';
 	let sort = 'games';
+	let patch;
 	let desc = true;
 	let commonOnly = false;
-	const champSize = 56;
+	let recentOnly = false;
 
 	$: champions = $store.champions || {};
 	$: totalGames = $store.totalGames || 1;
+	$: patches = ($store.patches || []).map((p) => ({ value: p, text: p }));
 	$: list = Object.values(champions)
 		.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
 		.map((champ) => ({
@@ -31,15 +37,25 @@
 			cs: champ.cs / champ.games
 		}))
 		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]))
-		.filter((c) => (commonOnly ? c.games / totalGames > 0.02 : true));
+		.filter((c) => {
+			return (commonOnly ? c.games / totalGames > 0.02 : true) && (patch ? c.patches[patch] : true);
+		});
 
 	function setSort(col) {
 		if (sort !== col) sort = col;
 		else desc = !desc;
 	}
+	function setPatch(event) {
+		patch = event.detail;
+	}
 </script>
 
-<PageHeader {title} />
+<PageHeader {title}>
+	<div slot="controls">
+		<RefreshBtn />
+	</div>
+</PageHeader>
+
 <div class="controls">
 	<input type="text" class="search" placeholder="Search Champions" bind:value={search} />
 	<label class="boolean-btn" class:checked={commonOnly} for="hide-low">
@@ -51,6 +67,9 @@
 			<CheckUnchecked />
 		{/if}
 	</label>
+	{#if patches.length}
+		<Select defaultText="Patch" value={patch} options={patches} on:select={setPatch} />
+	{/if}
 </div>
 
 <div class="sort">
@@ -86,6 +105,7 @@
 		{/if}
 	</span>
 </div>
+
 <ul class="list">
 	{#each list as champ}
 		<li>
@@ -132,19 +152,12 @@
 </ul>
 
 <style>
-	.controls {
-		display: flex;
-		gap: 0.5rem;
-		margin-bottom: 2rem;
-	}
-
 	.list li a,
 	.sort {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 1.25rem;
-		font-weight: 300;
+		padding: 1rem;
 		letter-spacing: 1px;
 		text-align: center;
 		background: var(--c2);

@@ -5,10 +5,11 @@
 </script>
 
 <script>
+	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
-	import { store } from '$lib/stores';
 
 	export let title;
 	const perPage = 20;
@@ -16,7 +17,12 @@
 	$: list = ($store.matches ?? []).slice(0, (pageIndex + 1) * perPage);
 </script>
 
-<PageHeader {title} />
+<PageHeader {title}>
+	<div slot="controls">
+		<RefreshBtn />
+	</div>
+</PageHeader>
+
 <ol class="li">
 	{#each list as match}
 		<Match {match} />

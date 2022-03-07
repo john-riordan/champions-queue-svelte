@@ -45,7 +45,6 @@
 		align-items: center;
 		justify-content: space-between;
 		height: 7rem;
-		margin-bottom: 1rem;
 	}
 	.info {
 		display: flex;
@@ -58,9 +57,10 @@
 	}
 	.header h1 {
 		font-size: 3.25rem;
-		font-weight: 800;
+		font-weight: 900;
+		line-height: 1;
 		text-transform: uppercase;
-		letter-spacing: 2px;
+		letter-spacing: 4px;
 	}
 	.image-container {
 		box-shadow: 0 0 0 2px var(--app-bg), 0 0 0 4px var(--c4);
@@ -73,6 +73,6 @@
 		display: flex;
 		gap: 1rem;
 		color: var(--c8);
-		font-weight: 500;
+		font-weight: 600;
 	}
 </style>

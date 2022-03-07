@@ -158,14 +158,13 @@
 	.match-stats {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
 	}
 	.statline {
 		display: flex;
 		gap: 1.5rem;
 	}
 	.stat-prefix {
-		color: var(--c7);
+		color: var(--c8);
 	}
 	.outcome {
 		font-weight: 700;
