@@ -82,7 +82,8 @@
 		justify-content: space-between;
 		height: 100vh;
 		width: var(--nav-width);
-		padding: var(--gap);
+		padding: 2.5rem;
+		padding-right: 0;
 		z-index: 1;
 	}
 
@@ -91,39 +92,38 @@
 		flex-direction: column;
 
 		.logo {
-			margin: 1rem auto 2rem;
+			margin: 0 1rem 2rem;
 		}
 
 		a {
 			display: flex;
-			flex-direction: column;
 			align-items: center;
-			justify-content: center;
-			gap: 0.25rem;
+			gap: 0.75rem;
 			padding: 1rem;
-			color: var(--c9);
+			font-size: 1.25rem;
+			opacity: 0.35;
+			transition: opacity 0.15s ease, transform 0.15s ease;
 
 			&:hover {
-				background: var(--c2);
+				opacity: 0.75;
+				transform: translateX(3%);
 			}
 			&.active {
-				background: var(--c2);
-				color: var(--c11);
-				box-shadow: inset 0 0 0 1px var(--c4);
+				opacity: 1;
 			}
 		}
 	}
 
 	.top :global(svg) {
-		width: 1.25rem;
-		height: 1.25rem;
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 
 	.content {
 		position: relative;
 		box-sizing: border-box;
 		padding: var(--gap);
-		padding-left: calc(var(--nav-width) + var(--gap));
+		padding-left: var(--nav-width);
 		padding-right: 1rem;
 		padding-top: 2rem;
 	}
@@ -141,7 +141,7 @@
 
 	.loading {
 		position: fixed;
-		inset: 0 0 0 calc(var(--nav-width) + var(--gap));
+		inset: 0 0 0 var(--nav-width);
 		display: grid;
 		place-content: center;
 		background-color: var(--c1);
