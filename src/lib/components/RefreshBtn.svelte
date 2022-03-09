@@ -7,6 +7,7 @@
 		const data = $store;
 		store.set({ ...data, loading: true });
 		const newData = await fetchData();
+		store.set({});
 		store.set({ ...newData, loading: false });
 	}
 </script>

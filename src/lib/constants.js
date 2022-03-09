@@ -6,6 +6,10 @@ export const ROLES = {
 	SUPPORT: 'Sup'
 };
 
+export const CORRECT_CHAMPION_NAME = {
+	FiddleSticks: 'Fiddlesticks'
+};
+
 export const INDEX_TO_ROLE = {
 	0: 'TOP',
 	1: 'JUNGLE',

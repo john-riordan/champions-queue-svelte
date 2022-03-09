@@ -135,7 +135,7 @@
 					})}
 				</span>
 				<span class="stat">
-					{((champ.kills + champ.assists) / champ.games).toLocaleString('en-us', {
+					{((champ.kills + champ.assists) / champ.deaths).toLocaleString('en-us', {
 						minimumFractionDigits: 1,
 						maximumFractionDigits: 1
 					})}

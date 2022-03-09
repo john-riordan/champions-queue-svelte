@@ -21,8 +21,10 @@
 	--blue: hsl(var(--blue-hsl));
 	--yellow-hsl: 45deg 70% 50%;
 	--yellow: hsl(var(--yellow-hsl));
+	--logo-hsl: 243deg 96% 68%;
+	--logo: hsl(var(--logo-hsl));
 
-	--nav-width: 18vw;
+	--nav-width: 20rem;
 	--gap: 1rem;
 	--btn-height: 2.75rem;
 }

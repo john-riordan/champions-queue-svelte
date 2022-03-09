@@ -81,6 +81,7 @@ export function aggregateData(data = {}, leaderboard) {
 			.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
 			.map((p, i) => ({ ...p, rank: i + 1 })),
 		patches: aggregate.patches,
+		currentPatch: formatchPatch(matches[0].gameVersion),
 		champions: aggregate.champions,
 		seasonTitle: currSeason?.title,
 		splitTitle: currSeason?.split?.title,
@@ -103,4 +104,14 @@ export function formatchPatch(version) {
 	const minor = patch[1] ?? 'x';
 
 	return `${major}.${minor}`;
+}
+
+export function msToHours(ms) {
+	return ms / 1000 / 60 / 60;
+}
+export function msToMins(ms) {
+	return ms / 1000 / 60;
+}
+export function msToSecs(ms) {
+	return ms / 1000;
 }

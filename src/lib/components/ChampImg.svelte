@@ -1,9 +1,14 @@
 <script>
+	import { store } from '$lib/stores';
+	import { CORRECT_CHAMPION_NAME } from '$lib/constants';
+
 	export let name;
 	export let size = 40;
 
+	$: patch = $store.currentPatch || 12.5;
+
 	// Fix the buggy naming of fiddle
-	name = name === 'FiddleSticks' ? 'Fiddlesticks' : name;
+	$: fixedName = CORRECT_CHAMPION_NAME[name] || name;
 </script>
 
 <div class="champ-img">
@@ -12,7 +17,7 @@
 		height={size}
 		loading="lazy"
 		alt={name}
-		src={`https://blitz-cdn.blitz.gg/blitz/lol/champion/${name}.webp`}
+		src={`http://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`}
 	/>
 </div>
 

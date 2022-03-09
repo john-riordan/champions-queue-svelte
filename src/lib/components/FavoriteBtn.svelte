@@ -1,6 +1,5 @@
 <script>
 	import { store } from '$lib/stores';
-	import Star from '$lib/components/icons/Star.svelte';
 
 	let isFavorited = false;
 

@@ -1,7 +1,5 @@
 <script>
 	export let rank;
-
-	$: isTop5 = rank <= 5;
 </script>
 
 <div
@@ -25,6 +23,8 @@
 
 <style lang="scss">
 	.rank {
+		--r1: var(--c5);
+		--r2: var(--c5);
 		--s: 36px;
 		position: relative;
 		display: inline-flex;
@@ -41,11 +41,13 @@
 
 		span {
 			position: relative;
-			padding: 1px 4px 0 4px;
-			color: var(--c6);
+			padding: 1px 4px 3px 5px;
+			background: linear-gradient(to bottom right, var(--r1), var(--r2));
+			color: var(--c1);
 			line-height: 1;
 			font-weight: 900;
 			border-radius: 2px;
+			font-size: 0.875rem;
 		}
 
 		&.rank1,
@@ -63,15 +65,12 @@
 		&.top5,
 		&.top10 {
 			span {
-				background: linear-gradient(to bottom right, var(--r1), var(--r2));
-				color: var(--c1);
+				font-size: 1rem;
 				box-shadow: 0 0 0 3px var(--c2);
 			}
 		}
 		&.top10 {
-			--r1: var(--c5);
-			--r2: var(--c5);
-			--s: 36px;
+			--s: 38px;
 		}
 		&.top5 {
 			--r1: var(--c7);
