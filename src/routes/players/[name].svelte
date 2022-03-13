@@ -15,6 +15,7 @@
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { ordinal } from '$lib/helpers';
 	import { TEAMS, teamImg } from '$lib/constants';
+	import { winrateColor } from '$lib/helpers';
 
 	export let name;
 	const perPage = 20;
@@ -72,7 +73,7 @@
 			<span class="stat-name">Games</span>
 		</div>
 		<div class="statblock">
-			<h3 class="stat">
+			<h3 class="stat" style:color={winrateColor(playerStats.wins / playerStats.games)}>
 				{(playerStats.wins / (playerStats.games || 1)).toLocaleString('en-us', {
 					minimumFractionDigits: 1,
 					maximumFractionDigits: 1,

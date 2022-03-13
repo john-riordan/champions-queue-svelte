@@ -15,6 +15,7 @@
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
 	import { TEAMS, teamImg } from '$lib/constants';
+	import { winrateColor } from '$lib/helpers';
 
 	export let title;
 	let search = '';
@@ -128,7 +129,7 @@
 						maximumFractionDigits: 1
 					})}
 				</span>
-				<span class="stat">
+				<span class="stat winrate" style:color={winrateColor(player.wins / player.games)}>
 					{(player.wins / player.games).toLocaleString('en-us', {
 						style: 'percent',
 						minimumFractionDigits: 1,
@@ -161,6 +162,10 @@
 		a {
 			border-top: 2px solid var(--app-bg);
 			border-bottom: 2px solid var(--app-bg);
+		}
+
+		.winrate {
+			font-weight: 600;
 		}
 	}
 

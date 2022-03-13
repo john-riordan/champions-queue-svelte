@@ -11,6 +11,7 @@
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
+	import { winrateColor } from '$lib/helpers';
 
 	export let name;
 	const perPage = 20;
@@ -58,7 +59,7 @@
 			<span class="stat-name">Games</span>
 		</div>
 		<div class="statblock">
-			<h3 class="stat">
+			<h3 class="stat" style:color={winrateColor(champStats.wins / champStats.games)}>
 				{(champStats.wins / (champStats.games || 1)).toLocaleString('en-us', {
 					minimumFractionDigits: 1,
 					maximumFractionDigits: 1,

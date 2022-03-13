@@ -13,12 +13,20 @@
 	--c10: hsl(var(--h) var(--s) 80%);
 	--c11: hsl(var(--h) var(--s) 90%);
 
+	--red-h: 346deg;
+	--red-s: 100%;
+	--red-l: 60%;
+	--blue-h: 220deg;
+	--blue-s: 100%;
+	--blue-l: 60%;
+
+	--red-hsl: var(--red-h) var(--red-s) var(--red-l);
+	--blue-hsl: var(--blue-h) var(--blue-s) var(--blue-l);
+	--red: hsl(var(--red-hsl));
+	--blue: hsl(var(--blue-hsl));
+
 	--green-hsl: 145deg 70% 45%;
 	--green: hsl(var(--green-hsl));
-	--red-hsl: 346deg 100% 50%;
-	--red: hsl(var(--red-hsl));
-	--blue-hsl: 220deg 85% 65%;
-	--blue: hsl(var(--blue-hsl));
 	--yellow-hsl: 45deg 70% 50%;
 	--yellow: hsl(var(--yellow-hsl));
 	--logo-hsl: 243deg 96% 68%;

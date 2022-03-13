@@ -10,6 +10,7 @@
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
+	import { winrateColor } from '$lib/helpers';
 
 	import { store } from '$lib/stores';
 
@@ -120,7 +121,7 @@
 						maximumFractionDigits: 0
 					})}
 				</span>
-				<span class="stat">
+				<span class="stat winrate" style:color={winrateColor(champ.wins / champ.games)}>
 					{(champ.wins / champ.games).toLocaleString('en-us', {
 						style: 'percent',
 						minimumFractionDigits: 1,
@@ -151,7 +152,7 @@
 	{/each}
 </ul>
 
-<style>
+<style lang="scss">
 	.list li a,
 	.sort {
 		display: flex;
@@ -164,29 +165,33 @@
 		transition: background ease 0.15s;
 	}
 
-	.list li a {
-		border-top: 2px solid var(--app-bg);
-		border-bottom: 2px solid var(--app-bg);
-	}
+	.list {
+		li {
+			font-size: 1.175rem;
+		}
+		a {
+			border-top: 2px solid var(--app-bg);
+			border-bottom: 2px solid var(--app-bg);
 
-	.list li {
-		font-size: 1.175rem;
-	}
+			&:hover {
+				background: var(--c3);
+			}
+			.winrate {
+				font-weight: 600;
+			}
+		}
 
-	.list li a:hover {
-		background: var(--c3);
-	}
+		.info {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+		}
 
-	.list .info {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.list .name {
-		width: 14rem;
-		font-weight: 700;
-		text-align: left;
+		.name {
+			width: 14rem;
+			font-weight: 700;
+			text-align: left;
+		}
 	}
 
 	.stat {

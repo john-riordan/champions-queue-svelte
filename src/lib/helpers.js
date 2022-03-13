@@ -115,3 +115,37 @@ export function msToMins(ms) {
 export function msToSecs(ms) {
 	return ms / 1000;
 }
+
+export function winrateColor(winrate) {
+	const h = winrate < 0.5 ? 'var(--red-h)' : 'var(--blue-h)';
+	let s = 100;
+	let l = 65;
+	let a = 1;
+
+	switch (true) {
+		case winrate <= 0.3 || winrate >= 0.7:
+			s = 100;
+			break;
+		case winrate <= 0.38 || winrate >= 0.62:
+			s = 85;
+			l = 75;
+			break;
+		case winrate <= 0.46 || winrate >= 0.54:
+			s = 75;
+			l = 80;
+			a = 0.85;
+			break;
+		case winrate <= 0.48 || winrate >= 0.52:
+			s = 70;
+			l = 80;
+			a = 0.75;
+			break;
+		case winrate <= 0.49 || winrate >= 0.51:
+			s = 65;
+			l = 85;
+			a = 0.6;
+			break;
+	}
+
+	return `hsla(${h} ${s}% ${l}% / ${a})`;
+}
