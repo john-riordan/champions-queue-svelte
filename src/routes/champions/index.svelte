@@ -26,7 +26,7 @@
 
 	$: champions = $store.champions || {};
 	$: totalGames = $store.totalGames || 1;
-	$: patches = ($store.patches || []).map((p) => ({ value: p, text: p }));
+	$: patches = ($store.patches || []).map((p) => ({ value: p, text: `Patch ${p}` }));
 	$: list = Object.values(champions)
 		.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
 		.map((champ) => ({

@@ -27,6 +27,8 @@
 	--nav-width: 20rem;
 	--gap: 1rem;
 	--btn-height: 2.75rem;
+	--nav-indent: 2rem;
+	--transition: 0.15s ease;
 }
 
 html,
@@ -137,6 +139,7 @@ button,
 .boolean-btn {
 	user-select: none;
 	cursor: pointer;
+	transition: background 0.15s ease, border-color 0.15s ease;
 }
 button:hover {
 	background: var(--c3);

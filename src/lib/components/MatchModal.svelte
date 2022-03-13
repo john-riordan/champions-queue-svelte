@@ -188,7 +188,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		transition: background 0.15s ease;
+		transition: background var(--transition);
 
 		&:hover {
 			background: hsla(0deg 0% 0% / 0.2);

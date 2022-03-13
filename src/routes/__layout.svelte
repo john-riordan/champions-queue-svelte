@@ -7,9 +7,10 @@
 	import Players from '$lib/components/icons/Players.svelte';
 	import Champions from '$lib/components/icons/Champions.svelte';
 	import Matches from '$lib/components/icons/Matches.svelte';
-	import Leaderboard from '$lib/components/icons/Leaderboard.svelte';
+	import Medal from '$lib/components/icons/Medal.svelte';
 	import Refresh from '$lib/components/icons/Refresh.svelte';
 	import MatchModal from '$lib/components/MatchModal.svelte';
+	import FavoritesList from '$lib/components/FavoritesList.svelte';
 	import '../app.css';
 
 	let splitEnd = 0;
@@ -19,20 +20,20 @@
 		const mountedData = await fetchData();
 		store.set(mountedData);
 
-		const interval = setInterval(() => {
-			currTime = Date.now();
-		}, 1000);
-
 		if ($store.splitEnd) {
 			splitEnd = new Date($store.splitEnd).getTime();
 		}
 
-		return () => {
-			clearInterval(interval);
-		};
+		// const interval = setInterval(() => {
+		// 	currTime = Date.now();
+		// }, 1000);
+
+		// return () => {
+		// 	clearInterval(interval);
+		// };
 	});
 
-	$: timeLeft = msToHours(splitEnd - currTime);
+	// $: timeLeft = msToHours(splitEnd - currTime);
 	$: currURL = $page.url.pathname;
 
 	const routes = [
@@ -52,9 +53,9 @@
 			icon: Matches
 		},
 		{
-			url: '/leaderboard',
-			title: 'Leaderboard',
-			icon: Leaderboard
+			url: '/teams',
+			title: 'Teams',
+			icon: Medal
 		}
 	];
 </script>
@@ -95,8 +96,8 @@
 		</div>
 
 		<div class="bottom">
-			<p>Split Ends In: {timeLeft}</p>
-			<p>Favorites go here</p>
+			<!-- <p>Split Ends In: {timeLeft}</p> -->
+			<FavoritesList />
 		</div>
 	</div>
 	<section class="content">
@@ -145,11 +146,10 @@
 		flex-direction: column;
 
 		a {
-			--transition: 0.25s ease-out;
 			position: relative;
 			display: flex;
 			align-items: center;
-			padding: 1rem 0 1rem 3rem;
+			padding: 1rem 0 1rem var(--nav-indent);
 			text-transform: uppercase;
 			font-weight: 600;
 			letter-spacing: 1px;
@@ -229,6 +229,10 @@
 	.nav > .active {
 		background: var(--c3);
 		border-color: var(--c4);
+	}
+
+	.bottom {
+		padding: 0 2rem 2rem var(--nav-indent);
 	}
 
 	@keyframes spin {

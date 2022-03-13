@@ -100,7 +100,6 @@
 
 <style lang="scss">
 	.match {
-		--transition: ease 0.15s;
 		position: relative;
 		display: flex;
 		align-items: center;
