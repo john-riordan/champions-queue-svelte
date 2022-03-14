@@ -88,7 +88,7 @@
 					<a href={route.url} class:active={currURL.includes(route.url)}>
 						<div>
 							<svelte:component this={route.icon} />
-							{route.title}
+							<span class="text">{route.title}</span>
 						</div>
 					</a>
 				{/each}
@@ -109,6 +109,7 @@
 		{/if}
 	</section>
 </div>
+
 <MatchModal />
 
 <style lang="scss">
@@ -122,12 +123,24 @@
 		width: var(--nav-width);
 		padding-right: 0;
 		z-index: 1;
+
+		> .active {
+			background: var(--c3);
+			border-color: var(--c4);
+		}
 	}
 
 	.logo {
 		position: relative;
 		padding: 3em;
 		padding-bottom: 2rem;
+
+		@media screen and (max-width: 1000px) {
+			padding: 2rem 2rem 2rem 1rem;
+		}
+		@media screen and (max-width: 800px) {
+			padding: 2rem 1rem 1rem 0.5rem;
+		}
 
 		img {
 			aspect-ratio: 124 / 119;
@@ -138,6 +151,10 @@
 			height: auto;
 			margin-top: -2rem;
 			filter: drop-shadow(0 0 10px black);
+
+			@media screen and (max-width: 1000px) {
+				display: none;
+			}
 		}
 	}
 
@@ -162,6 +179,12 @@
 				gap: 0.75rem;
 				opacity: 0.35;
 				transition: opacity var(--transition), transform var(--transition);
+			}
+
+			.text {
+				@media screen and (max-width: 1000px) {
+					display: none;
+				}
 			}
 
 			&::before,
@@ -222,13 +245,8 @@
 		box-sizing: border-box;
 		padding: var(--gap);
 		padding-left: var(--nav-width);
-		padding-right: 3rem;
-		padding-top: 3rem;
-	}
-
-	.nav > .active {
-		background: var(--c3);
-		border-color: var(--c4);
+		padding-right: var(--content-padding);
+		padding-top: var(--content-padding);
 	}
 
 	.bottom {

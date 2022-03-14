@@ -8,7 +8,13 @@ export async function fetchData() {
 }
 
 export function aggregateData(data = {}, leaderboard) {
-	const matches = data.matches || [];
+	const matches = (data.matches || []).filter((match) => {
+		// Filter matches for season 1, split 2
+		const matchStart = new Date(match.matchStart);
+		const splitStart = new Date('2022-03-10T06:21:46.590000Z');
+
+		return matchStart > splitStart ? true : false;
+	});
 
 	const aggregate = matches.reduce(
 		(acc, curr) => {
@@ -71,7 +77,13 @@ export function aggregateData(data = {}, leaderboard) {
 		{ players: {}, champions: {}, totalGames: matches.length, patches: [] }
 	);
 
-	const currSeason = leaderboard.leaderboards[0];
+	// Currently split/season
+	const currSeasonId = 1;
+	const currSplitId = 2;
+
+	const currSeason = leaderboard.leaderboards.find(
+		(s) => s.seasonId === currSeasonId && s.split?.splitId === currSplitId
+	);
 
 	return {
 		fetchedAt: Date.now(),
@@ -85,7 +97,11 @@ export function aggregateData(data = {}, leaderboard) {
 		champions: aggregate.champions,
 		seasonTitle: currSeason?.title,
 		splitTitle: currSeason?.split?.title,
-		splitEnd: currSeason?.split?.closeDate
+		splitEnd: currSeason?.split?.closeDate,
+		leaderboard: (currSeason?.lineup || []).reduce((acc, curr) => {
+			acc[curr.name] = curr;
+			return acc;
+		}, {})
 	};
 }
 

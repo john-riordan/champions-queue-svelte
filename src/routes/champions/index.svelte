@@ -87,7 +87,7 @@
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('playrate')}>
+	<span class="stat playrate" on:click={() => setSort('playrate')}>
 		Play-Rate
 		{#if sort === 'playrate'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
@@ -128,7 +128,7 @@
 						maximumFractionDigits: 1
 					})}
 				</span>
-				<span class="stat">
+				<span class="stat playrate">
 					{champ.playRate.toLocaleString('en-us', {
 						style: 'percent',
 						minimumFractionDigits: 1,
@@ -168,6 +168,10 @@
 	.list {
 		li {
 			font-size: 1.175rem;
+
+			@media screen and (max-width: 1200px) {
+				font-size: 1rem;
+			}
 		}
 		a {
 			border-top: 2px solid var(--app-bg);
@@ -191,6 +195,13 @@
 			width: 14rem;
 			font-weight: 700;
 			text-align: left;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			@media screen and (max-width: 1000px) {
+				width: 5rem;
+			}
 		}
 	}
 
@@ -213,13 +224,25 @@
 		gap: 0.5rem;
 		cursor: pointer;
 	}
+
+	.playrate {
+		@media screen and (max-width: 800px) {
+			display: none;
+		}
+	}
+
 	:global(.sort > * svg) {
 		width: 1rem;
 		height: 1rem;
 	}
+
 	.nameSort {
 		justify-content: flex-start;
 		width: 14rem;
 		margin-left: 4.5rem;
+
+		@media screen and (max-width: 1000px) {
+			width: 5rem;
+		}
 	}
 </style>

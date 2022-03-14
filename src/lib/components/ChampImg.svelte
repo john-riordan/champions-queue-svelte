@@ -12,13 +12,15 @@
 </script>
 
 <div class="champ-img">
-	<img
-		width={size}
-		height={size}
-		loading="lazy"
-		alt={name}
-		src={`http://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`}
-	/>
+	{#if fixedName}
+		<img
+			width={size}
+			height={size}
+			loading="lazy"
+			alt={name}
+			src={`http://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`}
+		/>
+	{/if}
 </div>
 
 <style>
@@ -26,6 +28,7 @@
 		overflow: hidden;
 		width: calc(var(--size) * 1px);
 		max-width: calc(var(--size) * 1px);
+		background: var(--c3);
 	}
 	.champ-img,
 	.champ-img img {

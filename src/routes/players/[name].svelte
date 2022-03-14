@@ -34,14 +34,13 @@
 		.slice(0, (pageIndex + 1) * perPage);
 
 	$: playerStats = ($store.players || []).find((p) => p.name === name);
+	$: leaderboardStats = $store.leaderboard[name];
 	$: team = TEAMS.find((team) => {
 		return name.toLowerCase().startsWith(team.tag.toLowerCase());
 	});
 
-	$: {
-		if (team) {
-			pageBackground.set(teamImg(500, team.logo));
-		}
+	$: if (team) {
+		pageBackground.set(teamImg(500, team.logo));
 	}
 
 	onMount(() => {
@@ -68,6 +67,12 @@
 			<h3 class="stat">{playerStats.lp.toLocaleString('en-us')}</h3>
 			<span class="stat-name">LP</span>
 		</div>
+		{#if leaderboardStats}
+			<div class="statblock">
+				<h3 class="stat">{leaderboardStats.seasonPoints}</h3>
+				<span class="stat-name">Season Pts</span>
+			</div>
+		{/if}
 		<div class="statblock">
 			<h3 class="stat">{playerStats.games.toLocaleString('en-us')}</h3>
 			<span class="stat-name">Games</span>
