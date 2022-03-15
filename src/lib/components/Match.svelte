@@ -22,8 +22,6 @@
 	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
 	$: patch = formatchPatch(match?.gameVersion);
 
-	$: playerChampSize = nonSpecificMatch ? 52 : 32;
-
 	function updateModal() {
 		matchModal.set(match);
 	}
@@ -38,7 +36,7 @@
 	{#if stats}
 		<div class="info">
 			<div class="champ-container" class:victory={stats.winner}>
-				<ChampImg name={stats.championIcon} size={56} --size={56} />
+				<ChampImg name={stats.championIcon} />
 			</div>
 			<div class="match-stats">
 				<div class="statline">
@@ -75,7 +73,7 @@
 			{#each t1 as player}
 				<div class="player" class:highlight={player.winner}>
 					<div>
-						<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
+						<ChampImg name={player.championIcon} />
 					</div>
 					{#if nonSpecificMatch}
 						<span class="player-name">{player.name}</span>
@@ -87,7 +85,7 @@
 			{#each t2 as player}
 				<div class="player" class:highlight={player.winner}>
 					<div>
-						<ChampImg name={player.championIcon} size={playerChampSize} --size={playerChampSize} />
+						<ChampImg name={player.championIcon} />
 					</div>
 					{#if nonSpecificMatch}
 						<span class="player-name">{player.name}</span>
@@ -100,7 +98,6 @@
 
 <style lang="scss">
 	.match {
-		--transition: ease 0.15s;
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -151,6 +148,10 @@
 	}
 	.info .champ-container {
 		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--red);
+
+		:global(.champ-img) {
+			--size: 56;
+		}
 	}
 	.info .champ-container.victory {
 		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue);
@@ -190,8 +191,16 @@
 		display: flex;
 		gap: 0.75rem;
 
+		:global(.champ-img) {
+			--size: 32;
+		}
+
 		.noHighlight & {
 			gap: 0.25rem;
+
+			:global(.champ-img) {
+				--size: 52;
+			}
 		}
 
 		.player {

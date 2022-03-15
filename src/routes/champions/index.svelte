@@ -10,6 +10,7 @@
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
+	import { winrateColor } from '$lib/helpers';
 
 	import { store } from '$lib/stores';
 
@@ -26,7 +27,7 @@
 
 	$: champions = $store.champions || {};
 	$: totalGames = $store.totalGames || 1;
-	$: patches = ($store.patches || []).map((p) => ({ value: p, text: p }));
+	$: patches = ($store.patches || []).map((p) => ({ value: p, text: `Patch ${p}` }));
 	$: list = Object.values(champions)
 		.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
 		.map((champ) => ({
@@ -51,9 +52,9 @@
 </script>
 
 <PageHeader {title}>
-	<div slot="controls">
+	<!-- <div slot="controls">
 		<RefreshBtn />
-	</div>
+	</div> -->
 </PageHeader>
 
 <div class="controls">
@@ -86,7 +87,7 @@
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('playrate')}>
+	<span class="stat playrate" on:click={() => setSort('playrate')}>
 		Play-Rate
 		{#if sort === 'playrate'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
@@ -111,7 +112,7 @@
 		<li>
 			<a href={`/champions/${champ.name}`}>
 				<div class="info">
-					<ChampImg name={champ.name} --size={champSize} size={champSize} />
+					<ChampImg name={champ.name} />
 					<h4 class="name">{champ.name}</h4>
 				</div>
 				<span class="stat">
@@ -120,14 +121,14 @@
 						maximumFractionDigits: 0
 					})}
 				</span>
-				<span class="stat">
+				<span class="stat winrate" style:color={winrateColor(champ.wins / champ.games)}>
 					{(champ.wins / champ.games).toLocaleString('en-us', {
 						style: 'percent',
 						minimumFractionDigits: 1,
 						maximumFractionDigits: 1
 					})}
 				</span>
-				<span class="stat">
+				<span class="stat playrate">
 					{champ.playRate.toLocaleString('en-us', {
 						style: 'percent',
 						minimumFractionDigits: 1,
@@ -151,7 +152,7 @@
 	{/each}
 </ul>
 
-<style>
+<style lang="scss">
 	.list li a,
 	.sort {
 		display: flex;
@@ -164,29 +165,48 @@
 		transition: background ease 0.15s;
 	}
 
-	.list li a {
-		border-top: 2px solid var(--app-bg);
-		border-bottom: 2px solid var(--app-bg);
-	}
+	.list {
+		li {
+			font-size: 1.175rem;
 
-	.list li {
-		font-size: 1.175rem;
-	}
+			@media screen and (max-width: 1200px) {
+				font-size: 1rem;
+			}
+		}
+		a {
+			border-top: 2px solid var(--app-bg);
+			border-bottom: 2px solid var(--app-bg);
 
-	.list li a:hover {
-		background: var(--c3);
-	}
+			&:hover {
+				background: var(--c3);
+			}
+			.winrate {
+				font-weight: 600;
+			}
+		}
 
-	.list .info {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
+		.info {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+		}
 
-	.list .name {
-		width: 14rem;
-		font-weight: 700;
-		text-align: left;
+		:global(.champ-img) {
+			--size: 56;
+		}
+
+		.name {
+			width: 14rem;
+			font-weight: 700;
+			text-align: left;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			@media screen and (max-width: 1000px) {
+				width: 5rem;
+			}
+		}
 	}
 
 	.stat {
@@ -208,13 +228,25 @@
 		gap: 0.5rem;
 		cursor: pointer;
 	}
+
+	.playrate {
+		@media screen and (max-width: 800px) {
+			display: none;
+		}
+	}
+
 	:global(.sort > * svg) {
 		width: 1rem;
 		height: 1rem;
 	}
+
 	.nameSort {
 		justify-content: flex-start;
 		width: 14rem;
 		margin-left: 4.5rem;
+
+		@media screen and (max-width: 1000px) {
+			width: 5rem;
+		}
 	}
 </style>

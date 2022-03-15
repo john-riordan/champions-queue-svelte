@@ -15,6 +15,7 @@
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { ordinal } from '$lib/helpers';
 	import { TEAMS, teamImg } from '$lib/constants';
+	import { winrateColor } from '$lib/helpers';
 
 	export let name;
 	const perPage = 20;
@@ -33,14 +34,13 @@
 		.slice(0, (pageIndex + 1) * perPage);
 
 	$: playerStats = ($store.players || []).find((p) => p.name === name);
+	$: leaderboardStats = $store.leaderboard[name];
 	$: team = TEAMS.find((team) => {
 		return name.toLowerCase().startsWith(team.tag.toLowerCase());
 	});
 
-	$: {
-		if (team) {
-			pageBackground.set(teamImg(500, team.logo));
-		}
+	$: if (team) {
+		pageBackground.set(teamImg(500, team.logo));
 	}
 
 	onMount(() => {
@@ -52,7 +52,7 @@
 
 <PageHeader title={name} player={name}>
 	<div slot="controls">
-		<RefreshBtn />
+		<!-- <RefreshBtn /> -->
 		<FavoriteBtn />
 	</div>
 </PageHeader>
@@ -67,12 +67,18 @@
 			<h3 class="stat">{playerStats.lp.toLocaleString('en-us')}</h3>
 			<span class="stat-name">LP</span>
 		</div>
+		{#if leaderboardStats}
+			<div class="statblock">
+				<h3 class="stat">{leaderboardStats.seasonPoints}</h3>
+				<span class="stat-name">Season Pts</span>
+			</div>
+		{/if}
 		<div class="statblock">
 			<h3 class="stat">{playerStats.games.toLocaleString('en-us')}</h3>
 			<span class="stat-name">Games</span>
 		</div>
 		<div class="statblock">
-			<h3 class="stat">
+			<h3 class="stat" style:color={winrateColor(playerStats.wins / playerStats.games)}>
 				{(playerStats.wins / (playerStats.games || 1)).toLocaleString('en-us', {
 					minimumFractionDigits: 1,
 					maximumFractionDigits: 1,

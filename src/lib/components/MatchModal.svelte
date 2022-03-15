@@ -18,7 +18,6 @@
 		matchModal.set(null);
 	});
 
-	const champSize = 40;
 	const relativeTime = new RelativeTime();
 	$: dateRelative = match && relativeTime.from(new Date(match.matchStart));
 </script>
@@ -53,7 +52,7 @@
 						{#each match.teams[0].players as player}
 							<li>
 								<a class="player" href={`/players/${player.name}`}>
-									<ChampImg name={player.championIcon} --size={champSize} size={champSize} />
+									<ChampImg name={player.championIcon} />
 									<span class="name">{player.name}</span>
 									<div class="stats">
 										<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
@@ -78,7 +77,7 @@
 						{#each match.teams[1].players as player}
 							<li>
 								<a class="player" href={`/players/${player.name}`}>
-									<ChampImg name={player.championIcon} --size={champSize} size={champSize} />
+									<ChampImg name={player.championIcon} />
 									<span class="name">{player.name}</span>
 									<div class="stats">
 										<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
@@ -176,6 +175,10 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 2rem;
+
+		:global(.champ-img) {
+			--size: 40;
+		}
 	}
 
 	.players {
@@ -188,7 +191,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		transition: background 0.15s ease;
+		transition: background var(--transition);
 
 		&:hover {
 			background: hsla(0deg 0% 0% / 0.2);

@@ -13,12 +13,20 @@
 	--c10: hsl(var(--h) var(--s) 80%);
 	--c11: hsl(var(--h) var(--s) 90%);
 
+	--red-h: 346deg;
+	--red-s: 100%;
+	--red-l: 60%;
+	--blue-h: 220deg;
+	--blue-s: 100%;
+	--blue-l: 60%;
+
+	--red-hsl: var(--red-h) var(--red-s) var(--red-l);
+	--blue-hsl: var(--blue-h) var(--blue-s) var(--blue-l);
+	--red: hsl(var(--red-hsl));
+	--blue: hsl(var(--blue-hsl));
+
 	--green-hsl: 145deg 70% 45%;
 	--green: hsl(var(--green-hsl));
-	--red-hsl: 346deg 100% 50%;
-	--red: hsl(var(--red-hsl));
-	--blue-hsl: 220deg 85% 65%;
-	--blue: hsl(var(--blue-hsl));
 	--yellow-hsl: 45deg 70% 50%;
 	--yellow: hsl(var(--yellow-hsl));
 	--logo-hsl: 243deg 96% 68%;
@@ -27,6 +35,9 @@
 	--nav-width: 20rem;
 	--gap: 1rem;
 	--btn-height: 2.75rem;
+	--nav-indent: 2rem;
+	--content-padding: 3rem;
+	--transition: 0.15s ease;
 }
 
 html,
@@ -137,6 +148,7 @@ button,
 .boolean-btn {
 	user-select: none;
 	cursor: pointer;
+	transition: background 0.15s ease, border-color 0.15s ease;
 }
 button:hover {
 	background: var(--c3);
@@ -216,4 +228,39 @@ input[type='text'].disabled {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+	:root {
+		--nav-width: 15rem;
+		--content-padding: 1rem;
+		--btn-height: 2.25rem;
+		--nav-indent: 1.5rem;
+	}
+	button,
+	input[type='text'],
+	.boolean-btn {
+		font-size: 0.75rem;
+		padding: 0.25rem 0.75rem;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	:root {
+		--nav-width: 6rem;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	:root {
+		--nav-width: 4rem;
+		--nav-indent: 1rem;
+		--content-padding: 0.5rem;
+	}
+	.controls,
+	.statblocks {
+		flex-wrap: wrap;
+		margin: 0.5rem 0;
+		padding: 0.5rem 0;
+	}
 }

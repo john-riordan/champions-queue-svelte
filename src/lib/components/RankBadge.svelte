@@ -76,21 +76,37 @@
 			--r1: var(--c7);
 			--r2: var(--c7);
 			--s: 38px;
+
+			@media screen and (max-width: 800px) {
+				--s: 32px;
+			}
 		}
 		&.rank3 {
 			--r1: hsl(34deg 68% 36%);
 			--r2: hsl(34deg 80% 30%);
 			--s: 42px;
+
+			@media screen and (max-width: 800px) {
+				--s: 32px;
+			}
 		}
 		&.rank2 {
 			--r1: hsl(0deg 0% 85%);
 			--r2: hsl(0deg 0% 70%);
 			--s: 40px;
+
+			@media screen and (max-width: 800px) {
+				--s: 36px;
+			}
 		}
 		&.rank1 {
 			--r1: hsl(47deg 80% 55%);
 			--r2: hsl(47deg 80% 35%);
 			--s: 48px;
+
+			@media screen and (max-width: 800px) {
+				--s: 40px;
+			}
 		}
 	}
 </style>

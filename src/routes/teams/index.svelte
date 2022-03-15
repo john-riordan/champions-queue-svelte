@@ -1,6 +1,6 @@
 <script context="module">
 	export const load = async () => {
-		return { props: { title: 'Leaderboard' } };
+		return { props: { title: 'Teams' } };
 	};
 </script>
 
@@ -11,3 +11,5 @@
 </script>
 
 <PageHeader {title} />
+
+<h3>Coming Soon...</h3>

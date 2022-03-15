@@ -15,6 +15,7 @@
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
 	import { TEAMS, teamImg } from '$lib/constants';
+	import { winrateColor } from '$lib/helpers';
 
 	export let title;
 	let search = '';
@@ -22,9 +23,9 @@
 	let sort = 'lp';
 	let desc = true;
 	let commonOnly = false;
-	const champSize = 56;
 
 	$: players = $store.players || [];
+	$: leaderboard = $store.leaderboard || {};
 	$: totalGames = $store.totalGames || 1;
 	$: list = players
 		.filter((p) => {
@@ -33,7 +34,17 @@
 			}
 			return p.name.toLowerCase().includes(search.toLowerCase());
 		})
-		.map((p) => ({ ...p, winrate: p.wins / p.games, kda: (p.kills + p.assists) / (p.deaths || 1) }))
+		.map((p) => {
+			const lp = leaderboard[p.name]?.lp || 0;
+			const rank = leaderboard[p.name]?.rank;
+			return {
+				...p,
+				lp,
+				rank,
+				winrate: p.wins / p.games,
+				kda: (p.kills + p.assists) / (p.deaths || 1)
+			};
+		})
 		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]))
 		.filter((c) => (commonOnly ? c.games / totalGames > 0.02 : true));
 
@@ -55,9 +66,9 @@
 </script>
 
 <PageHeader {title}>
-	<div slot="controls">
+	<!-- <div slot="controls">
 		<RefreshBtn />
-	</div>
+	</div> -->
 </PageHeader>
 
 <div class="controls">
@@ -82,24 +93,21 @@
 
 <div class="sort">
 	<span class="nameSort">Name</span>
-	<span class="stat" on:click={() => setSort('rank')}>
-		Rank
-		<SortDirection class={desc ? 'desc' : 'asc'} />
-	</span>
+	<span class="stat"> Rank </span>
 	<span class="stat" on:click={() => setSort('lp')}>
 		LP
 		{#if sort === 'lp'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('kda')}>
+	<span class="stat kda" on:click={() => setSort('kda')}>
 		KDA
 		{#if sort === 'kda'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
 	<span class="stat" on:click={() => setSort('winrate')}>
-		Win-Rate
+		WR
 		{#if sort === 'winrate'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
@@ -112,7 +120,7 @@
 		<li>
 			<a href={`/players/${player.name}`}>
 				<div class="info">
-					<PlayerImg name={player.name} --size={champSize} size={champSize} />
+					<PlayerImg name={player.name} />
 					<p class="name">{player.name}</p>
 				</div>
 
@@ -120,15 +128,15 @@
 					<RankBadge rank={player.rank} />
 				</span>
 				<span class="stat">
-					{player.lp}
+					{leaderboard[player.name]?.lp || 0}
 				</span>
-				<span class="stat">
+				<span class="stat kda">
 					{((player.kills + player.assists) / (player.deaths || 1)).toLocaleString('en-us', {
 						minimumFractionDigits: 1,
 						maximumFractionDigits: 1
 					})}
 				</span>
-				<span class="stat">
+				<span class="stat winrate" style:color={winrateColor(player.wins / player.games)}>
 					{(player.wins / player.games).toLocaleString('en-us', {
 						style: 'percent',
 						minimumFractionDigits: 1,
@@ -153,35 +161,70 @@
 		letter-spacing: 1px;
 		text-align: center;
 		background: var(--c2);
+
+		@media screen and (max-width: 1200px) {
+			padding: 0.75rem;
+		}
 	}
 
 	.list li {
 		font-size: 1.175rem;
 
+		@media screen and (max-width: 1200px) {
+			font-size: 1rem;
+		}
+
 		a {
 			border-top: 2px solid var(--app-bg);
 			border-bottom: 2px solid var(--app-bg);
+
+			&:hover {
+				background: var(--c3);
+			}
+		}
+
+		.info {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.name {
+			width: 15rem;
+			font-weight: 700;
+			text-align: left;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			@media screen and (max-width: 1200px) {
+				width: 6rem;
+			}
+		}
+		.winrate {
+			font-weight: 600;
 		}
 	}
 
-	.list li a:hover {
-		background: var(--c3);
-	}
+	:global(.player-img) {
+		--size: 56;
 
-	.list .info {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.list .name {
-		width: 15rem;
-		font-weight: 700;
-		text-align: left;
+		@media screen and (max-width: 1000px) {
+			--size: 40;
+		}
+		@media screen and (max-width: 800px) {
+			display: none;
+		}
 	}
 
 	.stat {
 		flex: 1;
+	}
+
+	.kda {
+		@media screen and (max-width: 800px) {
+			display: none !important;
+		}
 	}
 
 	.sort {
@@ -207,5 +250,15 @@
 		justify-content: flex-start;
 		width: 14rem;
 		margin-left: 5.5rem;
+
+		@media screen and (max-width: 1200px) {
+			width: 6rem;
+		}
+		@media screen and (max-width: 1000px) {
+			margin-left: 3rem;
+		}
+		@media screen and (max-width: 800px) {
+			margin-left: 0;
+		}
 	}
 </style>
