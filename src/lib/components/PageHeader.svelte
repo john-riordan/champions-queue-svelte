@@ -2,6 +2,7 @@
 	import RelativeTime from '@yaireo/relative-time';
 
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
+	import PlayerSocials from './PlayerSocials.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { store } from '$lib/stores';
 
@@ -25,7 +26,13 @@
 			</div>
 		{/if}
 		<div class="title-text">
-			<h1>{title}</h1>
+			<h1>
+				{title}
+				{#if player}
+					<PlayerSocials name={player} />
+				{/if}
+			</h1>
+
 			{#if $store.splitTitle}
 				<div class="split-details">
 					<span>{$store.seasonTitle}</span>
@@ -69,6 +76,10 @@
 	.title-text {
 		display: flex;
 		flex-direction: column;
+
+		h1 {
+			display: flex;
+		}
 	}
 	.header h1 {
 		font-size: 3.25rem;
