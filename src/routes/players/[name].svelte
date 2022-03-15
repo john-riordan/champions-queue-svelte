@@ -34,7 +34,7 @@
 		.slice(0, (pageIndex + 1) * perPage);
 
 	$: playerStats = ($store.players || []).find((p) => p.name === name);
-	$: leaderboardStats = $store.leaderboard[name];
+	$: leaderboardStats = $store.leaderboard?.[name];
 	$: team = TEAMS.find((team) => {
 		return name.toLowerCase().startsWith(team.tag.toLowerCase());
 	});
