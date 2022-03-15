@@ -93,7 +93,7 @@
 
 <div class="sort">
 	<span class="nameSort">Name</span>
-	<span class="stat"> Rank </span>
+	<span class="stat rank"> Rank </span>
 	<span class="stat" on:click={() => setSort('lp')}>
 		LP
 		{#if sort === 'lp'}
@@ -124,7 +124,7 @@
 					<p class="name">{player.name}</p>
 				</div>
 
-				<span class="stat">
+				<span class="stat rank">
 					<RankBadge rank={player.rank} />
 				</span>
 				<span class="stat">
@@ -139,8 +139,8 @@
 				<span class="stat winrate" style:color={winrateColor(player.wins / player.games)}>
 					{(player.wins / player.games).toLocaleString('en-us', {
 						style: 'percent',
-						minimumFractionDigits: 1,
-						maximumFractionDigits: 1
+						minimumFractionDigits: 0,
+						maximumFractionDigits: 0
 					})}
 				</span>
 				<span class="stat">
@@ -167,53 +167,55 @@
 		}
 	}
 
-	.list li {
-		font-size: 1.175rem;
-
-		@media screen and (max-width: 1200px) {
-			font-size: 1rem;
-		}
-
-		a {
-			border-top: 2px solid var(--app-bg);
-			border-bottom: 2px solid var(--app-bg);
-
-			&:hover {
-				background: var(--c3);
-			}
-		}
-
-		.info {
-			display: flex;
-			align-items: center;
-			gap: 1rem;
-		}
-
-		.name {
-			width: 15rem;
-			font-weight: 700;
-			text-align: left;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+	.list {
+		li {
+			font-size: 1.175rem;
 
 			@media screen and (max-width: 1200px) {
-				width: 6rem;
+				font-size: 1rem;
 			}
-		}
-		.winrate {
-			font-weight: 600;
-		}
-	}
 
-	:global(.player-img) {
-		--size: 56;
+			a {
+				border-top: 2px solid var(--app-bg);
+				border-bottom: 2px solid var(--app-bg);
 
-		@media screen and (max-width: 1000px) {
-			--size: 40;
-		}
-		@media screen and (max-width: 800px) {
-			display: none;
+				&:hover {
+					background: var(--c3);
+				}
+			}
+
+			.info {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			:global(.player-img) {
+				--size: 56;
+
+				@media screen and (max-width: 1000px) {
+					--size: 40;
+				}
+				@media screen and (max-width: 800px) {
+					display: none;
+				}
+			}
+
+			.name {
+				width: 15rem;
+				font-weight: 700;
+				text-align: left;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+
+				@media screen and (max-width: 1200px) {
+					width: 6rem;
+				}
+			}
+			.winrate {
+				font-weight: 600;
+			}
 		}
 	}
 
@@ -221,7 +223,8 @@
 		flex: 1;
 	}
 
-	.kda {
+	.kda,
+	.rank {
 		@media screen and (max-width: 800px) {
 			display: none !important;
 		}

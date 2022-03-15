@@ -115,12 +115,22 @@
 		border: 3px solid var(--c2);
 		box-shadow: 0 0px 200px 115px var(--c1);
 		z-index: 10;
+
+		@media screen and (max-width: 1000px) {
+			padding: 1rem;
+		}
 	}
 
 	.outcome {
 		font-size: 2rem;
 		text-align: right;
 		color: var(--red);
+
+		@media screen and (max-width: 1000px) {
+			text-align: left;
+			line-height: 1;
+			font-size: 1.5rem;
+		}
 
 		.right & {
 			text-align: left;
@@ -139,6 +149,10 @@
 		font-size: 0.875rem;
 		color: var(--c9);
 
+		@media screen and (max-width: 1000px) {
+			margin: 0.75rem 0 0.5rem;
+		}
+
 		> * {
 			text-align: center;
 		}
@@ -147,10 +161,21 @@
 			text-align: left;
 			margin-left: 4.5rem;
 
+			@media screen and (max-width: 1000px) {
+				width: 7ch;
+				margin-left: 3rem;
+			}
+
 			.right & {
 				text-align: right;
 				margin-left: 0;
 				margin-right: 4.5rem;
+
+				@media screen and (max-width: 1000px) {
+					text-align: left;
+					margin-left: 3rem;
+					margin-right: unset;
+				}
 			}
 		}
 		.kda {
@@ -163,11 +188,25 @@
 
 		.right & {
 			flex-direction: row-reverse;
+
+			@media screen and (max-width: 1000px) {
+				flex-direction: row;
+			}
+		}
+	}
+
+	.gold {
+		@media screen and (max-width: 600px) {
+			display: none;
 		}
 	}
 
 	.right {
 		text-align: right;
+
+		@media screen and (max-width: 1000px) {
+			text-align: left;
+		}
 	}
 
 	.teams {
@@ -178,6 +217,15 @@
 
 		:global(.champ-img) {
 			--size: 40;
+
+			@media screen and (max-width: 1000px) {
+				--size: 32;
+			}
+		}
+
+		@media screen and (max-width: 1000px) {
+			flex-direction: column;
+			gap: 0.5rem;
 		}
 	}
 
@@ -193,6 +241,10 @@
 		gap: 1rem;
 		transition: background var(--transition);
 
+		@media screen and (max-width: 600px) {
+			gap: 0.5rem;
+		}
+
 		&:hover {
 			background: hsla(0deg 0% 0% / 0.2);
 
@@ -207,11 +259,20 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow: hidden;
+
+			@media screen and (max-width: 1000px) {
+				width: 7ch;
+			}
 		}
 
 		.right & {
 			flex-direction: row-reverse;
 			text-align: right;
+
+			@media screen and (max-width: 1000px) {
+				text-align: left;
+				flex-direction: row;
+			}
 		}
 	}
 
@@ -220,6 +281,10 @@
 		align-items: center;
 		gap: 1rem;
 		color: var(--c8);
+
+		@media screen and (max-width: 600px) {
+			gap: 0rem;
+		}
 
 		> * {
 			text-align: center;
@@ -235,6 +300,11 @@
 		.right & {
 			flex-direction: row-reverse;
 			text-align: right;
+
+			@media screen and (max-width: 1000px) {
+				flex-direction: row;
+				text-align: left;
+			}
 		}
 	}
 
@@ -252,6 +322,10 @@
 		width: 65%;
 		background: linear-gradient(var(--dir), hsla(var(--blue-hsl) / 0.15), transparent);
 		box-shadow: inset var(--shadow) 0 0 0 var(--blue);
+
+		@media screen and (max-width: 1000px) {
+			display: none;
+		}
 
 		&:not(.victory) {
 			background: none;

@@ -60,7 +60,7 @@
 {#if playerStats}
 	<div class="statblocks">
 		<div class="statblock">
-			<h3 class="stat">{ordinal(playerStats.rank)} <span>/ {$store.players.length}</span></h3>
+			<h3 class="stat">{ordinal(playerStats.rank)}</h3>
 			<span class="stat-name">Rank</span>
 		</div>
 		<div class="statblock">
@@ -73,15 +73,15 @@
 				<span class="stat-name">Season Pts</span>
 			</div>
 		{/if}
-		<div class="statblock">
+		<!-- <div class="statblock">
 			<h3 class="stat">{playerStats.games.toLocaleString('en-us')}</h3>
 			<span class="stat-name">Games</span>
-		</div>
+		</div> -->
 		<div class="statblock">
 			<h3 class="stat" style:color={winrateColor(playerStats.wins / playerStats.games)}>
 				{(playerStats.wins / (playerStats.games || 1)).toLocaleString('en-us', {
-					minimumFractionDigits: 1,
-					maximumFractionDigits: 1,
+					minimumFractionDigits: 0,
+					maximumFractionDigits: 0,
 					style: 'percent'
 				})}
 				<span>{playerStats.wins}/{playerStats.games - playerStats.wins}</span>

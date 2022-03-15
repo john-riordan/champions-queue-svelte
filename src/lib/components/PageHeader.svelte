@@ -35,7 +35,7 @@
 
 			{#if $store.splitTitle}
 				<div class="split-details">
-					<span>{$store.seasonTitle}</span>
+					<span class="season">{$store.seasonTitle}</span>
 					<span>{$store.splitTitle}</span>
 					<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
 				</div>
@@ -55,6 +55,13 @@
 		:global(.champ-img),
 		:global(.player-img) {
 			--size: 68;
+
+			@media screen and (max-width: 1000px) {
+				--size: 52;
+			}
+			@media screen and (max-width: 600px) {
+				--size: 44;
+			}
 		}
 
 		@media screen and (max-width: 1000px) {
@@ -67,21 +74,31 @@
 			gap: 1rem;
 			margin-top: 2rem;
 		}
+		@media screen and (max-width: 600px) {
+			gap: 0.5rem;
+			margin-top: 1rem;
+		}
 	}
 	.info {
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
+
+		@media screen and (max-width: 1000px) {
+			gap: 0.75rem;
+		}
+		@media screen and (max-width: 800px) {
+			align-items: flex-start;
+		}
 	}
 	.title-text {
 		display: flex;
 		flex-direction: column;
-
-		h1 {
-			display: flex;
-		}
 	}
 	.header h1 {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 		font-size: 3.25rem;
 		font-weight: 900;
 		line-height: 1;
@@ -91,11 +108,19 @@
 		@media screen and (max-width: 1200px) {
 			font-size: 2rem;
 		}
+		@media screen and (max-width: 800px) {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.25rem;
+			font-size: 1.75rem;
+		}
 	}
 	.image-container {
+		margin-left: 4px;
 		box-shadow: 0 0 0 2px var(--app-bg), 0 0 0 4px var(--c4);
 
 		&.round {
+			margin-left: 0;
 			border-radius: 50%;
 		}
 	}
@@ -105,5 +130,15 @@
 		color: var(--c8);
 		font-size: 1.125rem;
 		font-weight: 600;
+
+		@media screen and (max-width: 800px) {
+			font-size: 0.875rem;
+		}
+
+		.season {
+			@media screen and (max-width: 800px) {
+				display: none;
+			}
+		}
 	}
 </style>

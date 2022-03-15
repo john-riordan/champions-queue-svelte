@@ -141,6 +141,9 @@
 		@media screen and (max-width: 800px) {
 			padding: 2rem 1rem 1rem 0.5rem;
 		}
+		@media screen and (max-width: 600px) {
+			padding-top: 1rem;
+		}
 
 		img {
 			aspect-ratio: 124 / 119;
@@ -251,6 +254,11 @@
 
 	.bottom {
 		padding: 0 2rem 2rem var(--nav-indent);
+
+		@media screen and (max-width: 1000px) {
+			padding-right: var(--nav-indent);
+			padding-bottom: 1rem;
+		}
 	}
 
 	@keyframes spin {
@@ -281,5 +289,9 @@
 		height: auto;
 		opacity: 0.05;
 		filter: saturate(0);
+
+		@media screen and (max-width: 800px) {
+			width: 300px;
+		}
 	}
 </style>

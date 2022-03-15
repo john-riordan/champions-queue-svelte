@@ -18,12 +18,12 @@
 </script>
 
 <PageHeader {title}>
-	<div slot="controls">
+	<!-- <div slot="controls">
 		<RefreshBtn />
-	</div>
+	</div> -->
 </PageHeader>
 
-<ol class="li">
+<ol class="list">
 	{#each list as match}
 		<Match {match} />
 	{/each}

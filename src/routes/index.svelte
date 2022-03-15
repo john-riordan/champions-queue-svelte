@@ -3,11 +3,15 @@
 </script>
 
 <script>
+	import RelativeTime from '@yaireo/relative-time';
+
 	import { store } from '$lib/stores';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 
 	const count = 5;
+
+	const relativeTime = new RelativeTime();
 
 	$: topRatedPlayers = $store.players
 		? $store.players.sort((a, b) => b.lp - a.lp).slice(0, count)
@@ -36,6 +40,17 @@
 			/>
 		</svg>
 	</div>
+	{#if $store.splitTitle}
+		<div class="split-details">
+			<span class="season">{$store.seasonTitle}</span>
+			<span>{$store.splitTitle}</span>
+			<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
+		</div>
+	{:else}
+		<div class="split-details">
+			<span>Loading Split Data...</span>
+		</div>
+	{/if}
 	<div class="blocks">
 		<div>
 			<h2>
@@ -92,8 +107,15 @@
 	.container {
 		display: grid;
 		place-content: center;
-		gap: 4rem;
+		gap: 2rem;
 		height: calc(100vh - var(--content-padding));
+
+		@media screen and (max-width: 600px) {
+			gap: 1rem;
+			height: auto;
+			padding-top: 4rem;
+			padding-bottom: 4rem;
+		}
 	}
 
 	.logo {
@@ -102,6 +124,13 @@
 		width: var(--width);
 		max-width: var(--width);
 		position: relative;
+
+		@media screen and (max-width: 1200px) {
+			--width: 16rem;
+		}
+		@media screen and (max-width: 600px) {
+			--width: 13rem;
+		}
 
 		svg {
 			height: auto;
@@ -131,9 +160,24 @@
 		grid-template-columns: 1fr 1fr;
 		gap: 3rem;
 
+		@media screen and (max-width: 1200px) {
+			gap: 1rem;
+		}
+		@media screen and (max-width: 600px) {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
 		h2 {
 			line-height: 1;
 			margin-bottom: 1.25rem;
+
+			@media screen and (max-width: 1200px) {
+				font-size: 1rem;
+			}
+			@media screen and (max-width: 600px) {
+				margin-bottom: 0.75rem;
+			}
 
 			a {
 				display: flex;
@@ -170,6 +214,23 @@
 					background: var(--c3);
 				}
 			}
+		}
+	}
+
+	.split-details {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		gap: 1.5rem;
+		font-size: 1.25rem;
+		color: var(--c10);
+
+		@media screen and (max-width: 600px) {
+			gap: 0.25rem;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			font-size: 1rem;
 		}
 	}
 </style>

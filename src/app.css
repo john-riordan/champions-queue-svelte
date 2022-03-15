@@ -16,7 +16,7 @@
 	--red-h: 346deg;
 	--red-s: 100%;
 	--red-l: 60%;
-	--blue-h: 220deg;
+	--blue-h: 210deg;
 	--blue-s: 100%;
 	--blue-l: 60%;
 
@@ -198,13 +198,12 @@ input[type='text'].disabled {
 	border-top: 2px solid var(--c2);
 	border-bottom: 2px solid var(--c2);
 }
+div[slot='controls'] {
+	display: flex;
+}
 
 .statblocks {
 	gap: 4rem;
-}
-.statblock {
-	flex: 1;
-	padding-bottom: 0.5rem;
 }
 .statblock .stat {
 	font-size: 1.75rem;
@@ -230,10 +229,15 @@ input[type='text'].disabled {
 	margin-bottom: 1rem;
 }
 
+@media screen and (max-width: 1400px) {
+	:root {
+		--content-padding: 1rem;
+	}
+}
+
 @media screen and (max-width: 1200px) {
 	:root {
 		--nav-width: 15rem;
-		--content-padding: 1rem;
 		--btn-height: 2.25rem;
 		--nav-indent: 1.5rem;
 	}
@@ -262,5 +266,17 @@ input[type='text'].disabled {
 		flex-wrap: wrap;
 		margin: 0.5rem 0;
 		padding: 0.5rem 0;
+	}
+	.statblocks {
+		row-gap: 1rem;
+	}
+	.statblock .stat {
+		font-size: 1.25rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.controls {
+		display: none;
 	}
 }
