@@ -75,31 +75,31 @@
 
 <div class="sort">
 	<span class="nameSort">Name</span>
-	<span class="stat" on:click={() => setSort('games')}>
+	<span class="stat sortable" on:click={() => setSort('games')}>
 		Games
 		{#if sort === 'games'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('winrate')}>
+	<span class="stat sortable" on:click={() => setSort('winrate')}>
 		WR
 		{#if sort === 'winrate'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat playrate" on:click={() => setSort('playrate')}>
-		Play-Rate
+	<span class="stat sortable playrate" on:click={() => setSort('playrate')}>
+		W/L
 		{#if sort === 'playrate'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('kda')}>
+	<span class="stat sortable" on:click={() => setSort('kda')}>
 		KDA
 		{#if sort === 'kda'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat cs" on:click={() => setSort('cs')}>
+	<span class="stat sortable cs" on:click={() => setSort('cs')}>
 		CS/G
 		{#if sort === 'cs'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
@@ -129,11 +129,7 @@
 					})}
 				</span>
 				<span class="stat playrate">
-					{champ.playRate.toLocaleString('en-us', {
-						style: 'percent',
-						minimumFractionDigits: 0,
-						maximumFractionDigits: 0
-					})}
+					{champ.wins} / {champ.games - champ.wins}
 				</span>
 				<span class="stat">
 					{((champ.kills + champ.assists) / champ.deaths).toLocaleString('en-us', {
@@ -235,13 +231,17 @@
 		text-transform: uppercase;
 		padding-bottom: 1rem;
 		user-select: none;
-	}
-	.sort > * {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5rem;
-		cursor: pointer;
+
+		> * {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+		}
+
+		.sortable {
+			cursor: pointer;
+		}
 	}
 
 	.playrate {

@@ -9,6 +9,8 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 
+	const maxShown = 10;
+
 	onMount(() => {
 		if (browser) {
 			favorites.subscribe((val) => localStorage.setItem('favorites', val));
@@ -16,11 +18,13 @@
 	});
 
 	$: favs = JSON.parse($favorites) || {};
-	$: favoriteList = Object.entries(favs).map(([name, url]) => ({
-		name,
-		url,
-		type: url.includes('/player') ? 'player' : 'champion'
-	}));
+	$: favoriteList = Object.entries(favs)
+		.map(([name, url]) => ({
+			name,
+			url,
+			type: url.includes('/player') ? 'player' : 'champion'
+		}))
+		.slice(0, maxShown);
 
 	function removeFavorite(name) {
 		if (!browser) return;
@@ -53,7 +57,6 @@
 					<span class="name">{player.name}</span>
 				</a>
 				<button class="remove" on:click={() => removeFavorite(player.name)}>
-					<span>Remove</span>
 					<Trash />
 				</button>
 			</li>
@@ -65,7 +68,6 @@
 					<span class="name">{champion.name}</span>
 				</a>
 				<button class="remove" on:click={() => removeFavorite(champion.name)}>
-					<span>Remove</span>
 					<Trash />
 				</button>
 			</li>
@@ -83,11 +85,11 @@
 		&:hover {
 			opacity: 1;
 
-			.favorite-link,
-			.remove {
+			.favorite-link {
 				opacity: 1;
 			}
 			.remove {
+				opacity: 0.75;
 				transform: translateX(0);
 			}
 		}
@@ -98,6 +100,20 @@
 		:global(.champ-img) {
 			--size: 24;
 		}
+
+		.name {
+			white-space: nowrap;
+			width: 16ch;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			@media screen and (max-width: 1200px) {
+				width: 9ch;
+			}
+			@media screen and (max-width: 1000px) {
+				display: none;
+			}
+		}
 	}
 	.favorite-link {
 		flex: 1;
@@ -105,7 +121,7 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.25rem 0;
-		opacity: 0.5;
+		opacity: 0.75;
 		transition: opacity var(--transition);
 	}
 	.favorites-list {
@@ -119,9 +135,7 @@
 		gap: 0.25rem;
 		color: var(--red);
 		background: hsla(var(--red-hsl) / 0.15);
-		padding: 0 0.25rem;
-		font-size: 0.875rem;
-		font-weight: 800;
+		padding: 0.5rem;
 		cursor: pointer;
 		opacity: 0;
 		transform: translateX(0.25rem);
@@ -134,6 +148,7 @@
 
 		&:hover {
 			background: hsla(var(--red-hsl) / 0.25);
+			opacity: 1 !important;
 		}
 	}
 </style>

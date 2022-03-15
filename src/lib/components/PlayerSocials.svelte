@@ -30,13 +30,17 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	.player-socials {
 		display: flex;
-    align-items: center;
-		gap: 1rem;
-		margin-left: 1rem;
+		align-items: center;
+		gap: 0.25rem;
 		color: var(--c8);
 		font-size: 1.125rem;
+
+		:global(svg) {
+			width: 1.75rem;
+			height: auto;
+		}
 	}
 </style>

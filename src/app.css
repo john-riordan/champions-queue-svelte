@@ -16,7 +16,7 @@
 	--red-h: 346deg;
 	--red-s: 100%;
 	--red-l: 60%;
-	--blue-h: 220deg;
+	--blue-h: 210deg;
 	--blue-s: 100%;
 	--blue-l: 60%;
 
@@ -197,6 +197,9 @@ input[type='text'].disabled {
 	margin: 1rem 0;
 	border-top: 2px solid var(--c2);
 	border-bottom: 2px solid var(--c2);
+}
+div[slot='controls'] {
+	display: flex;
 }
 
 .statblocks {

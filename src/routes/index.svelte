@@ -94,6 +94,13 @@
 		place-content: center;
 		gap: 4rem;
 		height: calc(100vh - var(--content-padding));
+
+		@media screen and (max-width: 600px) {
+			gap: 2rem;
+			height: auto;
+			padding-top: 4rem;
+			padding-bottom: 4rem;
+		}
 	}
 
 	.logo {
@@ -102,6 +109,13 @@
 		width: var(--width);
 		max-width: var(--width);
 		position: relative;
+
+		@media screen and (max-width: 1200px) {
+			--width: 16rem;
+		}
+		@media screen and (max-width: 600px) {
+			--width: 13rem;
+		}
 
 		svg {
 			height: auto;
@@ -131,9 +145,24 @@
 		grid-template-columns: 1fr 1fr;
 		gap: 3rem;
 
+		@media screen and (max-width: 1200px) {
+			gap: 1rem;
+		}
+		@media screen and (max-width: 600px) {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
 		h2 {
 			line-height: 1;
 			margin-bottom: 1.25rem;
+
+			@media screen and (max-width: 1200px) {
+				font-size: 1rem;
+			}
+			@media screen and (max-width: 600px) {
+				margin-bottom: 0.75rem;
+			}
 
 			a {
 				display: flex;
