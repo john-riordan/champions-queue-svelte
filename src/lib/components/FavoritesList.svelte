@@ -5,6 +5,7 @@
 	import { browser } from '$app/env';
 
 	import { favorites } from '$lib/stores';
+	import Star from '$lib/components/icons/Star.svelte';
 	import Trash from '$lib/components/icons/Trash.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
@@ -26,6 +27,8 @@
 		}))
 		.slice(0, maxShown);
 
+	$: hasFavorites = favoriteList.length;
+
 	function removeFavorite(name) {
 		if (!browser) return;
 		const newFavs = { ...favs };
@@ -40,18 +43,19 @@
 		opacity: 0,
 		easing: quadOut
 	};
-	const exit = {
-		duration: 250,
-		x: 25,
-		opacity: 0,
-		easing: quadOut
-	};
 </script>
 
 <div class="favorites">
+	<span class="title">
+		<Star />
+		Favorites
+	</span>
+	{#if !hasFavorites}
+		<div class="no-favorites">Added favorites will show up here</div>
+	{/if}
 	<ul class="favorites-list">
 		{#each favoriteList.filter((f) => f.type === 'player') as player}
-			<li class="favorite" in:fly={enter} out:fly={exit}>
+			<li class="favorite" in:fly={enter}>
 				<a href={player.url} class="favorite-link">
 					<PlayerImg name={player.name} />
 					<span class="name">{player.name}</span>
@@ -62,7 +66,7 @@
 			</li>
 		{/each}
 		{#each favoriteList.filter((f) => f.type === 'champion') as champion}
-			<li class="favorite" in:fly={enter} out:fly={exit}>
+			<li class="favorite" in:fly={enter}>
 				<a href={champion.url} class="favorite-link">
 					<ChampImg name={champion.name} />
 					<span class="name">{champion.name}</span>
@@ -76,6 +80,34 @@
 </div>
 
 <style lang="scss">
+	.title {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		color: var(--yellow);
+		text-transform: uppercase;
+		font-size: 0.75rem;
+		font-weight: 900;
+		letter-spacing: 2px;
+		margin-bottom: 0.5rem;
+		margin-left: -0.25rem;
+
+		@media screen and (max-width: 1000px) {
+			display: none;
+		}
+
+		:global(svg) {
+			width: 1.25rem;
+			height: auto;
+		}
+	}
+	.no-favorites {
+		width: 20ch;
+
+		@media screen and (max-width: 1000px) {
+			display: none;
+		}
+	}
 	.favorite {
 		display: flex;
 		align-items: center;
