@@ -4,7 +4,7 @@
 	export let name;
 	export let size;
 
-	$: src = PLAYERS[name] ?? PLAYER_DEFAULT;
+	$: src = PLAYERS[name]?.image ?? PLAYER_DEFAULT;
 </script>
 
 <div class="player-img">
