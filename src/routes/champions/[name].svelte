@@ -47,7 +47,7 @@
 
 <PageHeader title={name} champion={name}>
 	<div slot="controls">
-		<RefreshBtn />
+		<!-- <RefreshBtn /> -->
 		<FavoriteBtn />
 	</div>
 </PageHeader>

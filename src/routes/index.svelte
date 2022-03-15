@@ -54,7 +54,7 @@
 				{#each topRatedPlayers as player}
 					<li>
 						<a href={`/players/${player.name}`}>
-							<PlayerImg name={player.name} size={28} --size={28} />
+							<PlayerImg name={player.name} />
 							{player.name}
 						</a>
 					</li>
@@ -78,7 +78,7 @@
 				{#each mostPopularChampions as champion}
 					<li>
 						<a href={`/champions/${champion.name}`}>
-							<ChampImg name={champion.name} size={28} --size={28} />
+							<ChampImg name={champion.name} />
 							{champion.name}
 						</a>
 					</li>
@@ -149,6 +149,11 @@
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
+
+			:global(.champ-img),
+			:global(.player-img) {
+				--size: 32;
+			}
 		}
 		li {
 			a {

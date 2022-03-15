@@ -36,6 +36,7 @@
 	}
 	.champ-img img {
 		display: block;
+		width: 100%;
 		transform: scale(1.2) translate3d(0, 0, 0);
 	}
 </style>

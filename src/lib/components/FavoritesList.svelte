@@ -49,7 +49,7 @@
 		{#each favoriteList.filter((f) => f.type === 'player') as player}
 			<li class="favorite" in:fly={enter} out:fly={exit}>
 				<a href={player.url} class="favorite-link">
-					<PlayerImg name={player.name} size={24} --size={24} />
+					<PlayerImg name={player.name} />
 					<span class="name">{player.name}</span>
 				</a>
 				<button class="remove" on:click={() => removeFavorite(player.name)}>
@@ -61,7 +61,7 @@
 		{#each favoriteList.filter((f) => f.type === 'champion') as champion}
 			<li class="favorite" in:fly={enter} out:fly={exit}>
 				<a href={champion.url} class="favorite-link">
-					<ChampImg name={champion.name} size={24} --size={24} />
+					<ChampImg name={champion.name} />
 					<span class="name">{champion.name}</span>
 				</a>
 				<button class="remove" on:click={() => removeFavorite(champion.name)}>
@@ -90,6 +90,13 @@
 			.remove {
 				transform: translateX(0);
 			}
+		}
+
+		:global(.player-img) {
+			--size: 24;
+		}
+		:global(.champ-img) {
+			--size: 24;
 		}
 	}
 	.favorite-link {

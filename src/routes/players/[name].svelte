@@ -52,7 +52,7 @@
 
 <PageHeader title={name} player={name}>
 	<div slot="controls">
-		<RefreshBtn />
+		<!-- <RefreshBtn /> -->
 		<FavoriteBtn />
 	</div>
 </PageHeader>

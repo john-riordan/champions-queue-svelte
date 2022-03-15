@@ -8,7 +8,6 @@
 	export let title = '';
 	export let player;
 	export let champion;
-	export let imageSize = player ? 68 : 68;
 
 	const relativeTime = new RelativeTime();
 </script>
@@ -17,12 +16,12 @@
 	<div class="info">
 		{#if player}
 			<div class="image-container round">
-				<PlayerImg name={player} size={imageSize} --size={imageSize} />
+				<PlayerImg name={player} />
 			</div>
 		{/if}
 		{#if champion}
 			<div class="image-container">
-				<ChampImg name={champion} size={imageSize} --size={imageSize} />
+				<ChampImg name={champion} />
 			</div>
 		{/if}
 		<div class="title-text">
@@ -45,6 +44,11 @@
 		align-items: center;
 		justify-content: space-between;
 		height: 7rem;
+
+		:global(.champ-img),
+		:global(.player-img) {
+			--size: 68;
+		}
 
 		@media screen and (max-width: 1000px) {
 			height: 5rem;

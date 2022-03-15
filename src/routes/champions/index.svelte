@@ -52,9 +52,9 @@
 </script>
 
 <PageHeader {title}>
-	<div slot="controls">
+	<!-- <div slot="controls">
 		<RefreshBtn />
-	</div>
+	</div> -->
 </PageHeader>
 
 <div class="controls">
@@ -112,7 +112,7 @@
 		<li>
 			<a href={`/champions/${champ.name}`}>
 				<div class="info">
-					<ChampImg name={champ.name} --size={champSize} size={champSize} />
+					<ChampImg name={champ.name} />
 					<h4 class="name">{champ.name}</h4>
 				</div>
 				<span class="stat">
@@ -189,6 +189,10 @@
 			display: flex;
 			align-items: center;
 			gap: 1rem;
+		}
+
+		:global(.champ-img) {
+			--size: 56;
 		}
 
 		.name {

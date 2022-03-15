@@ -66,9 +66,9 @@
 </script>
 
 <PageHeader {title}>
-	<div slot="controls">
+	<!-- <div slot="controls">
 		<RefreshBtn />
-	</div>
+	</div> -->
 </PageHeader>
 
 <div class="controls">
