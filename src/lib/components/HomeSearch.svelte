@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 
 	import { store } from '$lib/stores';
+	import clickOutside from '$lib/actions/clickOutside';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 
@@ -9,6 +10,7 @@
 	let inputElem;
 	let searchText = '';
 	let selectedIndex = -1;
+	let focused = false;
 
 	$: disabled = !$store.champions;
 	$: players = ($store.players || [])
@@ -26,6 +28,7 @@
 	$: {
 		if (($store.players || $store.champions) && inputElem) {
 			inputElem.focus();
+			focused = true;
 		}
 	}
 
@@ -49,11 +52,17 @@
 			selectedIndex = -1;
 		}
 	}
+
+	function handleClickOutside(event) {
+		if (focused && searchText.length) {
+			searchText = '';
+		}
+	}
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="search-container" class:disabled>
+<div class="search-container" class:disabled use:clickOutside on:click_outside={handleClickOutside}>
 	<input
 		class="input"
 		type="text"

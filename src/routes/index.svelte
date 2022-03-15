@@ -119,6 +119,10 @@
 			height: auto;
 			padding-top: 4rem;
 			padding-bottom: 4rem;
+
+			:global(.search-container) {
+				display: none;
+			}
 		}
 	}
 
