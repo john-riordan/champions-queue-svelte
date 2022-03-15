@@ -82,7 +82,7 @@
 		{/if}
 	</span>
 	<span class="stat" on:click={() => setSort('winrate')}>
-		Win-Rate
+		WR
 		{#if sort === 'winrate'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
@@ -99,7 +99,7 @@
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('cs')}>
+	<span class="stat cs" on:click={() => setSort('cs')}>
 		CS/G
 		{#if sort === 'cs'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
@@ -124,15 +124,15 @@
 				<span class="stat winrate" style:color={winrateColor(champ.wins / champ.games)}>
 					{(champ.wins / champ.games).toLocaleString('en-us', {
 						style: 'percent',
-						minimumFractionDigits: 1,
-						maximumFractionDigits: 1
+						minimumFractionDigits: 0,
+						maximumFractionDigits: 0
 					})}
 				</span>
 				<span class="stat playrate">
 					{champ.playRate.toLocaleString('en-us', {
 						style: 'percent',
-						minimumFractionDigits: 1,
-						maximumFractionDigits: 1
+						minimumFractionDigits: 0,
+						maximumFractionDigits: 0
 					})}
 				</span>
 				<span class="stat">
@@ -141,7 +141,7 @@
 						maximumFractionDigits: 1
 					})}
 				</span>
-				<span class="stat">
+				<span class="stat cs">
 					{champ.cs.toLocaleString('en-us', {
 						minimumFractionDigits: 0,
 						maximumFractionDigits: 0
@@ -163,6 +163,10 @@
 		text-align: center;
 		background: var(--c2);
 		transition: background ease 0.15s;
+
+		@media screen and (max-width: 800px) {
+			padding: 0.5rem;
+		}
 	}
 
 	.list {
@@ -189,22 +193,33 @@
 			display: flex;
 			align-items: center;
 			gap: 1rem;
+
+			@media screen and (max-width: 800px) {
+				gap: 0.5rem;
+			}
 		}
 
 		:global(.champ-img) {
 			--size: 56;
+
+			@media screen and (max-width: 1000px) {
+				--size: 40;
+			}
+			@media screen and (max-width: 800px) {
+				--size: 32;
+			}
 		}
 
 		.name {
-			width: 14rem;
+			width: 12rem;
 			font-weight: 700;
 			text-align: left;
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 
-			@media screen and (max-width: 1000px) {
-				width: 5rem;
+			@media screen and (max-width: 1200px) {
+				width: 6rem;
 			}
 		}
 	}
@@ -230,6 +245,11 @@
 	}
 
 	.playrate {
+		@media screen and (max-width: 600px) {
+			display: none;
+		}
+	}
+	.cs {
 		@media screen and (max-width: 800px) {
 			display: none;
 		}
@@ -242,11 +262,14 @@
 
 	.nameSort {
 		justify-content: flex-start;
-		width: 14rem;
+		width: 12rem;
 		margin-left: 4.5rem;
 
+		@media screen and (max-width: 1200px) {
+			width: 6rem;
+		}
 		@media screen and (max-width: 1000px) {
-			width: 5rem;
+			margin-left: 3rem;
 		}
 	}
 </style>

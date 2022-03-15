@@ -28,7 +28,7 @@
 			<h1>{title}</h1>
 			{#if $store.splitTitle}
 				<div class="split-details">
-					<span>{$store.seasonTitle}</span>
+					<span class="season">{$store.seasonTitle}</span>
 					<span>{$store.splitTitle}</span>
 					<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
 				</div>
@@ -48,6 +48,13 @@
 		:global(.champ-img),
 		:global(.player-img) {
 			--size: 68;
+
+			@media screen and (max-width: 1000px) {
+				--size: 52;
+			}
+			@media screen and (max-width: 600px) {
+				--size: 44;
+			}
 		}
 
 		@media screen and (max-width: 1000px) {
@@ -65,6 +72,10 @@
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
+
+		@media screen and (max-width: 1000px) {
+			gap: 0.75rem;
+		}
 	}
 	.title-text {
 		display: flex;
@@ -80,6 +91,9 @@
 		@media screen and (max-width: 1200px) {
 			font-size: 2rem;
 		}
+		@media screen and (max-width: 800px) {
+			font-size: 1.75rem;
+		}
 	}
 	.image-container {
 		box-shadow: 0 0 0 2px var(--app-bg), 0 0 0 4px var(--c4);
@@ -94,5 +108,15 @@
 		color: var(--c8);
 		font-size: 1.125rem;
 		font-weight: 600;
+
+		@media screen and (max-width: 800px) {
+			font-size: 0.875rem;
+		}
+
+		.season {
+			@media screen and (max-width: 800px) {
+				display: none;
+			}
+		}
 	}
 </style>
