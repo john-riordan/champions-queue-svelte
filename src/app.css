@@ -2,8 +2,8 @@
 	--h: 205deg;
 	--s: 15%;
 	--c1: hsl(var(--h) var(--s) 5%);
-	--c2: hsl(var(--h) var(--s) 10%);
-	--c3: hsl(var(--h) var(--s) 15%);
+	--c2: hsl(var(--h) var(--s) 8%);
+	--c3: hsl(var(--h) var(--s) 12%);
 	--c4: hsl(var(--h) var(--s) 20%);
 	--c5: hsl(var(--h) var(--s) 25%);
 	--c6: hsl(var(--h) var(--s) 35%);

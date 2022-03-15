@@ -8,6 +8,7 @@
 	import { store } from '$lib/stores';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
+	import HomeSearch from '$lib/components/HomeSearch.svelte';
 
 	const count = 5;
 
@@ -51,6 +52,7 @@
 			<span>Loading Split Data...</span>
 		</div>
 	{/if}
+	<HomeSearch />
 	<div class="blocks">
 		<div>
 			<h2>
@@ -169,6 +171,7 @@
 		}
 
 		h2 {
+			font-size: 1.25rem;
 			line-height: 1;
 			margin-bottom: 1.25rem;
 
