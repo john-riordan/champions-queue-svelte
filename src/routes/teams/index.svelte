@@ -10,6 +10,10 @@
 	export let title;
 </script>
 
+<svelte:head>
+	<title>Teams - NA Champion Queue</title>
+</svelte:head>
+
 <PageHeader {title} />
 
 <h3>Coming Soon...</h3>

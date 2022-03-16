@@ -17,6 +17,10 @@
 	$: list = ($store.matches ?? []).slice(0, (pageIndex + 1) * perPage);
 </script>
 
+<svelte:head>
+	<title>Matches - Champion Queue</title>
+</svelte:head>
+
 <PageHeader {title}>
 	<!-- <div slot="controls">
 		<RefreshBtn />

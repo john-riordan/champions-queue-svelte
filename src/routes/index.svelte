@@ -24,6 +24,10 @@
 		: [...new Array(count)].map(() => ({ name: '' }));
 </script>
 
+<svelte:head>
+	<title>Champion Queue</title>
+</svelte:head>
+
 <div class="container">
 	<div>
 		<div class="logo">
