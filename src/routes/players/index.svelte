@@ -65,6 +65,10 @@
 	}));
 </script>
 
+<svelte:head>
+	<title>Players - Champion Queue</title>
+</svelte:head>
+
 <PageHeader {title}>
 	<!-- <div slot="controls">
 		<RefreshBtn />

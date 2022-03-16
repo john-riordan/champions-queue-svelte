@@ -44,6 +44,10 @@
 	$: champStats = champions[name];
 </script>
 
+<svelte:head>
+	<title>{name} - Champion Queue</title>
+</svelte:head>
+
 <PageHeader title={name} champion={name}>
 	<div slot="controls">
 		<!-- <RefreshBtn /> -->
