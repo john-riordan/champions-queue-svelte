@@ -3,6 +3,7 @@ import { browser } from '$app/env';
 
 export const store = writable({});
 export const matchModal = writable(null);
+export const searchModal = writable(false);
 export const pageBackground = writable(null);
 export const favorites = writable(
 	browser && (localStorage.getItem('favorites') || JSON.stringify({}))
