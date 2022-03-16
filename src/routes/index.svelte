@@ -136,6 +136,15 @@
 				display: none;
 			}
 		}
+
+		:global(input[type='text']) {
+			background: var(--c4);
+			border: 2px solid var(--c6);
+
+			&::placeholder {
+				color: var(--c7);
+			}
+		}
 	}
 
 	.top {
