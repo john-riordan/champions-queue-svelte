@@ -4,10 +4,8 @@
 
 	import { favorites } from '$lib/stores';
 
-	const {
-		url: { pathname },
-		params: { name }
-	} = $page;
+	$: pathname = $page.url.pathname;
+	$: name = $page.params.name;
 
 	$: favs = JSON.parse($favorites) || {};
 	$: isFavorited = favs?.[name];
