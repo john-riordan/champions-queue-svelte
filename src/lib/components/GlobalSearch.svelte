@@ -13,7 +13,7 @@
 	let focused = false;
 
 	$: disabled = !$store.champions;
-	$: players = ($store.players || [])
+	$: players = Object.values($store.leaderboard || {})
 		.filter((p) => p.name.toLowerCase().includes(searchText.toLowerCase()))
 		.slice(0, maxCount)
 		.map((p) => ({ ...p, url: `/players/${p.name}` }));
@@ -22,7 +22,7 @@
 		.slice(0, maxCount)
 		.map((c) => ({ ...c, url: `/champions/${c.name}` }));
 	$: list = [...players, ...champions];
-	$: isOpen = searchText.length && (champions.length || players.length);
+	$: isOpen = searchText.length;
 
 	$: selectedKey = list[selectedIndex]?.url;
 	$: {
@@ -53,7 +53,7 @@
 		}
 	}
 
-	function handleClickOutside(event) {
+	function handleClickOutside() {
 		if (focused && searchText.length) {
 			searchText = '';
 		}
@@ -62,7 +62,12 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="search-container" class:disabled use:clickOutside on:click_outside={handleClickOutside}>
+<div
+	class="search-container"
+	class:disabled
+	use:clickOutside
+	on:clickedOutside={handleClickOutside}
+>
 	<input
 		class="input"
 		type="text"
@@ -72,44 +77,48 @@
 	/>
 	{#if isOpen}
 		<div class="results">
-			<div>
-				<span class="group-header">Players</span>
-				<ul>
-					{#each list.filter((item) => item.url.includes('player')) as player, i}
-						<li>
-							<a
-								href={player.url}
-								class="result"
-								class:highlight={selectedKey === player.url}
-								on:mouseenter={(selectedIndex = i)}
-								on:mouseleave={(selectedIndex = null)}
-							>
-								<PlayerImg name={player.name} />
-								{player.name}
-							</a>
-						</li>
-					{/each}
-				</ul>
-			</div>
-			<div>
-				<span class="group-header">Champions</span>
-				<ul>
-					{#each list.filter((item) => item.url.includes('champion')) as champion, i}
-						<li>
-							<a
-								href={champion.url}
-								class="result"
-								class:highlight={selectedKey === champion.url}
-								on:mouseenter={(selectedIndex = i)}
-								on:mouseleave={(selectedIndex = null)}
-							>
-								<ChampImg name={champion.name} />
-								{champion.name}
-							</a>
-						</li>
-					{/each}
-				</ul>
-			</div>
+			{#if !list.length}
+				<h4 class="no-results">No Search Results for "{searchText}" 😢</h4>
+			{:else}
+				<div>
+					<span class="group-header">Players</span>
+					<ul>
+						{#each list.filter((item) => item.url.includes('player')) as player, i}
+							<li>
+								<a
+									href={player.url}
+									class="result"
+									class:highlight={selectedKey === player.url}
+									on:mouseenter={(selectedIndex = i)}
+									on:mouseleave={(selectedIndex = null)}
+								>
+									<PlayerImg name={player.name} />
+									<span class="name">{player.name}</span>
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
+				<div>
+					<span class="group-header">Champions</span>
+					<ul>
+						{#each list.filter((item) => item.url.includes('champion')) as champion, i}
+							<li>
+								<a
+									href={champion.url}
+									class="result"
+									class:highlight={selectedKey === champion.url}
+									on:mouseenter={(selectedIndex = i)}
+									on:mouseleave={(selectedIndex = null)}
+								>
+									<ChampImg name={champion.name} />
+									<span class="name">{champion.name}</span>
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			{/if}
 		</div>
 	{/if}
 </div>
@@ -152,6 +161,7 @@
 
 		.result {
 			display: flex;
+			align-items: center;
 			gap: 0.5rem;
 			padding: 0.25rem var(--padd);
 
@@ -159,11 +169,22 @@
 			&.highlight {
 				background: var(--c3);
 			}
+		}
 
-			:global(.champ-img),
-			:global(.player-img) {
-				--size: 24;
-			}
+		:global(.champ-img),
+		:global(.player-img) {
+			--size: 24;
+		}
+
+		.name {
+			font-weight: 600;
+			width: 20ch;
+		}
+
+		.no-results {
+			display: grid;
+			place-content: center;
+			min-height: 10rem;
 		}
 	}
 </style>

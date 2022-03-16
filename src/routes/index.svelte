@@ -8,7 +8,7 @@
 	import { store } from '$lib/stores';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
-	import HomeSearch from '$lib/components/HomeSearch.svelte';
+	import GlobalSearch from '$lib/components/GlobalSearch.svelte';
 
 	const count = 5;
 
@@ -54,7 +54,7 @@
 			</div>
 		{/if}
 	</div>
-	<HomeSearch />
+	<GlobalSearch />
 	<div class="blocks">
 		<div>
 			<h2>

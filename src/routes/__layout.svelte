@@ -2,14 +2,16 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 
-	import { store, pageBackground } from '$lib/stores';
+	import { store, searchModal, pageBackground } from '$lib/stores';
 	import { fetchData, msToHours } from '$lib/helpers';
 	import Players from '$lib/components/icons/Players.svelte';
 	import Champions from '$lib/components/icons/Champions.svelte';
 	import Matches from '$lib/components/icons/Matches.svelte';
 	import Medal from '$lib/components/icons/Medal.svelte';
+	import Search from '$lib/components/icons/Search.svelte';
 	import Refresh from '$lib/components/icons/Refresh.svelte';
 	import MatchModal from '$lib/components/MatchModal.svelte';
+	import SearchModal from '$lib/components/SearchModal.svelte';
 	import FavoritesList from '$lib/components/FavoritesList.svelte';
 	import '../app.css';
 
@@ -82,10 +84,9 @@
 					/>
 				</svg>
 			</div>
-
 			<nav>
 				{#each routes as route}
-					<a href={route.url} class:active={currURL.includes(route.url)}>
+					<a href={route.url} class="nav-item" class:active={currURL.includes(route.url)}>
 						<div>
 							<svelte:component this={route.icon} />
 							<span class="text">{route.title}</span>
@@ -93,6 +94,12 @@
 					</a>
 				{/each}
 			</nav>
+			<div class="search-btn nav-item" on:click={() => searchModal.set(true)}>
+				<span>
+					<Search />
+					<span class="text">Search</span>
+				</span>
+			</div>
 		</div>
 
 		<div class="bottom">
@@ -111,6 +118,7 @@
 </div>
 
 <MatchModal />
+<SearchModal />
 
 <style lang="scss">
 	.nav {
@@ -161,35 +169,46 @@
 		}
 	}
 
-	.top {
+	.nav-item {
+		position: relative;
 		display: flex;
-		flex-direction: column;
+		align-items: center;
+		padding: 1rem 0 1rem var(--nav-indent);
+		text-transform: uppercase;
+		transition: box-shadow var(--transition);
+		cursor: pointer;
 
-		a {
+		> * {
 			position: relative;
 			display: flex;
 			align-items: center;
-			padding: 1rem 0 1rem var(--nav-indent);
-			text-transform: uppercase;
-			font-weight: 600;
-			letter-spacing: 1px;
-			transition: box-shadow var(--transition);
+			gap: 0.75rem;
+			opacity: 0.35;
+			transition: opacity var(--transition), transform var(--transition);
+		}
 
-			> div {
-				position: relative;
-				display: flex;
-				align-items: center;
-				gap: 0.75rem;
-				opacity: 0.35;
-				transition: opacity var(--transition), transform var(--transition);
+		.text {
+			@media screen and (max-width: 1000px) {
+				display: none;
 			}
+		}
 
-			.text {
-				@media screen and (max-width: 1000px) {
-					display: none;
-				}
+		&:hover {
+			> * {
+				opacity: 0.75;
+				transform: translateX(5%);
 			}
+		}
+	}
 
+	.top {
+		display: flex;
+		flex-direction: column;
+		font-weight: 600;
+		font-size: 1rem;
+		letter-spacing: 1px;
+
+		a {
 			&::before,
 			&::after {
 				content: '';
@@ -214,12 +233,6 @@
 				-webkit-mask-image: linear-gradient(to right, black, transparent);
 			}
 
-			&:hover {
-				> div {
-					opacity: 0.75;
-					transform: translateX(5%);
-				}
-			}
 			&.active {
 				box-shadow: inset 0.25rem 0 0 0 var(--logo);
 

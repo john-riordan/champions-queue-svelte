@@ -23,15 +23,13 @@
 
 	$: matches = $store.matches || [];
 
-	$: list = matches
-		.filter((match) => {
-			const t1 = match.teams[0].players;
-			const t2 = match.teams[1].players;
-			const teams = t1.concat(t2).map((p) => p.name);
+	$: list = matches.filter((match) => {
+		const t1 = match.teams[0].players;
+		const t2 = match.teams[1].players;
+		const teams = t1.concat(t2).map((p) => p.name);
 
-			return teams.includes(name);
-		})
-		.slice(0, (pageIndex + 1) * perPage);
+		return teams.includes(name);
+	});
 
 	$: playerStats = ($store.players || []).find((p) => p.name === name);
 	$: leaderboardStats = $store.leaderboard?.[name];
@@ -104,11 +102,11 @@
 {/if}
 
 <ul class="list">
-	{#each list as match}
+	{#each list.slice(0, (pageIndex + 1) * perPage) as match}
 		<Match {match} player={name} />
 	{/each}
 </ul>
 
-{#if list.length}
+{#if list.length >= (pageIndex + 1) * perPage}
 	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}

@@ -27,7 +27,6 @@
 
 			return teams.includes(name);
 		})
-		.slice(0, (pageIndex + 1) * perPage)
 		.map((match) => {
 			const t1 = match.teams[0].players.map((p) => ({ ...p, winner: match.teams[0].winner }));
 			const t2 = match.teams[1].players.map((p) => ({ ...p, winner: match.teams[1].winner }));
@@ -85,11 +84,11 @@
 {/if}
 
 <ul class="list">
-	{#each list as match}
+	{#each list.slice(0, (pageIndex + 1) * perPage) as match}
 		<Match {match} champion={name} />
 	{/each}
 </ul>
 
-{#if list.length}
+{#if list.length >= (pageIndex + 1) * perPage}
 	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}
