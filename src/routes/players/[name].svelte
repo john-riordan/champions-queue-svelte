@@ -86,7 +86,7 @@
 					maximumFractionDigits: 0,
 					style: 'percent'
 				})}
-				<span>{playerStats.wins}/{playerStats.games - playerStats.wins}</span>
+				<span>{playerStats.wins}W - {playerStats.games - playerStats.wins}L</span>
 			</h3>
 			<span class="stat-name">Win-Rate</span>
 		</div>

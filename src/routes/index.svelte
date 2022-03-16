@@ -6,12 +6,12 @@
 	import RelativeTime from '@yaireo/relative-time';
 
 	import { store } from '$lib/stores';
+	import { TEAMS, teamImg } from '$lib/constants';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import GlobalSearch from '$lib/components/GlobalSearch.svelte';
 
 	const count = 5;
-
 	const relativeTime = new RelativeTime();
 
 	$: topRatedPlayers = $store.players
@@ -29,15 +29,18 @@
 </svelte:head>
 
 <div class="container">
-	<div>
+	{#each TEAMS as team}
+		{@const tag = team.tag === '100' ? 'T100' : team.tag}
+		{@const rand = Math.random() / 1.5}
+		<img
+			src={teamImg(350, team.logo)}
+			alt={team.name}
+			class={`team-logo ${tag}`}
+			style={`--delay: ${rand}`}
+		/>
+	{/each}
+	<div class="top">
 		<div class="logo">
-			<svg width="120" height="120" viewBox="0 0 274 274" fill="none" class="mask">
-				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M156.091 184.222L151.848 251.571C162.985 246.975 188.015 233.01 199.045 213.919C210.076 194.828 217.783 191.47 220.258 192.177L212.833 173.086L204.879 176.798C203.818 169.551 202.333 152.934 204.879 144.45L242 108.389C240.409 96.7222 232.985 69.5707 216.015 54.298C199.045 39.0253 192.682 20.7121 191.621 13.4646C190.207 22.1263 187.803 43.2677 189.5 58.5404C191.197 73.8131 191.621 84.3485 191.621 87.7071C186.141 80.8131 172.848 66.601 163.515 64.904L137 156.646L110.485 64.904C101.152 66.601 87.8586 80.8131 82.3788 87.7071C82.3788 84.3485 82.803 73.8131 84.5 58.5404C86.197 43.2677 83.7929 22.1263 82.3788 13.4646C81.3182 20.7121 74.9545 39.0253 57.9848 54.298C41.0152 69.5707 33.5909 96.7222 32 108.389L69.1212 144.45C71.6667 152.934 70.1818 169.551 69.1212 176.798L61.1667 173.086L53.7424 192.177C56.2172 191.47 63.9242 194.828 74.9545 213.919C85.9848 233.01 111.015 246.975 122.152 251.571L117.909 184.222C112.606 183.869 100.515 182.313 94.5758 178.919C91.2172 171.318 84.5 153.783 84.5 144.45C93.5151 148.869 114.091 159.828 124.273 168.313L137 202.783L149.727 168.313C159.909 159.828 180.485 148.869 189.5 144.45C189.5 153.783 182.783 171.318 179.424 178.919C173.485 182.313 161.394 183.869 156.091 184.222ZM136.47 121.646L155.561 49.5253C154.147 45.8131 148.773 38.3889 136.47 38.3889C124.167 38.3889 118.263 45.8131 116.849 49.5253L136.47 121.646Z"
-				/>
-			</svg>
 			<svg width="93" height="34" viewBox="0 0 93 34" fill="none" class="wordmark">
 				<path
 					fill-rule="evenodd"
@@ -113,10 +116,15 @@
 
 <style lang="scss">
 	.container {
+		position: relative;
 		display: grid;
 		place-content: center;
 		gap: 3rem;
 		height: calc(100vh - var(--content-padding));
+
+		> * {
+			position: relative;
+		}
 
 		@media screen and (max-width: 600px) {
 			gap: 1rem;
@@ -130,8 +138,19 @@
 		}
 	}
 
+	.top {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-top: -6rem;
+
+		@media screen and (max-width: 600px) {
+			margin-top: 0;
+		}
+	}
+
 	.logo {
-		--width: 22rem;
+		--width: 24rem;
 		margin: 0 auto;
 		width: var(--width);
 		max-width: var(--width);
@@ -150,19 +169,12 @@
 			max-width: 100%;
 		}
 		.mask {
-			position: absolute;
-			top: 35%;
-			left: 50%;
-			width: 120%;
-			max-width: 120%;
-			fill: var(--c3);
-			opacity: 0.5;
-			transform: translate(-50%, -50%);
+			fill: var(--logo);
 		}
 		.wordmark {
-			position: relative;
 			width: 100%;
 			max-width: 100%;
+			filter: drop-shadow(0px 0px 10px var(--c1));
 		}
 	}
 
@@ -244,6 +256,76 @@
 			align-items: center;
 			justify-content: flex-start;
 			font-size: 1rem;
+		}
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 0.075;
+		}
+	}
+
+	.team-logo {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+		animation: fadeIn 1.5s calc(var(--delay) * 5s) ease-in forwards 1;
+
+		@media screen and (max-width: 1000px) {
+			transform: scale(0.35) !important;
+		}
+
+		&.TL {
+			top: -15%;
+			left: 0%;
+			transform: rotate(7deg) scale(0.85);
+		}
+		&.EG {
+			top: -10%;
+			left: 40%;
+			transform: rotate(-5deg) scale(0.7);
+		}
+		&.C9 {
+			top: -10%;
+			right: -5%;
+			transform: rotate(12deg) scale(1);
+		}
+		&.CLG {
+			top: 30%;
+			left: 15%;
+			transform: rotate(5deg) scale(0.7);
+		}
+		&.GG {
+			top: 30%;
+			right: 15%;
+			transform: rotate(7deg) scale(0.7);
+		}
+		&.FLY {
+			top: 30%;
+			right: -10%;
+			transform: rotate(-3deg) scale(0.8);
+		}
+		&.TSM {
+			top: 60%;
+			left: -5%;
+			transform: rotate(-3deg) scale(0.7);
+		}
+		&.T100 {
+			bottom: 0%;
+			left: 40%;
+		}
+		&.DIG {
+			top: 62%;
+			right: 0%;
+			transform: rotate(15deg) scale(0.8);
+		}
+		&.IMT {
+			top: 15%;
+			left: -9%;
+			transform: rotate(-12deg) scale(0.7);
 		}
 	}
 </style>
