@@ -8,18 +8,24 @@
 	import { onMount } from 'svelte';
 
 	import { store, pageBackground } from '$lib/stores';
+	import { TEAMS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { ordinal } from '$lib/helpers';
-	import { TEAMS, teamImg } from '$lib/constants';
 	import { winrateColor } from '$lib/helpers';
 
 	export let name;
 	const perPage = 20;
 	let pageIndex = 0;
+
+	$: players = $store.players || {};
+	$: teams = $store.teams || {};
+	$: teamInfo = Object.values(TEAMS).find((team) => team.name === name);
+	$: teamData = teamInfo && teams[teamInfo.tag];
+	$: teamPlayers = teamData && Object.keys(teamData.players);
 
 	$: matches = $store.matches || [];
 
@@ -28,17 +34,13 @@
 		const t2 = match.teams[1].players;
 		const teams = t1.concat(t2).map((p) => p.name);
 
-		return teams.includes(name);
+		return teams.some((p) => teamPlayers.includes(p));
 	});
 
-	$: playerStats = ($store.players || {})[name];
-	$: leaderboardStats = $store.leaderboard?.[name];
-	$: team = Object.values(TEAMS).find((team) => {
-		return name.toLowerCase().startsWith(team.tag.toLowerCase());
-	});
+	$: teamStats = null;
 
-	$: if (team) {
-		pageBackground.set(teamImg(500, team.logo));
+	$: if (teamInfo) {
+		pageBackground.set(teamImg(500, teamInfo.logo));
 	}
 
 	onMount(() => {
@@ -52,53 +54,44 @@
 	<title>{name} - Champion Queue</title>
 </svelte:head>
 
-<PageHeader title={name} player={name}>
+<PageHeader title={name} team={name}>
 	<div slot="controls">
 		<!-- <RefreshBtn /> -->
 		<FavoriteBtn />
 	</div>
 </PageHeader>
 
-{#if playerStats}
+{#if teamStats}
 	<div class="statblocks">
 		<div class="statblock">
-			<h3 class="stat">{ordinal(leaderboardStats.rank)}</h3>
+			<h3 class="stat">{ordinal(teamStats.rank)}</h3>
 			<span class="stat-name">Rank</span>
 		</div>
 		<div class="statblock">
-			<h3 class="stat">{playerStats.lp.toLocaleString('en-us')}</h3>
+			<h3 class="stat">{teamStats.lp.toLocaleString('en-us')}</h3>
 			<span class="stat-name">LP</span>
 		</div>
-		{#if leaderboardStats}
-			<div class="statblock">
-				<h3 class="stat">{leaderboardStats.seasonPoints}</h3>
-				<span class="stat-name">Season Pts</span>
-			</div>
-		{/if}
 		<!-- <div class="statblock">
-			<h3 class="stat">{playerStats.games.toLocaleString('en-us')}</h3>
+			<h3 class="stat">{teamStats.games.toLocaleString('en-us')}</h3>
 			<span class="stat-name">Games</span>
 		</div> -->
 		<div class="statblock">
-			<h3 class="stat" style:color={winrateColor(playerStats.wins / playerStats.games)}>
-				{(playerStats.wins / (playerStats.games || 1)).toLocaleString('en-us', {
+			<h3 class="stat" style:color={winrateColor(teamStats.wins / teamStats.games)}>
+				{(teamStats.wins / (teamStats.games || 1)).toLocaleString('en-us', {
 					minimumFractionDigits: 0,
 					maximumFractionDigits: 0,
 					style: 'percent'
 				})}
-				<span>{playerStats.wins}W - {playerStats.games - playerStats.wins}L</span>
+				<span>{teamStats.wins}W - {teamStats.games - teamStats.wins}L</span>
 			</h3>
 			<span class="stat-name">Win-Rate</span>
 		</div>
 		<div class="statblock">
 			<h3 class="stat">
-				{((playerStats.kills + playerStats.assists) / (playerStats.deaths || 1)).toLocaleString(
-					'en-us',
-					{
-						minimumFractionDigits: 1,
-						maximumFractionDigits: 1
-					}
-				)}
+				{((teamStats.kills + teamStats.assists) / (teamStats.deaths || 1)).toLocaleString('en-us', {
+					minimumFractionDigits: 1,
+					maximumFractionDigits: 1
+				})}
 			</h3>
 			<span class="stat-name">KDA</span>
 		</div>
@@ -107,7 +100,7 @@
 
 <ul class="list">
 	{#each list.slice(0, (pageIndex + 1) * perPage) as match}
-		<Match {match} player={name} />
+		<Match {match} />
 	{/each}
 </ul>
 

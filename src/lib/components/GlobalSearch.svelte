@@ -2,11 +2,13 @@
 	import { goto } from '$app/navigation';
 
 	import { store } from '$lib/stores';
+	import { TEAMS } from '$lib/constants';
 	import clickOutside from '$lib/actions/clickOutside';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
+	import TeamImg from './TeamImg.svelte';
 
-	const maxCount = 5;
+	const maxCount = 3;
 	let inputElem;
 	let searchText = '';
 	let selectedIndex = -1;
@@ -21,12 +23,17 @@
 		.filter((c) => c.name.toLowerCase().includes(searchText.toLowerCase()))
 		.slice(0, maxCount)
 		.map((c) => ({ ...c, url: `/champions/${c.name}` }));
-	$: list = [...players, ...champions];
+	$: teams = Object.keys($store.teams || {})
+		.map((tag) => TEAMS[tag])
+		.filter((t) => t.name.toLowerCase().includes(searchText.toLowerCase()))
+		.slice(0, maxCount)
+		.map((t) => ({ ...t, url: `/teams/${t.name}` }));
+	$: list = [...players, ...champions, ...teams];
 	$: isOpen = searchText.length;
 
 	$: selectedKey = list[selectedIndex]?.url;
 	$: {
-		if (($store.players || $store.champions) && inputElem) {
+		if (($store.players || $store.champions || $store.teams) && inputElem) {
 			inputElem.focus();
 			focused = true;
 		}
@@ -42,7 +49,7 @@
 			selectedIndex -= 1;
 		} else if (event.key === 'Enter') {
 			event.preventDefault();
-			const list = [...players, ...champions];
+			const list = [...players, ...champions, ...teams];
 			const selected = list[selectedIndex];
 
 			if (selected.url) goto(selected.url);
@@ -71,7 +78,7 @@
 	<input
 		class="input"
 		type="text"
-		placeholder="Search for a Player or Champion"
+		placeholder="Search for a Player, Champion, or LCS Team"
 		bind:this={inputElem}
 		bind:value={searchText}
 	/>
@@ -118,6 +125,25 @@
 						{/each}
 					</ul>
 				</div>
+				<div>
+					<span class="group-header">Teams</span>
+					<ul>
+						{#each list.filter((item) => item.url.includes('team')) as team, i}
+							<li>
+								<a
+									href={team.url}
+									class="result"
+									class:highlight={selectedKey === team.url}
+									on:mouseenter={(selectedIndex = i)}
+									on:mouseleave={(selectedIndex = null)}
+								>
+									<TeamImg name={team.name} />
+									<span class="name">{team.name}</span>
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			{/if}
 		</div>
 	{/if}
@@ -135,6 +161,10 @@
 
 		.input {
 			width: 100%;
+
+			&::placeholder {
+				text-transform: none;
+			}
 		}
 	}
 	.results {
@@ -172,7 +202,8 @@
 		}
 
 		:global(.champ-img),
-		:global(.player-img) {
+		:global(.player-img),
+		:global(.team-img) {
 			--size: 24;
 		}
 

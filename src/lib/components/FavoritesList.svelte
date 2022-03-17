@@ -9,6 +9,7 @@
 	import Trash from '$lib/components/icons/Trash.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
+	import TeamImg from '$lib/components/TeamImg.svelte';
 
 	const maxShown = 10;
 
@@ -23,7 +24,7 @@
 		.map(([name, url]) => ({
 			name,
 			url,
-			type: url.includes('/player') ? 'player' : 'champion'
+			type: url.includes('/player') ? 'player' : url.includes('/champion') ? 'champion' : 'team'
 		}))
 		.slice(0, maxShown);
 
@@ -72,6 +73,17 @@
 					<span class="name">{champion.name}</span>
 				</a>
 				<button class="remove" on:click={() => removeFavorite(champion.name)}>
+					<Trash />
+				</button>
+			</li>
+		{/each}
+		{#each favoriteList.filter((f) => f.type === 'team') as team}
+			<li class="favorite" in:fly={enter}>
+				<a href={team.url} class="favorite-link">
+					<TeamImg name={team.name} />
+					<span class="name">{team.name}</span>
+				</a>
+				<button class="remove" on:click={() => removeFavorite(team.name)}>
 					<Trash />
 				</button>
 			</li>
@@ -130,6 +142,9 @@
 			--size: 24;
 		}
 		:global(.champ-img) {
+			--size: 24;
+		}
+		:global(.team-img) {
 			--size: 24;
 		}
 

@@ -263,6 +263,7 @@
 		padding-left: var(--nav-width);
 		padding-right: var(--content-padding);
 		padding-top: var(--content-padding);
+		overflow: hidden;
 	}
 
 	.bottom {
