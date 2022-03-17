@@ -49,6 +49,7 @@
 </script>
 
 <svelte:head>
+	<meta name="twitter:title" content={`${name} - Champions Queue`} />
 	<title>{name} - Champion Queue</title>
 </svelte:head>
 

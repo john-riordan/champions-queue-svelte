@@ -36,6 +36,7 @@
 </script>
 
 <svelte:head>
+	<meta name="twitter:title" content={`Champions Queue`} />
 	<title>Champion Queue</title>
 </svelte:head>
 
