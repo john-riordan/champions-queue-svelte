@@ -11,10 +11,12 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
 	import GlobalSearch from '$lib/components/GlobalSearch.svelte';
+	import Refresh from '$lib/components/icons/Refresh.svelte';
 
 	const count = 5;
 	const relativeTime = new RelativeTime();
 
+	$: loading = $store.splitTitle ? false : true;
 	$: topRatedPlayers = $store.players
 		? Object.values($store.players)
 				.sort((a, b) => b.lp - a.lp)
@@ -72,7 +74,7 @@
 	</div>
 	<GlobalSearch />
 	<div class="blocks">
-		<div>
+		<div class="block" class:loading>
 			<h2>
 				<a href="/players">
 					Highest Rated Players
@@ -96,7 +98,7 @@
 				{/each}
 			</ol>
 		</div>
-		<div>
+		<div class="block" class:loading>
 			<h2>
 				<a href="/champions">
 					Most Played Champions
@@ -120,7 +122,7 @@
 				{/each}
 			</ol>
 		</div>
-		<div>
+		<div class="block" class:loading>
 			<h2>
 				<a href="/teams">
 					Most Active Teams
@@ -144,6 +146,9 @@
 				{/each}
 			</ol>
 		</div>
+		{#if loading}
+			<div class="loading-indicator"><Refresh /></div>
+		{/if}
 	</div>
 </div>
 
@@ -255,6 +260,11 @@
 
 			.chevron {
 				color: var(--c8);
+			}
+		}
+		.block {
+			&.loading {
+				opacity: 0.2;
 			}
 		}
 		ol {
@@ -371,6 +381,18 @@
 			top: 15%;
 			left: -9%;
 			transform: rotate(-12deg) scale(0.7);
+		}
+	}
+
+	.loading-indicator {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		:global(svg) {
+			width: 40px;
+			animation: loading-spin 0.5s ease-in forwards infinite;
 		}
 	}
 </style>

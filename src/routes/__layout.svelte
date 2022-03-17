@@ -109,6 +109,17 @@
 	</div>
 	<section class="content">
 		<slot />
+		<footer>
+			<p>
+				championsqueue.gg isn't endorsed by Riot Games and doesn't reflect the views or opinions of
+				Riot Games or anyone officially involved in producing or managing League of Legends.
+			</p>
+			<p>
+				League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc.
+				<a href="https://www.leagueoflegends.com">League of Legends</a> ©
+				<a href="https://www.riotgames.com">Riot Games, Inc.</a>
+			</p>
+		</footer>
 		{#if $store.loading}
 			<div class="loading">
 				<Refresh />
@@ -275,12 +286,6 @@
 		}
 	}
 
-	@keyframes spin {
-		to {
-			transform: rotate(1turn);
-		}
-	}
-
 	.loading {
 		position: fixed;
 		inset: 0 0 0 var(--nav-width);
@@ -292,7 +297,7 @@
 		:global(svg) {
 			width: 4rem;
 			height: 4rem;
-			animation: spin 1s linear forwards infinite;
+			animation: loading-spin 0.5s ease-in forwards infinite;
 		}
 	}
 	.background {
@@ -306,6 +311,18 @@
 
 		@media screen and (max-width: 800px) {
 			width: 300px;
+		}
+	}
+
+	footer {
+		text-align: center;
+		margin-top: 7rem;
+		padding-bottom: 3rem;
+		color: var(--c8);
+
+		a {
+			text-decoration: underline;
+			color: var(--c10);
 		}
 	}
 </style>
