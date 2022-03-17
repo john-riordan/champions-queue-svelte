@@ -30,58 +30,68 @@ export function teamImg(size, logo) {
 	return `https://am-a.akamaihd.net/image?resize=${size}:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2${logo}`;
 }
 
-export const TEAMS = [
-	{
+export const TEAMS = {
+	TSM: {
 		name: 'TSM',
 		tag: 'TSM',
-		logo: 'F1592590917094_TSMTSM-01-FullonDark.png'
+		logo: 'F1592590917094_TSMTSM-01-FullonDark.png',
+		hsl: '0deg 0% 60%'
 	},
-	{
+	TL: {
 		name: 'Team Liquid',
 		tag: 'TL',
-		logo: 'F1631820014208_tl-2021-worlds.png'
+		logo: 'F1631820014208_tl-2021-worlds.png',
+		hsl: '214deg 0% 80%'
 	},
-	{
+	C9: {
 		name: 'Cloud 9',
 		tag: 'C9',
-		logo: 'F1631820065346_cloud9-2021-worlds.png'
+		logo: 'F1631820065346_cloud9-2021-worlds.png',
+		hsl: '196deg 100% 39%'
 	},
-	{
+	100: {
 		name: '100 Thieves',
 		tag: '100',
-		logo: 'F1631819887423_100t-2021-worlds.png'
+		logo: 'F1631819887423_100t-2021-worlds.png',
+		hsl: '0deg 73% 53%'
 	},
-	{
+	EG: {
 		name: 'Evil Geniuses',
 		tag: 'EG',
-		logo: 'F1592590374862_EvilGeniusesEG-01-FullonDark.png'
+		logo: 'F1592590374862_EvilGeniusesEG-01-FullonDark.png',
+		hsl: '0deg 0% 40%'
 	},
-	{
+	FLY: {
 		name: 'FlyQuest',
 		tag: 'FLY',
-		logo: 'Fflyquest-new-on-dark.png'
+		logo: 'Fflyquest-new-on-dark.png',
+		hsl: '152deg 97% 27%'
 	},
-	{
+	GG: {
 		name: 'Golden Guardians',
 		tag: 'GG',
-		logo: 'F1592590586919_GoldenGuardiansGGS-01-FullonDark.png'
+		logo: 'F1592590586919_GoldenGuardiansGGS-01-FullonDark.png',
+		hsl: '39deg 64% 60%'
 	},
-	{
+	IMT: {
 		name: 'Immortals Progressive',
 		tag: 'IMT',
-		logo: 'Fimt-new-color.png'
+		logo: 'Fimt-new-color.png',
+		hsl: '177deg 97% 35%'
 	},
-	{
+	DIG: {
 		name: 'Dignitas QNTMPAY',
 		tag: 'DIG',
-		logo: 'FDIG-FullonDark.png'
+		logo: 'FDIG-FullonDark.png',
+		hsl: '48deg 100% 50%'
 	},
-	{
+	CLG: {
 		name: 'Counter Logic Gaming',
 		tag: 'CLG',
-		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png'
+		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png',
+		hsl: '192deg 100% 44%'
 	}
-];
+};
 
 export const PLAYERS = {
 	'100 Ssumday': {

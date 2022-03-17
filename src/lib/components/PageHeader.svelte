@@ -1,14 +1,16 @@
 <script>
 	import RelativeTime from '@yaireo/relative-time';
 
-	import PlayerImg from '$lib/components/PlayerImg.svelte';
-	import PlayerSocials from './PlayerSocials.svelte';
-	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { store } from '$lib/stores';
+	import ChampImg from '$lib/components/ChampImg.svelte';
+	import PlayerImg from '$lib/components/PlayerImg.svelte';
+	import TeamImg from '$lib/components/TeamImg.svelte';
+	import PlayerSocials from '$lib/components/PlayerSocials.svelte';
 
 	export let title = '';
 	export let player;
 	export let champion;
+	export let team;
 
 	const relativeTime = new RelativeTime();
 </script>
@@ -24,6 +26,9 @@
 			<div class="image-container">
 				<ChampImg name={champion} />
 			</div>
+		{/if}
+		{#if team}
+			<TeamImg name={team} />
 		{/if}
 		<div class="title-text">
 			<h1>
@@ -61,6 +66,17 @@
 			}
 			@media screen and (max-width: 600px) {
 				--size: 44;
+			}
+		}
+
+		:global(.team-img) {
+			--size: 100;
+
+			@media screen and (max-width: 1000px) {
+				--size: 80;
+			}
+			@media screen and (max-width: 600px) {
+				--size: 60;
 			}
 		}
 

@@ -9,17 +9,26 @@
 	import { TEAMS, teamImg } from '$lib/constants';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
+	import TeamImg from '$lib/components/TeamImg.svelte';
 	import GlobalSearch from '$lib/components/GlobalSearch.svelte';
 
 	const count = 5;
 	const relativeTime = new RelativeTime();
 
 	$: topRatedPlayers = $store.players
-		? $store.players.sort((a, b) => b.lp - a.lp).slice(0, count)
+		? Object.values($store.players)
+				.sort((a, b) => b.lp - a.lp)
+				.slice(0, count)
 		: [...new Array(count)].map(() => ({ name: '' }));
 	$: mostPopularChampions = $store.champions
 		? Object.values($store.champions)
 				.sort((a, b) => b.games - a.games)
+				.slice(0, count)
+		: [...new Array(count)].map(() => ({ name: '' }));
+	$: mostActiveTeams = $store.teams
+		? Object.values($store.teams)
+				.sort((a, b) => b.games - a.games)
+				.map((t) => TEAMS[t.tag])
 				.slice(0, count)
 		: [...new Array(count)].map(() => ({ name: '' }));
 </script>
@@ -29,7 +38,7 @@
 </svelte:head>
 
 <div class="container">
-	{#each TEAMS as team}
+	{#each Object.values(TEAMS) as team}
 		{@const tag = team.tag === '100' ? 'T100' : team.tag}
 		{@const rand = Math.random() / 1.5}
 		<img
@@ -111,6 +120,30 @@
 				{/each}
 			</ol>
 		</div>
+		<div>
+			<h2>
+				<a href="/teams">
+					Most Active Teams
+					<svg width="16" height="16" viewBox="0 0 48 48" class="chevron">
+						<path
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+							d="M16.3631 44L11 38.3L27.0114 23.5091L11.1275 9.9L16.2629 4L36.9454 21.7727C36.9454 22.8727 37 23.5909 37 24.8636L16.3631 44Z"
+						/>
+					</svg>
+				</a>
+			</h2>
+			<ol>
+				{#each mostActiveTeams as team}
+					<li>
+						<a href={`/teams/${team.name}`}>
+							<TeamImg name={team.name} />
+							{team.name}
+						</a>
+					</li>
+				{/each}
+			</ol>
+		</div>
 	</div>
 </div>
 
@@ -138,11 +171,12 @@
 		}
 
 		:global(input[type='text']) {
-			background: var(--c4);
-			border: 2px solid var(--c6);
+			background: var(--c3);
+			border: 2px solid var(--c5);
 
 			&::placeholder {
-				color: var(--c7);
+				color: var(--c6);
+				text-transform: none;
 			}
 		}
 	}
@@ -153,7 +187,7 @@
 		gap: 2rem;
 		margin-top: -6rem;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 600px), screen and (max-height: 800px) {
 			margin-top: 0;
 		}
 	}
@@ -165,7 +199,7 @@
 		max-width: var(--width);
 		position: relative;
 
-		@media screen and (max-width: 1200px) {
+		@media screen and (max-width: 1200px), screen and (max-height: 800px) {
 			--width: 16rem;
 		}
 		@media screen and (max-width: 600px) {
@@ -190,8 +224,8 @@
 	.blocks {
 		position: relative;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 3rem;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 1rem;
 
 		@media screen and (max-width: 1200px) {
 			gap: 1rem;
@@ -226,10 +260,11 @@
 		ol {
 			display: flex;
 			flex-direction: column;
-			gap: 0.5rem;
+			gap: 0.25rem;
 
 			:global(.champ-img),
-			:global(.player-img) {
+			:global(.player-img),
+			:global(.team-img) {
 				--size: 32;
 			}
 		}
@@ -239,6 +274,7 @@
 				align-items: center;
 				gap: 0.75rem;
 				padding: 0.5rem;
+				padding-right: 2rem;
 				font-weight: 600;
 				font-size: 1.125rem;
 				background: var(--c2);
@@ -255,7 +291,7 @@
 		position: relative;
 		display: flex;
 		justify-content: center;
-		gap: 1.5rem;
+		gap: 1.25rem;
 		font-size: 1.25rem;
 		color: var(--c10);
 
@@ -273,7 +309,7 @@
 			opacity: 0;
 		}
 		to {
-			opacity: 0.075;
+			opacity: 0.05;
 		}
 	}
 

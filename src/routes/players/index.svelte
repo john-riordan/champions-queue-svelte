@@ -24,7 +24,9 @@
 	let desc = true;
 	let commonOnly = false;
 
-	$: players = $store.players || [];
+	$: players = Object.values($store.players || {})
+		.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
+		.map((p, i) => ({ ...p, rank: i + 1 }));
 	$: leaderboard = $store.leaderboard || {};
 	$: totalGames = $store.totalGames || 1;
 	$: list = players
@@ -58,7 +60,7 @@
 		search = '';
 	}
 
-	const teamOptions = TEAMS.map((t) => ({
+	const teamOptions = Object.values(TEAMS).map((t) => ({
 		value: t.tag,
 		text: t.name,
 		image: teamImg(70, t.logo)

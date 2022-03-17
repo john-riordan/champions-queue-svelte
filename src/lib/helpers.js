@@ -1,4 +1,4 @@
-import { INDEX_TO_ROLE } from './constants';
+import { INDEX_TO_ROLE, TEAMS } from './constants';
 
 export async function fetchData() {
 	const res = await fetch('/api');
@@ -37,6 +37,7 @@ export function aggregateData(data = {}, leaderboard) {
 				const champ = player.championIcon;
 				const role = player.laneIndex;
 
+				// Player Stats
 				if (!acc.players[player.name]) acc.players[player.name] = {};
 				const win = player.winner ? 1 : 0;
 				const lpEarned = win ? 10 : -5;
@@ -52,6 +53,7 @@ export function aggregateData(data = {}, leaderboard) {
 					assists: player.assists + (acc.players[player.name]?.assists || 0)
 				};
 
+				// Champion Stats
 				if (!acc.champions[champ]) acc.champions[champ] = {};
 
 				const champRole = acc.champions[champ];
@@ -70,11 +72,34 @@ export function aggregateData(data = {}, leaderboard) {
 						[patch]: true
 					}
 				};
+
+				// Team Stats
+				const teamTag = player.name.split(' ')[0];
+				const playerTeam = TEAMS[teamTag]?.tag;
+
+				if (playerTeam) {
+					if (!acc.teams[playerTeam]) acc.teams[playerTeam] = {};
+
+					const teamPlayers = acc.teams[playerTeam].players || {};
+
+					acc.teams[playerTeam] = {
+						tag: playerTeam,
+						games: (acc.teams[playerTeam]?.games || 0) + 1,
+						wins: (acc.teams[playerTeam]?.wins || 0) + win,
+						kills: player.kills + (acc.teams[playerTeam]?.kills || 0),
+						deaths: player.deaths + (acc.teams[playerTeam]?.deaths || 0),
+						assists: player.assists + (acc.teams[playerTeam]?.assists || 0),
+						players: {
+							...teamPlayers,
+							[player.name]: true
+						}
+					};
+				}
 			}
 
 			return acc;
 		},
-		{ players: {}, champions: {}, totalGames: matches.length, patches: [] }
+		{ players: {}, champions: {}, teams: {}, totalGames: matches.length, patches: [] }
 	);
 
 	// Currently split/season
@@ -89,12 +114,11 @@ export function aggregateData(data = {}, leaderboard) {
 		fetchedAt: Date.now(),
 		matches,
 		totalGames: matches.length,
-		players: Object.values(aggregate.players)
-			.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
-			.map((p, i) => ({ ...p, rank: i + 1 })),
+		players: aggregate.players,
 		patches: aggregate.patches,
 		currentPatch: formatchPatch(matches[0].gameVersion),
 		champions: aggregate.champions,
+		teams: aggregate.teams,
 		seasonTitle: currSeason?.title,
 		splitTitle: currSeason?.split?.title,
 		splitEnd: currSeason?.split?.closeDate,

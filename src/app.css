@@ -32,7 +32,7 @@
 	--logo-hsl: 243deg 96% 68%;
 	--logo: hsl(var(--logo-hsl));
 
-	--nav-width: 20rem;
+	--nav-width: 17rem;
 	--gap: 1rem;
 	--btn-height: 2.75rem;
 	--nav-indent: 2rem;
