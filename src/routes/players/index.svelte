@@ -68,6 +68,7 @@
 </script>
 
 <svelte:head>
+	<meta name="twitter:title" content={`Players - Champions Queue`} />
 	<title>Players - Champion Queue</title>
 </svelte:head>
 
