@@ -18,7 +18,7 @@
 			height={size}
 			loading="lazy"
 			alt={name}
-			src={`http://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`}
+			src={`https://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`}
 		/>
 	{/if}
 </div>
