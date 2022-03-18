@@ -6,6 +6,7 @@
 
 <script>
 	import { onMount } from 'svelte';
+	import RelativeTime from '@yaireo/relative-time';
 
 	import { store, pageBackground } from '$lib/stores';
 	import { TEAMS, teamImg } from '$lib/constants';
@@ -15,13 +16,13 @@
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import { ordinal } from '$lib/helpers';
-	import { winrateColor } from '$lib/helpers';
+	import { winrateColor, msToDays } from '$lib/helpers';
 
 	export let name;
 	const perPage = 20;
 	let pageIndex = 0;
+	const relativeTime = new RelativeTime();
 
-	$: players = $store.players || {};
 	$: teams = $store.teams || {};
 	$: teamInfo = Object.values(TEAMS).find((team) => team.name === name);
 	$: teamData = teamInfo && teams[teamInfo.tag];
@@ -29,13 +30,28 @@
 
 	$: matches = $store.matches || [];
 
-	$: list = matches.filter((match) => {
-		const t1 = match.teams[0].players;
-		const t2 = match.teams[1].players;
-		const teams = t1.concat(t2).map((p) => p.name);
+	$: list = matches
+		.filter((match) => {
+			const t1 = match.teams[0].players;
+			const t2 = match.teams[1].players;
+			const teams = t1.concat(t2).map((p) => p.name);
 
-		return teams.some((p) => teamPlayers.includes(p));
-	});
+			return teams.some((p) => teamPlayers.includes(p));
+		})
+		.slice(0, (pageIndex + 1) * perPage);
+
+	$: groups = list.reduce((acc, curr) => {
+		const time = new Date(curr.matchStart);
+		const currTime = Date.now();
+		const dayDiff = Math.trunc(msToDays(currTime - time));
+		const dateRelative = relativeTime.from(time);
+		const diff = dayDiff < 1 ? 'today' : dateRelative;
+
+		if (!acc[diff]) acc[diff] = [];
+		acc[diff] = [...acc[diff], curr];
+
+		return acc;
+	}, {});
 
 	$: teamStats = null;
 
@@ -99,11 +115,18 @@
 	</div>
 {/if}
 
-<ul class="list">
-	{#each list.slice(0, (pageIndex + 1) * perPage) as match}
-		<Match {match} />
-	{/each}
-</ul>
+{#each Object.entries(groups) as [daysAgo, matches]}
+	<div class="list-groups">
+		<p class="group-title">{daysAgo}</p>
+		<ol>
+			<ul class="list">
+				{#each matches as match}
+					<Match {match} />
+				{/each}
+			</ul>
+		</ol>
+	</div>
+{/each}
 
 {#if list.length >= (pageIndex + 1) * perPage}
 	<LoadMoreBtn block onclick={() => pageIndex++} />
