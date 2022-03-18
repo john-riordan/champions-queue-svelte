@@ -1,6 +1,6 @@
 <script>
 	import { store } from '$lib/stores';
-	import { CORRECT_CHAMPION_NAME } from '$lib/constants';
+	import { correctChampionImage } from '$lib/constants';
 
 	export let name;
 	export let size = 40;
@@ -8,7 +8,7 @@
 	$: patch = $store.currentPatch || 12.5;
 
 	// Fix the buggy naming of fiddle
-	$: fixedName = CORRECT_CHAMPION_NAME[name] || name;
+	$: fixedName = correctChampionImage(name);
 </script>
 
 <div class="champ-img">

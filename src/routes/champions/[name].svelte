@@ -13,6 +13,7 @@
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
+	import { correctChampionDisplayName } from '$lib/constants';
 	import { winrateColor, msToDays } from '$lib/helpers';
 
 	export let name;
@@ -25,7 +26,7 @@
 		.filter((match) => {
 			const t1 = match.teams[0].players;
 			const t2 = match.teams[1].players;
-			const teams = t1.concat(t2).map((p) => p.championIcon);
+			const teams = t1.concat(t2).map((p) => correctChampionDisplayName(p.championIcon));
 
 			return teams.includes(name);
 		})
@@ -34,7 +35,7 @@
 			const t1 = match.teams[0].players.map((p) => ({ ...p, winner: match.teams[0].winner }));
 			const t2 = match.teams[1].players.map((p) => ({ ...p, winner: match.teams[1].winner }));
 			const teams = t1.concat(t2);
-			const player = teams.find((p) => p.championIcon === name);
+			const player = teams.find((p) => correctChampionDisplayName(p.championIcon) === name);
 
 			return {
 				...match,
