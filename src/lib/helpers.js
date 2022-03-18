@@ -1,4 +1,4 @@
-import { INDEX_TO_ROLE, TEAMS } from './constants';
+import { correctChampionDisplayName, INDEX_TO_ROLE, TEAMS } from './constants';
 
 export async function fetchData() {
 	const res = await fetch('/api');
@@ -34,7 +34,7 @@ export function aggregateData(data = {}, leaderboard) {
 			if (!acc.patches.includes(patch)) acc.patches.push(patch);
 
 			for (const player of players) {
-				const champ = player.championIcon;
+				const champ = correctChampionDisplayName(player.championIcon);
 				const role = player.laneIndex;
 
 				// Player Stats

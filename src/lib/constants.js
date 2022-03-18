@@ -6,9 +6,31 @@ export const ROLES = {
 	SUPPORT: 'Sup'
 };
 
-export const CORRECT_CHAMPION_NAME = {
-	FiddleSticks: 'Fiddlesticks'
+
+export const CORRECT_CHAMPION_DISPLAY_NAMES = {
+  AurelionSol: "Aurelion Sol",
+  Chogath: "Cho'Gath",
+  DrMundo: "Dr. Mundo",
+  FiddleSticks: "Fiddlesticks",
+  JarvanIV: "Jarvan IV",
+  Khazix: "Kha'Zix",
+	Kaisa: "Kai'Sa",
+  LeeSin: "Lee Sin",
+  MissFortune: "Miss Fortune",
+  MonkeyKing: "Wukong",
+  TahmKench: "Tahm Kench",
+  TwistedFate: "Twisted Fate",
 };
+
+export function correctChampionImage(championName) {
+	const championImageName = Object.fromEntries(Object.entries(CORRECT_CHAMPION_DISPLAY_NAMES).map(a => a.reverse()))[championName] || championName;
+	if (championImageName === 'FiddleSticks') return 'Fiddlesticks';
+	return championImageName;
+}
+
+export function correctChampionDisplayName(championName) {
+	return CORRECT_CHAMPION_DISPLAY_NAMES[championName] || championName;
+}
 
 export const INDEX_TO_ROLE = {
 	0: 'TOP',

@@ -4,6 +4,7 @@
 	import { matchModal } from '$lib/stores';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { formatchPatch } from '$lib/helpers';
+	import { correctChampionDisplayName } from '$lib/constants';
 
 	export let match;
 	export let champion;
@@ -16,7 +17,7 @@
 	$: t2 = match.teams[1].players.map((p) => ({ ...p, winner: match.teams[1].winner }));
 	$: teams = t1.concat(t2);
 	$: stats = champion
-		? teams.find((p) => p.championIcon === champion)
+		? teams.find((p) => correctChampionDisplayName(p.championIcon) === champion)
 		: teams.find((p) => p.name === player);
 	$: nonSpecificMatch = !champion && !player;
 	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
