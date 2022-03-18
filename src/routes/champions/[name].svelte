@@ -5,20 +5,22 @@
 </script>
 
 <script>
+	import RelativeTime from '@yaireo/relative-time';
+
 	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
-	import { winrateColor } from '$lib/helpers';
+	import { winrateColor, msToDays } from '$lib/helpers';
 
 	export let name;
 	const perPage = 20;
 	let pageIndex = 0;
+	const relativeTime = new RelativeTime();
 
 	$: matches = $store.matches || [];
-
 	$: list = matches
 		.filter((match) => {
 			const t1 = match.teams[0].players;
@@ -27,6 +29,7 @@
 
 			return teams.includes(name);
 		})
+		.slice(0, (pageIndex + 1) * perPage)
 		.map((match) => {
 			const t1 = match.teams[0].players.map((p) => ({ ...p, winner: match.teams[0].winner }));
 			const t2 = match.teams[1].players.map((p) => ({ ...p, winner: match.teams[1].winner }));
@@ -39,6 +42,19 @@
 				victory: player.winner
 			};
 		});
+
+	$: groups = list.reduce((acc, curr) => {
+		const time = new Date(curr.matchStart);
+		const currTime = Date.now();
+		const dayDiff = Math.trunc(msToDays(currTime - time));
+		const dateRelative = relativeTime.from(time);
+		const diff = dayDiff < 1 ? 'today' : dateRelative;
+
+		if (!acc[diff]) acc[diff] = [];
+		acc[diff] = [...acc[diff], curr];
+
+		return acc;
+	}, {});
 
 	$: champions = $store.champions || {};
 	$: champStats = champions[name];
@@ -88,11 +104,18 @@
 	</div>
 {/if}
 
-<ul class="list">
-	{#each list.slice(0, (pageIndex + 1) * perPage) as match}
-		<Match {match} champion={name} />
-	{/each}
-</ul>
+{#each Object.entries(groups) as [daysAgo, matches]}
+	<div class="list-groups">
+		<p class="group-title">{daysAgo}</p>
+		<ol>
+			<ul class="list">
+				{#each matches as match}
+					<Match {match} champion={name} />
+				{/each}
+			</ul>
+		</ol>
+	</div>
+{/each}
 
 {#if list.length >= (pageIndex + 1) * perPage}
 	<LoadMoreBtn block onclick={() => pageIndex++} />

@@ -216,6 +216,9 @@
 			display: none;
 		}
 	}
+	.stat.timeago {
+		text-transform: capitalize;
+	}
 	.stat.cs {
 		@media screen and (max-width: 600px) {
 			display: none;

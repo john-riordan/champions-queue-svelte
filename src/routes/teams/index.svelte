@@ -212,7 +212,7 @@
 			background: var(--c4);
 		}
 		&::-webkit-scrollbar {
-			width: 0.175rem;
+			width: 0.25rem;
 		}
 
 		@media screen and (max-width: 1100px) {

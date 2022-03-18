@@ -146,6 +146,9 @@ export function formatchPatch(version) {
 	return `${major}.${minor}`;
 }
 
+export function msToDays(ms) {
+	return ms / 1000 / 60 / 60 / 24;
+}
 export function msToHours(ms) {
 	return ms / 1000 / 60 / 60;
 }

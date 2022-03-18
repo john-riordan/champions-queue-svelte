@@ -119,7 +119,12 @@
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat">W/L</span>
+	<span class="stat" on:click={() => setSort('games')}>
+		WL
+		{#if sort === 'games'}
+			<SortDirection class={desc ? 'desc' : 'asc'} />
+		{/if}
+	</span>
 </div>
 
 <ul class="list">
