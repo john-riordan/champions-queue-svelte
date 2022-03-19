@@ -37,6 +37,10 @@
 				acc += curr.lp;
 				return acc;
 			}, 0);
+			const teamGames = teamPlayers.reduce((acc, curr) => {
+				acc += curr.games;
+				return acc;
+			}, 0);
 
 			return {
 				...team,
@@ -45,6 +49,7 @@
 				logo: teamInfo.logo,
 				hsl: teamInfo.hsl,
 				lp: teamLP,
+				games: teamGames,
 				players: teamPlayers.sort((a, b) => b[teamSort] - a[teamSort] || b.games - a.games)
 			};
 		})
