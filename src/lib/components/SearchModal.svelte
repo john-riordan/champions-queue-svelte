@@ -27,7 +27,7 @@
 {#if $searchModal}
 	<div class="container" in:fade={{ duration: 150 }} out:fade={{ duration: 150 }}>
 		<div class="backdrop" on:click={resetModal} />
-		<GlobalSearch />
+		<GlobalSearch maxCount={5} />
 	</div>
 {/if}
 
@@ -38,7 +38,7 @@
 		inset: 0;
 		display: flex;
 		justify-content: center;
-		padding-top: 14rem;
+		padding-top: 6rem;
 		z-index: 10;
 
 		@media screen and (max-width: 1000px) {

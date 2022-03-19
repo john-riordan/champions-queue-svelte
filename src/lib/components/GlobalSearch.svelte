@@ -8,7 +8,7 @@
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from './TeamImg.svelte';
 
-	const maxCount = 3;
+	export let maxCount = 3;
 	let inputElem;
 	let searchText = '';
 	let selectedIndex = -1;

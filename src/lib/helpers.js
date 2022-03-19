@@ -112,6 +112,7 @@ export function aggregateData(data = {}, leaderboard) {
 
 	return {
 		fetchedAt: Date.now(),
+		loading: false,
 		matches,
 		totalGames: matches.length,
 		players: aggregate.players,

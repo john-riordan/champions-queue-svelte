@@ -9,29 +9,66 @@
 	import { TEAMS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
+	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
+	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
+	import Select from '$lib/components/Select.svelte';
 
 	export let title;
+	let hideAcademy = false;
+	let teamSort = 'lp';
 
 	$: players = $store.players || {};
 	$: teams = Object.entries($store.teams || {})
 		.map(([tag, team]) => {
-			const teamPlayers = Object.keys(team.players).map((playerName) => players[playerName]);
+			const teamInfo = TEAMS[tag];
+			const teamStarters = (teamInfo.starters || []).reduce((acc, curr) => {
+				acc[curr] = true;
+				return acc;
+			}, {});
+
+			const playersToRender = hideAcademy
+				? Object.keys(teamStarters)
+				: Object.keys({ ...teamStarters, ...team.players });
+			const teamPlayers = playersToRender.map((playerName) => {
+				const playerStats = players[playerName] || { name: playerName, lp: 0, wins: 0, games: 0 };
+				return playerStats;
+			});
 			const teamLP = teamPlayers.reduce((acc, curr) => {
 				acc += curr.lp;
+				return acc;
+			}, 0);
+			const teamGames = teamPlayers.reduce((acc, curr) => {
+				acc += curr.games;
 				return acc;
 			}, 0);
 
 			return {
 				...team,
 				tag,
-				name: TEAMS[tag].name,
-				logo: TEAMS[tag].logo,
-				hsl: TEAMS[tag].hsl,
+				name: teamInfo.name,
+				logo: teamInfo.logo,
+				hsl: teamInfo.hsl,
 				lp: teamLP,
-				players: teamPlayers.sort((a, b) => b.lp - a.lp)
+				games: teamGames,
+				players: teamPlayers.sort((a, b) => b[teamSort] - a[teamSort] || b.games - a.games)
 			};
 		})
-		.sort((a, b) => b.lp - a.lp);
+		.sort((a, b) => b[teamSort] - a[teamSort]);
+
+	const teamSortOptions = [
+		{
+			value: 'lp',
+			text: 'Sort Teams by: LP'
+		},
+		{
+			value: 'games',
+			text: 'Sort Teams by: Games Played'
+		}
+	];
+
+	function setSort(event) {
+		teamSort = event.detail;
+	}
 </script>
 
 <svelte:head>
@@ -40,6 +77,24 @@
 </svelte:head>
 
 <PageHeader {title} />
+
+<div class="controls">
+	<label class="boolean-btn" class:checked={hideAcademy} for="hide-academy">
+		<span>Hide Academy Players</span>
+		<input type="checkbox" bind:checked={hideAcademy} id="hide-academy" />
+		{#if hideAcademy}
+			<CheckChecked />
+		{:else}
+			<CheckUnchecked />
+		{/if}
+	</label>
+	<Select
+		defaultText="Sort Teams by:"
+		value={teamSort}
+		options={teamSortOptions}
+		on:select={setSort}
+	/>
+</div>
 
 <ol class="teams-list">
 	{#each teams as team}
@@ -76,7 +131,11 @@
 				<ol class="players">
 					{#each team.players as player}
 						<li>
-							<a class="player" href={`/players/${player.name}`}>
+							<a
+								class="player"
+								href={`/players/${player.name}`}
+								class:hasntPlayed={player.games === 0}
+							>
 								<span class="player-info">
 									<PlayerImg name={player.name} />
 									<span class="player-name">{player.name}</span>
@@ -251,6 +310,11 @@
 			@media screen and (max-width: 600px) {
 				--size: 24;
 			}
+		}
+
+		&.hasntPlayed {
+			opacity: 0.5;
+			filter: grayscale(1);
 		}
 
 		&:hover {

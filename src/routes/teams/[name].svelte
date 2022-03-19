@@ -45,7 +45,7 @@
 		const currTime = Date.now();
 		const dayDiff = Math.trunc(msToDays(currTime - time));
 		const dateRelative = relativeTime.from(time);
-		const diff = dayDiff < 1 ? 'today' : dateRelative;
+		const diff = dayDiff < 1 ? 'Within Last Day' : dateRelative;
 
 		if (!acc[diff]) acc[diff] = [];
 		acc[diff] = [...acc[diff], curr];

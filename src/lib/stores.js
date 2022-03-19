@@ -1,7 +1,7 @@
 import { writable, derived } from 'svelte/store';
 import { browser } from '$app/env';
 
-export const store = writable({});
+export const store = writable({ loading: true });
 export const matchModal = writable(null);
 export const searchModal = writable(false);
 export const pageBackground = writable(null);
