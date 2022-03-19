@@ -24,7 +24,6 @@
 	const relativeTime = new RelativeTime();
 
 	$: matches = $store.matches || [];
-
 	$: list = matches
 		.filter((match) => {
 			const t1 = match.teams[0].players;
@@ -40,13 +39,15 @@
 		const currTime = Date.now();
 		const dayDiff = Math.trunc(msToDays(currTime - time));
 		const dateRelative = relativeTime.from(time);
-		const diff = dayDiff < 1 ? 'today' : dateRelative;
+		const diff = dayDiff < 1 ? 'Within Last Day' : dateRelative;
 
 		if (!acc[diff]) acc[diff] = [];
 		acc[diff] = [...acc[diff], curr];
 
 		return acc;
 	}, {});
+
+	$: noGamesPlayed = Object.keys(groups).length === 0;
 
 	$: playerStats = ($store.players || {})[name];
 	$: leaderboardStats = $store.leaderboard?.[name];
@@ -123,19 +124,35 @@
 	</div>
 {/if}
 
-{#each Object.entries(groups) as [daysAgo, matches]}
-	<div class="list-groups">
-		<p class="group-title">{daysAgo}</p>
-		<ol>
-			<ul class="list">
-				{#each matches as match}
-					<Match {match} player={name} />
-				{/each}
-			</ul>
-		</ol>
+{#if !noGamesPlayed}
+	{#each Object.entries(groups) as [daysAgo, matches]}
+		<div class="list-groups">
+			<p class="group-title">{daysAgo}</p>
+			<ol>
+				<ul class="list">
+					{#each matches as match}
+						<Match {match} player={name} />
+					{/each}
+				</ul>
+			</ol>
+		</div>
+	{/each}
+{:else if !$store.loading}
+	<div class="no-games">
+		<h4>This player hasn't played any games this split 😞</h4>
 	</div>
-{/each}
+{/if}
 
 {#if list.length >= (pageIndex + 1) * perPage}
 	<LoadMoreBtn block onclick={() => pageIndex++} />
 {/if}
+
+<style>
+	.no-games {
+		display: grid;
+		place-content: center;
+		min-height: 80vh;
+		font-size: 1.5rem;
+		text-align: center;
+	}
+</style>

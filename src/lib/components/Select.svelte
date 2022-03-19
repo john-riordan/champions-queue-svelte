@@ -71,7 +71,7 @@
 		position: fixed;
 		inset: 0;
 		background: var(--c1);
-		opacity: 0.8;
+		opacity: 0;
 		z-index: 2;
 	}
 	.container {
@@ -97,7 +97,7 @@
 		padding: 0.5rem 0;
 		background: var(--c1);
 		border: 3px solid var(--c2);
-		box-shadow: 0 0 30px 5px var(--c1);
+		box-shadow: 0 5px 50px 20px var(--c1);
 		z-index: 2;
 
 		&[data-position='right'] {

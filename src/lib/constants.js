@@ -57,61 +57,71 @@ export const TEAMS = {
 		name: 'TSM',
 		tag: 'TSM',
 		logo: 'F1592590917094_TSMTSM-01-FullonDark.png',
-		hsl: '0deg 0% 60%'
+		hsl: '0deg 0% 60%',
+		starters: ['TSM Huni', 'TSM Spica', 'TSM Takeover', 'TSM Tactical', 'TSM Shenyi']
 	},
 	TL: {
 		name: 'Team Liquid',
 		tag: 'TL',
 		logo: 'F1631820014208_tl-2021-worlds.png',
-		hsl: '214deg 0% 80%'
+		hsl: '214deg 0% 80%',
+		starters: ['TL Bwipo', 'TL Santorin', 'TL Bjergsen', 'TL Hans sama', 'TL CoreJJ']
 	},
 	C9: {
 		name: 'Cloud 9',
 		tag: 'C9',
 		logo: 'F1631820065346_cloud9-2021-worlds.png',
-		hsl: '196deg 100% 39%'
+		hsl: '196deg 100% 39%',
+		starters: ['C9 Summit', 'C9 Blaber', 'C9 Fudge', 'C9 Berserker', 'C9 Winsome']
 	},
 	100: {
 		name: '100 Thieves',
 		tag: '100',
 		logo: 'F1631819887423_100t-2021-worlds.png',
-		hsl: '0deg 73% 53%'
+		hsl: '0deg 73% 53%',
+		starters: ['100 Ssumday', '100 Closer', '100 Abbedagge', '100 FBI', '100 huhi']
 	},
 	EG: {
 		name: 'Evil Geniuses',
 		tag: 'EG',
 		logo: 'F1592590374862_EvilGeniusesEG-01-FullonDark.png',
-		hsl: '0deg 0% 40%'
+		hsl: '0deg 0% 40%',
+		starters: ['EG Impact', 'EG Inspired', 'EG jojopyun', 'EG Danny', 'EG Vulcan']
 	},
 	FLY: {
 		name: 'FlyQuest',
 		tag: 'FLY',
 		logo: 'Fflyquest-new-on-dark.png',
-		hsl: '152deg 97% 27%'
+		hsl: '152deg 97% 27%',
+		starters: ['FLY Kumo', 'FLY Josedeodo', 'FLY toucouille', 'FLY Johnsun', 'FLY aphromoo']
 	},
 	GG: {
 		name: 'Golden Guardians',
 		tag: 'GG',
 		logo: 'F1592590586919_GoldenGuardiansGGS-01-FullonDark.png',
-		hsl: '39deg 64% 60%'
+		hsl: '39deg 64% 60%',
+		starters: ['GG Licorice', 'GG Pridestalkr', 'GG Ablazeolive', 'GG Lost', 'GG Olleh']
 	},
 	IMT: {
 		name: 'Immortals Progressive',
 		tag: 'IMT',
 		logo: 'Fimt-new-color.png',
-		hsl: '177deg 97% 35%'
+		hsl: '177deg 97% 35%',
+		starters: ['IMT Revenge', 'IMT Xerxe', 'IMT PowerOfEvil', 'IMT Arrow', 'IMT Destiny']
 	},
 	DIG: {
 		name: 'Dignitas QNTMPAY',
 		tag: 'DIG',
 		logo: 'FDIG-FullonDark.png',
-		hsl: '48deg 100% 50%'
+		hsl: '48deg 100% 50%',
+		starters: ['DIG FakeGod', 'DIG River', 'DIG Blue', 'DIG Neo', 'DIG Biofrost']
 	},
 	CLG: {
 		name: 'Counter Logic Gaming',
 		tag: 'CLG',
 		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png',
-		hsl: '192deg 100% 44%'
+		hsl: '192deg 100% 44%',
+		starters: ['CLG Jenkins', 'CLG Contractz', 'CLG Palafox', 'CLG Luger', 'CLG Poome']
 	}
 };
 
@@ -1052,7 +1062,8 @@ export const PLAYERS = {
 				link: 'https://youtube.com/user/Aphromoo'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645005487446_APHROMOO.png'
 	},
 	'FLY Philip': {
 		summonerName: 'Philip',
@@ -1435,7 +1446,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/arrowioi'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=https%3A%2F%2Flolstatic-a.akamaihd.net%2Fesports-assets%2Fproduction%2Fplayer%2Farrow-i2i2u1af.png'
 	},
 	'IMT Joey': {
 		summonerName: 'Joey',
@@ -1450,7 +1462,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/joeyyylol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Fimt-joey.png'
 	},
 	'TL Bwipo': {
 		summonerName: 'Bwipo',

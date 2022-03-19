@@ -105,12 +105,13 @@
 		</div>
 
 		<div class="bottom">
-			<!-- <p>Split Ends In: {timeLeft}</p> -->
 			<FavoritesList />
 		</div>
 	</div>
 	<section class="content">
-		<slot />
+		<div class="content-container">
+			<slot />
+		</div>
 		<footer>
 			<p>
 				championsqueue.gg isn't endorsed by Riot Games and doesn't reflect the views or opinions of
@@ -122,7 +123,7 @@
 				<a href="https://www.riotgames.com">Riot Games, Inc.</a>
 			</p>
 		</footer>
-		{#if $store.loading}
+		{#if $store.loading && currURL !== '/'}
 			<div class="loading">
 				<Refresh />
 			</div>
@@ -278,6 +279,9 @@
 		padding-top: var(--content-padding);
 		overflow: hidden;
 	}
+	.content-container {
+		min-height: 100vh;
+	}
 
 	.bottom {
 		padding: 0 2rem 2rem var(--nav-indent);
@@ -297,8 +301,8 @@
 		opacity: 0.75;
 
 		:global(svg) {
-			width: 4rem;
-			height: 4rem;
+			width: 3rem;
+			height: 3rem;
 			animation: loading-spin 0.5s ease-in forwards infinite;
 		}
 	}
