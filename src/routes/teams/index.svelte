@@ -106,7 +106,7 @@
 					class="team-img--backdrop"
 					loading="lazy"
 				/>
-				<img src={teamImg(80, team.logo)} alt={team.name} class="team-img" />
+				<img src={teamImg(80, team.logo)} alt={team.name} width="80" height="80" class="team-img" />
 				<div class="team-info">
 					<h3 class="team-name">{team.name}</h3>
 					<div class="team-stats">

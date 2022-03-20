@@ -1,3 +1,16 @@
+export const SPLITS_STARTS = {
+	season1: {
+		split1: '',
+		split2: '2022-03-10T06:21:46.590000Z',
+		split3: '2022-04-14T06:21:46.590000Z'
+	},
+	season2: {
+		split1: '2022-05-29T06:21:46.590000Z',
+		split2: '2022-07-10T06:21:46.590000Z',
+		split3: '2022-08-22T06:21:46.590000Z'
+	}
+};
+
 export const ROLES = {
 	TOP: 'Top',
 	JUNGLE: 'Jng',
@@ -6,24 +19,26 @@ export const ROLES = {
 	SUPPORT: 'Sup'
 };
 
-
 export const CORRECT_CHAMPION_DISPLAY_NAMES = {
-  AurelionSol: "Aurelion Sol",
-  Chogath: "Cho'Gath",
-  DrMundo: "Dr. Mundo",
-  FiddleSticks: "Fiddlesticks",
-  JarvanIV: "Jarvan IV",
-  Khazix: "Kha'Zix",
+	AurelionSol: 'Aurelion Sol',
+	Chogath: "Cho'Gath",
+	DrMundo: 'Dr. Mundo',
+	FiddleSticks: 'Fiddlesticks',
+	JarvanIV: 'Jarvan IV',
+	Khazix: "Kha'Zix",
 	Kaisa: "Kai'Sa",
-  LeeSin: "Lee Sin",
-  MissFortune: "Miss Fortune",
-  MonkeyKing: "Wukong",
-  TahmKench: "Tahm Kench",
-  TwistedFate: "Twisted Fate",
+	LeeSin: 'Lee Sin',
+	MissFortune: 'Miss Fortune',
+	MonkeyKing: 'Wukong',
+	TahmKench: 'Tahm Kench',
+	TwistedFate: 'Twisted Fate'
 };
 
 export function correctChampionImage(championName) {
-	const championImageName = Object.fromEntries(Object.entries(CORRECT_CHAMPION_DISPLAY_NAMES).map(a => a.reverse()))[championName] || championName;
+	const championImageName =
+		Object.fromEntries(Object.entries(CORRECT_CHAMPION_DISPLAY_NAMES).map((a) => a.reverse()))[
+			championName
+		] || championName;
 	if (championImageName === 'FiddleSticks') return 'Fiddlesticks';
 	return championImageName;
 }
