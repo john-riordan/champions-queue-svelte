@@ -14,7 +14,7 @@
 	import Select from '$lib/components/Select.svelte';
 
 	export let title;
-	let hideAcademy = false;
+	let hideNonStartingPlayers = false;
 	let teamSort = 'lp';
 
 	$: players = $store.players || {};
@@ -26,7 +26,7 @@
 				return acc;
 			}, {});
 
-			const playersToRender = hideAcademy
+			const playersToRender = hideNonStartingPlayers
 				? Object.keys(teamStarters)
 				: Object.keys({ ...teamStarters, ...team.players });
 			const teamPlayers = playersToRender.map((playerName) => {
@@ -79,10 +79,10 @@
 <PageHeader {title} />
 
 <div class="controls">
-	<label class="boolean-btn" class:checked={hideAcademy} for="hide-academy">
-		<span>Hide Academy Players</span>
-		<input type="checkbox" bind:checked={hideAcademy} id="hide-academy" />
-		{#if hideAcademy}
+	<label class="boolean-btn" class:checked={hideNonStartingPlayers} for="hide-non-starting">
+		<span>Show Only Starting Players</span>
+		<input type="checkbox" bind:checked={hideNonStartingPlayers} id="hide-non-starting" />
+		{#if hideNonStartingPlayers}
 			<CheckChecked />
 		{:else}
 			<CheckUnchecked />
