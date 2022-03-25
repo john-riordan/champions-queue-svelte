@@ -133,6 +133,7 @@ input[type='text'],
 	align-items: center;
 	padding: 0.5rem 1rem;
 	height: var(--btn-height);
+	color: var(--c10);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -155,6 +156,7 @@ button:hover,
 	background: var(--c4);
 }
 button.active {
+	color: var(--c11);
 	background: var(--c5);
 }
 button.block {
