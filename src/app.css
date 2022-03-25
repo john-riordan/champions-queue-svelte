@@ -234,6 +234,11 @@ div[slot='controls'] {
 	color: var(--c7);
 }
 
+.hide {
+	display: none;
+	visibility: hidden;
+}
+
 .group-title {
 	text-transform: capitalize;
 	font-weight: 900;
@@ -243,7 +248,6 @@ div[slot='controls'] {
 .list {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 1.5rem;
 }
 
 @media screen and (max-width: 1400px) {
