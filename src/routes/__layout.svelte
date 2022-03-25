@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 
 	import { store, searchModal, pageBackground } from '$lib/stores';
-	import { fetchData, msToHours } from '$lib/helpers';
+	import { fetchData } from '$lib/helpers';
 	import Players from '$lib/components/icons/Players.svelte';
 	import Champions from '$lib/components/icons/Champions.svelte';
 	import Matches from '$lib/components/icons/Matches.svelte';
@@ -15,9 +15,6 @@
 	import FavoritesList from '$lib/components/FavoritesList.svelte';
 	import '../app.css';
 
-	let splitEnd = 0;
-	let currTime = Date.now();
-
 	onMount(async () => {
 		const mountedData = await fetchData();
 		store.set(mountedData);
@@ -25,17 +22,8 @@
 		if ($store.splitEnd) {
 			splitEnd = new Date($store.splitEnd).getTime();
 		}
-
-		// const interval = setInterval(() => {
-		// 	currTime = Date.now();
-		// }, 1000);
-
-		// return () => {
-		// 	clearInterval(interval);
-		// };
 	});
 
-	// $: timeLeft = msToHours(splitEnd - currTime);
 	$: currURL = $page.url.pathname;
 
 	const routes = [
@@ -280,6 +268,9 @@
 		overflow: hidden;
 	}
 	.content-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 		min-height: 100vh;
 	}
 

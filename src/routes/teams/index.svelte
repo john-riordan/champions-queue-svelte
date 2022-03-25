@@ -9,26 +9,31 @@
 	import { TEAMS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
-	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
-	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import Select from '$lib/components/Select.svelte';
 
 	export let title;
-	let hideNonStartingPlayers = false;
+	let selectedPlayers = 'all';
 	let teamSort = 'lp';
 
 	$: players = $store.players || {};
 	$: teams = Object.entries($store.teams || {})
 		.map(([tag, team]) => {
 			const teamInfo = TEAMS[tag];
-			const teamStarters = (teamInfo.starters || []).reduce((acc, curr) => {
+			const teamMainRoster = (teamInfo.starters || []).reduce((acc, curr) => {
 				acc[curr] = true;
 				return acc;
 			}, {});
+			const teamAcademyRoster = Object.keys(team.players).reduce((acc, curr) => {
+				if (!teamMainRoster[curr]) acc[curr] = true;
+				return acc;
+			}, {});
 
-			const playersToRender = hideNonStartingPlayers
-				? Object.keys(teamStarters)
-				: Object.keys({ ...teamStarters, ...team.players });
+			const playersToRender =
+				selectedPlayers === 'main'
+					? Object.keys(teamMainRoster)
+					: selectedPlayers === 'academy'
+					? Object.keys(teamAcademyRoster)
+					: Object.keys({ ...teamMainRoster, ...teamAcademyRoster });
 			const teamPlayers = playersToRender.map((playerName) => {
 				const playerStats = players[playerName] || { name: playerName, lp: 0, wins: 0, games: 0 };
 				return playerStats;
@@ -73,21 +78,27 @@
 
 <svelte:head>
 	<meta name="twitter:title" content={`Teams - Champions Queue`} />
-	<title>Teams - NA Champion Queue</title>
+	<title>Teams - NA Champions Queue</title>
 </svelte:head>
 
 <PageHeader {title} />
 
 <div class="controls">
-	<label class="boolean-btn" class:checked={hideNonStartingPlayers} for="hide-non-starting">
-		<span>Show Only Starting Players</span>
-		<input type="checkbox" bind:checked={hideNonStartingPlayers} id="hide-non-starting" />
-		{#if hideNonStartingPlayers}
-			<CheckChecked />
-		{:else}
-			<CheckUnchecked />
-		{/if}
-	</label>
+	<div class="button-group">
+		<button class:active={selectedPlayers === 'all'} on:click={() => (selectedPlayers = 'all')}>
+			All Players
+		</button>
+		<button class:active={selectedPlayers === 'main'} on:click={() => (selectedPlayers = 'main')}>
+			Only Main Roster
+		</button>
+		<button
+			class:active={selectedPlayers === 'academy'}
+			on:click={() => (selectedPlayers = 'academy')}
+		>
+			Only Academy Roster
+		</button>
+	</div>
+
 	<Select
 		defaultText="Sort Teams by:"
 		value={teamSort}
@@ -106,7 +117,7 @@
 					class="team-img--backdrop"
 					loading="lazy"
 				/>
-				<img src={teamImg(80, team.logo)} alt={team.name} class="team-img" />
+				<img src={teamImg(80, team.logo)} alt={team.name} width="80" height="80" class="team-img" />
 				<div class="team-info">
 					<h3 class="team-name">{team.name}</h3>
 					<div class="team-stats">

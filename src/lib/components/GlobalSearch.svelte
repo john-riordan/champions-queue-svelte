@@ -31,6 +31,10 @@
 	$: list = [...players, ...champions, ...teams];
 	$: isOpen = searchText.length;
 
+	$: playerResults = list.filter((item) => item.url.includes('player'));
+	$: championResults = list.filter((item) => item.url.includes('champion'));
+	$: teamResults = list.filter((item) => item.url.includes('team'));
+
 	$: selectedKey = list[selectedIndex]?.url;
 	$: {
 		if (($store.players || $store.champions || $store.teams) && inputElem) {
@@ -87,10 +91,10 @@
 			{#if !list.length}
 				<h4 class="no-results">No Search Results for "{searchText}" 😢</h4>
 			{:else}
-				<div>
+				<div class:hide={!playerResults.length}>
 					<span class="group-header">Players</span>
 					<ul>
-						{#each list.filter((item) => item.url.includes('player')) as player, i}
+						{#each playerResults as player, i}
 							<li>
 								<a
 									href={player.url}
@@ -106,10 +110,10 @@
 						{/each}
 					</ul>
 				</div>
-				<div>
+				<div class:hide={!championResults.length}>
 					<span class="group-header">Champions</span>
 					<ul>
-						{#each list.filter((item) => item.url.includes('champion')) as champion, i}
+						{#each championResults as champion, i}
 							<li>
 								<a
 									href={champion.url}
@@ -125,10 +129,10 @@
 						{/each}
 					</ul>
 				</div>
-				<div>
+				<div class:hide={!teamResults.length}>
 					<span class="group-header">Teams</span>
 					<ul>
-						{#each list.filter((item) => item.url.includes('team')) as team, i}
+						{#each teamResults as team, i}
 							<li>
 								<a
 									href={team.url}

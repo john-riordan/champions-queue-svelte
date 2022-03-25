@@ -1,19 +1,21 @@
-import { correctChampionDisplayName, INDEX_TO_ROLE, TEAMS } from './constants';
+import { SPLITS_STARTS, correctChampionDisplayName, INDEX_TO_ROLE, TEAMS } from './constants';
 
-export async function fetchData() {
-	const res = await fetch('/api');
+export async function fetchData(fullSeason = false) {
+	const res = await fetch(`/api?fullSeason=${fullSeason}`);
 	const json = await res.json();
 
 	return json;
 }
 
-export function aggregateData(data = {}, leaderboard) {
+export function aggregateData(data = {}, leaderboard, fullSeason) {
+	fullSeason = JSON.parse(fullSeason);
+
 	const matches = (data.matches || []).filter((match) => {
 		// Filter matches for season 1, split 2
 		const matchStart = new Date(match.matchStart);
-		const splitStart = new Date('2022-03-10T06:21:46.590000Z');
+		const splitStart = new Date(SPLITS_STARTS.season1.split2);
 
-		return matchStart > splitStart ? true : false;
+		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});
 
 	const aggregate = matches.reduce(

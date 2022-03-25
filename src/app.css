@@ -133,13 +133,14 @@ input[type='text'],
 	align-items: center;
 	padding: 0.5rem 1rem;
 	height: var(--btn-height);
+	color: var(--c10);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	line-height: 1;
 	white-space: nowrap;
-	background: var(--c2);
-	border: 1px solid var(--c3);
+	background: var(--c3);
+	border: 2px solid var(--c4);
 }
 button svg {
 	width: 1em;
@@ -150,11 +151,13 @@ button,
 	cursor: pointer;
 	transition: background 0.15s ease, border-color 0.15s ease;
 }
-button:hover {
-	background: var(--c3);
+button:hover,
+.boolean-btn:hover {
+	background: var(--c4);
 }
 button.active {
-	background: var(--c7);
+	color: var(--c11);
+	background: var(--c5);
 }
 button.block {
 	display: flex;
@@ -189,14 +192,24 @@ input[type='text'].disabled {
 	color: currentColor;
 }
 
+.button-group {
+	display: flex;
+}
+.button-group button {
+	border-left-width: 1px;
+	border-right-width: 1px;
+}
+.button-group button:first-child {
+	border-left-width: 2px;
+}
+.button-group button:last-child {
+	border-right-width: 2px;
+}
+
 .controls,
 .statblocks {
 	display: flex;
 	gap: 0.5rem;
-	padding: 1rem 0;
-	margin: 1rem 0;
-	border-top: 2px solid var(--c2);
-	border-bottom: 2px solid var(--c2);
 }
 div[slot='controls'] {
 	display: flex;
@@ -223,6 +236,11 @@ div[slot='controls'] {
 	color: var(--c7);
 }
 
+.hide {
+	display: none;
+	visibility: hidden;
+}
+
 .group-title {
 	text-transform: capitalize;
 	font-weight: 900;
@@ -232,7 +250,6 @@ div[slot='controls'] {
 .list {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 1.5rem;
 }
 
 @media screen and (max-width: 1400px) {
@@ -270,8 +287,6 @@ div[slot='controls'] {
 	.controls,
 	.statblocks {
 		flex-wrap: wrap;
-		margin: 0.5rem 0;
-		padding: 0.5rem 0;
 	}
 	.statblocks {
 		row-gap: 1rem;

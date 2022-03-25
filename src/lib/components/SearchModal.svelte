@@ -27,7 +27,7 @@
 {#if $searchModal}
 	<div class="container" in:fade={{ duration: 150 }} out:fade={{ duration: 150 }}>
 		<div class="backdrop" on:click={resetModal} />
-		<GlobalSearch maxCount={5} />
+		<GlobalSearch maxCount={4} />
 	</div>
 {/if}
 

@@ -1,3 +1,16 @@
+export const SPLITS_STARTS = {
+	season1: {
+		split1: '',
+		split2: '2022-03-10T06:21:46.590000Z',
+		split3: '2022-04-14T06:21:46.590000Z'
+	},
+	season2: {
+		split1: '2022-05-29T06:21:46.590000Z',
+		split2: '2022-07-10T06:21:46.590000Z',
+		split3: '2022-08-22T06:21:46.590000Z'
+	}
+};
+
 export const ROLES = {
 	TOP: 'Top',
 	JUNGLE: 'Jng',
@@ -6,24 +19,26 @@ export const ROLES = {
 	SUPPORT: 'Sup'
 };
 
-
 export const CORRECT_CHAMPION_DISPLAY_NAMES = {
-  AurelionSol: "Aurelion Sol",
-  Chogath: "Cho'Gath",
-  DrMundo: "Dr. Mundo",
-  FiddleSticks: "Fiddlesticks",
-  JarvanIV: "Jarvan IV",
-  Khazix: "Kha'Zix",
+	AurelionSol: 'Aurelion Sol',
+	Chogath: "Cho'Gath",
+	DrMundo: 'Dr. Mundo',
+	FiddleSticks: 'Fiddlesticks',
+	JarvanIV: 'Jarvan IV',
+	Khazix: "Kha'Zix",
 	Kaisa: "Kai'Sa",
-  LeeSin: "Lee Sin",
-  MissFortune: "Miss Fortune",
-  MonkeyKing: "Wukong",
-  TahmKench: "Tahm Kench",
-  TwistedFate: "Twisted Fate",
+	LeeSin: 'Lee Sin',
+	MissFortune: 'Miss Fortune',
+	MonkeyKing: 'Wukong',
+	TahmKench: 'Tahm Kench',
+	TwistedFate: 'Twisted Fate'
 };
 
 export function correctChampionImage(championName) {
-	const championImageName = Object.fromEntries(Object.entries(CORRECT_CHAMPION_DISPLAY_NAMES).map(a => a.reverse()))[championName] || championName;
+	const championImageName =
+		Object.fromEntries(Object.entries(CORRECT_CHAMPION_DISPLAY_NAMES).map((a) => a.reverse()))[
+			championName
+		] || championName;
 	if (championImageName === 'FiddleSticks') return 'Fiddlesticks';
 	return championImageName;
 }
@@ -258,7 +273,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/kenvilol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001290617_KENVI.png'
 	},
 	'100 JimieN': {
 		summonerName: 'JimieN',
@@ -269,7 +285,8 @@ export const PLAYERS = {
 				link: 'https://twitter.com/JimieNlol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001265325_JIMIEN.png'
 	},
 	'100 Wixxi': {
 		summonerName: 'Wixxi',
@@ -299,7 +316,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/100tbusio'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001167641_BUSIO.png'
 	},
 	'C9 Summit': {
 		summonerName: 'Summit',
@@ -478,7 +496,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/k1ngyb'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Fc9-k1ng-2021.png'
 	},
 	'C9 Isles': {
 		summonerName: 'Isles',
@@ -616,7 +635,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/rosethornlol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004135091_ROSETHORN.png'
 	},
 	'CLG Triple': {
 		summonerName: 'Triple',
@@ -631,7 +651,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/tripleoce'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004175043_TRIPLE.png'
 	},
 	'CLG Prismal': {
 		summonerName: 'Prismal',
@@ -650,7 +671,8 @@ export const PLAYERS = {
 				link: 'https://youtube.com/channel/UCRf035zmo2q-Lq87LIWT2KA'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004107752_PRISMAL.png'
 	},
 	'CLG Breezy': {
 		summonerName: 'Breezy',
@@ -665,7 +687,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/lolbreezyyy'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645003618481_BREEZY.png'
 	},
 	'DIG FakeGod': {
 		summonerName: 'FakeGod',
@@ -760,7 +783,8 @@ export const PLAYERS = {
 				link: 'https://twitter.com/Ec1ipselol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004509707_ECLIPSE.png'
 	},
 	'DIG eXyu': {
 		summonerName: 'eXyu',
@@ -775,7 +799,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/lol_exyu'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004647807_EXYU.png'
 	},
 	'DIG DARKWINGS': {
 		summonerName: 'DARKWINGS',
@@ -790,7 +815,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/darkwingslol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004464260_DARKWINGS.png'
 	},
 	'DIG Spawn': {
 		summonerName: 'Spawn',
@@ -805,7 +831,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/spawwwwn'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004855726_SPAWN.png'
 	},
 	'DIG JayJ': {
 		summonerName: 'JayJ',
@@ -820,7 +847,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/JayJLoL'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Fdig-jayj.png'
 	},
 	'EG Impact': {
 		summonerName: 'Impact',
@@ -915,7 +943,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/srtty_lol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001564154_SRTTY.png'
 	},
 	'EG Tomio': {
 		summonerName: 'Tomio',
@@ -930,7 +959,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/loltomio'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001589136_TOMIO.png'
 	},
 	'EG Soligo': {
 		summonerName: 'Soligo',
@@ -945,7 +975,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/soligo'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001538238_SOLIGO.png'
 	},
 	'EG Kaori': {
 		summonerName: 'Kaori',
@@ -960,7 +991,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/kaori123'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001489525_KAORI.png'
 	},
 	'EG SkyTec': {
 		summonerName: 'SkyTec',
@@ -975,7 +1007,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/skyteclol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001511855_SKYTEC.png'
 	},
 	'FLY Kumo': {
 		summonerName: 'Kumo',
@@ -1248,7 +1281,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/ryomaoce'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F100-ryoma.png'
 	},
 	'GG Violet': {
 		summonerName: 'Violet',
@@ -1298,7 +1332,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/ChimeLoL'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645006152919_CHIME.png'
 	},
 	'IMT Revenge': {
 		summonerName: 'Revenge',
@@ -1566,7 +1601,8 @@ export const PLAYERS = {
 				link: 'https://twitter.com/bradleyyylol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645007395594_TL_BRADLEY_512x512.png'
 	},
 	'TL Armao': {
 		summonerName: 'Armao',
@@ -1597,7 +1633,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/haeri2'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645007546446_TL_HAERI_512x512.png'
 	},
 	'TL Yeon': {
 		summonerName: 'Yeon',
@@ -1612,7 +1649,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/yeon7lol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645007642833_TL_YEON_512x512.png'
 	},
 	'TL Eyla': {
 		summonerName: 'Eyla',
@@ -1758,7 +1796,15 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/warmachinehyper'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645008250836_TSM_HYPER_JERSEY_512x512.png'
+	},
+	'TSM Yursan': {
+		summonerName: 'Yursan',
+		summonerNameWithTeam: 'TSM Yursan',
+		socialLinks: [],
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645008362538_TSM_YURSAN_JERSEY_512x512.png'
 	},
 	'TSM Takeover': {
 		summonerName: 'Takeover',
