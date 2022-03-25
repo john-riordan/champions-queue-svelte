@@ -9,26 +9,31 @@
 	import { TEAMS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
-	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
-	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import Select from '$lib/components/Select.svelte';
 
 	export let title;
-	let hideAcademy = false;
+	let selectedPlayers = 'all';
 	let teamSort = 'lp';
 
 	$: players = $store.players || {};
 	$: teams = Object.entries($store.teams || {})
 		.map(([tag, team]) => {
 			const teamInfo = TEAMS[tag];
-			const teamStarters = (teamInfo.starters || []).reduce((acc, curr) => {
+			const teamMainRoster = (teamInfo.starters || []).reduce((acc, curr) => {
 				acc[curr] = true;
 				return acc;
 			}, {});
+			const teamAcademyRoster = Object.keys(team.players).reduce((acc, curr) => {
+				if (!teamMainRoster[curr]) acc[curr] = true;
+				return acc;
+			}, {});
 
-			const playersToRender = hideAcademy
-				? Object.keys(teamStarters)
-				: Object.keys({ ...teamStarters, ...team.players });
+			const playersToRender =
+				selectedPlayers === 'main'
+					? Object.keys(teamMainRoster)
+					: selectedPlayers === 'academy'
+					? Object.keys(teamAcademyRoster)
+					: Object.keys({ ...teamMainRoster, ...teamAcademyRoster });
 			const teamPlayers = playersToRender.map((playerName) => {
 				const playerStats = players[playerName] || { name: playerName, lp: 0, wins: 0, games: 0 };
 				return playerStats;
@@ -79,15 +84,21 @@
 <PageHeader {title} />
 
 <div class="controls">
-	<label class="boolean-btn" class:checked={hideAcademy} for="hide-academy">
-		<span>Hide Academy Players</span>
-		<input type="checkbox" bind:checked={hideAcademy} id="hide-academy" />
-		{#if hideAcademy}
-			<CheckChecked />
-		{:else}
-			<CheckUnchecked />
-		{/if}
-	</label>
+	<div class="button-group">
+		<button class:active={selectedPlayers === 'all'} on:click={() => (selectedPlayers = 'all')}>
+			All Players
+		</button>
+		<button class:active={selectedPlayers === 'main'} on:click={() => (selectedPlayers = 'main')}>
+			Only Main Roster
+		</button>
+		<button
+			class:active={selectedPlayers === 'academy'}
+			on:click={() => (selectedPlayers = 'academy')}
+		>
+			Only Academy Roster
+		</button>
+	</div>
+
 	<Select
 		defaultText="Sort Teams by:"
 		value={teamSort}

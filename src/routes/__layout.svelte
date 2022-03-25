@@ -268,6 +268,9 @@
 		overflow: hidden;
 	}
 	.content-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 		min-height: 100vh;
 	}
 
