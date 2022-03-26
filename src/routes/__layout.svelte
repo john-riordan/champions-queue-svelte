@@ -76,7 +76,7 @@
 			</div>
 			<nav>
 				{#each routes as route}
-					<a href={route.url} class="nav-item" class:active={currURL.includes(route.url)}>
+					<a href={route.url} class="nav-item" class:active={currURL.startsWith(route.url)}>
 						<div>
 							<svelte:component this={route.icon} />
 							<span class="text">{route.title}</span>
