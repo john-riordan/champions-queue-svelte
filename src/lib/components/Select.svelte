@@ -17,7 +17,6 @@
 	}
 	function emitSelect(val) {
 		if (selectedOption?.value === val) {
-			dispatch('select', null);
 			open = false;
 		} else {
 			dispatch('select', val);

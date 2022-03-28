@@ -5,78 +5,113 @@
 </script>
 
 <script>
-  import { store, pageBackground } from '$lib/stores';
-  import PageHeader from '$lib/components/PageHeader.svelte';
-  import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
-  import ChampImg from '$lib/components/ChampImg.svelte';
+	import { store, pageBackground } from '$lib/stores';
+	import PageHeader from '$lib/components/PageHeader.svelte';
+	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
+	import ChampImg from '$lib/components/ChampImg.svelte';
+	import Select from '$lib/components/Select.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
-	import { winrateColor } from '$lib/helpers';
+	import { winrateColor, msToDays } from '$lib/helpers';
 
-  export let name;
-  let sort = 'games';
+	export let name;
+	let sort = 'games';
 	let desc = true;
+	let dayFilter = 0;
 
-	$: champions = ($store.matches || [])
-		.reduce((acc, curr) => {
-			const team1 = curr.teams[0].players.map((player) => ({
-				...player,
-				winner: curr.teams[0].winner
-			}));
-			const team2 = curr.teams[1].players.map((player) => ({
-				...player,
-				winner: curr.teams[1].winner
-			}));
-			const players = [...team1, ...team2];
+	$: champions = ($store.matches || []).reduce((acc, curr) => {
+		const time = new Date(curr.matchStart);
+		const currTime = Date.now();
+		const dayDiff = Math.trunc(msToDays(currTime - time));
 
-      const player = players.find(p => p.name === name);
-      if (!player) return acc;
+		if (dayFilter && dayDiff > dayFilter - 1) return acc;
 
-      const { kills, deaths, assists, gold, cs } = player;
-      const win = player.winner ? 1 : 0;
+		const team1 = curr.teams[0].players.map((player) => ({
+			...player,
+			winner: curr.teams[0].winner
+		}));
+		const team2 = curr.teams[1].players.map((player) => ({
+			...player,
+			winner: curr.teams[1].winner
+		}));
+		const players = [...team1, ...team2];
 
-      let champStats = acc[player.championIcon] || {
-        name: player.championIcon,
-        kills: 0,
-        deaths: 0,
-        assists: 0,
-        wins: 0,
-        games: 0,
-        gold: 0,
-        cs: 0,
-        lp: 0,
-      };
+		const player = players.find((p) => p.name === name);
+		if (!player) return acc;
 
-      acc[player.championIcon] = {
-        name: player.championIcon,
-        kills: kills + champStats.kills,
-        deaths: deaths + champStats.deaths,
-        assists: assists + champStats.assists,
-        wins: win + champStats.wins,
-        games: 1 + champStats.games,
-        gold: gold + champStats.gold,
-        cs: cs + champStats.cs,
-      }
+		const { kills, deaths, assists, gold, cs } = player;
+		const win = player.winner ? 1 : 0;
 
-			return acc;
-		}, {});
+		let champStats = acc[player.championIcon] || {
+			name: player.championIcon,
+			kills: 0,
+			deaths: 0,
+			assists: 0,
+			wins: 0,
+			games: 0,
+			gold: 0,
+			cs: 0,
+			lp: 0
+		};
 
-    $: totalGames = Object.values(champions).reduce((acc, curr) => {
-      return acc + curr.games
-    }, 0);
+		acc[player.championIcon] = {
+			name: player.championIcon,
+			kills: kills + champStats.kills,
+			deaths: deaths + champStats.deaths,
+			assists: assists + champStats.assists,
+			wins: win + champStats.wins,
+			games: 1 + champStats.games,
+			gold: gold + champStats.gold,
+			cs: cs + champStats.cs
+		};
 
-    $: list = Object.values(champions).map((champ) => ({
-        ...champ,
-        winrate: champ.wins / champ.games,
-        playRate: champ.games / totalGames,
-        kda: (champ.kills + champ.assists) / champ.games,
-        cs: champ.cs / champ.games
-      }))
-      .sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
+		return acc;
+	}, {});
 
-    function setSort(col) {
-      if (sort !== col) sort = col;
-      else desc = !desc;
-    }
+	$: totalGames = Object.values(champions).reduce((acc, curr) => {
+		return acc + curr.games;
+	}, 0);
+
+	$: list = Object.values(champions)
+		.map((champ) => ({
+			...champ,
+			winrate: champ.wins / champ.games,
+			playRate: champ.games / totalGames,
+			kda: (champ.kills + champ.assists) / champ.games,
+			cs: champ.cs / champ.games
+		}))
+		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
+
+	function setSort(col) {
+		if (sort !== col) sort = col;
+		else desc = !desc;
+	}
+
+	function setDayFilter(event) {
+		dayFilter = event.detail;
+	}
+
+	const dayFilterOptions = [
+		{
+			value: 0,
+			text: 'Filter: Full Split'
+		},
+		{
+			value: 1,
+			text: 'Filter: Within Last Day'
+		},
+		{
+			value: 3,
+			text: 'Filter: Within Last 3 Days'
+		},
+		{
+			value: 7,
+			text: 'Filter: Within Last 7 Days'
+		},
+		{
+			value: 14,
+			text: 'Filter: Within Last 2 Weeks'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -89,6 +124,15 @@
 		<FavoriteBtn />
 	</div>
 </PageHeader>
+
+<div class="controls">
+	<Select
+		defaultText="Filter by:"
+		value={dayFilter}
+		options={dayFilterOptions}
+		on:select={setDayFilter}
+	/>
+</div>
 
 <div class="sort">
 	<span class="nameSort">Name</span>

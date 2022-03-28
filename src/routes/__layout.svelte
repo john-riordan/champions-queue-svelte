@@ -18,10 +18,6 @@
 	onMount(async () => {
 		const mountedData = await fetchData();
 		store.set(mountedData);
-
-		if ($store.splitEnd) {
-			splitEnd = new Date($store.splitEnd).getTime();
-		}
 	});
 
 	$: currURL = $page.url.pathname;
@@ -270,7 +266,7 @@
 	.content-container {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.25rem;
 		min-height: 100vh;
 	}
 

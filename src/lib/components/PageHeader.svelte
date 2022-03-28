@@ -115,7 +115,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		font-size: 3.25rem;
+		font-size: 2.75rem;
 		font-weight: 900;
 		line-height: 1;
 		text-transform: uppercase;
