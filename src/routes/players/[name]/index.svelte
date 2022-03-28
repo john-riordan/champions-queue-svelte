@@ -292,7 +292,7 @@
 		ol {
 			display: flex;
 			flex-wrap: wrap;
-			column-gap: 3rem;
+			column-gap: 2rem;
 			row-gap: 0.5rem;
 
 			@media screen and (max-width: 800px) {
@@ -304,9 +304,10 @@
 			display: flex;
 			align-items: center;
 			gap: 0.75rem;
+			line-height: 1.25;
 		}
 		:global(.champ-img) {
-			--size: 44;
+			--size: 40;
 
 			@media screen and (max-width: 800px) {
 				--size: 32;
