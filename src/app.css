@@ -216,10 +216,11 @@ div[slot='controls'] {
 }
 
 .statblocks {
-	gap: 4rem;
+	gap: 3rem;
 }
 .statblock .stat {
 	font-size: 1.75rem;
+	line-height: 1.25;
 }
 .statblock .stat span {
 	color: var(--c8);
@@ -241,11 +242,14 @@ div[slot='controls'] {
 	visibility: hidden;
 }
 
+.list-groups {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
 .group-title {
 	text-transform: capitalize;
 	font-weight: 900;
-	font-size: 1.25rem;
-	margin-bottom: 0.25rem;
 }
 .list {
 	display: flex;

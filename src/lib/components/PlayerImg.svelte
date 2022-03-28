@@ -2,13 +2,12 @@
 	import { PLAYERS, PLAYER_DEFAULT } from '$lib/constants';
 
 	export let name;
-	export let size;
 
 	$: src = PLAYERS[name]?.image ?? PLAYER_DEFAULT;
 </script>
 
 <div class="player-img">
-	<img loading="lazy" alt={name} {src} width={size} />
+	<img loading="lazy" alt={name} {src} width={80} />
 </div>
 
 <style>

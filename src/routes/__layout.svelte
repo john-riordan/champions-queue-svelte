@@ -18,10 +18,6 @@
 	onMount(async () => {
 		const mountedData = await fetchData();
 		store.set(mountedData);
-
-		if ($store.splitEnd) {
-			splitEnd = new Date($store.splitEnd).getTime();
-		}
 	});
 
 	$: currURL = $page.url.pathname;
@@ -76,7 +72,7 @@
 			</div>
 			<nav>
 				{#each routes as route}
-					<a href={route.url} class="nav-item" class:active={currURL.includes(route.url)}>
+					<a href={route.url} class="nav-item" class:active={currURL.startsWith(route.url)}>
 						<div>
 							<svelte:component this={route.icon} />
 							<span class="text">{route.title}</span>
@@ -270,7 +266,7 @@
 	.content-container {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.25rem;
 		min-height: 100vh;
 	}
 
