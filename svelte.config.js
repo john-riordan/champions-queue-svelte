@@ -5,7 +5,16 @@ import sveltePreprocess from 'svelte-preprocess';
 const config = {
 	preprocess: sveltePreprocess(),
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		serviceWorker: {
+			register: true,
+			files: (filepath) => !/\.DS_Store/.test(filepath)
+		},
+		trailingSlash: 'never',
+		version: {
+			name: Date.now().toString(),
+			pollInterval: 0
+		}
 	}
 };
 

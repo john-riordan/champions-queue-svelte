@@ -1,0 +1,35 @@
+{
+	"short_name": "cq",
+	"name": "champions-queue",
+	"description": "LoL Champions Queue app for tracking stats, players, teams, and more.",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "logo-png.png",
+			"type": "image/png",
+			"sizes": "124x124"
+		}
+	],
+	"background_color": "#0b0d0f",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#0b0d0f",
+	"shortcuts": [
+		{
+			"name": "Players",
+			"url": "/players"
+		},
+		{
+			"name": "Champions",
+			"url": "/champions"
+		},
+		{
+			"name": "Matches",
+			"url": "/matches"
+		},
+		{
+			"name": "Teams",
+			"url": "/teams"
+		}
+	]
+}
