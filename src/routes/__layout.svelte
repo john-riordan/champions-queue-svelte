@@ -13,9 +13,21 @@
 	import MatchModal from '$lib/components/MatchModal.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
 	import FavoritesList from '$lib/components/FavoritesList.svelte';
+	import InstallBtn from '$lib/components/InstallBtn.svelte';
 	import '../app.css';
 
+	function getPWADisplayMode() {
+		const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+		if (document.referrer.startsWith('android-app://')) {
+			return 'twa';
+		} else if (navigator.standalone || isStandalone) {
+			return 'standalone';
+		}
+		return 'browser';
+	}
+
 	onMount(async () => {
+		getPWADisplayMode();
 		const mountedData = await fetchData();
 		store.set(mountedData);
 	});
@@ -85,6 +97,9 @@
 					<Search />
 					<span class="text">Search</span>
 				</span>
+			</div>
+			<div class="install-container">
+				<InstallBtn />
 			</div>
 		</div>
 
@@ -197,6 +212,10 @@
 				transform: translateX(5%);
 			}
 		}
+	}
+
+	.install-container {
+		padding: 1rem 0 1rem var(--nav-indent);
 	}
 
 	.top {
