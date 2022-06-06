@@ -5,9 +5,9 @@ export const SPLITS_STARTS = {
 		split3: '2022-04-14T06:21:46.590000Z'
 	},
 	season2: {
-		split1: '2022-05-29T06:21:46.590000Z',
-		split2: '2022-07-10T06:21:46.590000Z',
-		split3: '2022-08-22T06:21:46.590000Z'
+		split1: '2022-05-31T06:21:46.590000Z',
+		split2: '2022-06-28T06:21:46.590000Z',
+		split3: '2022-07-26T06:21:46.590000Z'
 	}
 };
 
@@ -73,7 +73,7 @@ export const TEAMS = {
 		tag: 'TSM',
 		logo: 'F1592590917094_TSMTSM-01-FullonDark.png',
 		hsl: '0deg 0% 60%',
-		starters: ['TSM Huni', 'TSM Spica', 'TSM Takeover', 'TSM Tactical', 'TSM Shenyi']
+		starters: ['TSM Huni', 'TSM Spica', 'TSM Tactical', 'TSM Shenyi']
 	},
 	TL: {
 		name: 'Team Liquid',
@@ -87,7 +87,7 @@ export const TEAMS = {
 		tag: 'C9',
 		logo: 'F1631820065346_cloud9-2021-worlds.png',
 		hsl: '196deg 100% 39%',
-		starters: ['C9 Summit', 'C9 Blaber', 'C9 Fudge', 'C9 Berserker', 'C9 Winsome']
+		starters: ['C9 Fudge', 'C9 Blaber', 'C9 Jensen', 'C9 Berserker', 'C9 Zven']
 	},
 	100: {
 		name: '100 Thieves',

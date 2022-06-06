@@ -3,7 +3,7 @@
 
 	import { matchModal } from '$lib/stores';
 	import ChampImg from '$lib/components/ChampImg.svelte';
-	import { formatchPatch } from '$lib/helpers';
+	import { formatPatch } from '$lib/helpers';
 	import { correctChampionDisplayName } from '$lib/constants';
 
 	export let match;
@@ -21,7 +21,7 @@
 		: teams.find((p) => p.name === player);
 	$: nonSpecificMatch = !champion && !player;
 	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
-	$: patch = formatchPatch(match?.gameVersion);
+	$: patch = formatPatch(match?.gameVersion);
 
 	function updateModal() {
 		matchModal.set(match);

@@ -33,6 +33,8 @@
 				.map((t) => TEAMS[t.tag])
 				.slice(0, count)
 		: [...new Array(count)].map(() => ({ name: '' }));
+
+	$: console.log('loading', loading);
 </script>
 
 <svelte:head>
@@ -65,7 +67,7 @@
 			<div class="split-details">
 				<span class="season">{$store.seasonTitle}</span>
 				<span>{$store.splitTitle}</span>
-				<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
+				<!-- <span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span> -->
 			</div>
 		{:else}
 			<div class="split-details">
@@ -147,9 +149,9 @@
 				{/each}
 			</ol>
 		</div>
-		{#if loading}
+		<!-- {#if loading}
 			<div class="loading-indicator"><Refresh /></div>
-		{/if}
+		{/if} -->
 	</div>
 </div>
 
