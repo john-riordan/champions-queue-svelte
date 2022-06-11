@@ -42,7 +42,9 @@
 				<div class="split-details">
 					<span class="season">{$store.seasonTitle}</span>
 					<span>{$store.splitTitle}</span>
-					<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
+					{#if $store.splitEnd}
+						<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
+					{/if}
 				</div>
 			{/if}
 		</div>

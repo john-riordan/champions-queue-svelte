@@ -5,9 +5,9 @@ export const SPLITS_STARTS = {
 		split3: '2022-04-14T06:21:46.590000Z'
 	},
 	season2: {
-		split1: '2022-05-29T06:21:46.590000Z',
-		split2: '2022-07-10T06:21:46.590000Z',
-		split3: '2022-08-22T06:21:46.590000Z'
+		split1: '2022-05-31T06:21:46.590000Z',
+		split2: '2022-06-28T06:21:46.590000Z',
+		split3: '2022-07-26T06:21:46.590000Z'
 	}
 };
 
@@ -73,7 +73,7 @@ export const TEAMS = {
 		tag: 'TSM',
 		logo: 'F1592590917094_TSMTSM-01-FullonDark.png',
 		hsl: '0deg 0% 60%',
-		starters: ['TSM Huni', 'TSM Spica', 'TSM Takeover', 'TSM Tactical', 'TSM Shenyi']
+		starters: ['TSM Huni', 'TSM Spica', 'TSM Maple', 'TSM Tactical', 'TSM Shenyi']
 	},
 	TL: {
 		name: 'Team Liquid',
@@ -87,7 +87,7 @@ export const TEAMS = {
 		tag: 'C9',
 		logo: 'F1631820065346_cloud9-2021-worlds.png',
 		hsl: '196deg 100% 39%',
-		starters: ['C9 Summit', 'C9 Blaber', 'C9 Fudge', 'C9 Berserker', 'C9 Winsome']
+		starters: ['C9 Fudge', 'C9 Blaber', 'C9 Jensen', 'C9 Berserker', 'C9 Zven']
 	},
 	100: {
 		name: '100 Thieves',
@@ -115,28 +115,28 @@ export const TEAMS = {
 		tag: 'GG',
 		logo: 'F1592590586919_GoldenGuardiansGGS-01-FullonDark.png',
 		hsl: '39deg 64% 60%',
-		starters: ['GG Licorice', 'GG Pridestalkr', 'GG Ablazeolive', 'GG Lost', 'GG Olleh']
+		starters: ['GG Licorice', 'GG Pridestalkr', 'GG Ablazeolive', 'GG Stixxay', 'GG Olleh']
 	},
 	IMT: {
 		name: 'Immortals Progressive',
 		tag: 'IMT',
 		logo: 'Fimt-new-color.png',
 		hsl: '177deg 97% 35%',
-		starters: ['IMT Revenge', 'IMT Xerxe', 'IMT PowerOfEvil', 'IMT Arrow', 'IMT Destiny']
+		starters: ['IMT Revenge', 'IMT Kenvi', 'IMT PowerOfEvil', 'IMT Lost', 'IMT IgNar']
 	},
 	DIG: {
 		name: 'Dignitas QNTMPAY',
 		tag: 'DIG',
 		logo: 'FDIG-FullonDark.png',
 		hsl: '48deg 100% 50%',
-		starters: ['DIG FakeGod', 'DIG River', 'DIG Blue', 'DIG Neo', 'DIG Biofrost']
+		starters: ['DIG Gamsu', 'DIG River', 'DIG Blue', 'DIG Neo', 'DIG Biofrost']
 	},
 	CLG: {
 		name: 'Counter Logic Gaming',
 		tag: 'CLG',
 		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png',
 		hsl: '192deg 100% 44%',
-		starters: ['CLG Jenkins', 'CLG Contractz', 'CLG Palafox', 'CLG Luger', 'CLG Poome']
+		starters: ['CLG Dhokla', 'CLG Contractz', 'CLG Palafox', 'CLG Luger', 'CLG Poome']
 	}
 };
 
@@ -1351,6 +1351,13 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645006991598_REVENGE.png'
 	},
+	'IMT IgNar': {
+		summonerName: 'IgNar',
+		summonerNameWithTeam: 'IMT IgNar',
+		socialLinks: [],
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Feg-ignar-2021.png'
+	},
 	'IMT Xerxe': {
 		summonerName: 'Xerxe',
 		summonerNameWithTeam: 'IMT Xerxe',
@@ -1682,6 +1689,13 @@ export const PLAYERS = {
 			}
 		],
 		image: null
+	},
+	'TSM Mia': {
+		summonerName: 'Mia',
+		summonerNameWithTeam: 'TSM Mia',
+		socialLinks: [],
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1643396680140_Mia-1.png'
 	},
 	'TSM Huni': {
 		summonerName: 'Huni',

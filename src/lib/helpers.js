@@ -9,17 +9,18 @@ export async function fetchData(fullSeason = false) {
 
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
-
 	const matches = (data.matches || []).filter((match) => {
-		// Filter matches for season 1, split 2
+		// Filter matches for season 2, split 1
 		const matchStart = new Date(match.matchStart);
-		const splitStart = new Date(SPLITS_STARTS.season1.split2);
+		const splitStart = new Date(SPLITS_STARTS.season2.split1);
 
 		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});
 
 	const aggregate = matches.reduce(
 		(acc, curr) => {
+			if (!curr) return acc;
+
 			const team1 = curr.teams[0].players.map((player, i) => ({
 				...player,
 				laneIndex: INDEX_TO_ROLE[i],
@@ -31,7 +32,7 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 				winner: curr.teams[1].winner
 			}));
 			const players = [...team1, ...team2];
-			const patch = formatchPatch(curr.gameVersion);
+			const patch = formatPatch(curr.gameVersion);
 
 			if (!acc.patches.includes(patch)) acc.patches.push(patch);
 
@@ -42,12 +43,9 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 				// Player Stats
 				if (!acc.players[player.name]) acc.players[player.name] = {};
 				const win = player.winner ? 1 : 0;
-				const lpEarned = win ? 10 : -5;
-				const currLP = acc.players[player.name]?.lp ?? 0;
 
 				acc.players[player.name] = {
 					name: player.name,
-					lp: currLP + lpEarned <= 0 ? 0 : currLP + lpEarned,
 					games: (acc.players[player.name]?.games || 0) + 1,
 					wins: (acc.players[player.name]?.wins || 0) + win,
 					kills: player.kills + (acc.players[player.name]?.kills || 0),
@@ -104,9 +102,9 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 		{ players: {}, champions: {}, teams: {}, totalGames: matches.length, patches: [] }
 	);
 
-	// Currently split/season
-	const currSeasonId = 1;
-	const currSplitId = 2;
+	// Current split/season
+	const currSeasonId = 2;
+	const currSplitId = 1;
 
 	const currSeason = leaderboard.leaderboards.find(
 		(s) => s.seasonId === currSeasonId && s.split?.splitId === currSplitId
@@ -119,11 +117,11 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 		totalGames: matches.length,
 		players: aggregate.players,
 		patches: aggregate.patches,
-		currentPatch: formatchPatch(matches[0].gameVersion),
+		currentPatch: formatPatch(matches[0]?.gameVersion),
 		champions: aggregate.champions,
 		teams: aggregate.teams,
-		seasonTitle: currSeason?.title,
-		splitTitle: currSeason?.split?.title,
+		seasonTitle: currSeason?.title || 'Unknown Season',
+		splitTitle: currSeason?.split?.title || 'Unknown Split',
 		splitEnd: currSeason?.split?.closeDate,
 		leaderboard: (currSeason?.lineup || []).reduce((acc, curr) => {
 			acc[curr.name] = curr;
@@ -141,7 +139,8 @@ export function ordinal(i) {
 	return i + 'th';
 }
 
-export function formatchPatch(version) {
+export function formatPatch(version) {
+	if (!version) return '';
 	const patch = version.split('.');
 	const major = patch[0] ?? 12;
 	const minor = patch[1] ?? 'x';

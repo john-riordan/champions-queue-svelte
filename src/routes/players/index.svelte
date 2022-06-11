@@ -20,8 +20,8 @@
 	export let title;
 	let search = '';
 	let team = null;
-	let sort = 'lp';
-	let desc = true;
+	let sort = 'rank';
+	let desc = false;
 	let commonOnly = false;
 
 	$: players = Object.values($store.players || {})
@@ -100,7 +100,12 @@
 
 <div class="sort">
 	<span class="nameSort">Name</span>
-	<span class="stat rank"> Rank </span>
+	<span class="stat rank" on:click={() => setSort('rank')}>
+		Rank
+		{#if sort === 'rank'}
+			<SortDirection class={desc ? 'asc' : 'desc'} />
+		{/if}
+	</span>
 	<span class="stat" on:click={() => setSort('lp')}>
 		LP
 		{#if sort === 'lp'}
