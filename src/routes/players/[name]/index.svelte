@@ -102,8 +102,7 @@
 				wins: 0,
 				games: 0,
 				gold: 0,
-				cs: 0,
-				lp: 0
+				cs: 0
 			};
 
 			acc.champions[player.championIcon] = {
@@ -125,9 +124,7 @@
 	$: noGamesPlayed = Object.keys(groups).length === 0;
 	$: leaderboardStats = $store.leaderboard?.[name];
 	$: matchlistStats = !dayFilter ? ($store.players || {})[name] : aggregate.stats;
-	$: playerLP = !dayFilter
-		? leaderboardStats?.lp
-		: matchlistStats.wins * 10 - (matchlistStats.games - matchlistStats.wins) * 5;
+	$: playerLP = leaderboardStats?.lp ?? 0;
 
 	$: championStats = Object.values(aggregate.champions).sort(
 		(a, b) => b.games - a.games || b.wins - a.wins

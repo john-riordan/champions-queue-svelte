@@ -43,12 +43,9 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 				// Player Stats
 				if (!acc.players[player.name]) acc.players[player.name] = {};
 				const win = player.winner ? 1 : 0;
-				const lpEarned = win ? 10 : -5;
-				const currLP = acc.players[player.name]?.lp ?? 0;
 
 				acc.players[player.name] = {
 					name: player.name,
-					lp: currLP + lpEarned <= 0 ? 0 : currLP + lpEarned,
 					games: (acc.players[player.name]?.games || 0) + 1,
 					wins: (acc.players[player.name]?.wins || 0) + win,
 					kills: player.kills + (acc.players[player.name]?.kills || 0),
@@ -112,8 +109,6 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 	const currSeason = leaderboard.leaderboards.find(
 		(s) => s.seasonId === currSeasonId && s.split?.splitId === currSplitId
 	);
-
-	console.log(matches);
 
 	return {
 		fetchedAt: Date.now(),

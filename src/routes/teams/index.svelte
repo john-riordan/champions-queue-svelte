@@ -34,14 +34,18 @@
 					: selectedPlayers === 'academy'
 					? Object.keys(teamAcademyRoster)
 					: Object.keys({ ...teamMainRoster, ...teamAcademyRoster });
+
 			const teamPlayers = playersToRender.map((playerName) => {
 				const playerStats = players[playerName] || { name: playerName, lp: 0, wins: 0, games: 0 };
 				return playerStats;
 			});
+
 			const teamLP = teamPlayers.reduce((acc, curr) => {
-				acc += curr.lp;
+				const playerLP = $store.leaderboard?.[curr.name]?.lp ?? 0;
+				acc += playerLP;
 				return acc;
 			}, 0);
+
 			const teamGames = teamPlayers.reduce((acc, curr) => {
 				acc += curr.games;
 				return acc;
@@ -55,7 +59,12 @@
 				hsl: teamInfo.hsl,
 				lp: teamLP,
 				games: teamGames,
-				players: teamPlayers.sort((a, b) => b[teamSort] - a[teamSort] || b.games - a.games)
+				players: teamPlayers
+					.map((player) => ({
+						...player,
+						lp: $store.leaderboard?.[player.name]?.lp ?? 0
+					}))
+					.sort((a, b) => b[teamSort] - a[teamSort] || b.games - a.games)
 			};
 		})
 		.sort((a, b) => b[teamSort] - a[teamSort]);
