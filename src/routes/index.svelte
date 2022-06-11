@@ -17,8 +17,9 @@
 	const relativeTime = new RelativeTime();
 
 	$: loading = $store.splitTitle ? false : true;
-	$: topRatedPlayers = $store.players
-		? Object.values($store.players)
+
+	$: topRatedPlayers = $store.leaderboard
+		? Object.values($store.leaderboard)
 				.sort((a, b) => b.lp - a.lp)
 				.slice(0, count)
 		: [...new Array(count)].map(() => ({ name: '' }));
