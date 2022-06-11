@@ -73,7 +73,7 @@ export const TEAMS = {
 		tag: 'TSM',
 		logo: 'F1592590917094_TSMTSM-01-FullonDark.png',
 		hsl: '0deg 0% 60%',
-		starters: ['TSM Huni', 'TSM Spica', 'TSM Tactical', 'TSM Shenyi']
+		starters: ['TSM Huni', 'TSM Spica', 'TSM Maple', 'TSM Tactical', 'TSM Shenyi']
 	},
 	TL: {
 		name: 'Team Liquid',
