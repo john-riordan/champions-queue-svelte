@@ -125,7 +125,7 @@
 		{/if}
 	</span>
 	<span class="stat" on:click={() => setSort('games')}>
-		WL
+		WL (Total)
 		{#if sort === 'games'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
