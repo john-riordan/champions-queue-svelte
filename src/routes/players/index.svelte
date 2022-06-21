@@ -161,7 +161,7 @@
 					})}
 				</span>
 				<span class="stat">
-					{player.wins} / {player.games - player.wins}
+					{player.wins} / {player.games - player.wins} ({player.games})
 				</span>
 			</a>
 		</li>
