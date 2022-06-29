@@ -192,6 +192,10 @@ export const PLAYERS = {
 			{
 				platform: 'twitch',
 				link: 'https://twitch.tv/abbedagge'
+			},
+			{
+				platform: 'youtube',
+				link: 'https://youtube.com/huhi'
 			}
 		],
 		image:
@@ -213,7 +217,7 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001923272_FBI.png'
 	},
-	'100 huhi': {
+	'100 Huhi': {
 		summonerName: 'Huhi',
 		summonerNameWithTeam: '100 Huhi',
 		socialLinks: [
@@ -245,9 +249,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645002245397_TENACITY.png'
 	},
-	'100 Gamsu': {
+	'DIG Gamsu': {
 		summonerName: 'Gamsu',
-		summonerNameWithTeam: '100 Gamsu',
+		summonerNameWithTeam: 'DIG Gamsu',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -260,9 +264,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'100 Kenvi': {
+	'IMT Kenvi': {
 		summonerName: 'Kenvi',
-		summonerNameWithTeam: '100 Kenvi',
+		summonerNameWithTeam: 'IMT Kenvi',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -285,12 +289,11 @@ export const PLAYERS = {
 				link: 'https://twitter.com/JimieNlol'
 			}
 		],
-		image:
-			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001265325_JIMIEN.png'
+		image: null
 	},
-	'100 Wixxi': {
+	'C9 Wixxi': {
 		summonerName: 'Wixxi',
-		summonerNameWithTeam: '100 Wixxi',
+		summonerNameWithTeam: 'C9 Wixxi',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -802,9 +805,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004647807_EXYU.png'
 	},
-	'DIG DARKWINGS': {
+	'100X DARKWINGS': {
 		summonerName: 'DARKWINGS',
-		summonerNameWithTeam: 'DIG DARKWINGS',
+		summonerNameWithTeam: '100X DARKWINGS',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -831,8 +834,7 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/spawwwwn'
 			}
 		],
-		image:
-			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004855726_SPAWN.png'
+		image: null
 	},
 	'DIG JayJ': {
 		summonerName: 'JayJ',
@@ -882,9 +884,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645005188133_INSPIRED.png'
 	},
-	'EG jojopyun': {
-		summonerName: 'jojopyun',
-		summonerNameWithTeam: 'EG jojopyun',
+	'EG Jojopyun': {
+		summonerName: 'Jojopyun',
+		summonerNameWithTeam: 'EG Jojopyun',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1209,9 +1211,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645006102506_ABLAZEOLIVE.png'
 	},
-	'GG Lost': {
+	'IMT Lost': {
 		summonerName: 'Lost',
-		summonerNameWithTeam: 'GG Lost',
+		summonerNameWithTeam: 'IMT Lost',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1268,9 +1270,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'GG ry0ma': {
+	'JK ry0ma': {
 		summonerName: 'ry0ma',
-		summonerNameWithTeam: 'GG ry0ma',
+		summonerNameWithTeam: 'JK ry0ma',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1351,13 +1353,6 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645006991598_REVENGE.png'
 	},
-	'IMT IgNar': {
-		summonerName: 'IgNar',
-		summonerNameWithTeam: 'IMT IgNar',
-		socialLinks: [],
-		image:
-			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Feg-ignar-2021.png'
-	},
 	'IMT Xerxe': {
 		summonerName: 'Xerxe',
 		summonerNameWithTeam: 'IMT Xerxe',
@@ -1398,7 +1393,7 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645006938944_POWEROFEVIL.png'
 	},
-	'IMT WildTurtle': {
+	'IMT Wildturtle': {
 		summonerName: 'Wildturtle',
 		summonerNameWithTeam: 'IMT Wildturtle',
 		socialLinks: [
@@ -1414,9 +1409,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645007023352_WILDTURTLE.png'
 	},
-	'IMT Destiny': {
+	'C9 Destiny': {
 		summonerName: 'Destiny',
-		summonerNameWithTeam: 'IMT Destiny',
+		summonerNameWithTeam: 'C9 Destiny',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1430,9 +1425,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645006855546_DESTINY.png'
 	},
-	'IMT Concept': {
+	'GG Concept': {
 		summonerName: 'Concept',
-		summonerNameWithTeam: 'IMT Concept',
+		summonerNameWithTeam: 'GG Concept',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1559,7 +1554,7 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645007317343_TL_BJERGSEN_512x512.png'
 	},
-	'TL Hans sama': {
+	'TL Hans Sama': {
 		summonerName: 'Hans Sama',
 		summonerNameWithTeam: 'TL Hans Sama',
 		socialLinks: [
@@ -1689,13 +1684,6 @@ export const PLAYERS = {
 			}
 		],
 		image: null
-	},
-	'TSM Mia': {
-		summonerName: 'Mia',
-		summonerNameWithTeam: 'TSM Mia',
-		socialLinks: [],
-		image:
-			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1643396680140_Mia-1.png'
 	},
 	'TSM Huni': {
 		summonerName: 'Huni',
@@ -1878,9 +1866,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'100X Insanity': {
+	'DIG Insanity': {
 		summonerName: 'Insanity',
-		summonerNameWithTeam: '100X Insanity',
+		summonerNameWithTeam: 'DIG Insanity',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1893,9 +1881,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'100X Array': {
+	'GG Array': {
 		summonerName: 'Array',
-		summonerNameWithTeam: '100X Array',
+		summonerNameWithTeam: 'GG Array',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1904,9 +1892,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'100X donbray': {
+	'EG donbray': {
 		summonerName: 'donbray',
-		summonerNameWithTeam: '100X donbray',
+		summonerNameWithTeam: 'EG donbray',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1949,9 +1937,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'DARE Leemo': {
+	'TFTS Leemo': {
 		summonerName: 'Leemo',
-		summonerNameWithTeam: 'DARE Leemo',
+		summonerNameWithTeam: 'TFTS Leemo',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -1979,9 +1967,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'DARE BMFX': {
+	'100 BMFX': {
 		summonerName: 'BMFX',
-		summonerNameWithTeam: 'DARE BMFX',
+		summonerNameWithTeam: '100 BMFX',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2016,9 +2004,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'EGP Perry': {
+	'300 Perry': {
 		summonerName: 'Perry',
-		summonerNameWithTeam: 'EGP Perry',
+		summonerNameWithTeam: '300 Perry',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2046,9 +2034,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'EGP Sketch': {
+	'FEAR Sketch': {
 		summonerName: 'Sketch',
-		summonerNameWithTeam: 'EGP Sketch',
+		summonerNameWithTeam: 'FEAR Sketch',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2121,9 +2109,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'IMA Meech': {
+	'CLG Meech': {
 		summonerName: 'Meech',
-		summonerNameWithTeam: 'IMA Meech',
+		summonerNameWithTeam: 'CLG Meech',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2132,13 +2120,13 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'IMA Trevor': {
+	'C9 Trevor': {
 		summonerName: 'Trevor',
-		summonerNameWithTeam: 'IMA Trevor',
+		summonerNameWithTeam: 'C9 Trevor',
 		socialLinks: [
 			{
 				platform: 'twitter',
-				link: 'https://twitter.com/King1Trevor'
+				link: 'https://twitter.com/trevor1lol'
 			}
 		],
 		image: null
@@ -2327,9 +2315,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'DNHA Dinka': {
+	'3P Dinka': {
 		summonerName: 'Dinka',
-		summonerNameWithTeam: 'DNHA Dinka',
+		summonerNameWithTeam: '3P Dinka',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2342,9 +2330,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'DNHA Svmmy': {
-		summonerName: 'Svmmy',
-		summonerNameWithTeam: 'DNHA Svmmy',
+	Creamcheese: {
+		summonerName: 'Creamcheese',
+		summonerNameWithTeam: 'Creamcheese',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2432,9 +2420,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'NOT Scoooped': {
+	'JK Scoooped': {
 		summonerName: 'Scoooped',
-		summonerNameWithTeam: 'NOT Scoooped',
+		summonerNameWithTeam: 'JK Scoooped',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2499,9 +2487,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'RAD Raheen': {
+	'300 Raheen': {
 		summonerName: 'Raheen',
-		summonerNameWithTeam: 'RAD Raheen',
+		summonerNameWithTeam: '300 Raheen',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2547,9 +2535,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'SN baekho': {
-		summonerName: 'baekho',
-		summonerNameWithTeam: 'SN baekho',
+	'CLG Baekh0': {
+		summonerName: 'Baekh0',
+		summonerNameWithTeam: 'CLG Baekh0',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2618,9 +2606,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'TG Trixter': {
+	'FEAR Trixter': {
 		summonerName: 'Trixter',
-		summonerNameWithTeam: 'TG Trixter',
+		summonerNameWithTeam: 'FEAR Trixter',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2629,9 +2617,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'TG Doxa': {
+	'EGP Doxa': {
 		summonerName: 'Doxa',
-		summonerNameWithTeam: 'TG Doxa',
+		summonerNameWithTeam: 'EGP Doxa',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2674,9 +2662,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'TA Nemesis9': {
+	'AOER Nemesis9': {
 		summonerName: 'Nemesis9',
-		summonerNameWithTeam: 'TA Nemesis9',
+		summonerNameWithTeam: 'AOER Nemesis9',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2786,9 +2774,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'WC Allorim': {
+	'C9 Allorim': {
 		summonerName: 'Allorim',
-		summonerNameWithTeam: 'WC Allorim',
+		summonerNameWithTeam: 'C9 Allorim',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2839,9 +2827,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'WC Minui': {
+	'300 Minui': {
 		summonerName: 'Minui',
-		summonerNameWithTeam: 'WC Minui',
+		summonerNameWithTeam: '300 Minui',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2951,9 +2939,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'WIN Kenji': {
+	'WU Kenji': {
 		summonerName: 'Kenji',
-		summonerNameWithTeam: 'WIN Kenji',
+		summonerNameWithTeam: 'WU Kenji',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -2985,9 +2973,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'EST Grell': {
+	'ISG Grell': {
 		summonerName: 'Grell',
-		summonerNameWithTeam: 'EST Grell',
+		summonerNameWithTeam: 'ISG Grell',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -3000,9 +2988,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'EST Leza': {
+	'AK Leza': {
 		summonerName: 'Leza',
-		summonerNameWithTeam: 'EST Leza',
+		summonerNameWithTeam: 'AK Leza',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -3022,16 +3010,16 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'EST Mia': {
+	'TSM Mia': {
 		summonerName: 'Mia',
-		summonerNameWithTeam: 'EST Mia',
+		summonerNameWithTeam: 'TSM Mia',
 		socialLinks: [
 			{
 				platform: 'twitter',
 				link: 'https://twitter.com/Mialol98'
 			}
 		],
-		image: null
+		image: "https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1643396680140_Mia-1.png"
 	},
 	'INF Jauny': {
 		summonerName: 'Jauny',
@@ -3208,9 +3196,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'R7 Warangelus': {
+	'GET Warangelus': {
 		summonerName: 'Warangelus',
-		summonerNameWithTeam: 'R7 Warangelus',
+		summonerNameWithTeam: 'GET Warangelus',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -3583,9 +3571,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	Jensen: {
+	'C9 Jensen': {
 		summonerName: 'Jensen',
-		summonerNameWithTeam: 'Jensen',
+		summonerNameWithTeam: 'C9 Jensen',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -3621,9 +3609,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	Smoothie: {
+	'EG Smoothie': {
 		summonerName: 'Smoothie',
-		summonerNameWithTeam: 'Smoothie',
+		summonerNameWithTeam: 'EG Smoothie',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -3974,9 +3962,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'GET Bardito': {
+	'XTN Bardito': {
 		summonerName: 'Bardito',
-		summonerNameWithTeam: 'GET Bardito',
+		summonerNameWithTeam: 'XTN Bardito',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4078,13 +4066,17 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	Solo: {
+	'CLG Solo': {
 		summonerName: 'Solo',
-		summonerNameWithTeam: 'Solo',
+		summonerNameWithTeam: 'CLG Solo',
 		socialLinks: [
 			{
 				platform: 'twitter',
 				link: 'https://twitter.com/SoloLCS'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/SoloLCS'
 			}
 		],
 		image: null
@@ -4123,9 +4115,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	Will: {
+	'100 Will': {
 		summonerName: 'Will',
-		summonerNameWithTeam: 'Will',
+		summonerNameWithTeam: '100 Will',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4250,9 +4242,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'100X Keel': {
+	'AGT Keel': {
 		summonerName: 'Keel',
-		summonerNameWithTeam: '100X Keel',
+		summonerNameWithTeam: 'AGT Keel',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4541,9 +4533,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'NOT Yukino': {
+	'EGP Yukino': {
 		summonerName: 'Yukino',
-		summonerNameWithTeam: 'NOT Yukino',
+		summonerNameWithTeam: 'EGP Yukino',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4571,9 +4563,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'3P Zamudo': {
+	'AOE Zamudo': {
 		summonerName: 'Zamudo',
-		summonerNameWithTeam: '3P Zamudo',
+		summonerNameWithTeam: 'AOE Zamudo',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4777,9 +4769,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'WC ToastyAlex': {
+	'TFTS ToastyAlex': {
 		summonerName: 'ToastyAlex',
-		summonerNameWithTeam: 'WC ToastyAlex',
+		summonerNameWithTeam: 'TFTS ToastyAlex',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4874,9 +4866,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'SN Clyde': {
+	'DKC Clyde': {
 		summonerName: 'Clyde',
-		summonerNameWithTeam: 'SN Clyde',
+		summonerNameWithTeam: 'DKC Clyde',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4963,6 +4955,508 @@ export const PLAYERS = {
 			{
 				platform: 'twitch',
 				link: 'https://twitch.tv/Gweiss96'
+			}
+		],
+		image: null
+	},
+	'EST Bugi': {
+		summonerName: 'Bugi',
+		summonerNameWithTeam: 'EST Bugi',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/yeopbugi'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/yeopbugi'
+			}
+		],
+		image: null
+	},
+	'INF Snaker': {
+		summonerName: 'Snaker',
+		summonerNameWithTeam: 'INF Snaker',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Snakerlol'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/snaker7'
+			}
+		],
+		image: null
+	},
+	'TSM S0ul': {
+		summonerName: 'S0ul',
+		summonerNameWithTeam: 'TSM S0ul',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Soul_lol1'
+			}
+		],
+		image: null
+	},
+	'EST Mireu': {
+		summonerName: 'Mireu',
+		summonerNameWithTeam: 'EST Mireu',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/jeongjobin1'
+			}
+		],
+		image: null
+	},
+	'AK Crash': {
+		summonerName: 'Crash',
+		summonerNameWithTeam: 'AK Crash',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Crash_lol1'
+			}
+		],
+		image: null
+	},
+	'AOER Geiger': {
+		summonerName: 'Geiger',
+		summonerNameWithTeam: 'AOER Geiger',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/GeigerIsCool'
+			}
+		],
+		image: null
+	},
+	'GET Newbie': {
+		summonerName: 'Newbie',
+		summonerNameWithTeam: 'GET Newbie',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/newbiel0l'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/NewbieSupp'
+			}
+		],
+		image: null
+	},
+	'CLG Town': {
+		summonerName: 'Town',
+		summonerNameWithTeam: 'CLG Town',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/T0WNMID'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/townmid'
+			}
+		],
+		image: null
+	},
+	'UCI Misterdot': {
+		summonerName: 'Misterdot',
+		summonerNameWithTeam: 'UCI Misterdot',
+		socialLinks: [],
+		image: null
+	},
+	'3P Just': {
+		summonerName: 'Just',
+		summonerNameWithTeam: '3P Just',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Just01LoL'
+			}
+		],
+		image: null
+	},
+	'SN Tomeito': {
+		summonerName: 'Tomeito',
+		summonerNameWithTeam: 'SN Tomeito',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/t0meitoo'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/t0meito'
+			}
+		],
+		image: null
+	},
+	'AOER Sybr': {
+		summonerName: 'Sybr',
+		summonerNameWithTeam: 'AOER Sybr',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/SybrLoL'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/SybrLoL'
+			},
+			{
+				platform: 'youtube',
+				link: 'https://www.youtube.com/c/SybrLoL'
+			}
+		],
+		image: null
+	},
+	'AK Alive': {
+		summonerName: 'Alive',
+		summonerNameWithTeam: 'AK Alive',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Alivelol2'
+			}
+		],
+		image: null
+	},
+	'TFTS Winter': {
+		summonerName: 'Winter',
+		summonerNameWithTeam: 'TFTS Winter',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/TheWinterlol'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/thewinterlol'
+			},
+			{
+				platform: 'youtube',
+				link: 'https://www.youtube.com/channel/UCMMIF-R1HAj-2GsGrhzKfZw/'
+			}
+		],
+		image: null
+	},
+	'R7 Ophelia': {
+		summonerName: 'Ophelia',
+		summonerNameWithTeam: 'R7 Ophelia',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Bjs_ophelia'
+			}
+		],
+		image: null
+	},
+	'TBA Kitzuo': {
+		summonerName: 'Kitzuo',
+		summonerNameWithTeam: 'TBA Kitzuo',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/KitzuoLoL'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/Kitzuo'
+			}
+		],
+		image: null
+	},
+	'CLG Airren': {
+		summonerName: 'Airren',
+		summonerNameWithTeam: 'CLG Airren',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/airren_lol'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/airren_lol'
+			}
+		],
+		image: null
+	},
+	'DKC Sandflame': {
+		summonerName: 'Sandflame',
+		summonerNameWithTeam: 'DKC Sandflame',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Sandflamelol'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/sandflamelol'
+			}
+		],
+		image: null
+	},
+	'SN Actor': {
+		summonerName: 'Actor',
+		summonerNameWithTeam: 'SN Actor',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/actxrjg'
+			}
+		],
+		image: null
+	},
+	'AOER Stevenator': {
+		summonerName: 'Stevenator',
+		summonerNameWithTeam: 'AOER Stevenator',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Stevenator546'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/stevenator546'
+			},
+			{
+				platform: 'youtube',
+				link: 'https://www.youtube.com/channel/UCEmMnIYB8JzDcLz5hbrK0fg'
+			}
+		],
+		image: null
+	},
+	'IMT IgNar': {
+		summonerName: 'IgNar',
+		summonerNameWithTeam: 'IMT IgNar',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/IgNarLoL'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/IgNarlol'
+			}
+		],
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Feg-ignar-2021.png'
+	},
+	'TG Ayukura': {
+		summonerName: 'Ayukura',
+		summonerNameWithTeam: 'TG Ayukura',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/ayukuraaa'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/ayukura'
+			}
+		],
+		image: null
+	},
+	'3P Traffi': {
+		summonerName: 'Traffi',
+		summonerNameWithTeam: '3P Traffi',
+		socialLinks: [
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/traffilol'
+			}
+		],
+		image: null
+	},
+	'300 Nyma': {
+		summonerName: 'Nyma',
+		summonerNameWithTeam: '300 Nyma',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/NymaJG'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/nyma5'
+			}
+		],
+		image: null
+	},
+	'TBA Smalls': {
+		summonerName: 'Smalls',
+		summonerNameWithTeam: 'TBA Smalls',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/draven_baka'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/dravenbaka'
+			},
+			{
+				platform: 'youtube',
+				link: 'https://www.youtube.com/channel/UCSDOKsgfgGc4KjTOpd-ktlA'
+			}
+		],
+		image: null
+	},
+	'AOER Devin': {
+		summonerName: 'Devin',
+		summonerNameWithTeam: 'AOER Devin',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/devin11111111'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/devin11110'
+			}
+		],
+		image: null
+	},
+	'100X Lens': {
+		summonerName: 'Lens',
+		summonerNameWithTeam: '100X Lens',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/lenslol1'
+			}
+		],
+		image: null
+	},
+	'GET Whitelotus': {
+		summonerName: 'Whitelotus',
+		summonerNameWithTeam: 'GET Whitelotus',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Whitelotuslol'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/whitelotuslol'
+			}
+		],
+		image: null
+	},
+	'SN Plut0': {
+		summonerName: 'Plut0',
+		summonerNameWithTeam: 'SN Plut0',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/plutxlol'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/plutxlol'
+			}
+		],
+		image: null
+	},
+	'AK Baula': {
+		summonerName: 'Baula',
+		summonerNameWithTeam: 'AK Baula',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/BaulaLoL'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/baulalol'
+			}
+		],
+		image: null
+	},
+	'CLG Draco': {
+		summonerName: 'Draco',
+		summonerNameWithTeam: 'CLG Draco',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/dracoiwnl'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/dracoiwnl'
+			}
+		],
+		image: null
+	},
+	'EST Shadow': {
+		summonerName: 'Shadow',
+		summonerNameWithTeam: 'EST Shadow',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/1Shadowlol'
+			}
+		],
+		image: null
+	},
+	'GG Jido': {
+		summonerName: 'Jido',
+		summonerNameWithTeam: 'GG Jido',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/LoLJido'
+			}
+		],
+		image: null
+	},
+	'SN Meslo': {
+		summonerName: 'Meslo',
+		summonerNameWithTeam: 'SN Meslo',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Meslo_'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/meslok'
+			}
+		],
+		image: null
+	},
+	'TSM Maple': {
+		summonerName: 'Maple',
+		summonerNameWithTeam: 'TSM Maple',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/TSMMaple'
+			}
+		],
+		image: null
+	},
+	'XTN Seize': {
+		summonerName: 'Seize',
+		summonerNameWithTeam: 'XTN Seize',
+		socialLinks: [],
+		image: null
+	},
+	'XTN Krim': {
+		summonerName: 'Krim',
+		summonerNameWithTeam: 'XTN Krim',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Krim_lol'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/krimlol'
 			}
 		],
 		image: null
