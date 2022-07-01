@@ -12,7 +12,7 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 	const matches = (data.matches || []).filter((match) => {
 		// Filter matches for season 2, split 1
 		const matchStart = new Date(match.matchStart);
-		const splitStart = new Date(SPLITS_STARTS.season2.split1);
+		const splitStart = new Date(SPLITS_STARTS.season2.split2);
 
 		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});
