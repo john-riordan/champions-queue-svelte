@@ -18,7 +18,7 @@
 		/>
 	</svg>
 
-	<span>{rank}</span>
+	<span>{rank || 'Last'}</span>
 </div>
 
 <style lang="scss">

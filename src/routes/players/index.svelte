@@ -20,8 +20,8 @@
 	export let title;
 	let search = '';
 	let team = null;
-	let sort = 'rank';
-	let desc = false;
+	let sort = 'lp';
+	let desc = true;
 	let commonOnly = false;
 
 	$: players = Object.values($store.players || {})
