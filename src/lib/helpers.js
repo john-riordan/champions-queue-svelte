@@ -104,7 +104,7 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 
 	// Current split/season
 	const currSeasonId = 2;
-	const currSplitId = 1;
+	const currSplitId = 2;
 
 	const currSeason = leaderboard.leaderboards.find(
 		(s) => s.seasonId === currSeasonId && s.split?.splitId === currSplitId
