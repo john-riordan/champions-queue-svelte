@@ -104,8 +104,6 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 1.25rem;
-		border-top: 2px solid var(--app-bg);
-		border-bottom: 2px solid var(--app-bg);
 		background: var(--c2);
 		transition: background var(--transition);
 		cursor: pointer;

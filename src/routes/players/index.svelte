@@ -193,9 +193,6 @@
 			}
 
 			a {
-				border-top: 2px solid var(--app-bg);
-				border-bottom: 2px solid var(--app-bg);
-
 				&:hover {
 					background: var(--c3);
 				}
