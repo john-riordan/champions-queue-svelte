@@ -216,11 +216,11 @@ div[slot='controls'] {
 }
 
 .statblocks {
-	gap: 3rem;
+	gap: 3.5rem;
 }
 .statblock .stat {
-	font-size: 1.75rem;
-	line-height: 1.25;
+	font-size: 2.25rem;
+	line-height: 1;
 }
 .statblock .stat span {
 	color: var(--c8);
@@ -231,7 +231,7 @@ div[slot='controls'] {
 .statblock .stat-name {
 	display: block;
 	font-weight: 900;
-	font-size: 0.75rem;
+	font-size: 1rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	color: var(--c7);
@@ -304,6 +304,12 @@ div[slot='controls'] {
 @media screen and (max-width: 600px) {
 	.controls {
 		display: none;
+	}
+}
+
+@media (min-width: 1920px) {
+	.statblocks {
+		column-gap: 4.5rem;
 	}
 }
 

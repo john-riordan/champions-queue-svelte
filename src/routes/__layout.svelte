@@ -287,7 +287,7 @@
 	.content-container {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
+		gap: 1.5rem;
 		min-height: 100vh;
 	}
 

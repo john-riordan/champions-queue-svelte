@@ -284,7 +284,6 @@
 	.champ-stats {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
 
 		ol {
 			display: flex;
