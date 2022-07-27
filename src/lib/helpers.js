@@ -10,9 +10,9 @@ export async function fetchData(fullSeason = false) {
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
 	const matches = (data.matches || []).filter((match) => {
-		// Filter matches for season 2, split 1
+		// Filter matches for season 2, split 3
 		const matchStart = new Date(match.matchStart);
-		const splitStart = new Date(SPLITS_STARTS.season2.split2);
+		const splitStart = new Date(SPLITS_STARTS.season2.split3);
 
 		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});
@@ -104,7 +104,7 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 
 	// Current split/season
 	const currSeasonId = 2;
-	const currSplitId = 2;
+	const currSplitId = 3;
 
 	const currSeason = leaderboard.leaderboards.find(
 		(s) => s.seasonId === currSeasonId && s.split?.splitId === currSplitId
