@@ -21,17 +21,17 @@
 		console.log('PWA was installed');
 	}
 
-	// async function installPWA() {
-	// 	if (!deferredPrompt) return;
-	// 	// Hide the app provided install promotion
-	// 	// Show the install prompt
-	// 	deferredPrompt.prompt();
-	// 	// Wait for the user to respond to the prompt
-	// 	const { outcome } = await deferredPrompt.userChoice;
-	// 	gtag('event', 'pwa_install', { outcome: outcome });
-	// 	// We've used the prompt, and can't use it again, throw it away
-	// 	deferredPrompt = null;
-	// }
+	async function installPWA() {
+		if (!deferredPrompt) return;
+		// Hide the app provided install promotion
+		// Show the install prompt
+		deferredPrompt.prompt();
+		// Wait for the user to respond to the prompt
+		const { outcome } = await deferredPrompt.userChoice;
+		// gtag('event', 'pwa_install', { outcome: outcome });
+		// We've used the prompt, and can't use it again, throw it away
+		deferredPrompt = null;
+	}
 </script>
 
 <svelte:window on:beforeinstallprompt={installPrompt} on:appinstalled={appinstalled} />
