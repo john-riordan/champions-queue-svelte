@@ -28,7 +28,7 @@
 		deferredPrompt.prompt();
 		// Wait for the user to respond to the prompt
 		const { outcome } = await deferredPrompt.userChoice;
-		// gtag('event', 'pwa_install', { outcome: outcome });
+		gtag('event', 'pwa_install', { outcome: outcome });
 		// We've used the prompt, and can't use it again, throw it away
 		deferredPrompt = null;
 	}

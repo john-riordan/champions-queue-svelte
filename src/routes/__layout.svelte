@@ -28,7 +28,7 @@
 
 	onMount(async () => {
 		const displayMode = getPWADisplayMode();
-		// gtag('event', 'display_mode', { mode: displayMode });
+		gtag('event', 'display_mode', { mode: displayMode });
 
 		const mountedData = await fetchData();
 		store.set(mountedData);
