@@ -9,7 +9,7 @@
 	import RelativeTime from '@yaireo/relative-time';
 
 	import { store, pageBackground } from '$lib/stores';
-	import { TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';

@@ -6,7 +6,7 @@
 	import RelativeTime from '@yaireo/relative-time';
 
 	import { store } from '$lib/stores';
-	import { TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';

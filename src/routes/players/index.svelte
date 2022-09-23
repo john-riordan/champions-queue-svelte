@@ -14,7 +14,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
 	import { winrateColor } from '$lib/helpers';
 
 	export let title;
