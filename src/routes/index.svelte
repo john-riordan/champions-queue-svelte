@@ -80,16 +80,7 @@
 	<div class="blocks">
 		<div class="block" class:loading>
 			<h2>
-				<a href="/players">
-					Highest Rated Players
-					<svg width="16" height="16" viewBox="0 0 48 48" class="chevron">
-						<path
-							fill-rule="evenodd"
-							clip-rule="evenodd"
-							d="M16.3631 44L11 38.3L27.0114 23.5091L11.1275 9.9L16.2629 4L36.9454 21.7727C36.9454 22.8727 37 23.5909 37 24.8636L16.3631 44Z"
-						/>
-					</svg>
-				</a>
+				<a href="/players">Highest Rated Players</a>
 			</h2>
 			<ol>
 				{#each topRatedPlayers as player}
@@ -104,16 +95,7 @@
 		</div>
 		<div class="block" class:loading>
 			<h2>
-				<a href="/champions">
-					Most Played Champions
-					<svg width="16" height="16" viewBox="0 0 48 48" class="chevron">
-						<path
-							fill-rule="evenodd"
-							clip-rule="evenodd"
-							d="M16.3631 44L11 38.3L27.0114 23.5091L11.1275 9.9L16.2629 4L36.9454 21.7727C36.9454 22.8727 37 23.5909 37 24.8636L16.3631 44Z"
-						/>
-					</svg>
-				</a>
+				<a href="/champions">Most Played Champions</a>
 			</h2>
 			<ol>
 				{#each mostPopularChampions as champion}
@@ -128,16 +110,7 @@
 		</div>
 		<div class="block" class:loading>
 			<h2>
-				<a href="/teams">
-					Most Active Teams
-					<svg width="16" height="16" viewBox="0 0 48 48" class="chevron">
-						<path
-							fill-rule="evenodd"
-							clip-rule="evenodd"
-							d="M16.3631 44L11 38.3L27.0114 23.5091L11.1275 9.9L16.2629 4L36.9454 21.7727C36.9454 22.8727 37 23.5909 37 24.8636L16.3631 44Z"
-						/>
-					</svg>
-				</a>
+				<a href="/teams">Most Active Teams</a>
 			</h2>
 			<ol>
 				{#each mostActiveTeams as team}
@@ -245,7 +218,7 @@
 		}
 
 		h2 {
-			font-size: 1.25rem;
+			font-size: 2rem;
 			line-height: 1;
 			margin-bottom: 1.25rem;
 
@@ -287,16 +260,8 @@
 				display: flex;
 				align-items: center;
 				gap: 0.75rem;
-				padding: 0.5rem;
-				padding-right: 2rem;
 				font-weight: 600;
 				font-size: 1.125rem;
-				background: var(--c2);
-				transition: background var(--transition);
-
-				&:hover {
-					background: var(--c3);
-				}
 			}
 		}
 	}

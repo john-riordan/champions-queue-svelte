@@ -13,11 +13,9 @@
 <style>
 	.player-img {
 		position: relative;
-		background: var(--c1);
 		height: calc(var(--size) * 1px);
 		max-height: calc(var(--size) * 1px);
 		aspect-ratio: 1;
-		border-radius: 50%;
 		overflow: hidden;
 	}
 	.player-img img {

@@ -16,9 +16,9 @@
 	--red-h: 346deg;
 	--red-s: 100%;
 	--red-l: 60%;
-	--blue-h: 210deg;
-	--blue-s: 100%;
-	--blue-l: 60%;
+	--blue-h: 232deg;
+	--blue-s: 77%;
+	--blue-l: 52%;
 
 	--red-hsl: var(--red-h) var(--red-s) var(--red-l);
 	--blue-hsl: var(--blue-h) var(--blue-s) var(--blue-l);
@@ -29,13 +29,13 @@
 	--green: hsl(var(--green-hsl));
 	--yellow-hsl: 45deg 70% 50%;
 	--yellow: hsl(var(--yellow-hsl));
-	--logo-hsl: 243deg 96% 68%;
+	--logo-hsl: 232deg 77% 52%;
 	--logo: hsl(var(--logo-hsl));
 
 	--nav-width: 17rem;
 	--gap: 1rem;
 	--btn-height: 2.75rem;
-	--nav-indent: 2rem;
+	--nav-indent: 4rem;
 	--content-padding: 3rem;
 	--transition: 0.15s ease;
 }
@@ -89,7 +89,12 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+.lg {
+	font-family: 'League Gothic', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	/* letter-spacing: 0.1rem; */
 	margin: 0;
 }
 
@@ -219,22 +224,20 @@ div[slot='controls'] {
 	gap: 3.5rem;
 }
 .statblock .stat {
-	font-size: 2.25rem;
+	font-size: 4.25rem;
 	line-height: 1;
 }
 .statblock .stat span {
 	color: var(--c8);
 	font-weight: 400;
-	font-size: 1rem;
-	margin-left: 1rem;
+	font-size: 0.375em;
 }
 .statblock .stat-name {
 	display: block;
-	font-weight: 900;
 	font-size: 1rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	color: var(--c7);
+	color: var(--c10);
 }
 
 .hide {

@@ -18,7 +18,7 @@
 <header class="header">
 	<div class="info">
 		{#if player}
-			<div class="image-container round">
+			<div class="image-container">
 				<PlayerImg name={player} />
 			</div>
 		{/if}
@@ -57,11 +57,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 7rem;
+		padding-inline: 2rem;
+		width: 100%;
+		background-color: var(--logo);
+		background: url('/flag-blue.webp') no-repeat;
+		background-size: 100% auto;
+		background-position: center 50%;
 
 		:global(.champ-img),
 		:global(.player-img) {
-			--size: 68;
+			--size: 200;
 
 			@media screen and (max-width: 1000px) {
 				--size: 52;
@@ -101,6 +106,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
+		width: 100%;
 
 		@media screen and (max-width: 1000px) {
 			gap: 0.75rem;
@@ -112,16 +118,16 @@
 	.title-text {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 	}
 	.header h1 {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		font-size: 2.75rem;
-		font-weight: 900;
+		font-size: 6rem;
 		line-height: 1;
 		text-transform: uppercase;
-		letter-spacing: 4px;
+		letter-spacing: 0.2rem;
 
 		@media screen and (max-width: 1200px) {
 			font-size: 2rem;
@@ -131,15 +137,6 @@
 			align-items: flex-start;
 			gap: 0.25rem;
 			font-size: 1.75rem;
-		}
-	}
-	.image-container {
-		margin-left: 4px;
-		box-shadow: 0 0 0 2px var(--app-bg), 0 0 0 4px var(--c4);
-
-		&.round {
-			margin-left: 0;
-			border-radius: 50%;
 		}
 	}
 	.split-details {
