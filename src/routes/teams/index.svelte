@@ -6,7 +6,7 @@
 
 <script>
 	import { store } from '$lib/stores';
-	import { TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS_WORLDS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import Select from '$lib/components/Select.svelte';
@@ -18,7 +18,7 @@
 	$: players = $store.players || {};
 	$: teams = Object.entries($store.teams || {})
 		.map(([tag, team]) => {
-			const teamInfo = TEAMS[tag];
+			const teamInfo = TEAMS_WORLDS[tag];
 			const teamMainRoster = (teamInfo.starters || []).reduce((acc, curr) => {
 				acc[curr] = true;
 				return acc;

@@ -1,4 +1,9 @@
-import { SPLITS_STARTS, correctChampionDisplayName, INDEX_TO_ROLE, TEAMS } from './constants';
+import {
+	SPLITS_STARTS,
+	correctChampionDisplayName,
+	INDEX_TO_ROLE,
+	TEAMS_WORLDS
+} from './constants';
 
 export async function fetchData(fullSeason = false) {
 	const res = await fetch(`/api?fullSeason=${fullSeason}`);
@@ -75,7 +80,7 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 
 				// Team Stats
 				const teamTag = player.name.split(' ')[0];
-				const playerTeam = TEAMS[teamTag]?.tag;
+				const playerTeam = TEAMS_WORLDS[teamTag]?.tag;
 
 				if (playerTeam) {
 					if (!acc.teams[playerTeam]) acc.teams[playerTeam] = {};

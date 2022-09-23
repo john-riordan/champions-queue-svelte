@@ -8,6 +8,9 @@ export const SPLITS_STARTS = {
 		split1: '2022-05-31T06:21:46.590000Z',
 		split2: '2022-06-28T06:21:46.590000Z',
 		split3: '2022-07-26T06:21:46.590000Z'
+	},
+	worlds: {
+		split1: '2022-09-24T06:21:46.590000Z'
 	}
 };
 
@@ -137,6 +140,107 @@ export const TEAMS = {
 		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png',
 		hsl: '192deg 100% 44%',
 		starters: ['CLG Dhokla', 'CLG Contractz', 'CLG Palafox', 'CLG Luger', 'CLG Poome']
+	}
+};
+
+export const TEAMS_WORLDS = {
+	C9: {
+		name: 'Cloud 9',
+		tag: 'C9',
+		logo: 'F1631820065346_cloud9-2021-worlds.png',
+		hsl: '196deg 100% 39%',
+		starters: ['C9 Fudge', 'C9 Blaber', 'C9 Jensen', 'C9 Berserker', 'C9 Zven']
+	},
+	100: {
+		name: '100 Thieves',
+		tag: '100',
+		logo: 'F1631819887423_100t-2021-worlds.png',
+		hsl: '0deg 73% 53%',
+		starters: ['100 Ssumday', '100 Closer', '100 Abbedagge', '100 FBI', '100 huhi']
+	},
+	EG: {
+		name: 'Evil Geniuses',
+		tag: 'EG',
+		logo: 'F1592590374862_EvilGeniusesEG-01-FullonDark.png',
+		hsl: '0deg 0% 40%',
+		starters: ['EG Impact', 'EG Inspired', 'EG jojopyun', 'EG Kaori', 'EG Vulcan']
+	},
+	DFM: {
+		name: 'DetonatioN FocusMe',
+		tag: 'DFM',
+		logo: 'F1631820630246_dfm-2021-worlds.png',
+		hsl: '195deg 100% 47%',
+		starters: ['DFM Evi', 'DFM Steal', 'DFM Yaharong', 'DFM Yutapon', 'DFM Harp']
+	},
+	LLL: {
+		name: 'LOUD',
+		tag: 'LLL',
+		logo: 'FLogo-LOUD-Esports_Original.png',
+		hsl: '116deg 100% 50%',
+		starters: ['LLL Makes', 'LLL enel1', 'LLL Aithusa', 'LLL Brance', 'LLL Ceos']
+	},
+	BYG: {
+		name: 'Mega Bank Beyond Gaming',
+		tag: 'BYG',
+		logo: 'F1644501610149_BYG_White.png',
+		hsl: '13deg 81% 51%',
+		starters: ['BYG Liang', 'BYG Husha', 'BYG Minji', 'BYG Wako', 'BYG Kino']
+	},
+	FNC: {
+		name: 'Fnatic',
+		tag: 'FNC',
+		logo: 'F1631819669150_fnc-2021-worlds.png',
+		hsl: '21deg 100% 50%',
+		starters: ['FNC Wunder', 'FNC Razork', 'FNC Humanoid', 'FNC Upset', 'FNC Hylissang']
+	},
+	CHF: {
+		name: 'The Chiefs',
+		tag: 'CHF',
+		logo: 'F1642465931119_ChiefsLogo1000x1000.png',
+		hsl: '205deg 66% 54%',
+		starters: ['CHF Topoon', 'CHF Babip', 'CHF Tally', 'CHF Raes', 'CHF Dragku']
+	},
+	IW: {
+		name: 'DenizBank İstanbul Wildcats',
+		tag: 'IW',
+		logo: 'F1654773501062_DenizBankIstanbulWildcatsWhite1.png',
+		hsl: '45deg 55% 49%',
+		starters: ['IW StarScreen', 'IW Ferret', 'IW Serin', 'IW HolyPhoenix', 'IW Farfetch']
+	},
+	MAD: {
+		name: 'MAD Lions',
+		tag: 'MAD',
+		logo: 'F1631819614211_mad-2021-worlds.png',
+		hsl: '44deg 65% 62%',
+		starters: ['MAD Armut', 'MAD Elyoya', 'MAD Nisqy', 'MAD UNF0RGIVEN', 'MAD Kaiser']
+	},
+	SGB: {
+		name: 'SAIGON BUFFALO ESPORTS',
+		tag: 'SGB',
+		logo: 'F1636524131703_900px-Saigon_Buffalo.png',
+		hsl: '359deg 87% 48%',
+		starters: ['SGB Hasmed', 'SGB BeanJ', 'SGB Froggy', 'SGB BigKoro', 'SGB Taki']
+	},
+	RNG: {
+		name: 'Royal Never Give Up',
+		tag: 'RNG',
+		logo: 'F1631819360134_rng-2021-worlds.png',
+		hsl: '30deg 34% 57%',
+		starters: ['RNG Bin', 'RNG Wei', 'RNG Xiaohu', 'RNG GALA', 'RNG Ming']
+	},
+	DRX: {
+		name: 'DRX',
+		tag: 'DRX',
+		logo: 'F1592589284897_DRXDRX-01-FullonDark.png',
+		hsl: '221deg 100% 68%',
+		starters: ['DRX Kingen', 'DRX Pyosik', 'DRX Zeka', 'DRX Deft', 'DRX BeryL']
+	},
+	ISG: {
+		name: 'Isurus',
+		tag: 'ISG',
+		logo: 'FISG.png',
+		hsl: '204deg 95% 49%',
+		starters: ['ISG ADD', 'ISG Grell', 'ISG seiya', 'ISG Gavotto', 'ISG Jelly']
 	}
 };
 
@@ -3019,7 +3123,8 @@ export const PLAYERS = {
 				link: 'https://twitter.com/Mialol98'
 			}
 		],
-		image: "https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1643396680140_Mia-1.png"
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1643396680140_Mia-1.png'
 	},
 	'INF Jauny': {
 		summonerName: 'Jauny',
