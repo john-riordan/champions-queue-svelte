@@ -179,9 +179,11 @@
 		display: flex;
 		flex-direction: column;
 		margin-top: -10rem;
-		padding: 4rem 20rem;
+		padding: 4rem 0;
+		width: 100%;
+		max-width: 70rem;
 		background: url('/flag-blue.webp') no-repeat;
-		background-size: 100% auto;
+		background-size: 115% auto;
 		background-position: center 50%;
 		overflow: hidden;
 
@@ -193,6 +195,16 @@
 			font-size: 8rem;
 			text-align: center;
 			line-height: 1;
+
+			@media screen and (max-width: 1400px) {
+				font-size: 6.5rem;
+			}
+			@media screen and (max-width: 1000px) {
+				font-size: 5.5rem;
+			}
+			@media screen and (max-width: 600px) {
+				font-size: 4rem;
+			}
 		}
 
 		img {

@@ -17,13 +17,16 @@
 	--red-s: 100%;
 	--red-l: 60%;
 	--blue-h: 232deg;
-	--blue-s: 77%;
-	--blue-l: 52%;
+	--blue-s: 95%;
+	--blue-l: 60%;
+	--blue-light-l: 70%;
 
 	--red-hsl: var(--red-h) var(--red-s) var(--red-l);
 	--blue-hsl: var(--blue-h) var(--blue-s) var(--blue-l);
+	--blue-light-hsl: var(--blue-h) var(--blue-s) var(--blue-light-l);
 	--red: hsl(var(--red-hsl));
 	--blue: hsl(var(--blue-hsl));
+	--blue-light: hsl(var(--blue-light-hsl));
 
 	--green-hsl: 145deg 70% 45%;
 	--green: hsl(var(--green-hsl));
@@ -149,6 +152,7 @@ input[type='text'],
 }
 button svg {
 	width: 1em;
+	height: auto;
 }
 button,
 .boolean-btn {
@@ -269,7 +273,6 @@ div[slot='controls'] {
 	:root {
 		--nav-width: 15rem;
 		--btn-height: 2.25rem;
-		--nav-indent: 1.5rem;
 	}
 	button,
 	input[type='text'],
@@ -279,16 +282,8 @@ div[slot='controls'] {
 	}
 }
 
-@media screen and (max-width: 1000px) {
-	:root {
-		--nav-width: 6rem;
-	}
-}
-
 @media screen and (max-width: 800px) {
 	:root {
-		--nav-width: 4rem;
-		--nav-indent: 1rem;
 		--content-padding: 0.5rem;
 	}
 	.controls,
@@ -299,7 +294,7 @@ div[slot='controls'] {
 		row-gap: 1rem;
 	}
 	.statblock .stat {
-		font-size: 1.25rem;
+		font-size: 3rem;
 	}
 }
 

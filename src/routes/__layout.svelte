@@ -8,13 +8,19 @@
 	import Champions from '$lib/components/icons/Champions.svelte';
 	import Matches from '$lib/components/icons/Matches.svelte';
 	import Medal from '$lib/components/icons/Medal.svelte';
-	import Search from '$lib/components/icons/Search.svelte';
+	import Hamburger from '$lib/components/icons/Hamburger.svelte';
 	import Refresh from '$lib/components/icons/Refresh.svelte';
 	import MatchModal from '$lib/components/MatchModal.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
 	import FavoritesList from '$lib/components/FavoritesList.svelte';
 	import InstallBtn from '$lib/components/InstallBtn.svelte';
 	import '../app.css';
+
+	let menuOpen = false;
+
+	function toggleMenu() {
+		menuOpen = !menuOpen;
+	}
 
 	function getPWADisplayMode() {
 		const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
@@ -63,7 +69,8 @@
 {#if $pageBackground}
 	<img src={$pageBackground} class="background" loading="lazy" alt="background" />
 {/if}
-<div class="container">
+<div class="container" class:menuOpen>
+	<button class="mobile-menu-btn" on:click={toggleMenu}><Hamburger /></button>
 	<div class="nav">
 		<div class="top">
 			<div class="logo">
@@ -151,25 +158,47 @@
 			background: var(--c3);
 			border-color: var(--c4);
 		}
+
+		@media screen and (max-width: 1000px) {
+			position: fixed;
+			z-index: 5;
+			background: var(--c1);
+			transform: translateX(-20%);
+			box-shadow: 0 0 90px var(--app-bg);
+			opacity: 0;
+			visibility: hidden;
+			transition: all var(--transition);
+
+			.menuOpen & {
+				transform: translateX(0%);
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	.mobile-menu-btn {
+		display: none;
+		position: fixed;
+		bottom: 2rem;
+		right: 2rem;
+		height: auto;
+		padding: 0.5rem 0.75rem;
+		box-shadow: 0 0 20px 5px var(--app-bg);
+		z-index: 5;
+
+		:global(svg) {
+			width: 2rem;
+		}
+
+		@media screen and (max-width: 1000px) {
+			display: block;
+		}
 	}
 
 	.logo {
 		position: relative;
 		padding: 2rem;
-
-		@media screen and (max-width: 1000px) {
-			padding: 2rem 2rem 2rem 1rem;
-		}
-		@media screen and (max-width: 800px) {
-			padding: 2rem 1rem 1rem 0.5rem;
-		}
-		@media screen and (max-width: 600px) {
-			padding-top: 1rem;
-		}
-
-		img {
-			/* aspect-ratio: 124 / 119; */
-		}
 
 		svg {
 			width: 8rem;
@@ -203,11 +232,11 @@
 			transition: opacity var(--transition), transform var(--transition);
 		}
 
-		.text {
+		/* .text {
 			@media screen and (max-width: 1000px) {
 				display: none;
 			}
-		}
+		} */
 
 		&:hover {
 			> * {
@@ -267,6 +296,17 @@
 		padding-right: var(--content-padding);
 		padding-top: var(--content-padding);
 		overflow: hidden;
+
+		@media screen and (max-width: 1000px) {
+			padding-left: var(--content-padding);
+			transition: opacity var(--transition);
+
+			.menuOpen & {
+				opacity: 0.35;
+				pointer-events: none;
+				filter: saturate(0);
+			}
+		}
 	}
 	.content-container {
 		display: flex;
@@ -296,6 +336,10 @@
 			width: 3rem;
 			height: 3rem;
 			animation: loading-spin 0.5s ease-in forwards infinite;
+		}
+
+		@media screen and (max-width: 1000px) {
+			inset: 0;
 		}
 	}
 	.background {

@@ -41,7 +41,7 @@
 
 			{#if $store.splitTitle}
 				<div class="split-details">
-					<span>Worlds 2022 Champions Queue</span>
+					<span>Worlds 2022</span>
 					<!-- <span class="season">{$store.seasonTitle}</span>
 					<span>{$store.splitTitle}</span>
 					{#if $store.splitEnd}
@@ -76,11 +76,11 @@
 			--size: 208;
 
 			@media screen and (max-width: 1000px) {
-				--size: 52;
+				--size: 80;
 			}
-			@media screen and (max-width: 600px) {
+			/* @media screen and (max-width: 600px) {
 				--size: 44;
-			}
+			} */
 		}
 
 		:global(.team-img) {
@@ -98,10 +98,6 @@
 			height: 5rem;
 		}
 		@media screen and (max-width: 800px) {
-			height: auto;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 1rem;
 			margin-top: 2rem;
 		}
 		@media screen and (max-width: 600px) {
@@ -116,9 +112,6 @@
 
 		@media screen and (max-width: 1000px) {
 			gap: 0.75rem;
-		}
-		@media screen and (max-width: 800px) {
-			align-items: flex-start;
 		}
 	}
 	.title-text {
@@ -139,12 +132,12 @@
 		letter-spacing: 0.2rem;
 
 		@media screen and (max-width: 1200px) {
-			font-size: 2rem;
+			font-size: 4rem;
 		}
-		@media screen and (max-width: 800px) {
-			flex-direction: column;
+		@media screen and (max-width: 1000px) {
+			/* flex-direction: column;
 			align-items: flex-start;
-			gap: 0.25rem;
+			gap: 0.25rem; */
 			font-size: 1.75rem;
 		}
 	}
