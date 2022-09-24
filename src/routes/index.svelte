@@ -55,6 +55,7 @@
 		/>
 	{/each} -->
 	<div class="top">
+		<img src="/logo-worlds-600.webp" width="600" loading="lazy" alt="Champions Queue Logo" />
 		<!-- <div class="logo">
 			<svg width="93" height="34" viewBox="0 0 93 34" fill="none" class="wordmark">
 				<path
@@ -182,11 +183,26 @@
 		background: url('/flag-blue.webp') no-repeat;
 		background-size: 100% auto;
 		background-position: center 50%;
+		overflow: hidden;
+
+		> * {
+			position: relative;
+		}
 
 		h1 {
 			font-size: 8rem;
 			text-align: center;
 			line-height: 1;
+		}
+
+		img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			opacity: 0.75;
+			mix-blend-mode: overlay;
+			pointer-events: none;
 		}
 
 		@media screen and (max-width: 600px), screen and (max-height: 800px) {
@@ -227,7 +243,7 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		gap: 1.5rem;
+		gap: 3.5rem;
 
 		@media screen and (max-width: 1200px) {
 			gap: 1rem;
@@ -240,7 +256,7 @@
 		h2 {
 			font-size: 2rem;
 			line-height: 1;
-			margin-bottom: 1.25rem;
+			margin-bottom: 0.5rem;
 
 			@media screen and (max-width: 1200px) {
 				font-size: 1rem;
@@ -272,7 +288,7 @@
 			:global(.champ-img),
 			:global(.player-img),
 			:global(.team-img) {
-				--size: 32;
+				--size: 44;
 			}
 		}
 		li {
@@ -282,6 +298,10 @@
 				gap: 0.75rem;
 				font-weight: 600;
 				font-size: 1.125rem;
+
+				&:hover {
+					background: var(--c2);
+				}
 			}
 		}
 	}
