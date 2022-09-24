@@ -15,9 +15,10 @@ export async function fetchData(fullSeason = false) {
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
 	const matches = (data.matches || []).filter((match) => {
-		// Filter matches for season 2, split 3
+		// Filter matches for season WORLDS
 		const matchStart = new Date(match.matchStart);
 		const splitStart = new Date(SPLITS_STARTS.season2.split3);
+		// const splitStart = new Date(SPLITS_STARTS.worlds.split1);
 
 		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});

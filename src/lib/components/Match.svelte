@@ -41,7 +41,7 @@
 			</div>
 			<div class="match-stats">
 				<div class="statline">
-					<span class="stat outcome" class:victory={stats.winner}>{outcome}</span>
+					<span class="stat outcome lg" class:victory={stats.winner}>{outcome}</span>
 					<span class="stat timeago">{dateRelative}</span>
 					<span class="stat patch">{patch}</span>
 				</div>
@@ -103,10 +103,21 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 1.25rem;
-		background: var(--c2);
+		/* padding: 1.25rem; */
+		padding-left: 8px;
+		/* background: var(--c2); */
 		transition: background var(--transition);
 		cursor: pointer;
+
+		border-bottom: 1px solid var(--c3);
+
+		&:first-child {
+			border-top: 1px solid var(--c3);
+		}
+
+		&:hover {
+			background: var(--c2);
+		}
 
 		@media screen and (max-width: 600px) {
 			flex-direction: column;
@@ -119,22 +130,20 @@
 		&::before {
 			content: '';
 			position: absolute;
-			inset: 0 15% 0 0;
-			opacity: 0.075;
-			transition: opacity var(--transition);
-		}
-		&:hover {
-			&::before {
-				opacity: 0.25;
-			}
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 4px;
 		}
 		&.victory::before {
-			background: linear-gradient(to right, var(--blue), transparent);
+			background: var(--blue);
 		}
 		&:not(.victory)::before {
-			background: linear-gradient(to right, var(--red), transparent);
+			background: var(--red);
 		}
 		&.noHighlight {
+			padding: 1rem;
+
 			@media screen and (max-width: 1300px) {
 				flex-direction: column;
 				justify-content: flex-start;
@@ -167,10 +176,10 @@
 		}
 
 		.champ-container {
-			box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--red);
+			/* box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--red); */
 
 			:global(.champ-img) {
-				--size: 56;
+				--size: 80;
 
 				@media screen and (max-width: 1100px) {
 					--size: 36;
@@ -178,7 +187,7 @@
 			}
 		}
 		.champ-container.victory {
-			box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue);
+			/* box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue); */
 		}
 	}
 
@@ -188,13 +197,17 @@
 	}
 	.statline {
 		display: flex;
+		align-items: baseline;
 		gap: 1.5rem;
 	}
 	.stat-prefix {
 		color: var(--c8);
 	}
 	.outcome {
-		font-weight: 700;
+		/* font-weight: 700; */
+		width: 5rem;
+		font-size: 2rem;
+		line-height: 1;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		color: var(--red);
@@ -225,6 +238,7 @@
 	}
 	.stat-player {
 		font-weight: 600;
+		width: 5rem;
 	}
 
 	.outcome.victory {

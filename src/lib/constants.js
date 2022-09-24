@@ -10,7 +10,7 @@ export const SPLITS_STARTS = {
 		split3: '2022-07-26T06:21:46.590000Z'
 	},
 	worlds: {
-		split1: '2022-09-24T06:21:46.590000Z'
+		split1: '2022-09-24T08:00:00.000000Z'
 	}
 };
 

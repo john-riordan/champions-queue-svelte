@@ -287,7 +287,6 @@
 		font-weight: 700;
 		font-size: 0.875rem;
 		text-transform: uppercase;
-		padding-bottom: 1rem;
 		user-select: none;
 
 		> * {

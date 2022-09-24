@@ -90,7 +90,7 @@
 	<title>Teams - NA Champions Queue</title>
 </svelte:head>
 
-<PageHeader {title} />
+<PageHeader {title} center />
 
 <div class="controls">
 	<div class="button-group">
@@ -158,7 +158,7 @@
 							>
 								<span class="player-info">
 									<PlayerImg name={player.name} />
-									<span class="player-name">{player.name}</span>
+									<span class="player-name lg">{player.name}</span>
 								</span>
 								<span class="stat lp">{player.lp}</span>
 								<span class="stat games">{player.games}</span>
@@ -262,8 +262,8 @@
 		opacity: 0.05;
 	}
 	.team-name {
-		font-size: 1.5rem;
-		font-weight: 900;
+		font-size: 2.5rem;
+		line-height: 1;
 
 		@media screen and (max-width: 600px) {
 			width: 10rem;
@@ -341,9 +341,6 @@
 			background: var(--c3);
 		}
 
-		.player-name {
-			font-weight: 900;
-		}
 		.stat {
 			color: var(--c9);
 		}
@@ -374,6 +371,10 @@
 
 		.sort & {
 			margin-left: 2.5rem;
+		}
+
+		&.lg {
+			font-size: 1.5rem;
 		}
 
 		@media screen and (max-width: 600px) {

@@ -11,11 +11,12 @@
 	export let player;
 	export let champion;
 	export let team;
+	export let center = false;
 
 	const relativeTime = new RelativeTime();
 </script>
 
-<header class="header">
+<header class="header" class:center>
 	<div class="info">
 		{#if player}
 			<div class="image-container">
@@ -24,7 +25,7 @@
 		{/if}
 		{#if champion}
 			<div class="image-container">
-				<ChampImg name={champion} />
+				<ChampImg name={champion} type="splash" />
 			</div>
 		{/if}
 		{#if team}
@@ -40,11 +41,12 @@
 
 			{#if $store.splitTitle}
 				<div class="split-details">
-					<span class="season">{$store.seasonTitle}</span>
+					<span>Worlds 2022 Champions Queue</span>
+					<!-- <span class="season">{$store.seasonTitle}</span>
 					<span>{$store.splitTitle}</span>
 					{#if $store.splitEnd}
 						<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
-					{/if}
+					{/if} -->
 				</div>
 			{/if}
 		</div>
@@ -59,14 +61,19 @@
 		justify-content: space-between;
 		padding-inline: 2rem;
 		width: 100%;
+		height: 13rem;
 		background-color: var(--logo);
 		background: url('/flag-blue.webp') no-repeat;
 		background-size: 100% auto;
 		background-position: center 50%;
 
+		&.center {
+			justify-content: center;
+		}
+
 		:global(.champ-img),
 		:global(.player-img) {
-			--size: 200;
+			--size: 208;
 
 			@media screen and (max-width: 1000px) {
 				--size: 52;
@@ -105,8 +112,7 @@
 	.info {
 		display: flex;
 		align-items: center;
-		gap: 1.5rem;
-		width: 100%;
+		gap: 3.5rem;
 
 		@media screen and (max-width: 1000px) {
 			gap: 0.75rem;
@@ -118,7 +124,10 @@
 	.title-text {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+
+		.center & {
+			align-items: center;
+		}
 	}
 	.header h1 {
 		display: flex;
@@ -142,9 +151,9 @@
 	.split-details {
 		display: flex;
 		gap: 1rem;
-		color: var(--c8);
-		font-size: 1.125rem;
-		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 8px;
+		color: var(--c10);
 
 		@media screen and (max-width: 800px) {
 			font-size: 0.875rem;

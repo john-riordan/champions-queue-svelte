@@ -22,7 +22,7 @@
 	<title>Matches- ChampionsQueue.gg</title>
 </svelte:head>
 
-<PageHeader {title}>
+<PageHeader {title} center>
 	<!-- <div slot="controls">
 		<RefreshBtn />
 	</div> -->

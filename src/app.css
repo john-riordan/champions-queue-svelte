@@ -1,9 +1,9 @@
 :root {
-	--h: 205deg;
-	--s: 15%;
-	--c1: hsl(var(--h) var(--s) 5%);
-	--c2: hsl(var(--h) var(--s) 8%);
-	--c3: hsl(var(--h) var(--s) 12%);
+	--h: 0deg;
+	--s: 0%;
+	--c1: hsl(var(--h) var(--s) 9%);
+	--c2: hsl(var(--h) var(--s) 11%);
+	--c3: hsl(var(--h) var(--s) 14%);
 	--c4: hsl(var(--h) var(--s) 20%);
 	--c5: hsl(var(--h) var(--s) 25%);
 	--c6: hsl(var(--h) var(--s) 35%);
@@ -35,7 +35,7 @@
 	--nav-width: 17rem;
 	--gap: 1rem;
 	--btn-height: 2.75rem;
-	--nav-indent: 4rem;
+	--nav-indent: 3rem;
 	--content-padding: 3rem;
 	--transition: 0.15s ease;
 }
@@ -257,7 +257,6 @@ div[slot='controls'] {
 .list {
 	display: flex;
 	flex-direction: column;
-	gap: 0.25rem;
 }
 
 @media screen and (max-width: 1400px) {

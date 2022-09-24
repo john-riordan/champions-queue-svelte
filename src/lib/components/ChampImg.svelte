@@ -4,22 +4,21 @@
 
 	export let name;
 	export let size = 40;
+	export let type = 'square';
 
 	$: patch = $store.currentPatch || 12.5;
 
 	// Fix the buggy naming of fiddle
 	$: fixedName = correctChampionImage(name);
+	$: image =
+		type === 'splash'
+			? `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${fixedName}_0.jpg`
+			: `https://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`;
 </script>
 
-<div class="champ-img">
+<div class="champ-img" class:splash={type === 'splash'}>
 	{#if fixedName}
-		<img
-			width={size}
-			height={size}
-			loading="lazy"
-			alt={name}
-			src={`https://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`}
-		/>
+		<img width={size} height={size} loading="lazy" alt={name} src={image} />
 	{/if}
 </div>
 
@@ -38,5 +37,10 @@
 		display: block;
 		width: 100%;
 		transform: scale(1.2) translate3d(0, 0, 0);
+	}
+
+	.champ-img.splash img {
+		aspect-ratio: 308 / 560;
+		transform: scale(1.2) translate3d(0px, 4%, 0);
 	}
 </style>

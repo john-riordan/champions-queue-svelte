@@ -68,7 +68,7 @@
 		<div class="top">
 			<div class="logo">
 				<a href="/">
-					<img src="/logo-worlds.webp" width="124" alt="Champions Queue Logo" />
+					<img src="/logo-worlds.webp" width="150" alt="Champions Queue Logo" />
 					<!-- <svg
 						width="93"
 						height="34"
@@ -155,8 +155,7 @@
 
 	.logo {
 		position: relative;
-		padding: 3em;
-		padding-bottom: 2rem;
+		padding: 2rem;
 
 		@media screen and (max-width: 1000px) {
 			padding: 2rem 2rem 2rem 1rem;
@@ -169,7 +168,7 @@
 		}
 
 		img {
-			aspect-ratio: 124 / 119;
+			/* aspect-ratio: 124 / 119; */
 		}
 
 		svg {
@@ -239,11 +238,10 @@
 			}
 
 			&.active {
-				box-shadow: inset 0.25rem 0 0 0 var(--logo);
+				box-shadow: inset 0.5rem 0 0 0 var(--logo);
 
 				> div {
 					opacity: 1;
-					transform: translateX(5%);
 				}
 
 				&::before {

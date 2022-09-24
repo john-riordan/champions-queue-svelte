@@ -82,7 +82,7 @@
 	<input
 		class="input"
 		type="text"
-		placeholder="Search for a Player, Champion, or LCS Team"
+		placeholder="Search for a Player, Champion, or Team Name"
 		bind:this={inputElem}
 		bind:value={searchText}
 	/>
