@@ -268,7 +268,7 @@
 	.nameSort {
 		justify-content: flex-start;
 		width: 14rem;
-		margin-left: 5.5rem;
+		margin-left: 6rem;
 
 		@media screen and (max-width: 1200px) {
 			width: 6rem;

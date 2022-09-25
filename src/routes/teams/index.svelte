@@ -92,7 +92,7 @@
 
 <PageHeader {title} center />
 
-<div class="controls">
+<!-- <div class="controls">
 	<div class="button-group">
 		<button class:active={selectedPlayers === 'all'} on:click={() => (selectedPlayers = 'all')}>
 			All Players
@@ -114,7 +114,7 @@
 		options={teamSortOptions}
 		on:select={setSort}
 	/>
-</div>
+</div> -->
 
 <ol class="teams-list">
 	{#each teams as team}
