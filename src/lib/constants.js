@@ -241,6 +241,76 @@ export const TEAMS_WORLDS = {
 		logo: 'FISG.png',
 		hsl: '204deg 95% 49%',
 		starters: ['ISG ADD', 'ISG Grell', 'ISG seiya', 'ISG Gavotto', 'ISG Jelly']
+	},
+	T1: {
+		name: 'T1',
+		tag: 'T1',
+		logo: 'F1631819523085_t1-2021-worlds.png',
+		hsl: '349deg 100% 45%',
+		starters: ['T1 Zeus', 'T1 Oner', 'T1 Faker', 'T1 Gumayusi', 'T1 Keria']
+	},
+	EDG: {
+		name: 'EDward Gaming',
+		tag: 'EDG',
+		logo: 'F1631819297476_edg-2021-worlds.png',
+		hsl: '0deg 0% 98%',
+		starters: ['EDG Flandre', 'EDG JieJie', 'EDG Scout', 'EDG Viper', 'EDG Meiko']
+	},
+	DWG: {
+		name: 'DWG KIA',
+		tag: 'DWG',
+		logo: 'F1631819456274_dwg-kia-2021-worlds.png',
+		hsl: '176deg 48% 58%',
+		starters: ['DWG Nuguri', 'DWG Canyon', 'DWG ShowMaker', 'DWG deokdam', 'DWG Kellin']
+	},
+	G2: {
+		name: 'G2 Esports',
+		tag: 'G2',
+		logo: 'FG2-FullonDark.png',
+		hsl: '8deg 86% 54%',
+		starters: ['G2 BrokenBlade', 'G2 Jankos', 'G2 caPs', 'G2 Flakked', 'G2 Targamas']
+	},
+	JDG: {
+		name: 'JD Gaming',
+		tag: 'JDG',
+		logo: 'F1627457924722_29.png',
+		hsl: '219deg 80% 45%',
+		starters: ['JDG 369', 'JDG Kanavi', 'JDG Yagao', 'JDG Hope', 'JDG Missing']
+	},
+	RGE: {
+		name: 'Rogue',
+		tag: 'RGE',
+		logo: 'F1631819715136_rge-2021-worlds.png',
+		hsl: '198deg 100% 50%',
+		starters: ['RGE Odoamne', 'RGE Malrang', 'RGE Larssen', 'RGE Comp', 'RGE Trymbi']
+	},
+	GAM: {
+		name: 'GAM Esports',
+		tag: 'GAM',
+		logo: 'F1643263093448_GAMyellow.png',
+		hsl: '44deg 99% 53%',
+		starters: ['GAM Kiaya', 'GAM Levi', 'GAM Kati', 'GAM Sty1e', 'GAM Bie']
+	},
+	TES: {
+		name: 'Top Esports',
+		tag: 'TES',
+		logo: 'F1592592064571_TopEsportsTES-01-FullonDark.png',
+		hsl: '7deg 100% 57%',
+		starters: ['TES Wayward', 'TES Tian', 'TES knight', 'TES JackeyLove', 'TES Mark']
+	},
+	GEN: {
+		name: 'Gen.G',
+		tag: 'GEN',
+		logo: 'F1655210113163_GenG_logo_200407-05.png',
+		hsl: '45deg 57% 43%',
+		starters: ['GEN Doran', 'GEN Peanut', 'GEN Chovy', 'GEN Ruler', 'GEN Lehends']
+	},
+	CFO: {
+		name: 'CTBC Flying Oyster',
+		tag: 'CFO',
+		logo: 'F1656307849320_CFO_Logo.png',
+		hsl: '49deg 100% 50%',
+		starters: ['CFO Rest', 'CFO Gemini', 'CFO Mission', 'CFO Atlen', 'CFO Koala']
 	}
 };
 
