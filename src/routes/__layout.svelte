@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
+	import { page, navigating } from '$app/stores';
 
 	import { store, searchModal, pageBackground } from '$lib/stores';
 	import { fetchData } from '$lib/helpers';
@@ -20,6 +20,10 @@
 
 	function toggleMenu() {
 		menuOpen = !menuOpen;
+	}
+
+	$: if ($navigating) {
+		menuOpen = false;
 	}
 
 	function getPWADisplayMode() {
