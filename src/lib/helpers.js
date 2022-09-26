@@ -17,8 +17,8 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 	const matches = (data.matches || []).filter((match) => {
 		// Filter matches for season WORLDS
 		const matchStart = new Date(match.matchStart);
-		const splitStart = new Date(SPLITS_STARTS.season2.split3);
-		// const splitStart = new Date(SPLITS_STARTS.worlds.split1);
+		// const splitStart = new Date(SPLITS_STARTS.season2.split3);
+		const splitStart = new Date(SPLITS_STARTS.worlds.split1);
 
 		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});
@@ -195,6 +195,7 @@ export function winrateColor(winrate) {
 			s = 65;
 			l = 85;
 			a = 0.6;
+			break;
 		default:
 			s = 55;
 			l = 90;
