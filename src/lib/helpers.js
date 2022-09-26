@@ -109,11 +109,11 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 	);
 
 	// Current split/season
-	const currSeasonId = 2;
-	const currSplitId = 3;
+	const currSeasonId = 3;
+	const currSplitId = null;
 
 	const currSeason = leaderboard.leaderboards.find(
-		(s) => s.seasonId === currSeasonId && s.split?.splitId === currSplitId
+		(s) => s.seasonId === currSeasonId && (!s.split?.splitId || s.split?.splitId === currSplitId)
 	);
 
 	return {
