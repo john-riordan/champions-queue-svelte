@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 
 	import { store } from '$lib/stores';
-	import { TEAMS } from '$lib/constants';
+	import { TEAMS_WORLDS as TEAMS } from '$lib/constants';
 	import clickOutside from '$lib/actions/clickOutside';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
@@ -82,7 +82,7 @@
 	<input
 		class="input"
 		type="text"
-		placeholder="Search for a Player, Champion, or LCS Team"
+		placeholder="Search for a Player, Champion, or Team Name"
 		bind:this={inputElem}
 		bind:value={searchText}
 	/>

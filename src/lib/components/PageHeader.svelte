@@ -11,20 +11,21 @@
 	export let player;
 	export let champion;
 	export let team;
+	export let center = false;
 
 	const relativeTime = new RelativeTime();
 </script>
 
-<header class="header">
+<header class="header" class:center>
 	<div class="info">
 		{#if player}
-			<div class="image-container round">
+			<div class="image-container">
 				<PlayerImg name={player} />
 			</div>
 		{/if}
 		{#if champion}
 			<div class="image-container">
-				<ChampImg name={champion} />
+				<ChampImg name={champion} type="splash" />
 			</div>
 		{/if}
 		{#if team}
@@ -40,11 +41,12 @@
 
 			{#if $store.splitTitle}
 				<div class="split-details">
-					<span class="season">{$store.seasonTitle}</span>
+					<span>Worlds 2022</span>
+					<!-- <span class="season">{$store.seasonTitle}</span>
 					<span>{$store.splitTitle}</span>
 					{#if $store.splitEnd}
 						<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
-					{/if}
+					{/if} -->
 				</div>
 			{/if}
 		</div>
@@ -57,18 +59,28 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 7rem;
+		padding-inline: 2rem;
+		width: 100%;
+		height: 13rem;
+		background-color: var(--logo);
+		background: url('/flag-blue.webp') no-repeat;
+		background-size: 100% auto;
+		background-position: center 50%;
+
+		&.center {
+			justify-content: center;
+		}
 
 		:global(.champ-img),
 		:global(.player-img) {
-			--size: 68;
+			--size: 208;
 
 			@media screen and (max-width: 1000px) {
-				--size: 52;
+				--size: 80;
 			}
-			@media screen and (max-width: 600px) {
+			/* @media screen and (max-width: 600px) {
 				--size: 44;
-			}
+			} */
 		}
 
 		:global(.team-img) {
@@ -86,10 +98,6 @@
 			height: 5rem;
 		}
 		@media screen and (max-width: 800px) {
-			height: auto;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 1rem;
 			margin-top: 2rem;
 		}
 		@media screen and (max-width: 600px) {
@@ -100,54 +108,45 @@
 	.info {
 		display: flex;
 		align-items: center;
-		gap: 1.5rem;
+		gap: 3.5rem;
 
 		@media screen and (max-width: 1000px) {
 			gap: 0.75rem;
-		}
-		@media screen and (max-width: 800px) {
-			align-items: flex-start;
 		}
 	}
 	.title-text {
 		display: flex;
 		flex-direction: column;
+
+		.center & {
+			align-items: center;
+		}
 	}
 	.header h1 {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		font-size: 2.75rem;
-		font-weight: 900;
+		font-size: 6rem;
 		line-height: 1;
 		text-transform: uppercase;
-		letter-spacing: 4px;
+		letter-spacing: 0.2rem;
 
 		@media screen and (max-width: 1200px) {
-			font-size: 2rem;
+			font-size: 4rem;
 		}
-		@media screen and (max-width: 800px) {
-			flex-direction: column;
+		@media screen and (max-width: 1000px) {
+			/* flex-direction: column;
 			align-items: flex-start;
-			gap: 0.25rem;
+			gap: 0.25rem; */
 			font-size: 1.75rem;
-		}
-	}
-	.image-container {
-		margin-left: 4px;
-		box-shadow: 0 0 0 2px var(--app-bg), 0 0 0 4px var(--c4);
-
-		&.round {
-			margin-left: 0;
-			border-radius: 50%;
 		}
 	}
 	.split-details {
 		display: flex;
 		gap: 1rem;
-		color: var(--c8);
-		font-size: 1.125rem;
-		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 8px;
+		color: var(--c10);
 
 		@media screen and (max-width: 800px) {
 			font-size: 0.875rem;

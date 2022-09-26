@@ -1,9 +1,9 @@
 :root {
-	--h: 205deg;
-	--s: 15%;
-	--c1: hsl(var(--h) var(--s) 5%);
-	--c2: hsl(var(--h) var(--s) 8%);
-	--c3: hsl(var(--h) var(--s) 12%);
+	--h: 0deg;
+	--s: 0%;
+	--c1: hsl(var(--h) var(--s) 9%);
+	--c2: hsl(var(--h) var(--s) 11%);
+	--c3: hsl(var(--h) var(--s) 14%);
 	--c4: hsl(var(--h) var(--s) 20%);
 	--c5: hsl(var(--h) var(--s) 25%);
 	--c6: hsl(var(--h) var(--s) 35%);
@@ -16,26 +16,29 @@
 	--red-h: 346deg;
 	--red-s: 100%;
 	--red-l: 60%;
-	--blue-h: 210deg;
-	--blue-s: 100%;
+	--blue-h: 232deg;
+	--blue-s: 95%;
 	--blue-l: 60%;
+	--blue-light-l: 70%;
 
 	--red-hsl: var(--red-h) var(--red-s) var(--red-l);
 	--blue-hsl: var(--blue-h) var(--blue-s) var(--blue-l);
+	--blue-light-hsl: var(--blue-h) var(--blue-s) var(--blue-light-l);
 	--red: hsl(var(--red-hsl));
 	--blue: hsl(var(--blue-hsl));
+	--blue-light: hsl(var(--blue-light-hsl));
 
 	--green-hsl: 145deg 70% 45%;
 	--green: hsl(var(--green-hsl));
 	--yellow-hsl: 45deg 70% 50%;
 	--yellow: hsl(var(--yellow-hsl));
-	--logo-hsl: 243deg 96% 68%;
+	--logo-hsl: 232deg 77% 52%;
 	--logo: hsl(var(--logo-hsl));
 
 	--nav-width: 17rem;
 	--gap: 1rem;
 	--btn-height: 2.75rem;
-	--nav-indent: 2rem;
+	--nav-indent: 3rem;
 	--content-padding: 3rem;
 	--transition: 0.15s ease;
 }
@@ -89,7 +92,12 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+.lg {
+	font-family: 'League Gothic', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	/* letter-spacing: 0.1rem; */
 	margin: 0;
 }
 
@@ -144,6 +152,7 @@ input[type='text'],
 }
 button svg {
 	width: 1em;
+	height: auto;
 }
 button,
 .boolean-btn {
@@ -219,22 +228,20 @@ div[slot='controls'] {
 	gap: 3.5rem;
 }
 .statblock .stat {
-	font-size: 2.25rem;
+	font-size: 4.25rem;
 	line-height: 1;
 }
 .statblock .stat span {
 	color: var(--c8);
 	font-weight: 400;
-	font-size: 1rem;
-	margin-left: 1rem;
+	font-size: 0.375em;
 }
 .statblock .stat-name {
 	display: block;
-	font-weight: 900;
 	font-size: 1rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	color: var(--c7);
+	color: var(--c10);
 }
 
 .hide {
@@ -254,7 +261,6 @@ div[slot='controls'] {
 .list {
 	display: flex;
 	flex-direction: column;
-	gap: 0.25rem;
 }
 
 @media screen and (max-width: 1400px) {
@@ -267,7 +273,6 @@ div[slot='controls'] {
 	:root {
 		--nav-width: 15rem;
 		--btn-height: 2.25rem;
-		--nav-indent: 1.5rem;
 	}
 	button,
 	input[type='text'],
@@ -277,16 +282,8 @@ div[slot='controls'] {
 	}
 }
 
-@media screen and (max-width: 1000px) {
-	:root {
-		--nav-width: 6rem;
-	}
-}
-
 @media screen and (max-width: 800px) {
 	:root {
-		--nav-width: 4rem;
-		--nav-indent: 1rem;
 		--content-padding: 0.5rem;
 	}
 	.controls,
@@ -297,7 +294,7 @@ div[slot='controls'] {
 		row-gap: 1rem;
 	}
 	.statblock .stat {
-		font-size: 1.25rem;
+		font-size: 3rem;
 	}
 }
 

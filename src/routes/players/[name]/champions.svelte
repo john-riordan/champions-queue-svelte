@@ -215,7 +215,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 1rem;
 		letter-spacing: 1px;
 		text-align: center;
 		background: var(--c2);
@@ -229,6 +228,11 @@
 	.list {
 		li {
 			font-size: 1.175rem;
+			border-bottom: 1px solid var(--c3);
+
+			&:first-child {
+				border-top: 1px solid var(--c3);
+			}
 
 			@media screen and (max-width: 1200px) {
 				font-size: 1rem;
@@ -254,7 +258,7 @@
 		}
 
 		:global(.champ-img) {
-			--size: 56;
+			--size: 80;
 
 			@media screen and (max-width: 1000px) {
 				--size: 40;
@@ -266,7 +270,7 @@
 
 		.name {
 			width: 12rem;
-			font-weight: 700;
+			font-size: 2rem;
 			text-align: left;
 			white-space: nowrap;
 			overflow: hidden;
@@ -287,7 +291,6 @@
 		font-weight: 700;
 		font-size: 0.875rem;
 		text-transform: uppercase;
-		padding-bottom: 1rem;
 		user-select: none;
 
 		> * {

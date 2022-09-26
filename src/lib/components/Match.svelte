@@ -40,32 +40,26 @@
 				<ChampImg name={stats.championIcon} />
 			</div>
 			<div class="match-stats">
-				<div class="statline">
-					<span class="stat outcome" class:victory={stats.winner}>{outcome}</span>
-					<span class="stat timeago">{dateRelative}</span>
-					<span class="stat patch">{patch}</span>
-				</div>
-				<div class="statline">
-					{#if champion}
-						<span class="stat-player">{stats.name}</span>
-					{/if}
-					<span class="stat">
-						<span>{stats.kills} / {stats.deaths} / {stats.assists}</span>
-					</span>
-					<span class="stat cs">
-						<span class="stat-prefix">CS:</span>
-						<span>{stats.cs}</span>
-					</span>
-				</div>
+				<span class="stat outcome lg" class:victory={stats.winner}>{outcome}</span>
+				<span class="stat timeago">{dateRelative}</span>
+				<span class="stat patch">{patch}</span>
+				{#if champion}
+					<span class="stat-player">{stats.name}</span>
+				{/if}
+				<span class="stat stat-kda">
+					<span>{stats.kills} / {stats.deaths} / {stats.assists}</span>
+				</span>
+				<span class="stat stat-cs">
+					<span class="stat-prefix">CS:</span>
+					<span>{stats.cs}</span>
+				</span>
 			</div>
 		</div>
 	{:else}
 		<div class="info">
 			<div class="match-stats">
-				<div class="statline">
-					<span class="stat patch">{patch}</span>
-					<span class="stat timeago">{dateRelative}</span>
-				</div>
+				<span class="stat patch lg">{patch}</span>
+				<span class="stat timeago lg">{dateRelative}</span>
 			</div>
 		</div>
 	{/if}
@@ -103,38 +97,37 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 1.25rem;
-		background: var(--c2);
+		padding-left: 8px;
 		transition: background var(--transition);
 		cursor: pointer;
 
-		@media screen and (max-width: 600px) {
-			flex-direction: column;
-			justify-content: flex-start;
-			align-items: flex-start;
-			gap: 1rem;
-			padding: 1rem;
+		border-bottom: 1px solid var(--c3);
+
+		&:first-child {
+			border-top: 1px solid var(--c3);
+		}
+
+		&:hover {
+			background: var(--c2);
 		}
 
 		&::before {
 			content: '';
 			position: absolute;
-			inset: 0 15% 0 0;
-			opacity: 0.075;
-			transition: opacity var(--transition);
-		}
-		&:hover {
-			&::before {
-				opacity: 0.25;
-			}
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 4px;
 		}
 		&.victory::before {
-			background: linear-gradient(to right, var(--blue), transparent);
+			background: var(--blue);
 		}
 		&:not(.victory)::before {
-			background: linear-gradient(to right, var(--red), transparent);
+			background: var(--red);
 		}
 		&.noHighlight {
+			padding: 1rem;
+
 			@media screen and (max-width: 1300px) {
 				flex-direction: column;
 				justify-content: flex-start;
@@ -149,6 +142,14 @@
 				background: var(--c3);
 			}
 		}
+
+		@media screen and (max-width: 800px) {
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			gap: 1rem;
+			padding: 1rem;
+		}
 	}
 
 	.match > * {
@@ -161,40 +162,47 @@
 		gap: 1rem;
 
 		@media screen and (max-width: 600px) {
-			flex-direction: column;
-			align-items: flex-start;
 			gap: 0.5rem;
 		}
 
 		.champ-container {
-			box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--red);
-
 			:global(.champ-img) {
-				--size: 56;
+				--size: 80;
 
 				@media screen and (max-width: 1100px) {
-					--size: 36;
+					--size: 60;
 				}
 			}
 		}
-		.champ-container.victory {
-			box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue);
-		}
 	}
 
-	.info .match-stats {
-		display: flex;
-		flex-direction: column;
+	.match-stats {
+		display: grid;
+		grid-template-columns: repeat(3, 7rem);
+		align-items: baseline;
+
+		.noHighlight & {
+			.timeago,
+			.patch {
+				font-size: 1.5rem;
+			}
+		}
+
+		@media screen and (max-width: 800px) {
+			grid-template-columns: repeat(3, 6rem);
+		}
 	}
 	.statline {
 		display: flex;
+		align-items: baseline;
 		gap: 1.5rem;
 	}
 	.stat-prefix {
 		color: var(--c8);
 	}
 	.outcome {
-		font-weight: 700;
+		font-size: 2rem;
+		line-height: 1;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		color: var(--red);
@@ -209,7 +217,7 @@
 		}
 	}
 	.stat.patch,
-	.stat.cs,
+	.stat.stat-cs,
 	.stat.timeago {
 		@media screen and (min-width: 600px) and (max-width: 800px) {
 			display: none;
@@ -218,7 +226,7 @@
 	.stat.timeago {
 		text-transform: capitalize;
 	}
-	.stat.cs {
+	.stat.stat-cs {
 		@media screen and (max-width: 600px) {
 			display: none;
 		}
@@ -235,10 +243,6 @@
 		gap: 2rem;
 
 		@media screen and (max-width: 800px) {
-			gap: 1rem;
-		}
-
-		@media screen and (max-width: 600px) {
 			flex-direction: column;
 			gap: 0.5rem;
 		}
@@ -286,11 +290,11 @@
 	}
 	.champ-img {
 		.noHighlight .highlight & {
-			box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue);
+			box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue-light);
 		}
 	}
 	.highlight :global(.champ-img) {
-		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue);
+		box-shadow: 0 0 0 2px var(--c2), 0 0 0 3px var(--blue-light);
 	}
 	.player-name {
 		display: block;
@@ -304,7 +308,7 @@
 		overflow: hidden;
 
 		.noHighlight .highlight & {
-			color: var(--blue);
+			color: var(--blue-light);
 		}
 
 		.noHighlight & {

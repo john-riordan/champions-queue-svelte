@@ -1,4 +1,9 @@
-import { SPLITS_STARTS, correctChampionDisplayName, INDEX_TO_ROLE, TEAMS } from './constants';
+import {
+	SPLITS_STARTS,
+	correctChampionDisplayName,
+	INDEX_TO_ROLE,
+	TEAMS_WORLDS as TEAMS
+} from './constants';
 
 export async function fetchData(fullSeason = false) {
 	const res = await fetch(`/api?fullSeason=${fullSeason}`);
@@ -10,9 +15,10 @@ export async function fetchData(fullSeason = false) {
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
 	const matches = (data.matches || []).filter((match) => {
-		// Filter matches for season 2, split 3
+		// Filter matches for season WORLDS
 		const matchStart = new Date(match.matchStart);
-		const splitStart = new Date(SPLITS_STARTS.season2.split3);
+		// const splitStart = new Date(SPLITS_STARTS.season2.split3);
+		const splitStart = new Date(SPLITS_STARTS.worlds.split1);
 
 		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});
@@ -103,11 +109,11 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 	);
 
 	// Current split/season
-	const currSeasonId = 2;
-	const currSplitId = 3;
+	const currSeasonId = 3;
+	const currSplitId = null;
 
 	const currSeason = leaderboard.leaderboards.find(
-		(s) => s.seasonId === currSeasonId && s.split?.splitId === currSplitId
+		(s) => s.seasonId === currSeasonId && (!s.split?.splitId || s.split?.splitId === currSplitId)
 	);
 
 	return {
@@ -189,6 +195,7 @@ export function winrateColor(winrate) {
 			s = 65;
 			l = 85;
 			a = 0.6;
+			break;
 		default:
 			s = 55;
 			l = 90;

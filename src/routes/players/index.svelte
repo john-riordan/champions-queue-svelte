@@ -14,7 +14,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
 	import { winrateColor } from '$lib/helpers';
 
 	export let title;
@@ -72,7 +72,7 @@
 	<title>Players- ChampionsQueue.gg</title>
 </svelte:head>
 
-<PageHeader {title}>
+<PageHeader {title} center>
 	<!-- <div slot="controls">
 		<RefreshBtn />
 	</div> -->
@@ -138,7 +138,7 @@
 			<a href={`/players/${player.name}`}>
 				<div class="info">
 					<PlayerImg name={player.name} />
-					<p class="name">{player.name}</p>
+					<p class="name lg">{player.name}</p>
 				</div>
 
 				<span class="stat rank">
@@ -174,10 +174,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 1rem;
 		letter-spacing: 1px;
 		text-align: center;
-		background: var(--c2);
 
 		@media screen and (max-width: 1200px) {
 			padding: 0.75rem;
@@ -187,6 +185,11 @@
 	.list {
 		li {
 			font-size: 1.175rem;
+			border-bottom: 1px solid var(--c3);
+
+			&:first-child {
+				border-top: 1px solid var(--c3);
+			}
 
 			@media screen and (max-width: 1200px) {
 				font-size: 1rem;
@@ -194,7 +197,7 @@
 
 			a {
 				&:hover {
-					background: var(--c3);
+					background: var(--c2);
 				}
 			}
 
@@ -205,7 +208,7 @@
 			}
 
 			:global(.player-img) {
-				--size: 56;
+				--size: 80;
 
 				@media screen and (max-width: 1000px) {
 					--size: 40;
@@ -217,7 +220,7 @@
 
 			.name {
 				width: 15rem;
-				font-weight: 700;
+				font-size: 2rem;
 				text-align: left;
 				white-space: nowrap;
 				overflow: hidden;
@@ -249,7 +252,6 @@
 		font-weight: 700;
 		font-size: 0.875rem;
 		text-transform: uppercase;
-		padding-bottom: 1rem;
 		user-select: none;
 	}
 	.sort > * {
@@ -266,7 +268,7 @@
 	.nameSort {
 		justify-content: flex-start;
 		width: 14rem;
-		margin-left: 5.5rem;
+		margin-left: 6rem;
 
 		@media screen and (max-width: 1200px) {
 			width: 6rem;

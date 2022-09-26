@@ -56,7 +56,7 @@
 	<title>Champions- ChampionsQueue.gg</title>
 </svelte:head>
 
-<PageHeader {title}>
+<PageHeader {title} center>
 	<!-- <div slot="controls">
 		<RefreshBtn />
 	</div> -->
@@ -159,11 +159,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 1rem;
 		letter-spacing: 1px;
 		text-align: center;
-		background: var(--c2);
-		transition: background ease 0.15s;
 
 		@media screen and (max-width: 800px) {
 			padding: 0.5rem;
@@ -173,6 +170,11 @@
 	.list {
 		li {
 			font-size: 1.175rem;
+			border-bottom: 1px solid var(--c3);
+
+			&:first-child {
+				border-top: 1px solid var(--c3);
+			}
 
 			@media screen and (max-width: 1200px) {
 				font-size: 1rem;
@@ -180,7 +182,7 @@
 		}
 		a {
 			&:hover {
-				background: var(--c3);
+				background: var(--c2);
 			}
 			.winrate {
 				font-weight: 600;
@@ -198,7 +200,7 @@
 		}
 
 		:global(.champ-img) {
-			--size: 56;
+			--size: 80;
 
 			@media screen and (max-width: 1000px) {
 				--size: 40;
@@ -210,7 +212,7 @@
 
 		.name {
 			width: 12rem;
-			font-weight: 700;
+			font-size: 2rem;
 			text-align: left;
 			white-space: nowrap;
 			overflow: hidden;
@@ -231,7 +233,6 @@
 		font-weight: 700;
 		font-size: 0.875rem;
 		text-transform: uppercase;
-		padding-bottom: 1rem;
 		user-select: none;
 
 		> * {
@@ -265,7 +266,7 @@
 	.nameSort {
 		justify-content: flex-start;
 		width: 12rem;
-		margin-left: 4.5rem;
+		margin-left: 6rem;
 
 		@media screen and (max-width: 1200px) {
 			width: 6rem;
