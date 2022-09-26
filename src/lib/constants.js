@@ -1058,9 +1058,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645005188133_INSPIRED.png'
 	},
-	'EG Jojopyun': {
-		summonerName: 'Jojopyun',
-		summonerNameWithTeam: 'EG Jojopyun',
+	'EG jojopyun': {
+		summonerName: 'jojopyun',
+		summonerNameWithTeam: 'EG jojopyun',
 		socialLinks: [
 			{
 				platform: 'twitter',
