@@ -36,6 +36,12 @@
 		return 'browser';
 	}
 
+	async function refreshData() {
+		store.set({ ...$store, loading: true });
+		const data = await fetchData();
+		store.set(data);
+	}
+
 	onMount(async () => {
 		const displayMode = getPWADisplayMode();
 		gtag('event', 'display_mode', { mode: displayMode });
@@ -110,6 +116,9 @@
 					<!-- <Search /> -->
 					<span class="text">Search</span>
 				</span>
+			</div>
+			<div class="install-container">
+				<button on:click={refreshData} class="refresh">Refresh Data</button>
 			</div>
 			<div class="install-container">
 				<InstallBtn />
@@ -221,9 +230,6 @@
 		display: flex;
 		align-items: center;
 		padding: 0.75rem 0 0.75rem var(--nav-indent);
-		font-size: 2rem;
-		line-height: 1;
-		text-transform: uppercase;
 		transition: box-shadow var(--transition);
 		cursor: pointer;
 
@@ -234,13 +240,17 @@
 			gap: 0.75rem;
 			opacity: 0.35;
 			transition: opacity var(--transition), transform var(--transition);
+
+			&.refresh {
+				opacity: 1;
+			}
 		}
 
-		/* .text {
-			@media screen and (max-width: 1000px) {
-				display: none;
-			}
-		} */
+		.text {
+			font-size: 2rem;
+			line-height: 1;
+			text-transform: uppercase;
+		}
 
 		&:hover {
 			> * {
