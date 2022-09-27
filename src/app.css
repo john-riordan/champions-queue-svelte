@@ -327,7 +327,7 @@ div[slot='controls'] {
 
 @media (min-width: 1920px) {
 	.statblocks {
-		column-gap: 4.5rem;
+		column-gap: 6.5rem;
 	}
 }
 

@@ -230,7 +230,7 @@
 
 {#if championStats}
 	<div class="champ-stats">
-		<h4>Champion Stats:</h4>
+		<h4 class="group-title">Champion Stats:</h4>
 		<ol>
 			{#each championStats.slice(0, 4) as champ}
 				<li>
