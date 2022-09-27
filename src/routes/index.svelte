@@ -3,10 +3,8 @@
 </script>
 
 <script>
-	import RelativeTime from '@yaireo/relative-time';
-
 	import { store } from '$lib/stores';
-	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS_WORLDS as TEAMS, LOADING_STR } from '$lib/constants';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
@@ -14,8 +12,7 @@
 	import Refresh from '$lib/components/icons/Refresh.svelte';
 
 	const count = 5;
-	const relativeTime = new RelativeTime();
-	const loadingArr = [...new Array(count)].map(() => ({ name: '' }));
+	const loadingArr = [...new Array(count)].map(() => ({ name: LOADING_STR }));
 
 	$: loading = $store.splitTitle ? false : true;
 
@@ -59,7 +56,7 @@
 		? Object.values(recentChampionCounts)
 				.sort((a, b) => b.games - a.games)
 				.slice(0, count * 2)
-		: loadingArr;
+		: [...loadingArr, ...loadingArr];
 </script>
 
 <svelte:head>
@@ -68,29 +65,15 @@
 </svelte:head>
 
 <div class="container">
-	<!-- {#each Object.values(TEAMS) as team}
-		{@const tag = team.tag === '100' ? 'T100' : team.tag}
-		{@const rand = Math.random() / 1.5}
-		<img
-			src={teamImg(350, team.logo)}
-			alt={team.name}
-			class={`team-logo ${tag}`}
-			style={`--delay: ${rand}`}
-		/>
-	{/each} -->
-
 	<div class="top">
 		<img src="/logo-worlds-600.webp" width="600" loading="lazy" alt="Champions Queue Logo" />
-		<div class="marquee-outer">
+		<div class="marquee-outer" class:invis={!$store.matches}>
 			<div class="marquee-inner">
 				{#each [...recentPopularChampions, ...recentPopularChampions] as champion}
 					<div>
 						<a href={`/champions/${champion.name}`} class="item">
 							<div class="img-container">
 								<ChampImg name={champion.name} />
-								<!-- {#if champion.games}
-									<span class="count lg">{champion.games}</span>
-								{/if} -->
 							</div>
 							<div>
 								<span class="name lg">{champion.name}</span>
@@ -110,9 +93,6 @@
 			{#if $store.splitTitle}
 				<div class="split-details">
 					<span>Champions Queue</span>
-					<!-- <span class="season">{$store.seasonTitle}</span>
-				<span>{$store.splitTitle}</span> -->
-					<!-- <span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span> -->
 				</div>
 			{:else}
 				<div class="split-details">
@@ -320,7 +300,7 @@
 			flex-wrap: nowrap;
 			top: 0;
 			left: 0;
-			animation: marquee 75s linear infinite;
+			animation: marquee 90s linear infinite;
 		}
 
 		a {
@@ -458,7 +438,7 @@
 
 			@media screen and (min-width: 1800px) {
 				font-size: 2rem;
-				width: unset;
+				width: 27ch;
 			}
 		}
 	}

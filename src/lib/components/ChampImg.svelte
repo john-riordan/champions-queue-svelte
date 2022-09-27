@@ -1,6 +1,6 @@
 <script>
 	import { store } from '$lib/stores';
-	import { correctChampionImage } from '$lib/constants';
+	import { correctChampionImage, LOADING_STR } from '$lib/constants';
 
 	export let name;
 	export let size = 40;
@@ -18,7 +18,14 @@
 
 <div class="champ-img" class:splash={type === 'splash'}>
 	{#if fixedName}
-		<img width={size} height={size} loading="lazy" alt={name} src={image} />
+		<img
+			width={size}
+			height={size}
+			loading="lazy"
+			alt={name}
+			src={image}
+			class:invis={name === LOADING_STR}
+		/>
 	{/if}
 </div>
 

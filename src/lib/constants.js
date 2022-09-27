@@ -1,3 +1,5 @@
+export const LOADING_STR = 'Loading...';
+
 export const SPLITS_STARTS = {
 	season1: {
 		split1: '',

@@ -257,6 +257,10 @@ div[slot='controls'] {
 	display: none;
 	visibility: hidden;
 }
+.invis {
+	opacity: 0;
+	visibility: hidden;
+}
 
 .list-groups {
 	display: flex;
