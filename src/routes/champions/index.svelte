@@ -4,6 +4,7 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
@@ -113,7 +114,7 @@
 </div>
 
 <ul class="list">
-	{#each list as champ}
+	{#each list as champ (champ.name)}
 		<li>
 			<a href={`/champions/${champ.name}`}>
 				<div class="info">
@@ -127,11 +128,14 @@
 					})}
 				</span>
 				<span class="stat winrate" style:color={winrateColor(champ.wins / champ.games)}>
-					{(champ.wins / champ.games).toLocaleString('en-us', {
-						style: 'percent',
-						minimumFractionDigits: 0,
-						maximumFractionDigits: 0
-					})}
+					<span class="value">
+						{(champ.wins / champ.games).toLocaleString('en-us', {
+							style: 'percent',
+							minimumFractionDigits: 0,
+							maximumFractionDigits: 0
+						})}
+					</span>
+					<WinRateBar wins={champ.wins} games={champ.games} />
 				</span>
 				<span class="stat playrate">
 					{champ.wins} / {champ.games - champ.wins}
@@ -183,9 +187,6 @@
 		a {
 			&:hover {
 				background: var(--c2);
-			}
-			.winrate {
-				font-weight: 600;
 			}
 		}
 
@@ -259,6 +260,16 @@
 	.cs {
 		@media screen and (max-width: 800px) {
 			display: none;
+		}
+	}
+	.winrate {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+
+		.value {
+			width: 13ch;
 		}
 	}
 

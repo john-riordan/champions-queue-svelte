@@ -5,8 +5,9 @@
 </script>
 
 <script>
-	import { store, pageBackground } from '$lib/stores';
+	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import Select from '$lib/components/Select.svelte';
@@ -183,11 +184,14 @@
 					})}
 				</span>
 				<span class="stat winrate" style:color={winrateColor(champ.wins / champ.games)}>
-					{(champ.wins / champ.games).toLocaleString('en-us', {
-						style: 'percent',
-						minimumFractionDigits: 0,
-						maximumFractionDigits: 0
-					})}
+					<span class="value">
+						{(champ.wins / champ.games).toLocaleString('en-us', {
+							style: 'percent',
+							minimumFractionDigits: 0,
+							maximumFractionDigits: 0
+						})}
+					</span>
+					<WinRateBar wins={champ.wins} games={champ.games} />
 				</span>
 				<span class="stat playrate">
 					{champ.wins} / {champ.games - champ.wins}
@@ -217,7 +221,6 @@
 		justify-content: space-between;
 		letter-spacing: 1px;
 		text-align: center;
-		background: var(--c2);
 		transition: background ease 0.15s;
 
 		@media screen and (max-width: 800px) {
@@ -240,7 +243,7 @@
 		}
 		a {
 			&:hover {
-				background: var(--c3);
+				background: var(--c2);
 			}
 			.winrate {
 				font-weight: 600;
@@ -315,6 +318,16 @@
 			display: none;
 		}
 	}
+	.winrate {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+
+		.value {
+			width: 13ch;
+		}
+	}
 
 	:global(.sort > * svg) {
 		width: 1rem;
@@ -324,7 +337,7 @@
 	.nameSort {
 		justify-content: flex-start;
 		width: 12rem;
-		margin-left: 4.5rem;
+		margin-left: 6rem;
 
 		@media screen and (max-width: 1200px) {
 			width: 6rem;

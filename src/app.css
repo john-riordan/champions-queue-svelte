@@ -237,10 +237,12 @@ div[slot='controls'] {
 	gap: 3.5rem;
 }
 .statblock .stat {
+	position: relative;
 	font-size: 4.25rem;
 	line-height: 1;
+	padding-bottom: 0.125rem;
 }
-.statblock .stat span {
+.statblock .stat .subvalue {
 	color: var(--c8);
 	font-weight: 400;
 	font-size: 0.375em;
@@ -251,10 +253,21 @@ div[slot='controls'] {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	color: var(--c10);
+	padding-top: 0.125em;
+}
+.statblock .winrate-bar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
 }
 
 .hide {
 	display: none;
+	visibility: hidden;
+}
+.invis {
+	opacity: 0;
 	visibility: hidden;
 }
 
@@ -264,8 +277,7 @@ div[slot='controls'] {
 	gap: 1rem;
 }
 .group-title {
-	text-transform: capitalize;
-	font-weight: 900;
+	font-size: 1.5rem;
 }
 .list {
 	display: flex;
@@ -315,7 +327,7 @@ div[slot='controls'] {
 
 @media (min-width: 1920px) {
 	.statblocks {
-		column-gap: 4.5rem;
+		column-gap: 6.5rem;
 	}
 }
 

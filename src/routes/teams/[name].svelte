@@ -115,18 +115,20 @@
 	</div>
 {/if}
 
-{#each Object.entries(groups) as [daysAgo, matches]}
-	<div class="list-groups">
-		<p class="group-title">{daysAgo}</p>
-		<ol>
-			<ul class="list">
-				{#each matches as match}
-					<Match {match} />
-				{/each}
-			</ul>
-		</ol>
-	</div>
-{/each}
+<div class="list-groups">
+	{#each Object.entries(groups) as [daysAgo, matches]}
+		<div class="list-group">
+			<p class="group-title lg">{daysAgo}</p>
+			<ol>
+				<ul class="list">
+					{#each matches as match}
+						<Match {match} />
+					{/each}
+				</ul>
+			</ol>
+		</div>
+	{/each}
+</div>
 
 {#if list.length >= (pageIndex + 1) * perPage}
 	<LoadMoreBtn block onclick={() => pageIndex++} />

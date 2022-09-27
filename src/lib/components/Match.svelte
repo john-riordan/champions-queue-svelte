@@ -226,7 +226,7 @@
 
 	.match-stats {
 		display: grid;
-		grid-template-columns: repeat(3, 7rem);
+		grid-template-columns: repeat(3, 7.5rem);
 		align-items: baseline;
 
 		.noHighlight & {

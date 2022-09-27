@@ -9,7 +9,7 @@
 
 	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
-	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
+	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
@@ -68,7 +68,6 @@
 
 <PageHeader title={name} champion={name}>
 	<div slot="controls">
-		<!-- <RefreshBtn /> -->
 		<FavoriteBtn />
 	</div>
 </PageHeader>
@@ -86,7 +85,10 @@
 					maximumFractionDigits: 1,
 					style: 'percent'
 				})}
-				<span>{champStats.wins}/{champStats.games - champStats.wins}</span>
+				<span class="subvalue">{champStats.wins}/{champStats.games - champStats.wins}</span>
+				<div class="winrate-bar">
+					<WinRateBar wins={champStats.wins} games={champStats.games} height={2} />
+				</div>
 			</h3>
 			<span class="stat-name">Win-Rate</span>
 		</div>
@@ -108,7 +110,7 @@
 <div class="list-groups">
 	{#each Object.entries(groups) as [daysAgo, matches]}
 		<div class="list-group">
-			<p class="group-title">{daysAgo}</p>
+			<p class="group-title lg">{daysAgo}</p>
 			<ol>
 				<ul class="list">
 					{#each matches as match}
