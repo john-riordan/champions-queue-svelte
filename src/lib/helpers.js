@@ -181,7 +181,11 @@ export function winrateColor(winrate) {
 		case winrate <= 0.2 || winrate >= 0.8:
 			s = 95;
 			break;
-		case winrate <= 0.38 || winrate >= 0.62:
+		case winrate <= 0.25 || winrate >= 0.75:
+			s = 92;
+			l = 70;
+			break;
+		case winrate <= 0.4 || winrate >= 0.6:
 			s = 90;
 			l = 75;
 			break;
