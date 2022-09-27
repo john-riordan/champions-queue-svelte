@@ -190,12 +190,12 @@
 			</h3>
 			<span class="stat-name">LP</span>
 		</div>
-		{#if leaderboardStats}
+		<!-- {#if leaderboardStats}
 			<div class="statblock">
 				<h3 class="stat">{leaderboardStats.seasonPoints}</h3>
 				<span class="stat-name">Season Pts</span>
 			</div>
-		{/if}
+		{/if} -->
 		<div class="statblock">
 			<h3 class="stat" style:color={winrateColor(matchlistStats.wins / matchlistStats.games)}>
 				{(matchlistStats.wins / (matchlistStats.games || 1)).toLocaleString('en-us', {

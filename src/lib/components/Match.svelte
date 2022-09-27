@@ -219,9 +219,9 @@
 	.stat.patch,
 	.stat.stat-cs,
 	.stat.timeago {
-		@media screen and (min-width: 600px) and (max-width: 800px) {
+		/* @media screen and (min-width: 600px) and (max-width: 800px) {
 			display: none;
-		}
+		} */
 	}
 	.stat.timeago {
 		text-transform: capitalize;
@@ -261,8 +261,8 @@
 			@media screen and (max-width: 1100px) {
 				--size: 24;
 			}
-			@media screen and (max-width: 600px) {
-				--size: 28;
+			@media screen and (max-width: 800px) {
+				--size: 60;
 			}
 		}
 
@@ -270,14 +270,7 @@
 			gap: 0.25rem;
 
 			:global(.champ-img) {
-				--size: 52;
-
-				@media screen and (max-width: 1100px) {
-					--size: 40;
-				}
-				@media screen and (max-width: 600px) {
-					--size: 32;
-				}
+				--size: 60;
 			}
 		}
 

@@ -30,7 +30,7 @@
 
 	--green-hsl: 145deg 70% 45%;
 	--green: hsl(var(--green-hsl));
-	--yellow-hsl: 45deg 70% 50%;
+	--yellow-hsl: 47deg 95% 50%;
 	--yellow: hsl(var(--yellow-hsl));
 	--logo-hsl: 232deg 77% 52%;
 	--logo: hsl(var(--logo-hsl));
@@ -88,6 +88,10 @@ p {
 	margin: 0;
 }
 
+.ss {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -97,7 +101,7 @@ h5,
 	font-family: 'League Gothic', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
-	/* letter-spacing: 0.1rem; */
+	letter-spacing: 1px;
 	margin: 0;
 }
 
@@ -222,6 +226,11 @@ input[type='text'].disabled {
 }
 div[slot='controls'] {
 	display: flex;
+}
+@media screen and (max-width: 600px) {
+	div[slot='controls'] {
+		display: none;
+	}
 }
 
 .statblocks {

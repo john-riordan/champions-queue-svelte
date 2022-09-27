@@ -228,6 +228,10 @@
 
 				@media screen and (max-width: 1200px) {
 					width: 6rem;
+					font-size: 1.5rem;
+				}
+				@media screen and (max-width: 600px) {
+					font-size: 1.25rem;
 				}
 			}
 			.winrate {

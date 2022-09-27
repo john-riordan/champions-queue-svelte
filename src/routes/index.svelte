@@ -15,6 +15,7 @@
 
 	const count = 5;
 	const relativeTime = new RelativeTime();
+	const loadingArr = [...new Array(count)].map(() => ({ name: '' }));
 
 	$: loading = $store.splitTitle ? false : true;
 
@@ -22,20 +23,43 @@
 		? Object.values($store.leaderboard)
 				.sort((a, b) => b.lp - a.lp)
 				.slice(0, count)
-		: [...new Array(count)].map(() => ({ name: '' }));
+		: loadingArr;
 	$: mostPopularChampions = $store.champions
 		? Object.values($store.champions)
 				.sort((a, b) => b.games - a.games)
 				.slice(0, count)
-		: [...new Array(count)].map(() => ({ name: '' }));
+		: loadingArr;
 	$: mostActiveTeams = $store.teams
 		? Object.values($store.teams)
 				.sort((a, b) => b.games - a.games)
 				.map((t) => TEAMS[t.tag])
 				.slice(0, count)
-		: [...new Array(count)].map(() => ({ name: '' }));
+		: loadingArr;
+	$: recentChampionCounts = $store.matches
+		? $store.matches
+				.filter((__dirname, i) => i < 10)
+				.reduce((acc, curr) => {
+					const champs = [
+						...curr.teams[0].players.map((p) => p.championIcon),
+						...curr.teams[1].players.map((p) => p.championIcon)
+					];
+					for (const champ of champs) {
+						if (!acc[champ])
+							acc[champ] = {
+								games: 0,
+								name: champ
+							};
+						acc[champ].games += 1;
+					}
 
-	$: console.log('loading', loading);
+					return acc;
+				}, {})
+		: loadingArr;
+	$: recentPopularChampions = $store.matches
+		? Object.values(recentChampionCounts)
+				.sort((a, b) => b.games - a.games)
+				.slice(0, count * 2)
+		: loadingArr;
 </script>
 
 <svelte:head>
@@ -82,47 +106,69 @@
 		{/if}
 	</div>
 	<GlobalSearch />
+	<div class="marquee-outer">
+		<div class="marquee-inner">
+			{#each [...recentPopularChampions, ...recentPopularChampions] as champion}
+				<div>
+					<a href={`/champions/${champion.name}`} class="item">
+						<div class="img-container">
+							<ChampImg name={champion.name} />
+							<!-- {#if champion.games}
+								<span class="count lg">{champion.games}</span>
+							{/if} -->
+						</div>
+						<div>
+							<span class="name lg">{champion.name}</span>
+							{#if champion.games}
+								<span class="count">{champion.games} games</span>
+							{/if}
+						</div>
+					</a>
+				</div>
+			{/each}
+		</div>
+	</div>
 	<div class="blocks">
 		<div class="block" class:loading>
-			<h2>
+			<h2 class="ss">
 				<a href="/players">Highest Rated Players</a>
 			</h2>
 			<ol>
 				{#each topRatedPlayers as player}
 					<li>
-						<a href={`/players/${player.name}`}>
+						<a href={`/players/${player.name}`} class="item">
 							<PlayerImg name={player.name} />
-							{player.name}
+							<span class="name lg">{player.name}</span>
 						</a>
 					</li>
 				{/each}
 			</ol>
 		</div>
 		<div class="block" class:loading>
-			<h2>
+			<h2 class="ss">
 				<a href="/champions">Most Played Champions</a>
 			</h2>
 			<ol>
 				{#each mostPopularChampions as champion}
 					<li>
-						<a href={`/champions/${champion.name}`}>
+						<a href={`/champions/${champion.name}`} class="item">
 							<ChampImg name={champion.name} />
-							{champion.name}
+							<span class="name lg">{champion.name}</span>
 						</a>
 					</li>
 				{/each}
 			</ol>
 		</div>
 		<div class="block" class:loading>
-			<h2>
+			<h2 class="ss">
 				<a href="/teams">Most Active Teams</a>
 			</h2>
 			<ol>
 				{#each mostActiveTeams as team}
 					<li>
-						<a href={`/teams/${team.name}`}>
+						<a href={`/teams/${team.name}`} class="item">
 							<TeamImg name={team.name} />
-							{team.name}
+							<span class="name lg">{team.name}</span>
 						</a>
 					</li>
 				{/each}
@@ -142,7 +188,6 @@
 		align-items: center;
 		place-content: center;
 		gap: 3rem;
-		height: calc(100vh - var(--content-padding));
 
 		> * {
 			position: relative;
@@ -154,9 +199,6 @@
 
 		@media screen and (max-width: 600px) {
 			gap: 1rem;
-			height: auto;
-			padding-top: 4rem;
-			padding-bottom: 4rem;
 
 			:global(.search-container) {
 				display: none;
@@ -178,10 +220,9 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		margin-top: -10rem;
 		padding: 4rem 0;
 		width: 100%;
-		max-width: 70rem;
+		max-width: 90rem;
 		background: url('/flag-blue.webp') no-repeat;
 		background-size: 115% auto;
 		background-position: center 50%;
@@ -219,6 +260,7 @@
 
 		@media screen and (max-width: 600px), screen and (max-height: 800px) {
 			margin-top: 0;
+			padding: 3rem 0;
 		}
 	}
 
@@ -251,11 +293,96 @@
 		}
 	}
 
+	@keyframes marquee {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+	.marquee-outer {
+		--height: 60;
+		position: relative;
+		width: 95%;
+		max-width: 90rem;
+		height: calc(var(--height) * 1px);
+		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 10%,
+			black 90%,
+			transparent 100%
+		);
+
+		@media screen and (max-width: 1000px) {
+			--height: 48;
+		}
+
+		.marquee-inner {
+			position: absolute;
+			display: flex;
+			gap: 1rem;
+			flex-wrap: nowrap;
+			top: 0;
+			left: 0;
+			animation: marquee 75s linear infinite;
+		}
+
+		a {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			padding-right: 1.5rem;
+			transition: background var(--transition);
+
+			&:hover {
+				background: var(--c3);
+
+				.img-container::before {
+					box-shadow: inset 0 0 0 0.25rem var(--blue);
+				}
+			}
+
+			.img-container {
+				position: relative;
+
+				&::before {
+					content: '';
+					position: absolute;
+					inset: 0;
+					transition: box-shadow var(--transition);
+					z-index: 1;
+				}
+			}
+
+			span {
+				display: block;
+			}
+
+			.name {
+				font-size: 1.5rem;
+				line-height: 1;
+				padding-top: 0.25rem;
+				white-space: nowrap;
+			}
+			.count {
+				white-space: nowrap;
+				color: var(--c8);
+				font-size: 0.875rem;
+				text-transform: uppercase;
+			}
+		}
+
+		:global(.champ-img) {
+			--size: var(--height);
+			max-width: unset;
+		}
+	}
+
 	.blocks {
 		position: relative;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		gap: 3.5rem;
+		gap: 2.5rem;
 
 		@media screen and (max-width: 1200px) {
 			gap: 1rem;
@@ -263,12 +390,16 @@
 		@media screen and (max-width: 600px) {
 			grid-template-columns: 1fr;
 			gap: 2rem;
+			width: 100%;
+			padding: 1rem;
 		}
 
 		h2 {
-			font-size: 2rem;
+			font-size: 1rem;
 			line-height: 1;
 			margin-bottom: 0.5rem;
+			font-weight: 700;
+			letter-spacing: 1px;
 
 			@media screen and (max-width: 1200px) {
 				font-size: 1rem;
@@ -281,6 +412,11 @@
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
+				color: var(--yellow);
+
+				&:hover {
+					text-decoration: underline;
+				}
 			}
 
 			.chevron {
@@ -300,21 +436,26 @@
 			:global(.champ-img),
 			:global(.player-img),
 			:global(.team-img) {
-				--size: 44;
+				--size: 48;
 			}
 		}
-		li {
-			a {
-				display: flex;
-				align-items: center;
-				gap: 0.75rem;
-				font-weight: 600;
-				font-size: 1.125rem;
+		.item {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			background: var(--c2);
+			padding-right: 1.5rem;
 
-				&:hover {
-					background: var(--c2);
-				}
+			&:hover {
+				background: var(--c3);
 			}
+		}
+		.name {
+			font-size: 1.5rem;
+			width: 20ch;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 	}
 

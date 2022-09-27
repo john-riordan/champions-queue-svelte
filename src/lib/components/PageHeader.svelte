@@ -1,7 +1,7 @@
 <script>
 	import RelativeTime from '@yaireo/relative-time';
 
-	import { store } from '$lib/stores';
+	import { store, pageBackground } from '$lib/stores';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
@@ -17,6 +17,9 @@
 </script>
 
 <header class="header" class:center>
+	{#if $pageBackground}
+		<img src={$pageBackground} class="background" loading="lazy" alt="background" />
+	{/if}
 	<div class="info">
 		{#if player}
 			<div class="image-container">
@@ -56,6 +59,7 @@
 
 <style lang="scss">
 	.header {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -66,6 +70,7 @@
 		background: url('/flag-blue.webp') no-repeat;
 		background-size: 100% auto;
 		background-position: center 50%;
+		overflow: hidden;
 
 		&.center {
 			justify-content: center;
@@ -84,7 +89,7 @@
 		}
 
 		:global(.team-img) {
-			--size: 100;
+			--size: 150;
 
 			@media screen and (max-width: 1000px) {
 				--size: 80;
@@ -102,7 +107,8 @@
 		}
 		@media screen and (max-width: 600px) {
 			gap: 0.5rem;
-			margin-top: 1rem;
+			margin-top: 0;
+			padding-inline: 1rem;
 		}
 	}
 	.info {
@@ -129,16 +135,19 @@
 		font-size: 6rem;
 		line-height: 1;
 		text-transform: uppercase;
-		letter-spacing: 0.2rem;
+		letter-spacing: 0;
+		white-space: nowrap;
 
+		@media screen and (max-width: 1600px) {
+			max-width: 20ch;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
 		@media screen and (max-width: 1200px) {
 			font-size: 4rem;
 		}
 		@media screen and (max-width: 1000px) {
-			/* flex-direction: column;
-			align-items: flex-start;
-			gap: 0.25rem; */
-			font-size: 1.75rem;
+			font-size: 2.25rem;
 		}
 	}
 	.split-details {
@@ -156,6 +165,23 @@
 			@media screen and (max-width: 800px) {
 				display: none;
 			}
+		}
+	}
+
+	.background {
+		position: absolute;
+		top: 50%;
+		left: -5%;
+		width: 500px;
+		height: auto;
+		opacity: 0.25;
+		filter: saturate(0);
+		mix-blend-mode: color-dodge;
+		pointer-events: none;
+		transform: translateY(-50%);
+
+		@media screen and (max-width: 800px) {
+			width: 300px;
 		}
 	}
 </style>
