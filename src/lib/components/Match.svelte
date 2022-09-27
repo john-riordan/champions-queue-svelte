@@ -235,7 +235,10 @@
 
 			.timeago,
 			.patch {
-				font-size: 2rem;
+				font-size: 1.75rem;
+			}
+			.timeago {
+				width: 14ch;
 			}
 		}
 
