@@ -29,7 +29,7 @@
 </PageHeader>
 
 <ol class="list">
-	{#each list as match}
+	{#each list as match (match.matchStart)}
 		<Match {match} />
 	{/each}
 </ol>

@@ -150,9 +150,9 @@
 				{/each}
 			</ol>
 		</div>
-		<!-- {#if loading}
+		{#if loading}
 			<div class="loading-indicator"><Refresh /></div>
-		{/if} -->
+		{/if}
 	</div>
 </div>
 

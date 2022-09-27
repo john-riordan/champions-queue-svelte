@@ -7,6 +7,7 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
+	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
@@ -133,7 +134,7 @@
 </div>
 
 <ul class="list">
-	{#each list as player}
+	{#each list as player (player.name)}
 		<li>
 			<a href={`/players/${player.name}`}>
 				<div class="info">
@@ -154,11 +155,14 @@
 					})}
 				</span>
 				<span class="stat winrate" style:color={winrateColor(player.wins / player.games)}>
-					{(player.wins / player.games).toLocaleString('en-us', {
-						style: 'percent',
-						minimumFractionDigits: 0,
-						maximumFractionDigits: 0
-					})}
+					<span class="value">
+						{(player.wins / player.games).toLocaleString('en-us', {
+							style: 'percent',
+							minimumFractionDigits: 0,
+							maximumFractionDigits: 0
+						})}
+					</span>
+					<WinRateBar wins={player.wins} games={player.games} />
 				</span>
 				<span class="stat">
 					{player.wins} / {player.games - player.wins} ({player.games})
@@ -234,9 +238,6 @@
 					font-size: 1.25rem;
 				}
 			}
-			.winrate {
-				font-weight: 600;
-			}
 		}
 	}
 
@@ -248,6 +249,16 @@
 	.rank {
 		@media screen and (max-width: 800px) {
 			display: none !important;
+		}
+	}
+	.winrate {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+
+		.value {
+			width: 13ch;
 		}
 	}
 

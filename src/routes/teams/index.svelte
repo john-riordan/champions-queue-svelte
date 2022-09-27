@@ -117,7 +117,7 @@
 </div> -->
 
 <ol class="teams-list">
-	{#each teams as team}
+	{#each teams as team (team.name)}
 		<li class="team" style="--team-hsl: {team.hsl}">
 			<a href={`/teams/${team.name}`} class="team-header">
 				<img

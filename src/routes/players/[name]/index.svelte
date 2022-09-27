@@ -9,6 +9,7 @@
 
 	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
 	import ChevronRight from '$lib/components/icons/ChevronRight.svelte';
 	import Select from '$lib/components/Select.svelte';
@@ -203,7 +204,12 @@
 					maximumFractionDigits: 0,
 					style: 'percent'
 				})}
-				<span>{matchlistStats.wins}W - {matchlistStats.games - matchlistStats.wins}L</span>
+				<span class="subvalue">
+					{matchlistStats.wins}W - {matchlistStats.games - matchlistStats.wins}L
+				</span>
+				<div class="winrate-bar">
+					<WinRateBar wins={matchlistStats.wins} games={matchlistStats.games} height={2} />
+				</div>
 			</h3>
 			<span class="stat-name">WR</span>
 		</div>

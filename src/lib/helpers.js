@@ -178,8 +178,8 @@ export function winrateColor(winrate) {
 	let a = 1;
 
 	switch (true) {
-		case winrate <= 0.3 || winrate >= 0.7:
-			s = 100;
+		case winrate <= 0.2 || winrate >= 0.8:
+			s = 95;
 			break;
 		case winrate <= 0.38 || winrate >= 0.62:
 			s = 90;

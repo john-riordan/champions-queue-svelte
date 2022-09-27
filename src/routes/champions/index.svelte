@@ -113,7 +113,7 @@
 </div>
 
 <ul class="list">
-	{#each list as champ}
+	{#each list as champ (champ.name)}
 		<li>
 			<a href={`/champions/${champ.name}`}>
 				<div class="info">

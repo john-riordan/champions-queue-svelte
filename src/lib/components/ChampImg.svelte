@@ -6,10 +6,10 @@
 	export let size = 40;
 	export let type = 'square';
 
-	$: patch = $store.currentPatch || 12.5;
+	$: patch = $store.currentPatch || 12.18;
 
 	// Fix the buggy naming of fiddle
-	$: fixedName = correctChampionImage(name);
+	$: fixedName = name !== LOADING_STR && correctChampionImage(name);
 	$: image =
 		type === 'splash'
 			? `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${fixedName}_0.jpg`
