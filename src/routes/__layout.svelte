@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page, navigating } from '$app/stores';
 
-	import { store, searchModal, pageBackground } from '$lib/stores';
+	import { store, searchModal } from '$lib/stores';
 	import { fetchData } from '$lib/helpers';
 	import Players from '$lib/components/icons/Players.svelte';
 	import Champions from '$lib/components/icons/Champions.svelte';
@@ -76,9 +76,6 @@
 	];
 </script>
 
-{#if $pageBackground}
-	<img src={$pageBackground} class="background" loading="lazy" alt="background" />
-{/if}
 <div class="container" class:menuOpen>
 	<button class="mobile-menu-btn" on:click={toggleMenu}><Hamburger /></button>
 	<div class="nav">
@@ -150,12 +147,18 @@
 			</div>
 		{/if}
 	</section>
+	{#if menuOpen}
+		<div class="nav-close-trigger" on:click={() => (menuOpen = false)} />
+	{/if}
 </div>
 
 <MatchModal />
 <SearchModal />
 
 <style lang="scss">
+	.container {
+		position: relative;
+	}
 	.nav {
 		box-sizing: border-box;
 		position: fixed;
@@ -177,7 +180,7 @@
 			z-index: 5;
 			background: var(--c1);
 			transform: translateX(-20%);
-			box-shadow: 0 0 90px var(--app-bg);
+			box-shadow: 0 0 0 4px var(--c3), 0 0 90px black;
 			opacity: 0;
 			visibility: hidden;
 			transition: all var(--transition);
@@ -186,6 +189,20 @@
 				transform: translateX(0%);
 				opacity: 1;
 				visibility: visible;
+			}
+		}
+	}
+
+	.nav-close-trigger {
+		display: none;
+
+		@media screen and (max-width: 1000px) {
+			.menuOpen & {
+				z-index: 3;
+				position: fixed;
+				inset: 0;
+				display: block;
+				z-index: 3;
 			}
 		}
 	}
@@ -316,7 +333,7 @@
 			transition: opacity var(--transition);
 
 			.menuOpen & {
-				opacity: 0.35;
+				opacity: 0.15;
 				pointer-events: none;
 				filter: saturate(0);
 			}
@@ -327,6 +344,10 @@
 		flex-direction: column;
 		gap: 1.5rem;
 		min-height: 100vh;
+
+		@media screen and (max-width: 1000px) {
+			gap: 0.75rem;
+		}
 	}
 
 	.bottom {
@@ -354,19 +375,6 @@
 
 		@media screen and (max-width: 1000px) {
 			inset: 0;
-		}
-	}
-	.background {
-		position: absolute;
-		top: -10%;
-		left: calc(var(--nav-width) - 2rem);
-		width: 500px;
-		height: auto;
-		opacity: 0.05;
-		filter: saturate(0);
-
-		@media screen and (max-width: 800px) {
-			width: 300px;
 		}
 	}
 
