@@ -198,7 +198,6 @@
 		flex-direction: column;
 		padding: 2rem 0 6rem 0;
 		width: 100%;
-		max-width: 90rem;
 		background: url('/flag-blue.webp') no-repeat;
 		background-size: cover;
 		background-position: center 50%;
@@ -275,10 +274,8 @@
 		}
 	}
 	.marquee-outer {
-		--height: 40;
+		--height: 36;
 		position: relative;
-		width: 95%;
-		max-width: 90rem;
 		height: calc(var(--height) * 1px);
 		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 		-webkit-mask-image: linear-gradient(
@@ -345,7 +342,7 @@
 			.count {
 				white-space: nowrap;
 				color: var(--c11);
-				opacity: 0.5;
+				opacity: 0.65;
 				font-size: 0.75rem;
 				text-transform: uppercase;
 			}
