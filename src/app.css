@@ -277,8 +277,7 @@ div[slot='controls'] {
 	gap: 1rem;
 }
 .group-title {
-	text-transform: capitalize;
-	font-weight: 900;
+	font-size: 1.5rem;
 }
 .list {
 	display: flex;

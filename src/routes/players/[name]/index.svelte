@@ -257,7 +257,7 @@
 	<div class="list-groups">
 		{#each Object.entries(groups) as [daysAgo, matches]}
 			<div class="list-group">
-				<p class="group-title">{daysAgo}</p>
+				<p class="group-title lg">{daysAgo}</p>
 				<ol>
 					<ul class="list">
 						{#each matches as match}
