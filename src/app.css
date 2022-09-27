@@ -227,6 +227,11 @@ input[type='text'].disabled {
 div[slot='controls'] {
 	display: flex;
 }
+@media screen and (max-width: 600px) {
+	div[slot='controls'] {
+		display: none;
+	}
+}
 
 .statblocks {
 	gap: 3.5rem;

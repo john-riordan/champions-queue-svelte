@@ -242,10 +242,10 @@
 		display: flex;
 		gap: 2rem;
 
-		/* @media screen and (max-width: 800px) {
+		@media screen and (max-width: 800px) {
 			flex-direction: column;
 			gap: 0.5rem;
-		} */
+		}
 	}
 	.players {
 		display: flex;
@@ -261,8 +261,8 @@
 			@media screen and (max-width: 1100px) {
 				--size: 24;
 			}
-			@media screen and (max-width: 600px) {
-				--size: 28;
+			@media screen and (max-width: 800px) {
+				--size: 60;
 			}
 		}
 
@@ -270,12 +270,7 @@
 			gap: 0.25rem;
 
 			:global(.champ-img) {
-				--size: 62;
-
-				@media screen and (max-width: 600px) {
-					width: 95%;
-					max-width: 100%;
-				}
+				--size: 60;
 			}
 		}
 

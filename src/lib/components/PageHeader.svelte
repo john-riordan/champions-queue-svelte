@@ -108,6 +108,7 @@
 		@media screen and (max-width: 600px) {
 			gap: 0.5rem;
 			margin-top: 0;
+			padding-inline: 1rem;
 		}
 	}
 	.info {
@@ -134,8 +135,14 @@
 		font-size: 6rem;
 		line-height: 1;
 		text-transform: uppercase;
-		letter-spacing: 0.2rem;
+		letter-spacing: 0;
+		white-space: nowrap;
 
+		@media screen and (max-width: 1600px) {
+			max-width: 20ch;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
 		@media screen and (max-width: 1200px) {
 			font-size: 4rem;
 		}
