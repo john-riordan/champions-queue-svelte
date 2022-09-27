@@ -3,7 +3,8 @@
 
 	import { matchModal } from '$lib/stores';
 	import ChampImg from '$lib/components/ChampImg.svelte';
-	import { formatPatch } from '$lib/helpers';
+	import TeamImg from '$lib/components/TeamImg.svelte';
+	import { formatPatch, findPlayerTeam } from '$lib/helpers';
 	import { correctChampionDisplayName } from '$lib/constants';
 
 	export let match;
@@ -22,6 +23,16 @@
 	$: nonSpecificMatch = !champion && !player;
 	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
 	$: patch = formatPatch(match?.gameVersion);
+	$: proTeams = teams
+		.map((player) => findPlayerTeam(player.name))
+		.filter(Boolean)
+		.reduce((acc, curr) => {
+			if (acc.includes(curr.name)) return acc;
+			acc.push(curr.name);
+			return acc;
+		}, []);
+
+	$: console.log(proTeams);
 
 	function updateModal() {
 		matchModal.set(match);
@@ -41,8 +52,8 @@
 			</div>
 			<div class="match-stats">
 				<span class="stat outcome lg" class:victory={stats.winner}>{outcome}</span>
-				<span class="stat timeago">{dateRelative}</span>
 				<span class="stat patch">{patch}</span>
+				<span class="stat timeago">{dateRelative}</span>
 				{#if champion}
 					<span class="stat-player">{stats.name}</span>
 				{/if}
@@ -58,9 +69,16 @@
 	{:else}
 		<div class="info">
 			<div class="match-stats">
-				<span class="stat patch lg">{patch}</span>
 				<span class="stat timeago lg">{dateRelative}</span>
+				<span class="stat patch lg">{patch}</span>
 			</div>
+			{#if nonSpecificMatch && proTeams.length}
+				<div class="teams-list">
+					{#each proTeams as proTeamName}
+						<TeamImg name={proTeamName} />
+					{/each}
+				</div>
+			{/if}
 		</div>
 	{/if}
 	<div class="playerlist">
@@ -100,7 +118,6 @@
 		padding-left: 8px;
 		transition: background var(--transition);
 		cursor: pointer;
-
 		border-bottom: 1px solid var(--c3);
 
 		&:first-child {
@@ -141,6 +158,14 @@
 			&:hover {
 				background: var(--c3);
 			}
+
+			:global(.team-img) {
+				--size: 32;
+
+				@media screen and (min-width: 1800px) {
+					--size: 48;
+				}
+			}
 		}
 
 		@media screen and (max-width: 800px) {
@@ -165,6 +190,24 @@
 			gap: 0.5rem;
 		}
 
+		.noHighlight & {
+			gap: 2rem;
+
+			@media screen and (min-width: 1800px) {
+				gap: 4rem;
+			}
+			@media screen and (max-width: 1600px) and (min-width: 1300px) {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 1rem;
+			}
+			@media screen and (max-width: 600px) {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.5rem;
+			}
+		}
+
 		.champ-container {
 			:global(.champ-img) {
 				--size: 80;
@@ -176,15 +219,26 @@
 		}
 	}
 
+	.teams-list {
+		display: flex;
+		gap: 0.5rem;
+	}
+
 	.match-stats {
 		display: grid;
 		grid-template-columns: repeat(3, 7rem);
 		align-items: baseline;
 
 		.noHighlight & {
+			display: flex;
+			gap: 1rem;
+
 			.timeago,
 			.patch {
-				font-size: 1.5rem;
+				font-size: 1.75rem;
+			}
+			.timeago {
+				width: 14ch;
 			}
 		}
 
@@ -210,19 +264,23 @@
 	}
 
 	.stat.patch {
-		color: var(--c8);
+		color: var(--c6);
+
+		.noHighlight & {
+			color: var(--c4);
+		}
 
 		@media screen and (max-width: 600px) {
 			display: none;
 		}
 	}
-	.stat.patch,
+	/* .stat.patch,
 	.stat.stat-cs,
 	.stat.timeago {
-		/* @media screen and (min-width: 600px) and (max-width: 800px) {
+		@media screen and (min-width: 600px) and (max-width: 800px) {
 			display: none;
-		} */
-	}
+		}
+	} */
 	.stat.timeago {
 		text-transform: capitalize;
 	}

@@ -5,6 +5,8 @@
 
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { matchModal } from '$lib/stores';
+	import { findPlayerTeam } from '$lib/helpers';
+	import TeamImg from '$lib/components/TeamImg.svelte';
 
 	let match;
 
@@ -50,10 +52,16 @@
 					</div>
 					<ul class="players">
 						{#each match.teams[0].players as player}
+							{@const team = findPlayerTeam(player.name)}
 							<li>
 								<a class="player" href={`/players/${player.name}`}>
 									<ChampImg name={player.championIcon} />
-									<span class="name">{player.name}</span>
+									{#if team}
+										<TeamImg name={team.name} />
+									{:else}
+										<div class="no-team" />
+									{/if}
+									<span class="name lg">{player.name}</span>
 									<div class="stats">
 										<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
 										<span class="cs">{player.cs.toLocaleString('en-us')}</span>
@@ -75,10 +83,16 @@
 					</div>
 					<ul class="players ">
 						{#each match.teams[1].players as player}
+							{@const team = findPlayerTeam(player.name)}
 							<li>
 								<a class="player" href={`/players/${player.name}`}>
 									<ChampImg name={player.championIcon} />
-									<span class="name">{player.name}</span>
+									{#if team}
+										<TeamImg name={team.name} />
+									{:else}
+										<div class="no-team" />
+									{/if}
+									<span class="name lg">{player.name}</span>
 									<div class="stats">
 										<span class="kda">{player.kills} / {player.deaths} / {player.assists}</span>
 										<span class="cs">{player.cs.toLocaleString('en-us')}</span>
@@ -112,7 +126,7 @@
 		position: relative;
 		background: var(--c1);
 		padding: 2rem;
-		border: 3px solid var(--c2);
+		border: 4px solid var(--c3);
 		box-shadow: 0 0px 200px 115px var(--c1);
 		z-index: 10;
 
@@ -123,6 +137,7 @@
 
 	.outcome {
 		font-size: 2rem;
+		line-height: 1;
 		text-align: right;
 		color: var(--red);
 
@@ -159,22 +174,25 @@
 		.name {
 			width: 12ch;
 			text-align: left;
-			margin-left: 4.5rem;
+			margin-left: 7.5rem;
 
-			@media screen and (max-width: 1000px) {
+			@media screen and (max-width: 400px) {
 				width: 7ch;
-				margin-left: 3rem;
+				margin-left: 3.5rem;
 			}
 
 			.right & {
 				text-align: right;
 				margin-left: 0;
-				margin-right: 4.5rem;
+				margin-right: 7.5rem;
 
 				@media screen and (max-width: 1000px) {
 					text-align: left;
-					margin-left: 3rem;
+					margin-left: 7.5rem;
 					margin-right: unset;
+				}
+				@media screen and (max-width: 400px) {
+					margin-left: 3.5rem;
 				}
 			}
 		}
@@ -183,7 +201,7 @@
 		}
 		.gold,
 		.cs {
-			width: 9ch;
+			width: 7ch;
 		}
 
 		.right & {
@@ -253,14 +271,29 @@
 			}
 		}
 
+		:global(.team-img) {
+			--size: 40;
+
+			@media screen and (max-width: 400px) {
+				--size: 24;
+			}
+		}
+		.no-team {
+			width: 2.5rem;
+
+			@media screen and (max-width: 400px) {
+				width: 24px;
+			}
+		}
+
 		.name {
-			font-weight: 600;
 			width: 14ch;
+			font-size: 1.25rem;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow: hidden;
 
-			@media screen and (max-width: 1000px) {
+			@media screen and (max-width: 400px) {
 				width: 7ch;
 			}
 		}
@@ -294,7 +327,7 @@
 		}
 		.gold,
 		.cs {
-			width: 9ch;
+			width: 7ch;
 		}
 
 		.right & {

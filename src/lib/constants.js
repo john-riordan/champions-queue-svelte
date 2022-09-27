@@ -70,78 +70,7 @@ export function teamImg(size, logo) {
 	return `https://am-a.akamaihd.net/image?resize=${size}:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2${logo}`;
 }
 
-export const TEAMS = {
-	TSM: {
-		name: 'TSM',
-		tag: 'TSM',
-		logo: 'F1592590917094_TSMTSM-01-FullonDark.png',
-		hsl: '0deg 0% 60%',
-		starters: ['TSM Huni', 'TSM Spica', 'TSM Maple', 'TSM Tactical', 'TSM Shenyi']
-	},
-	TL: {
-		name: 'Team Liquid',
-		tag: 'TL',
-		logo: 'F1631820014208_tl-2021-worlds.png',
-		hsl: '214deg 0% 80%',
-		starters: ['TL Bwipo', 'TL Santorin', 'TL Bjergsen', 'TL Hans sama', 'TL CoreJJ']
-	},
-	C9: {
-		name: 'Cloud 9',
-		tag: 'C9',
-		logo: 'F1631820065346_cloud9-2021-worlds.png',
-		hsl: '196deg 100% 39%',
-		starters: ['C9 Fudge', 'C9 Blaber', 'C9 Jensen', 'C9 Berserker', 'C9 Zven']
-	},
-	100: {
-		name: '100 Thieves',
-		tag: '100',
-		logo: 'F1631819887423_100t-2021-worlds.png',
-		hsl: '0deg 73% 53%',
-		starters: ['100 Ssumday', '100 Closer', '100 Abbedagge', '100 FBI', '100 huhi']
-	},
-	EG: {
-		name: 'Evil Geniuses',
-		tag: 'EG',
-		logo: 'F1592590374862_EvilGeniusesEG-01-FullonDark.png',
-		hsl: '0deg 0% 40%',
-		starters: ['EG Impact', 'EG Inspired', 'EG jojopyun', 'EG Danny', 'EG Vulcan']
-	},
-	FLY: {
-		name: 'FlyQuest',
-		tag: 'FLY',
-		logo: 'Fflyquest-new-on-dark.png',
-		hsl: '152deg 97% 27%',
-		starters: ['FLY Kumo', 'FLY Josedeodo', 'FLY toucouille', 'FLY Johnsun', 'FLY aphromoo']
-	},
-	GG: {
-		name: 'Golden Guardians',
-		tag: 'GG',
-		logo: 'F1592590586919_GoldenGuardiansGGS-01-FullonDark.png',
-		hsl: '39deg 64% 60%',
-		starters: ['GG Licorice', 'GG Pridestalkr', 'GG Ablazeolive', 'GG Stixxay', 'GG Olleh']
-	},
-	IMT: {
-		name: 'Immortals Progressive',
-		tag: 'IMT',
-		logo: 'Fimt-new-color.png',
-		hsl: '177deg 97% 35%',
-		starters: ['IMT Revenge', 'IMT Kenvi', 'IMT PowerOfEvil', 'IMT Lost', 'IMT IgNar']
-	},
-	DIG: {
-		name: 'Dignitas QNTMPAY',
-		tag: 'DIG',
-		logo: 'FDIG-FullonDark.png',
-		hsl: '48deg 100% 50%',
-		starters: ['DIG Gamsu', 'DIG River', 'DIG Blue', 'DIG Neo', 'DIG Biofrost']
-	},
-	CLG: {
-		name: 'Counter Logic Gaming',
-		tag: 'CLG',
-		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png',
-		hsl: '192deg 100% 44%',
-		starters: ['CLG Dhokla', 'CLG Contractz', 'CLG Palafox', 'CLG Luger', 'CLG Poome']
-	}
-};
+export const TEAMS = {};
 
 export const TEAMS_WORLDS = {
 	C9: {
@@ -311,10 +240,256 @@ export const TEAMS_WORLDS = {
 		logo: 'F1656307849320_CFO_Logo.png',
 		hsl: '49deg 100% 50%',
 		starters: ['CFO Rest', 'CFO Gemini', 'CFO Mission', 'CFO Atlen', 'CFO Koala']
+	},
+	TSM: {
+		name: 'TSM',
+		tag: 'TSM',
+		logo: 'F1592590917094_TSMTSM-01-FullonDark.png',
+		hsl: '0deg 0% 60%',
+		starters: ['TSM Huni', 'TSM Spica', 'TSM Maple', 'TSM Tactical', 'TSM Shenyi']
+	},
+	TL: {
+		name: 'Team Liquid',
+		tag: 'TL',
+		logo: 'F1631820014208_tl-2021-worlds.png',
+		hsl: '214deg 0% 80%',
+		starters: ['TL Bwipo', 'TL Santorin', 'TL Bjergsen', 'TL Hans sama', 'TL CoreJJ']
+	},
+	FLY: {
+		name: 'FlyQuest',
+		tag: 'FLY',
+		logo: 'Fflyquest-new-on-dark.png',
+		hsl: '152deg 97% 27%',
+		starters: ['FLY Kumo', 'FLY Josedeodo', 'FLY toucouille', 'FLY Johnsun', 'FLY aphromoo']
+	},
+	GG: {
+		name: 'Golden Guardians',
+		tag: 'GG',
+		logo: 'F1592590586919_GoldenGuardiansGGS-01-FullonDark.png',
+		hsl: '39deg 64% 60%',
+		starters: ['GG Licorice', 'GG Pridestalkr', 'GG Ablazeolive', 'GG Stixxay', 'GG Olleh']
+	},
+	IMT: {
+		name: 'Immortals Progressive',
+		tag: 'IMT',
+		logo: 'Fimt-new-color.png',
+		hsl: '177deg 97% 35%',
+		starters: ['IMT Revenge', 'IMT Kenvi', 'IMT PowerOfEvil', 'IMT Lost', 'IMT IgNar']
+	},
+	DIG: {
+		name: 'Dignitas QNTMPAY',
+		tag: 'DIG',
+		logo: 'FDIG-FullonDark.png',
+		hsl: '48deg 100% 50%',
+		starters: ['DIG Gamsu', 'DIG River', 'DIG Blue', 'DIG Neo', 'DIG Biofrost']
+	},
+	CLG: {
+		name: 'Counter Logic Gaming',
+		tag: 'CLG',
+		logo: 'F1592590248482_CounterLogicGamingCLG-01-FullonDark.png',
+		hsl: '192deg 100% 44%',
+		starters: ['CLG Dhokla', 'CLG Contractz', 'CLG Palafox', 'CLG Luger', 'CLG Poome']
 	}
 };
 
 export const PLAYERS = {
+	'DFM Evi': {
+		summonerName: 'Evi',
+		summonerNameWithTeam: 'DFM Evi',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1644905234834_dfm_evi.png'
+	},
+	'DFM Steal': {
+		summonerName: 'Steal',
+		summonerNameWithTeam: 'DFM Steal',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1644905307225_dfm_steal.png'
+	},
+	'DFM Yaharong': {
+		summonerName: 'Yaharong',
+		summonerNameWithTeam: 'DFM Yaharong',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656051596240_dfm_yaharong.png'
+	},
+	'DFM Yutapon': {
+		summonerName: 'Yutapon',
+		summonerNameWithTeam: 'DFM Yutapon',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1644905347846_dfm_yutapon.png'
+	},
+	'DFM Harp': {
+		summonerName: 'Harp',
+		summonerNameWithTeam: 'DFM Harp',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656051630613_dfm_harp.png'
+	},
+	'DFM Marimo': {
+		summonerName: 'Marimo',
+		summonerNameWithTeam: 'DFM Marimo',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1644905281811_dfm_marimo.png'
+	},
+
+	'DRX Pyosik': {
+		summonerName: 'Pyosik',
+		summonerNameWithTeam: 'DRX Pyosik',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455094807_DRX_Pyosik_784x621.png'
+	},
+	'DRX Kingen': {
+		summonerName: 'Kingen',
+		summonerNameWithTeam: 'DRX Kingen',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455076023_DRX_Kingen_784x621.png'
+	},
+	'DRX Taeyoon': {
+		summonerName: 'Taeyoon',
+		summonerNameWithTeam: 'DRX Taeyoon',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455115535_DRX_Taeyoon_784x621.png'
+	},
+	'DRX Zeka': {
+		summonerName: 'Zeka',
+		summonerNameWithTeam: 'DRX Zeka',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455135475_DRX_Zeka_784x621.png'
+	},
+	'DRX Deft': {
+		summonerName: 'Deft',
+		summonerNameWithTeam: 'DRX Deft',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455056599_DRX_Deft_784x621.png'
+	},
+	'DRX BeryL': {
+		summonerName: 'BeryL',
+		summonerNameWithTeam: 'DRX BeryL',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455031274_DRX_BeryL_784x621.png'
+	},
+	'DRX Juhan': {
+		summonerName: 'Juhan',
+		summonerNameWithTeam: 'DRX Juhan',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1644557297606_PSG_Juhan.png'
+	},
+
+	'BYG Liang': {
+		summonerName: 'Liang',
+		summonerNameWithTeam: 'DRX Liang',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656575802324_Liang.png'
+	},
+	'BYG Husha': {
+		summonerName: 'Husha',
+		summonerNameWithTeam: 'DRX Husha',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656575825196_Husha.png'
+	},
+	'BYG Kino': {
+		summonerName: 'Kino',
+		summonerNameWithTeam: 'DRX Kino',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656575886308_Kino.png'
+	},
+	'BYG Likai': {
+		summonerName: 'Likai',
+		summonerNameWithTeam: 'DRX Likai',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656575906558_Likai.png'
+	},
+	'BYG Minji': {
+		summonerName: 'Minji',
+		summonerNameWithTeam: 'DRX Minji',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656575846595_Minji.png'
+	},
+	'BYG Wako': {
+		summonerName: 'Wako',
+		summonerNameWithTeam: 'DRX Wako',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656575866382_Wako.png'
+	},
+
+	'FNC Hylissang': {
+		summonerName: 'Hylissang',
+		summonerNameWithTeam: 'FNC Hylissang',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318443157_hylissang.png'
+	},
+	'FNC Upset': {
+		summonerName: 'Upset',
+		summonerNameWithTeam: 'FNC Upset',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318468554_upset.png'
+	},
+	'FNC Humanoid': {
+		summonerName: 'Humanoid',
+		summonerNameWithTeam: 'FNC Humanoid',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318432564_humanoid.png'
+	},
+	'FNC Wunder': {
+		summonerName: 'Wunder',
+		summonerNameWithTeam: 'FNC Wunder',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318481877_wunder.png'
+	},
+	'FNC Razork': {
+		summonerName: 'Razork',
+		summonerNameWithTeam: 'FNC Razork',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318455881_razork.png'
+	},
+	'FNC BEAN': {
+		summonerName: 'BEAN',
+		summonerNameWithTeam: 'FNC BEAN',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1633541248506_fnc-bean-w21.png'
+	},
+
+	'CHF Raes': {
+		summonerName: 'Raes',
+		summonerNameWithTeam: 'CHF Raes',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Fimt-raes-2021.png'
+	},
+	'CHF Tally': {
+		summonerName: 'Tally',
+		summonerNameWithTeam: 'CHF Tally',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1633539183660_pce-tally-w21.png'
+	},
+	'CHF Dragku': {
+		summonerName: 'Dragku',
+		summonerNameWithTeam: 'CHF Dragku',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=https%3A%2F%2Flolstatic-a.akamaihd.net%2Fesports-assets%2Fproduction%2Fplayer%2Fdragku-9znhn75e.png'
+	},
+	'CHF Babip': {
+		summonerName: 'Babip',
+		summonerNameWithTeam: 'CHF Babip',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1633539136875_pce-babip-w21.png'
+	},
+	'CHF Aladoric': {
+		summonerName: 'Aladoric',
+		summonerNameWithTeam: 'CHF Aladoric',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1633539119343_pce-aladoric-w21.png'
+	},
+	'CHF Arthur': {
+		summonerName: 'Arthur',
+		summonerNameWithTeam: 'CHF Arthur',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2Fhle-arthur.png'
+	},
+	'CHF Topoon': {
+		summonerName: 'Topoon',
+		summonerNameWithTeam: 'CHF Topoon',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1600450776168_lgc-topoon.png'
+	},
+
 	'100 Ssumday': {
 		summonerName: 'Ssumday',
 		summonerNameWithTeam: '100 Ssumday',
@@ -3763,7 +3938,8 @@ export const PLAYERS = {
 				link: 'https://youtube.com/c/Jensenlol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655450133707_JENSEN.png'
 	},
 	Pobelter: {
 		summonerName: 'Pobelter',

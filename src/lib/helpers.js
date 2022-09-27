@@ -12,6 +12,11 @@ export async function fetchData(fullSeason = false) {
 	return json;
 }
 
+export function findPlayerTeam(playerName = '') {
+	const teamTag = playerName.split(' ')[0];
+	return TEAMS[teamTag];
+}
+
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
 	const matches = (data.matches || []).filter((match) => {
@@ -80,8 +85,7 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 				};
 
 				// Team Stats
-				const teamTag = player.name.split(' ')[0];
-				const playerTeam = TEAMS[teamTag]?.tag;
+				const playerTeam = findPlayerTeam(player.name)?.tag;
 
 				if (playerTeam) {
 					if (!acc.teams[playerTeam]) acc.teams[playerTeam] = {};
