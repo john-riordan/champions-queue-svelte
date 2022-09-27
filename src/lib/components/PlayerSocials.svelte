@@ -7,9 +7,13 @@
 
 	export let name;
 
-	$: twitterLink = PLAYERS?.[name]?.socialLinks.find((links) => links.platform === 'twitter')?.link;
-	$: twitchLink = PLAYERS?.[name]?.socialLinks.find((links) => links.platform === 'twitch')?.link;
-	$: youtubeLink = PLAYERS?.[name]?.socialLinks.find((links) => links.platform === 'youtube')?.link;
+	$: twitterLink = PLAYERS?.[name]?.socialLinks?.find(
+		(links) => links.platform === 'twitter'
+	)?.link;
+	$: twitchLink = PLAYERS?.[name]?.socialLinks?.find((links) => links.platform === 'twitch')?.link;
+	$: youtubeLink = PLAYERS?.[name]?.socialLinks?.find(
+		(links) => links.platform === 'youtube'
+	)?.link;
 </script>
 
 <div class="player-socials">
