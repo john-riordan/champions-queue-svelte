@@ -264,13 +264,16 @@
 	.team-name {
 		font-size: 2.5rem;
 		line-height: 1;
+		white-space: nowrap;
 
+		@media screen and (min-width: 1750px) {
+			max-width: 22ch;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 		@media screen and (max-width: 600px) {
 			width: 10rem;
 			font-size: 1.25rem;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
 		}
 	}
 	.team-inner {
