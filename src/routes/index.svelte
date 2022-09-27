@@ -301,18 +301,16 @@
 		}
 
 		a {
+			position: relative;
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
 			padding-right: 1.5rem;
 			height: calc(var(--height) * 1px);
-			transition: background var(--transition);
 
 			&:hover {
-				background: var(--c3);
-
 				.img-container::before {
-					box-shadow: inset 0 0 0 0.25rem var(--blue);
+					box-shadow: inset 0 0 0 2px var(--c11);
 				}
 			}
 

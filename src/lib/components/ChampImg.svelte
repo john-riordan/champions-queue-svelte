@@ -12,7 +12,7 @@
 	$: fixedName = name !== LOADING_STR && correctChampionImage(name);
 	$: image =
 		type === 'splash'
-			? `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${fixedName}_0.jpg`
+			? `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${fixedName}_0.jpg`
 			: `https://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`;
 </script>
 
