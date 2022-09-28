@@ -12,30 +12,34 @@
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
+	import TeamImg from '$lib/components/TeamImg.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS, teamImg } from '$lib/constants';
-	import { winrateColor } from '$lib/helpers';
+	import { TEAMS, TEAMS_WORLDS, teamImg } from '$lib/constants';
+	import { winrateColor, findPlayerTeam } from '$lib/helpers';
 
 	export let title;
 	let search = '';
 	let team = null;
 	let sort = 'lp';
 	let desc = true;
-	let commonOnly = false;
+	let worldsOnly = false;
 
 	$: players = Object.values($store.players || {})
 		.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
 		.map((p, i) => ({ ...p, rank: i + 1 }));
 	$: leaderboard = $store.leaderboard || {};
-	$: totalGames = $store.totalGames || 1;
 	$: list = players
 		.filter((p) => {
-			if (team) {
-				return p.name.toLowerCase().startsWith(team.toLowerCase());
-			}
-			return p.name.toLowerCase().includes(search.toLowerCase());
+			const playerTeam = findPlayerTeam(p.name);
+			const worldsTeam = worldsOnly ? TEAMS_WORLDS[playerTeam?.tag] : true;
+			const teamFilterMatch = team ? p.name.toLowerCase().startsWith(team.toLowerCase()) : true;
+			const searchMatch = search?.length
+				? p.name.toLowerCase().includes(search.toLowerCase())
+				: true;
+
+			return worldsTeam && teamFilterMatch && searchMatch;
 		})
 		.map((p) => {
 			const lp = leaderboard[p.name]?.lp || 0;
@@ -48,8 +52,7 @@
 				kda: (p.kills + p.assists) / (p.deaths || 1)
 			};
 		})
-		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]))
-		.filter((c) => (commonOnly ? c.games / totalGames > 0.02 : true));
+		.sort((a, b) => (desc ? b[sort] - a[sort] : a[sort] - b[sort]));
 
 	function setSort(col) {
 		if (sort !== col) sort = col;
@@ -60,6 +63,8 @@
 		team = event.detail;
 		search = '';
 	}
+
+	$: console.log($store.leaderboardMaxLP, $store.leaderboardMinLP);
 
 	const teamOptions = Object.values(TEAMS).map((t) => ({
 		value: t.tag,
@@ -87,16 +92,16 @@
 		placeholder="Search Players"
 		bind:value={search}
 	/>
-	<label class="boolean-btn" class:checked={commonOnly} for="hide-low">
-		<span>Hide Low Game-Count</span>
-		<input type="checkbox" bind:checked={commonOnly} id="hide-low" />
-		{#if commonOnly}
+	<label class="boolean-btn" class:checked={worldsOnly} for="worlds-only">
+		<span>Only Worlds Teams</span>
+		<input type="checkbox" bind:checked={worldsOnly} id="worlds-only" />
+		{#if worldsOnly}
 			<CheckChecked />
 		{:else}
 			<CheckUnchecked />
 		{/if}
 	</label>
-	<Select defaultText="Select an LCS Team" value={team} options={teamOptions} on:select={setTeam} />
+	<Select defaultText="Select a Team" value={team} options={teamOptions} on:select={setTeam} />
 </div>
 
 <div class="sort">
@@ -135,10 +140,17 @@
 
 <ul class="list">
 	{#each list as player (player.name)}
+		{@const playerTeam = findPlayerTeam(player.name)}
 		<li>
 			<a href={`/players/${player.name}`}>
 				<div class="info">
 					<PlayerImg name={player.name} />
+					{#if playerTeam}
+						<TeamImg name={playerTeam?.name} />
+					{:else}
+						<div class="no-team" />
+					{/if}
+
 					<p class="name lg">{player.name}</p>
 				</div>
 
@@ -146,7 +158,12 @@
 					<RankBadge rank={player.rank} />
 				</span>
 				<span class="stat lp lg">
-					{leaderboard[player.name]?.lp || 0}
+					<span>{leaderboard[player.name]?.lp || 0}</span>
+					<WinRateBar
+						height={2}
+						wins={player.lp - $store.leaderboardMinLP}
+						games={$store.leaderboardMaxLP - $store.leaderboardMinLP}
+					/>
 				</span>
 				<span class="stat kda">
 					{((player.kills + player.assists) / (player.deaths || 1)).toLocaleString('en-us', {
@@ -204,7 +221,7 @@
 			.info {
 				display: flex;
 				align-items: center;
-				gap: 1rem;
+				gap: 0.75rem;
 			}
 
 			:global(.player-img) {
@@ -216,6 +233,18 @@
 				@media screen and (max-width: 800px) {
 					display: none;
 				}
+			}
+
+			.no-team,
+			:global(.team-img) {
+				--size: 32;
+
+				@media screen and (min-width: 1700px) {
+					--size: 48;
+				}
+			}
+			.no-team {
+				width: calc(var(--size) * 1px);
 			}
 
 			.name {
@@ -258,16 +287,19 @@
 	.nameSort {
 		justify-content: flex-start;
 		width: 14rem;
-		margin-left: 6rem;
+		margin-left: 8.5rem;
 
+		@media screen and (min-width: 1700px) {
+			margin-left: 9.5rem;
+		}
 		@media screen and (max-width: 1200px) {
-			width: 6rem;
+			width: 6.5rem;
 		}
 		@media screen and (max-width: 1000px) {
-			margin-left: 3rem;
+			margin-left: 6rem;
 		}
 		@media screen and (max-width: 800px) {
-			margin-left: 0;
+			margin-left: 2rem;
 		}
 	}
 
@@ -282,10 +314,18 @@
 		}
 	}
 	.lp {
-		font-size: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 2.5rem;
 
 		@media screen and (max-width: 600px) {
 			font-size: 1.5rem;
+		}
+
+		:global(.bar) {
+			width: 4ch;
+			opacity: 0.25;
 		}
 	}
 	.winrate {

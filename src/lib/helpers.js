@@ -114,6 +114,7 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 	const currSeason = leaderboard.leaderboards.find(
 		(s) => s.seasonId === currSeasonId && (!s.split?.splitId || s.split?.splitId === currSplitId)
 	);
+	const lpList = (currSeason?.lineup || []).map((player) => player.lp).filter((lp) => lp > 0);
 
 	return {
 		fetchedAt: Date.now(),
@@ -131,7 +132,9 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 		leaderboard: (currSeason?.lineup || []).reduce((acc, curr) => {
 			acc[curr.name] = curr;
 			return acc;
-		}, {})
+		}, {}),
+		leaderboardMaxLP: Math.max(...lpList) ?? 0,
+		leaderboardMinLP: Math.min(...lpList) ?? 0
 	};
 }
 
