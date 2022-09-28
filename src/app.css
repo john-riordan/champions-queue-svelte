@@ -121,16 +121,17 @@ svg {
 
 @keyframes loading-bar {
 	to {
-		left: -100%;
+		right: -100%;
 	}
 }
 .loading-indicator {
 	position: fixed !important;
 	top: 50%;
 	left: 50%;
+	left: calc(50% + (var(--nav-width) / 2));
 	width: 65%;
-	max-width: 400px;
-	height: 2px;
+	max-width: 600px;
+	height: 3px;
 	transform: translate(-50%, -50%);
 	overflow: hidden;
 	-webkit-mask-image: linear-gradient(
@@ -141,6 +142,11 @@ svg {
 		transparent 100%
 	);
 	z-index: 10;
+}
+@media screen and (max-width: 1000px) {
+	.loading-indicator {
+		left: 50%;
+	}
 }
 .loading-indicator::before,
 .loading-indicator::after {
@@ -154,14 +160,14 @@ svg {
 }
 .loading-indicator::after {
 	top: 0;
-	left: 100%;
+	right: 100%;
 	bottom: 0;
 	width: 65%;
 	background: linear-gradient(
 		to right,
 		transparent 0%,
-		var(--c11) 25%,
-		var(--c11) 75%,
+		var(--c11) 40%,
+		var(--c11) 60%,
 		transparent 100%
 	);
 	opacity: 1;

@@ -141,9 +141,7 @@
 			</p>
 		</footer>
 		{#if $store.loading && currURL !== '/'}
-			<div class="loading">
-				<div class="loading-indicator" />
-			</div>
+			<div class="loading-indicator" />
 		{/if}
 	</section>
 	{#if menuOpen}
