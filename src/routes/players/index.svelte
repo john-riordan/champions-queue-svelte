@@ -180,10 +180,6 @@
 		justify-content: space-between;
 		letter-spacing: 1px;
 		text-align: center;
-
-		@media screen and (max-width: 1200px) {
-			padding: 0.75rem;
-		}
 	}
 
 	.list {
@@ -215,7 +211,7 @@
 				--size: 80;
 
 				@media screen and (max-width: 1000px) {
-					--size: 40;
+					--size: 48;
 				}
 				@media screen and (max-width: 800px) {
 					display: none;
@@ -223,7 +219,7 @@
 			}
 
 			.name {
-				width: 15rem;
+				width: 14rem;
 				font-size: 2rem;
 				text-align: left;
 				white-space: nowrap;

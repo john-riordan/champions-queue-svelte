@@ -165,10 +165,6 @@
 		justify-content: space-between;
 		letter-spacing: 1px;
 		text-align: center;
-
-		@media screen and (max-width: 800px) {
-			padding: 0.5rem;
-		}
 	}
 
 	.list {
@@ -205,9 +201,6 @@
 
 			@media screen and (max-width: 1000px) {
 				--size: 40;
-			}
-			@media screen and (max-width: 800px) {
-				--size: 32;
 			}
 		}
 

@@ -102,9 +102,6 @@
 		@media screen and (max-width: 1000px) {
 			height: 5rem;
 		}
-		@media screen and (max-width: 800px) {
-			margin-top: 2rem;
-		}
 		@media screen and (max-width: 600px) {
 			gap: 0.5rem;
 			margin-top: 0;
