@@ -6,17 +6,23 @@
 
 <script>
 	import { store } from '$lib/stores';
-	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS, TEAMS_WORLDS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import Select from '$lib/components/Select.svelte';
+	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
+	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 
 	export let title;
 	let selectedPlayers = 'all';
-	let teamSort = 'lp';
+	let teamSort = 'games';
+	let worldsOnly = true;
 
 	$: players = $store.players || {};
 	$: teams = Object.entries($store.teams || {})
+		.filter(([tag]) => {
+			return worldsOnly ? TEAMS_WORLDS[tag] : true;
+		})
 		.map(([tag, team]) => {
 			const teamInfo = TEAMS[tag];
 			const teamMainRoster = (teamInfo.starters || []).reduce((acc, curr) => {
@@ -69,17 +75,6 @@
 		})
 		.sort((a, b) => b[teamSort] - a[teamSort]);
 
-	const teamSortOptions = [
-		{
-			value: 'lp',
-			text: 'Sort Teams by: LP'
-		},
-		{
-			value: 'games',
-			text: 'Sort Teams by: Games Played'
-		}
-	];
-
 	function setSort(event) {
 		teamSort = event.detail;
 	}
@@ -111,10 +106,44 @@
 	<Select
 		defaultText="Sort Teams by:"
 		value={teamSort}
-		options={teamSortOptions}
+		options={[{
+			value: 'lp',
+			text: 'Sort Teams by: LP'
+		},
+		{
+			value: 'games',
+			text: 'Sort Teams by: Games Played'
+		}]}
 		on:select={setSort}
 	/>
 </div> -->
+
+<div class="controls">
+	<label class="boolean-btn" class:checked={worldsOnly} for="hide-low">
+		<span>Only Worlds Teams</span>
+		<input type="checkbox" bind:checked={worldsOnly} id="hide-low" />
+		{#if worldsOnly}
+			<CheckChecked />
+		{:else}
+			<CheckUnchecked />
+		{/if}
+	</label>
+	<Select
+		defaultText="Sort Teams by:"
+		value={teamSort}
+		options={[
+			{
+				value: 'lp',
+				text: 'Sort Teams by: LP'
+			},
+			{
+				value: 'games',
+				text: 'Sort Teams by: Games Played'
+			}
+		]}
+		on:select={setSort}
+	/>
+</div>
 
 <ol class="teams-list">
 	{#each teams as team (team.name)}

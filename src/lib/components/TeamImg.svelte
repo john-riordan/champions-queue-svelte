@@ -1,5 +1,5 @@
 <script>
-	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS, teamImg } from '$lib/constants';
 
 	export let name;
 	export let size;

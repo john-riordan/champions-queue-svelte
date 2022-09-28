@@ -15,7 +15,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS, teamImg } from '$lib/constants';
 	import { winrateColor } from '$lib/helpers';
 
 	export let title;
@@ -119,13 +119,13 @@
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('winrate')}>
+	<span class="stat winrate" on:click={() => setSort('winrate')}>
 		WR
 		{#if sort === 'winrate'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat" on:click={() => setSort('games')}>
+	<span class="stat wl" on:click={() => setSort('games')}>
 		WL (Total)
 		{#if sort === 'games'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
@@ -145,7 +145,7 @@
 				<span class="stat rank">
 					<RankBadge rank={player.rank} />
 				</span>
-				<span class="stat">
+				<span class="stat lp lg">
 					{leaderboard[player.name]?.lp || 0}
 				</span>
 				<span class="stat kda">
@@ -164,7 +164,7 @@
 					</span>
 					<WinRateBar wins={player.wins} games={player.games} />
 				</span>
-				<span class="stat">
+				<span class="stat wl">
 					{player.wins} / {player.games - player.wins} ({player.games})
 				</span>
 			</a>
@@ -241,27 +241,6 @@
 		}
 	}
 
-	.stat {
-		flex: 1;
-	}
-
-	.kda,
-	.rank {
-		@media screen and (max-width: 800px) {
-			display: none !important;
-		}
-	}
-	.winrate {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-weight: 600;
-
-		.value {
-			width: 13ch;
-		}
-	}
-
 	.sort {
 		background: transparent;
 		font-weight: 700;
@@ -293,6 +272,43 @@
 		}
 		@media screen and (max-width: 800px) {
 			margin-left: 0;
+		}
+	}
+
+	.stat {
+		flex: 1;
+	}
+
+	.kda,
+	.rank {
+		@media screen and (max-width: 800px) {
+			display: none !important;
+		}
+	}
+	.lp {
+		font-size: 2rem;
+
+		@media screen and (max-width: 600px) {
+			font-size: 1.5rem;
+		}
+	}
+	.winrate {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+
+		@media screen and (max-width: 600px) {
+			gap: 0;
+		}
+
+		.value {
+			width: 13ch;
+		}
+	}
+	.wl {
+		@media screen and (max-width: 600px) {
+			display: none;
 		}
 	}
 </style>

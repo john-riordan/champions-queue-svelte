@@ -1,9 +1,4 @@
-import {
-	SPLITS_STARTS,
-	correctChampionDisplayName,
-	INDEX_TO_ROLE,
-	TEAMS_WORLDS as TEAMS
-} from './constants';
+import { SPLITS_STARTS, correctChampionDisplayName, INDEX_TO_ROLE, TEAMS } from './constants';
 
 export async function fetchData(fullSeason = false) {
 	const res = await fetch(`/api?fullSeason=${fullSeason}`);

@@ -8,7 +8,7 @@
 	import { onMount } from 'svelte';
 
 	import { pageBackground } from '$lib/stores';
-	import { TEAMS_WORLDS as TEAMS, teamImg } from '$lib/constants';
+	import { TEAMS, teamImg } from '$lib/constants';
 
 	export let name;
 

@@ -4,7 +4,7 @@
 
 <script>
 	import { store } from '$lib/stores';
-	import { TEAMS_WORLDS as TEAMS, LOADING_STR } from '$lib/constants';
+	import { TEAMS, LOADING_STR } from '$lib/constants';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';

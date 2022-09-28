@@ -72,9 +72,7 @@ export function teamImg(size, logo) {
 	return `https://am-a.akamaihd.net/image?resize=${size}:&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2${logo}`;
 }
 
-export const TEAMS = {};
-
-export const TEAMS_WORLDS = {
+export const TEAMS = {
 	C9: {
 		name: 'Cloud 9',
 		tag: 'C9',
@@ -294,7 +292,102 @@ export const TEAMS_WORLDS = {
 	}
 };
 
+export const TEAMS_WORLDS = {
+	C9: true,
+	100: true,
+	EG: true,
+	DFM: true,
+	LLL: true,
+	BYG: true,
+	FNC: true,
+	CHF: true,
+	IW: true,
+	MAD: true,
+	SGB: true,
+	RNG: true,
+	DRX: true,
+	ISG: true,
+	T1: true,
+	EDG: true,
+	DWG: true,
+	G2: true,
+	JDG: true,
+	RGE: true,
+	GAM: true,
+	TES: true,
+	GEN: true,
+	CFO: true
+};
+
 export const PLAYERS = {
+	'MAD Kaiser': {
+		summonerName: 'Kaiser',
+		summonerNameWithTeam: 'MAD Kaiser',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318626736_kaiser.png'
+	},
+	'MAD Armut': {
+		summonerName: 'Armut',
+		summonerNameWithTeam: 'MAD Armut',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318599074_armut.png'
+	},
+	'MAD Elyoya': {
+		summonerName: 'Elyoya',
+		summonerNameWithTeam: 'MAD Elyoya',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318613626_elyoya.png'
+	},
+	'MAD UNF0RGIVEN': {
+		summonerName: 'UNF0RGIVEN',
+		summonerNameWithTeam: 'MAD UNF0RGIVEN',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318653437_unforgiven.png'
+	},
+	'MAD Nisqy': {
+		summonerName: 'Nisqy',
+		summonerNameWithTeam: 'MAD Nisqy',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318638204_nisqy.png'
+	},
+
+	'T1 Faker': {
+		summonerName: 'Faker',
+		summonerNameWithTeam: 'T1 Faker',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655457397135_T1_Faker_784x621.png'
+	},
+	'T1 Gumayusi': {
+		summonerName: 'Gumayusi',
+		summonerNameWithTeam: 'T1 Gumayusi',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655457417659_T1_Gumayusi_784x621.png'
+	},
+	'T1 Oner': {
+		summonerName: 'Oner',
+		summonerNameWithTeam: 'T1 Oner',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655457463943_T1_Oner_784x621.png'
+	},
+	'T1 Keria': {
+		summonerName: 'Keria',
+		summonerNameWithTeam: 'T1 Keria',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655457436104_T1_Keria_784x621.png'
+	},
+	'T1 Zeus': {
+		summonerName: 'Zeus',
+		summonerNameWithTeam: 'T1 Zeus',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655457480889_T1_Zeus_784x621.png'
+	},
+	'T1 Asper': {
+		summonerName: 'Asper',
+		summonerNameWithTeam: 'T1 Asper',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655457378799_T1_Asper_784x621.png'
+	},
+
 	'DFM Evi': {
 		summonerName: 'Evi',
 		summonerNameWithTeam: 'DFM Evi',

@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 
 	import { store } from '$lib/stores';
-	import { TEAMS_WORLDS as TEAMS } from '$lib/constants';
+	import { TEAMS } from '$lib/constants';
 	import clickOutside from '$lib/actions/clickOutside';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';

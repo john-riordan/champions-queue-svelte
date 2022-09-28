@@ -210,11 +210,11 @@
 	.mobile-menu-btn {
 		display: none;
 		position: fixed;
-		bottom: 2rem;
-		right: 2rem;
+		bottom: 1.5rem;
+		right: 1.5rem;
 		height: auto;
-		padding: 0.5rem 0.75rem;
-		box-shadow: 0 0 20px 5px var(--app-bg);
+		padding: 0.75rem 1rem;
+		box-shadow: 0 0 50px 5px black;
 		z-index: 5;
 
 		:global(svg) {
