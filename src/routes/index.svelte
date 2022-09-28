@@ -9,12 +9,11 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
 	import GlobalSearch from '$lib/components/GlobalSearch.svelte';
-	import Refresh from '$lib/components/icons/Refresh.svelte';
 
 	const count = 5;
 	const loadingArr = [...new Array(count)].map(() => ({ name: LOADING_STR }));
 
-	$: loading = $store.splitTitle ? false : true;
+	$: loading = $store.loading;
 
 	$: topRatedPlayers = $store.leaderboard
 		? Object.values($store.leaderboard)
@@ -151,7 +150,7 @@
 			</ol>
 		</div>
 		{#if loading}
-			<div class="loading-indicator"><Refresh /></div>
+			<div class="loading-indicator" />
 		{/if}
 	</div>
 </div>
@@ -523,18 +522,6 @@
 			top: 15%;
 			left: -9%;
 			transform: rotate(-12deg) scale(0.7);
-		}
-	}
-
-	.loading-indicator {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-
-		:global(svg) {
-			width: 40px;
-			animation: loading-spin 0.5s ease-in forwards infinite;
 		}
 	}
 </style>

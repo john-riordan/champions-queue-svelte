@@ -119,6 +119,55 @@ svg {
 	box-sizing: border-box;
 }
 
+@keyframes loading-bar {
+	to {
+		left: -100%;
+	}
+}
+.loading-indicator {
+	position: fixed !important;
+	top: 50%;
+	left: 50%;
+	width: 65%;
+	max-width: 400px;
+	height: 2px;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent 0%,
+		black 25%,
+		black 75%,
+		transparent 100%
+	);
+	z-index: 10;
+}
+.loading-indicator::before,
+.loading-indicator::after {
+	content: '';
+	position: absolute;
+}
+.loading-indicator::before {
+	inset: 0;
+	background: var(--c11);
+	opacity: 0.25;
+}
+.loading-indicator::after {
+	top: 0;
+	left: 100%;
+	bottom: 0;
+	width: 65%;
+	background: linear-gradient(
+		to right,
+		transparent 0%,
+		var(--c11) 25%,
+		var(--c11) 75%,
+		transparent 100%
+	);
+	opacity: 1;
+	animation: loading-bar 0.5s linear forwards infinite;
+}
+
 .champ-img > span {
 	display: block !important;
 }

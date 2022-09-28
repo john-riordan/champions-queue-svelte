@@ -87,7 +87,7 @@
 				<div class="player" class:highlight={player.winner}>
 					<div class="player-champ-container">
 						<ChampImg name={player.championIcon} />
-						{#if playerImg}
+						{#if playerImg && nonSpecificMatch}
 							<PlayerImg name={player.name} />
 						{/if}
 					</div>
@@ -103,7 +103,7 @@
 				<div class="player" class:highlight={player.winner}>
 					<div class="player-champ-container">
 						<ChampImg name={player.championIcon} />
-						{#if playerImg}
+						{#if playerImg && nonSpecificMatch}
 							<PlayerImg name={player.name} />
 						{/if}
 					</div>

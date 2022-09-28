@@ -9,7 +9,6 @@
 	import Matches from '$lib/components/icons/Matches.svelte';
 	import Medal from '$lib/components/icons/Medal.svelte';
 	import Hamburger from '$lib/components/icons/Hamburger.svelte';
-	import Refresh from '$lib/components/icons/Refresh.svelte';
 	import MatchModal from '$lib/components/MatchModal.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
 	import FavoritesList from '$lib/components/FavoritesList.svelte';
@@ -127,7 +126,7 @@
 		</div>
 	</div>
 	<section class="content">
-		<div class="content-container">
+		<div class="content-container" class:loading={$store.loading && currURL !== '/'}>
 			<slot />
 		</div>
 		<footer>
@@ -143,7 +142,7 @@
 		</footer>
 		{#if $store.loading && currURL !== '/'}
 			<div class="loading">
-				<Refresh />
+				<div class="loading-indicator" />
 			</div>
 		{/if}
 	</section>
@@ -345,6 +344,10 @@
 		gap: 1.5rem;
 		min-height: 100vh;
 
+		&.loading {
+			opacity: 0.15;
+		}
+
 		@media screen and (max-width: 1000px) {
 			gap: 0.75rem;
 		}
@@ -356,25 +359,6 @@
 		@media screen and (max-width: 1000px) {
 			padding-right: var(--nav-indent);
 			padding-bottom: 1rem;
-		}
-	}
-
-	.loading {
-		position: fixed;
-		inset: 0 0 0 var(--nav-width);
-		display: grid;
-		place-content: center;
-		background-color: var(--c1);
-		opacity: 0.75;
-
-		:global(svg) {
-			width: 3rem;
-			height: 3rem;
-			animation: loading-spin 0.5s ease-in forwards infinite;
-		}
-
-		@media screen and (max-width: 1000px) {
-			inset: 0;
 		}
 	}
 
