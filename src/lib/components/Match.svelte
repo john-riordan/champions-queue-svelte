@@ -3,9 +3,10 @@
 
 	import { matchModal } from '$lib/stores';
 	import ChampImg from '$lib/components/ChampImg.svelte';
+	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
 	import { formatPatch, findPlayerTeam } from '$lib/helpers';
-	import { correctChampionDisplayName } from '$lib/constants';
+	import { correctChampionDisplayName, PLAYERS } from '$lib/constants';
 
 	export let match;
 	export let champion;
@@ -31,8 +32,6 @@
 			acc.push(curr.name);
 			return acc;
 		}, []);
-
-	$: console.log(proTeams);
 
 	function updateModal() {
 		matchModal.set(match);
@@ -84,9 +83,13 @@
 	<div class="playerlist">
 		<div class="players">
 			{#each t1 as player}
+				{@const playerImg = PLAYERS[player.name]?.image}
 				<div class="player" class:highlight={player.winner}>
-					<div>
+					<div class="player-champ-container">
 						<ChampImg name={player.championIcon} />
+						{#if playerImg}
+							<PlayerImg name={player.name} />
+						{/if}
 					</div>
 					{#if nonSpecificMatch}
 						<span class="player-name">{player.name}</span>
@@ -96,9 +99,13 @@
 		</div>
 		<div class="players">
 			{#each t2 as player}
+				{@const playerImg = PLAYERS[player.name]?.image}
 				<div class="player" class:highlight={player.winner}>
-					<div>
+					<div class="player-champ-container">
 						<ChampImg name={player.championIcon} />
+						{#if playerImg}
+							<PlayerImg name={player.name} />
+						{/if}
 					</div>
 					{#if nonSpecificMatch}
 						<span class="player-name">{player.name}</span>
@@ -163,7 +170,7 @@
 				--size: 32;
 
 				@media screen and (min-width: 1800px) {
-					--size: 48;
+					--size: 40;
 				}
 			}
 		}
@@ -337,6 +344,18 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 0.5rem;
+		}
+	}
+	.player-champ-container {
+		position: relative;
+
+		:global(.player-img) {
+			--size: 28;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			background: var(--c1);
+			z-index: 1;
 		}
 	}
 	.champ-img {
