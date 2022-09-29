@@ -160,8 +160,8 @@
 </script>
 
 <svelte:head>
-	<meta name="twitter:title" content={`${name}- ChampionsQueue.gg`} />
-	<title>{name}- ChampionsQueue.gg</title>
+	<meta name="twitter:title" content={`${name} - Champions Queue`} />
+	<title>{name} - Champions Queue</title>
 </svelte:head>
 
 <PageHeader title={name} player={name}>
