@@ -249,7 +249,7 @@
 			display: flex;
 			align-items: center;
 			gap: 0.75rem;
-			opacity: 0.35;
+			color: var(--c6);
 			transition: opacity var(--transition), transform var(--transition);
 
 			&.refresh {
@@ -265,8 +265,13 @@
 
 		&:hover {
 			> * {
-				opacity: 0.75;
+				color: var(--c9);
 				transform: translateX(5%);
+			}
+		}
+		&.active {
+			> * {
+				color: var(--c11);
 			}
 		}
 	}
