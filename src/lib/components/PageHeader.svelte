@@ -83,9 +83,6 @@
 			@media screen and (max-width: 1000px) {
 				--size: 80;
 			}
-			/* @media screen and (max-width: 600px) {
-				--size: 44;
-			} */
 		}
 
 		:global(.team-img) {
@@ -149,6 +146,7 @@
 	}
 	.split-details {
 		display: flex;
+		justify-content: center;
 		gap: 1rem;
 		text-transform: uppercase;
 		letter-spacing: 8px;
@@ -156,6 +154,9 @@
 
 		@media screen and (max-width: 800px) {
 			font-size: 0.875rem;
+		}
+		@media screen and (max-width: 600px) {
+			font-size: 0.75rem;
 		}
 
 		.season {

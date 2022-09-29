@@ -4,7 +4,7 @@
 
 <script>
 	import { store } from '$lib/stores';
-	import { TEAMS, LOADING_STR } from '$lib/constants';
+	import { TEAMS, TEAMS_WORLDS, LOADING_STR } from '$lib/constants';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
@@ -27,6 +27,7 @@
 		: loadingArr;
 	$: mostActiveTeams = $store.teams
 		? Object.values($store.teams)
+				.filter((t) => TEAMS_WORLDS[t?.tag])
 				.sort((a, b) => b.games - a.games)
 				.map((t) => TEAMS[t.tag])
 				.slice(0, count)
@@ -95,7 +96,7 @@
 				</div>
 			{:else}
 				<div class="split-details">
-					<span>Loading Split Data...</span>
+					<span>Loading...</span>
 				</div>
 			{/if}
 		</div>
@@ -114,6 +115,7 @@
 						<a href={`/players/${player.name}`} class="item">
 							<PlayerImg name={player.name} />
 							<span class="name lg">{player.name}</span>
+							<span class="value lg">{player.lp}</span>
 						</a>
 					</li>
 				{/each}
@@ -129,6 +131,7 @@
 						<a href={`/champions/${champion.name}`} class="item">
 							<ChampImg name={champion.name} />
 							<span class="name lg">{champion.name}</span>
+							<span class="value lg">{champion.games}</span>
 						</a>
 					</li>
 				{/each}
@@ -170,14 +173,19 @@
 
 		:global(.search-container) {
 			min-width: 30rem;
+
+			@media screen and (max-width: 800px) {
+				min-width: unset;
+				width: 100%;
+			}
 		}
 
 		@media screen and (max-width: 600px) {
 			gap: 1rem;
 
-			:global(.search-container) {
+			/* :global(.search-container) {
 				display: none;
-			}
+			} */
 		}
 
 		:global(input[type='text']) {
@@ -360,10 +368,13 @@
 		@media screen and (max-width: 1200px) {
 			gap: 1rem;
 		}
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 800px) {
 			grid-template-columns: 1fr;
-			gap: 2rem;
 			width: 100%;
+		}
+		@media screen and (max-width: 600px) {
+			gap: 2rem;
+
 			padding: 1rem;
 		}
 
@@ -416,24 +427,36 @@
 			display: flex;
 			align-items: center;
 			gap: 0.75rem;
-			background: var(--c2);
 			padding-right: 1.5rem;
+			background: var(--c2);
 
 			&:hover {
 				background: var(--c3);
 			}
 		}
-		.name {
+		.name,
+		.value {
 			font-size: 1.5rem;
-			width: 20ch;
+
+			@media screen and (min-width: 1800px) {
+				font-size: 2rem;
+			}
+		}
+		.name {
+			width: 16ch;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 
 			@media screen and (min-width: 1800px) {
 				font-size: 2rem;
-				width: 27ch;
+				max-width: 20ch;
 			}
+		}
+		.value {
+			color: var(--c7);
+			text-align: right;
+			width: 4ch;
 		}
 	}
 
@@ -441,17 +464,19 @@
 		position: relative;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		gap: 1.25rem;
 		text-transform: uppercase;
-		letter-spacing: 12px;
+		letter-spacing: 6px;
 		color: var(--c10);
+		text-align: center;
 
 		@media screen and (max-width: 600px) {
 			gap: 0.25rem;
 			flex-direction: column;
 			align-items: center;
 			justify-content: flex-start;
-			font-size: 1rem;
+			font-size: 0.75rem;
 		}
 	}
 
