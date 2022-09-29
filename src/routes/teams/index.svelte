@@ -82,7 +82,7 @@
 
 <svelte:head>
 	<meta name="twitter:title" content={`Teams - Champions Queue`} />
-	<title>Teams - NA Champions Queue</title>
+	<title>Teams - Champions Queue</title>
 </svelte:head>
 
 <PageHeader {title} center />

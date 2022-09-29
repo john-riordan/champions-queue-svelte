@@ -54,7 +54,7 @@
 
 <svelte:head>
 	<meta name="twitter:title" content={`Champions- Champions Queue`} />
-	<title>Champions- ChampionsQueue.gg</title>
+	<title>Champions - Champions Queue</title>
 </svelte:head>
 
 <PageHeader {title} center>

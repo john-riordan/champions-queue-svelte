@@ -75,7 +75,7 @@
 
 <svelte:head>
 	<meta name="twitter:title" content={`Players - Champions Queue`} />
-	<title>Players- ChampionsQueue.gg</title>
+	<title>Players - Champions Queue</title>
 </svelte:head>
 
 <PageHeader {title} center>
