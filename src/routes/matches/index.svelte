@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-	<meta name="twitter:title" content={`Matches- ChampionsQueue.gg`} />
+	<meta name="twitter:title" content={`Matches - Champions Queue`} />
 	<title>Matches- ChampionsQueue.gg</title>
 </svelte:head>
 

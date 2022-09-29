@@ -77,7 +77,7 @@
 
 <div class="container" class:menuOpen>
 	<button class="mobile-menu-btn" on:click={toggleMenu}><Hamburger /></button>
-	<div class="nav">
+	<header class="nav">
 		<div class="top">
 			<div class="logo">
 				<a href="/">
@@ -100,10 +100,7 @@
 			<nav>
 				{#each routes as route}
 					<a href={route.url} class="nav-item lg" class:active={currURL.startsWith(route.url)}>
-						<div>
-							<!-- <svelte:component this={route.icon} /> -->
-							<span class="text">{route.title}</span>
-						</div>
+						<span class="text">{route.title}</span>
 					</a>
 				{/each}
 			</nav>
@@ -124,8 +121,8 @@
 		<div class="bottom">
 			<FavoritesList />
 		</div>
-	</div>
-	<section class="content">
+	</header>
+	<main class="content">
 		<div class="content-container" class:loading={$store.loading && currURL !== '/'}>
 			<slot />
 		</div>
@@ -143,7 +140,7 @@
 		{#if $store.loading && currURL !== '/'}
 			<div class="loading-indicator" />
 		{/if}
-	</section>
+	</main>
 	{#if menuOpen}
 		<div class="nav-close-trigger" on:click={() => (menuOpen = false)} />
 	{/if}
