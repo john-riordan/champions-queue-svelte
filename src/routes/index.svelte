@@ -115,7 +115,7 @@
 						<a href={`/players/${player.name}`} class="item">
 							<PlayerImg name={player.name} />
 							<span class="name lg">{player.name}</span>
-							<span class="value lg">{player.lp}</span>
+							<span class="value lg">{player.lp ?? '   '}</span>
 						</a>
 					</li>
 				{/each}
@@ -131,7 +131,7 @@
 						<a href={`/champions/${champion.name}`} class="item">
 							<ChampImg name={champion.name} />
 							<span class="name lg">{champion.name}</span>
-							<span class="value lg">{champion.games}</span>
+							<span class="value lg">{champion.games ?? '   '}</span>
 						</a>
 					</li>
 				{/each}
