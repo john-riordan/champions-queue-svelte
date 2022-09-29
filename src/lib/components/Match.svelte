@@ -163,7 +163,7 @@
 				content: none;
 			}
 			&:hover {
-				background: var(--c3);
+				background: var(--c2);
 			}
 
 			:global(.team-img) {

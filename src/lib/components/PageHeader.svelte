@@ -146,7 +146,6 @@
 	}
 	.split-details {
 		display: flex;
-		justify-content: center;
 		gap: 1rem;
 		text-transform: uppercase;
 		letter-spacing: 8px;
