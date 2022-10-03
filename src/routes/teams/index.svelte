@@ -232,11 +232,7 @@
 		align-items: center;
 		gap: 1rem;
 		padding: var(--padd);
-
-		border: 2px solid var(--accent-color);
-		border-left: none;
-		border-bottom: none;
-		box-shadow: inset 2px 0 0 hsla(var(--team-hsl) / 1);
+		box-shadow: inset 2px 2px 0 hsla(var(--team-hsl) / 1);
 		overflow: hidden;
 
 		&::before {
@@ -245,7 +241,7 @@
 			inset: 0;
 			background: linear-gradient(
 				to right,
-				hsla(var(--team-hsl) / 0.1),
+				hsla(var(--team-hsl) / 0.25),
 				hsla(var(--team-hsl) / 0.05)
 			);
 			opacity: 0.5;
@@ -308,9 +304,6 @@
 	.team-inner {
 		padding: var(--padd);
 		padding-bottom: 0;
-		border: 2px solid var(--accent-color);
-		border-left: none;
-		border-top: none;
 		box-shadow: inset 2px 0 0 hsla(var(--team-hsl) / 0.5);
 	}
 	.players {

@@ -320,6 +320,68 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
+	'RGE Larssen': {
+		summonerName: 'Larssen',
+		summonerNameWithTeam: 'RGE Larssen',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318750841_larssen.png'
+	},
+	'RGE Odoamne': {
+		summonerName: 'Odoamne',
+		summonerNameWithTeam: 'RGE Odoamne',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318779497_odoamne.png'
+	},
+	'RGE Trymbi': {
+		summonerName: 'Trymbi',
+		summonerNameWithTeam: 'RGE Trymbi',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318791058_trymbi.png'
+	},
+	'RGE Malrang': {
+		summonerName: 'Malrang',
+		summonerNameWithTeam: 'RGE Malrang',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318764592_malrang.png'
+	},
+	'RGE Comp': {
+		summonerName: 'Comp',
+		summonerNameWithTeam: 'RGE Comp',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318737348_comp.png'
+	},
+
+	'GAM Levi': {
+		summonerName: 'Levi',
+		summonerNameWithTeam: 'GAM Levi',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=https%3A%2F%2Flolstatic-a.akamaihd.net%2Fesports-assets%2Fproduction%2Fplayer%2Flevi-c8yrqifa.png'
+	},
+	'GAM Kati': {
+		summonerName: 'Kati',
+		summonerNameWithTeam: 'GAM Kati',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1663919491649_Kati.png'
+	},
+	'GAM Bie': {
+		summonerName: 'Bie',
+		summonerNameWithTeam: 'GAM Bie',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1663919465899_Bie.png'
+	},
+	'GAM Sty1e': {
+		summonerName: 'Sty1e',
+		summonerNameWithTeam: 'GAM Sty1e',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1663919518366_Sty1e.png'
+	},
+	'GAM Kiaya': {
+		summonerName: 'Kiaya',
+		summonerNameWithTeam: 'GAM Kiaya',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1663919496818_Kiaya.png'
+	},
+
 	'GEN Ruler': {
 		summonerName: 'Ruler',
 		summonerNameWithTeam: 'GEN Ruler',
@@ -827,10 +889,6 @@ export const PLAYERS = {
 			{
 				platform: 'twitch',
 				link: 'https://twitch.tv/abbedagge'
-			},
-			{
-				platform: 'youtube',
-				link: 'https://youtube.com/huhi'
 			}
 		],
 		image:
@@ -852,8 +910,8 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645001923272_FBI.png'
 	},
-	'100 Huhi': {
-		summonerName: 'Huhi',
+	'100 huhi': {
+		summonerName: 'huhi',
 		summonerNameWithTeam: '100 Huhi',
 		socialLinks: [
 			{
