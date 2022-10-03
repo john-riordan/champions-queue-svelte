@@ -185,12 +185,12 @@ export const TEAMS = {
 		hsl: '0deg 0% 98%',
 		starters: ['EDG Flandre', 'EDG JieJie', 'EDG Scout', 'EDG Viper', 'EDG Meiko']
 	},
-	DWG: {
+	DK: {
 		name: 'DWG KIA',
-		tag: 'DWG',
+		tag: 'DK',
 		logo: 'F1631819456274_dwg-kia-2021-worlds.png',
 		hsl: '176deg 48% 58%',
-		starters: ['DWG Nuguri', 'DWG Canyon', 'DWG ShowMaker', 'DWG deokdam', 'DWG Kellin']
+		starters: ['DK Nuguri', 'DK Canyon', 'DK ShowMaker', 'DK deokdam', 'DK Kellin']
 	},
 	G2: {
 		name: 'G2 Esports',
@@ -203,7 +203,7 @@ export const TEAMS = {
 		name: 'JD Gaming',
 		tag: 'JDG',
 		logo: 'F1627457924722_29.png',
-		hsl: '219deg 80% 45%',
+		hsl: '351deg 80% 45%',
 		starters: ['JDG 369', 'JDG Kanavi', 'JDG Yagao', 'JDG Hope', 'JDG Missing']
 	},
 	RGE: {
@@ -309,7 +309,7 @@ export const TEAMS_WORLDS = {
 	ISG: true,
 	T1: true,
 	EDG: true,
-	DWG: true,
+	DK: true,
 	G2: true,
 	JDG: true,
 	RGE: true,
@@ -320,6 +320,43 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
+	'DK ShowMaker': {
+		summonerName: 'ShowMaker',
+		summonerNameWithTeam: 'DK ShowMaker',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454929643_DK_Showmaker_784x621.png'
+	},
+	'DK Canyon': {
+		summonerName: 'Canyon',
+		summonerNameWithTeam: 'DK Canyon',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454865513_DK_deokdam_784x621.png'
+	},
+	'DK deokdam': {
+		summonerName: 'deokdam',
+		summonerNameWithTeam: 'DK deokdam',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454865513_DK_deokdam_784x621.png'
+	},
+	'DK Kellin': {
+		summonerName: 'Kellin',
+		summonerNameWithTeam: 'DK Kellin',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454884460_DK_Kellin_784x621.png'
+	},
+	'DK Burdol': {
+		summonerName: 'Burdol',
+		summonerNameWithTeam: 'DK Burdol',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454830226_DK_Burdol_784x621.png'
+	},
+	'DK Nuguri': {
+		summonerName: 'Nuguri',
+		summonerNameWithTeam: 'DK Nuguri',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454907514_DK_Nuguri_784x621.png'
+	},
+
 	'RGE Larssen': {
 		summonerName: 'Larssen',
 		summonerNameWithTeam: 'RGE Larssen',
