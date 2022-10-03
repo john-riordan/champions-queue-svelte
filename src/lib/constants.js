@@ -320,6 +320,197 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
+	'GEN Ruler': {
+		summonerName: 'Ruler',
+		summonerNameWithTeam: 'GEN Ruler',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455423680_GEN_Ruler_784x621.png'
+	},
+	'GEN Doran': {
+		summonerName: 'Doran',
+		summonerNameWithTeam: 'GEN Doran',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455363537_GEN_Doran_784x621.png'
+	},
+	'GEN Peanut': {
+		summonerName: 'Peanut',
+		summonerNameWithTeam: 'GEN Peanut',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455404733_GEN_Peanut_784x621.png'
+	},
+	'GEN Chovy': {
+		summonerName: 'Chovy',
+		summonerNameWithTeam: 'GEN Chovy',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455344562_GEN_Chovy_784x621.png'
+	},
+	'GEN Lehends': {
+		summonerName: 'Lehends',
+		summonerNameWithTeam: 'GEN Lehends',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455383208_GEN_Lehends_784x621.png'
+	},
+	'GEN YoungJae': {
+		summonerName: 'YoungJae',
+		summonerNameWithTeam: 'GEN YoungJae',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655455441430_GEN_YoungJae_784x621.png'
+	},
+
+	'TES Xiaopeng': {
+		summonerName: 'Xiaopeng',
+		summonerNameWithTeam: 'TES Xiaopeng',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593127877975_dmo-xiaopeng-web.png'
+	},
+	'TES Wayward': {
+		summonerName: 'Wayward',
+		summonerNameWithTeam: 'TES Wayward',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1663919528773_Wayward.png'
+	},
+	'TES Zoom': {
+		summonerName: 'Zoom',
+		summonerNameWithTeam: 'TES Zoom',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593130576075_jdg-zoom-web.png'
+	},
+	'TES knight': {
+		summonerName: 'knight',
+		summonerNameWithTeam: 'TES knight',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593135190649_tes-knight-web.png'
+	},
+	'TES Qingtian': {
+		summonerName: 'Qingtian',
+		summonerNameWithTeam: 'TES Qingtian',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1663919502181_Qingtian.png'
+	},
+	'TES Tian': {
+		summonerName: 'Tian',
+		summonerNameWithTeam: 'TES Tian',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1632954033327_fpx-tian-w21.png'
+	},
+	'TES Mark': {
+		summonerName: 'Mark',
+		summonerNameWithTeam: 'TES Mark',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593131468179_lgd-mark-web.png'
+	},
+	'TES JackeyLove': {
+		summonerName: 'JackeyLove',
+		summonerNameWithTeam: 'TES JackeyLove',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593135183257_tes-jackeylove-web.png'
+	},
+
+	'JDG Yagao': {
+		summonerName: 'Yagao',
+		summonerNameWithTeam: 'JDG Yagao',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593130572191_jdg-yagao-web.png'
+	},
+	'JDG Kanavi': {
+		summonerName: 'Kanavi',
+		summonerNameWithTeam: 'JDG Kanavi',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593130556324_jdg-kanavi-web.png'
+	},
+	'JDG 369': {
+		summonerName: '369',
+		summonerNameWithTeam: 'JDG 369',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593135176688_TES_369_WEB.png'
+	},
+	'JDG Missing': {
+		summonerName: 'Missing',
+		summonerNameWithTeam: 'JDG Missing',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593136264187_we-missing-web.png'
+	},
+	'JDG Yimeng': {
+		summonerName: 'Yimeng',
+		summonerNameWithTeam: 'JDG Yimeng',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=https%3A%2F%2Flolstatic-a.akamaihd.net%2Fesports-assets%2Fproduction%2Fplayer%2Fyimeng-ixux984r.png'
+	},
+	'JDG Hope': {
+		summonerName: 'Hope',
+		summonerNameWithTeam: 'JDG Hope',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1593128664245_edg-hope-web.png'
+	},
+
+	'G2 Jankos': {
+		summonerName: 'Jankos',
+		summonerNameWithTeam: 'G2 Jankos',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318558525_jankos.png'
+	},
+	'G2 caPs': {
+		summonerName: 'caPs',
+		summonerNameWithTeam: 'G2 caPs',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318533623_caps.png'
+	},
+	'G2 BrokenBlade': {
+		summonerName: 'BrokenBlade',
+		summonerNameWithTeam: 'G2 BrokenBlade',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318513930_brokenblade.png'
+	},
+	'G2 Flakked': {
+		summonerName: 'Flakked',
+		summonerNameWithTeam: 'G2 Flakked',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318545135_flakked.png'
+	},
+	'G2 Targamas': {
+		summonerName: 'Targamas',
+		summonerNameWithTeam: 'G2 Targamas',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318576461_targamas.png'
+	},
+
+	'EDG Meiko': {
+		summonerName: 'Meiko',
+		summonerNameWithTeam: 'EDG Meiko',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1632953311883_edg-meiko-w21.png'
+	},
+	'EDG Scout': {
+		summonerName: 'Scout',
+		summonerNameWithTeam: 'EDG Scout',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1632953324946_edg-scout-w21.png'
+	},
+	'EDG JieJie': {
+		summonerName: 'JieJie',
+		summonerNameWithTeam: 'EDG JieJie',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1632953262507_edg-jiejie-w21.png'
+	},
+	'EDG Viper': {
+		summonerName: 'Viper',
+		summonerNameWithTeam: 'EDG Viper',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1632953335707_edg-viper-w21.png'
+	},
+	'EDG Flandre': {
+		summonerName: 'Flandre',
+		summonerNameWithTeam: 'EDG Flandre',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1632953103867_edg-flandre-w21.png'
+	},
+	'EDG JunJia': {
+		summonerName: 'JunJia',
+		summonerNameWithTeam: 'EDG JunJia',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1632953282154_edg-junjia-w21.png'
+	},
+
 	'MAD Kaiser': {
 		summonerName: 'Kaiser',
 		summonerNameWithTeam: 'MAD Kaiser',
