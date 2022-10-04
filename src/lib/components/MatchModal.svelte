@@ -1,5 +1,5 @@
 <script>
-	import { fade } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { beforeNavigate } from '$app/navigation';
 	import RelativeTime from '@yaireo/relative-time';
 
@@ -35,9 +35,13 @@
 </svelte:head>
 
 {#if match}
-	<div class="container" in:fade={{ duration: 150 }} out:fade={{ duration: 150 }}>
+	<div class="container">
 		<div class="backdrop" on:click={resetModal} />
-		<div class="match-container">
+		<div
+			class="match-container"
+			in:fly={{ y: 50, duration: 200 }}
+			out:fly={{ y: 50, duration: 200 }}
+		>
 			<!-- <h1>{dateRelative}</h1> -->
 			<div class="bg left" class:victory={match.teams[0].winner} />
 			<div class="bg right" class:victory={match.teams[1].winner} />
@@ -130,7 +134,7 @@
 		box-shadow: 0 0px 200px 115px var(--c1);
 		z-index: 10;
 
-		@media screen and (max-width: 1000px) {
+		@media screen and (max-width: 1100px) {
 			padding: 1rem;
 		}
 	}
@@ -141,7 +145,7 @@
 		text-align: right;
 		color: var(--red);
 
-		@media screen and (max-width: 1000px) {
+		@media screen and (max-width: 1100px) {
 			text-align: left;
 			line-height: 1;
 			font-size: 1.5rem;
@@ -164,7 +168,7 @@
 		font-size: 0.875rem;
 		color: var(--c9);
 
-		@media screen and (max-width: 1000px) {
+		@media screen and (max-width: 1100px) {
 			margin: 0.75rem 0 0.5rem;
 		}
 
@@ -186,7 +190,7 @@
 				margin-left: 0;
 				margin-right: 7.5rem;
 
-				@media screen and (max-width: 1000px) {
+				@media screen and (max-width: 1100px) {
 					text-align: left;
 					margin-left: 7.5rem;
 					margin-right: unset;
@@ -207,13 +211,14 @@
 		.right & {
 			flex-direction: row-reverse;
 
-			@media screen and (max-width: 1000px) {
+			@media screen and (max-width: 1100px) {
 				flex-direction: row;
 			}
 		}
 	}
 
-	.gold {
+	.gold,
+	.cs {
 		@media screen and (max-width: 600px) {
 			display: none;
 		}
@@ -222,7 +227,7 @@
 	.right {
 		text-align: right;
 
-		@media screen and (max-width: 1000px) {
+		@media screen and (max-width: 1100px) {
 			text-align: left;
 		}
 	}
@@ -234,14 +239,17 @@
 		gap: 2rem;
 
 		:global(.champ-img) {
-			--size: 40;
+			--size: 60;
 
-			@media screen and (max-width: 1000px) {
+			@media screen and (max-width: 1300px) {
+				--size: 48;
+			}
+			@media screen and (max-width: 400px) {
 				--size: 32;
 			}
 		}
 
-		@media screen and (max-width: 1000px) {
+		@media screen and (max-width: 1100px) {
 			flex-direction: column;
 			gap: 0.5rem;
 		}
@@ -256,12 +264,8 @@
 	.player {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.75rem;
 		transition: background var(--transition);
-
-		@media screen and (max-width: 600px) {
-			gap: 0.5rem;
-		}
 
 		&:hover {
 			background: hsla(0deg 0% 0% / 0.2);
@@ -294,7 +298,7 @@
 			overflow: hidden;
 
 			@media screen and (max-width: 400px) {
-				width: 7ch;
+				font-size: 1rem;
 			}
 		}
 
@@ -302,7 +306,7 @@
 			flex-direction: row-reverse;
 			text-align: right;
 
-			@media screen and (max-width: 1000px) {
+			@media screen and (max-width: 1100px) {
 				text-align: left;
 				flex-direction: row;
 			}
@@ -313,10 +317,15 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		font-size: 1.25em;
 		color: var(--c8);
 
 		@media screen and (max-width: 600px) {
 			gap: 0rem;
+		}
+
+		@media screen and (max-width: 1100px) {
+			font-size: 0.875em;
 		}
 
 		> * {
@@ -334,7 +343,7 @@
 			flex-direction: row-reverse;
 			text-align: right;
 
-			@media screen and (max-width: 1000px) {
+			@media screen and (max-width: 1100px) {
 				flex-direction: row;
 				text-align: left;
 			}
@@ -356,7 +365,7 @@
 		background: linear-gradient(var(--dir), hsla(var(--blue-hsl) / 0.15), transparent);
 		box-shadow: inset var(--shadow) 0 0 0 var(--blue);
 
-		@media screen and (max-width: 1000px) {
+		@media screen and (max-width: 1100px) {
 			display: none;
 		}
 
