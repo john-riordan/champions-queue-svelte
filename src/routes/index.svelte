@@ -119,6 +119,9 @@
 						</a>
 					</li>
 				{/each}
+				<li>
+					<a href="/champions" class="item more lg">View More</a>
+				</li>
 			</ol>
 		</div>
 		<div class="block" class:loading>
@@ -135,6 +138,9 @@
 						</a>
 					</li>
 				{/each}
+				<li>
+					<a href="/champions" class="item more lg">View More</a>
+				</li>
 			</ol>
 		</div>
 		<div class="block" class:loading>
@@ -150,6 +156,9 @@
 						</a>
 					</li>
 				{/each}
+				<li>
+					<a href="/teams" class="item more lg">View More</a>
+				</li>
 			</ol>
 		</div>
 		{#if loading}
@@ -432,6 +441,21 @@
 
 			&:hover {
 				background: var(--c3);
+			}
+
+			&.more {
+				display: block;
+				background: transparent;
+				padding: 0;
+				text-align: center;
+				padding-block: 0.5rem;
+				color: var(--c7);
+				font-size: 1.25em;
+				transition: color var(--transition);
+
+				&:hover {
+					color: var(--c9);
+				}
 			}
 		}
 		.name,
