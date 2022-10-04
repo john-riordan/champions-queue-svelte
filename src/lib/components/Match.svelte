@@ -5,7 +5,7 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
-	import { formatPatch, findPlayerTeam } from '$lib/helpers';
+	import { formatPatch, findPlayerTeam, matchId } from '$lib/helpers';
 	import { correctChampionDisplayName, PLAYERS } from '$lib/constants';
 
 	export let match;
@@ -32,88 +32,86 @@
 			acc.push(curr.name);
 			return acc;
 		}, []);
-
-	function updateModal() {
-		matchModal.set(match);
-	}
 </script>
 
-<li
-	class="match"
-	class:victory={stats?.winner}
-	class:noHighlight={nonSpecificMatch}
-	on:click={updateModal}
->
-	{#if stats}
-		<div class="info">
-			<div class="champ-container" class:victory={stats.winner}>
-				<ChampImg name={stats.championIcon} />
+<li>
+	<a
+		href={`/matches/${matchId(match)}`}
+		class="match"
+		class:victory={stats?.winner}
+		class:noHighlight={nonSpecificMatch}
+	>
+		{#if stats}
+			<div class="info">
+				<div class="champ-container" class:victory={stats.winner}>
+					<ChampImg name={stats.championIcon} />
+				</div>
+				<div class="match-stats">
+					<span class="stat outcome lg" class:victory={stats.winner}>{outcome}</span>
+					<span class="stat patch">{patch}</span>
+					<span class="stat timeago">{dateRelative}</span>
+					{#if champion}
+						<span class="stat-player">{stats.name}</span>
+					{/if}
+					<span class="stat stat-kda">
+						<span>{stats.kills} / {stats.deaths} / {stats.assists}</span>
+					</span>
+					<span class="stat stat-cs">
+						<span class="stat-prefix">CS:</span>
+						<span>{stats.cs}</span>
+					</span>
+				</div>
 			</div>
-			<div class="match-stats">
-				<span class="stat outcome lg" class:victory={stats.winner}>{outcome}</span>
-				<span class="stat patch">{patch}</span>
-				<span class="stat timeago">{dateRelative}</span>
-				{#if champion}
-					<span class="stat-player">{stats.name}</span>
+		{:else}
+			<div class="info">
+				<div class="match-stats">
+					<span class="stat timeago lg">{dateRelative}</span>
+					<span class="stat patch lg">{patch}</span>
+				</div>
+				{#if nonSpecificMatch && proTeams.length}
+					<div class="teams-list">
+						{#each proTeams as proTeamName}
+							<TeamImg name={proTeamName} />
+						{/each}
+					</div>
 				{/if}
-				<span class="stat stat-kda">
-					<span>{stats.kills} / {stats.deaths} / {stats.assists}</span>
-				</span>
-				<span class="stat stat-cs">
-					<span class="stat-prefix">CS:</span>
-					<span>{stats.cs}</span>
-				</span>
 			</div>
-		</div>
-	{:else}
-		<div class="info">
-			<div class="match-stats">
-				<span class="stat timeago lg">{dateRelative}</span>
-				<span class="stat patch lg">{patch}</span>
-			</div>
-			{#if nonSpecificMatch && proTeams.length}
-				<div class="teams-list">
-					{#each proTeams as proTeamName}
-						<TeamImg name={proTeamName} />
-					{/each}
-				</div>
-			{/if}
-		</div>
-	{/if}
-	<div class="playerlist">
-		<div class="players">
-			{#each t1 as player}
-				{@const playerImg = PLAYERS[player.name]?.image}
-				<div class="player" class:highlight={player.winner}>
-					<div class="player-champ-container">
-						<ChampImg name={player.championIcon} />
-						{#if playerImg && nonSpecificMatch}
-							<PlayerImg name={player.name} />
+		{/if}
+		<div class="playerlist">
+			<div class="players">
+				{#each t1 as player}
+					{@const playerImg = PLAYERS[player.name]?.image}
+					<div class="player" class:highlight={player.winner}>
+						<div class="player-champ-container">
+							<ChampImg name={player.championIcon} />
+							{#if playerImg && nonSpecificMatch}
+								<PlayerImg name={player.name} />
+							{/if}
+						</div>
+						{#if nonSpecificMatch}
+							<span class="player-name">{player.name}</span>
 						{/if}
 					</div>
-					{#if nonSpecificMatch}
-						<span class="player-name">{player.name}</span>
-					{/if}
-				</div>
-			{/each}
-		</div>
-		<div class="players">
-			{#each t2 as player}
-				{@const playerImg = PLAYERS[player.name]?.image}
-				<div class="player" class:highlight={player.winner}>
-					<div class="player-champ-container">
-						<ChampImg name={player.championIcon} />
-						{#if playerImg && nonSpecificMatch}
-							<PlayerImg name={player.name} />
+				{/each}
+			</div>
+			<div class="players">
+				{#each t2 as player}
+					{@const playerImg = PLAYERS[player.name]?.image}
+					<div class="player" class:highlight={player.winner}>
+						<div class="player-champ-container">
+							<ChampImg name={player.championIcon} />
+							{#if playerImg && nonSpecificMatch}
+								<PlayerImg name={player.name} />
+							{/if}
+						</div>
+						{#if nonSpecificMatch}
+							<span class="player-name">{player.name}</span>
 						{/if}
 					</div>
-					{#if nonSpecificMatch}
-						<span class="player-name">{player.name}</span>
-					{/if}
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
-	</div>
+	</a>
 </li>
 
 <style lang="scss">

@@ -16,6 +16,11 @@ export function normalizeChampionName(championName = '') {
 	return championName.replace(' ', '').toLowerCase();
 }
 
+export function matchId(match = {}) {
+	if (!match.matchStart) return 0;
+	return new Date(match.matchStart).getTime();
+}
+
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
 	const matches = (data.matches || []).filter((match) => {
