@@ -29,7 +29,10 @@
 		? Object.values($store.teams)
 				.filter((t) => TEAMS_WORLDS[t?.tag])
 				.sort((a, b) => b.games - a.games)
-				.map((t) => TEAMS[t.tag])
+				.map((t) => ({
+					...t,
+					...TEAMS[t.tag]
+				}))
 				.slice(0, count)
 		: loadingArr;
 	$: recentChampionCounts = $store.matches
@@ -113,8 +116,10 @@
 				{#each topRatedPlayers as player}
 					<li>
 						<a href={`/players/${player.name}`} class="item">
-							<PlayerImg name={player.name} />
-							<span class="name lg">{player.name}</span>
+							<div class="left">
+								<PlayerImg name={player.name} />
+								<span class="name lg">{player.name}</span>
+							</div>
 							<span class="value lg">{player.lp ?? '   '}</span>
 						</a>
 					</li>
@@ -132,8 +137,10 @@
 				{#each mostPopularChampions as champion}
 					<li>
 						<a href={`/champions/${champion.name}`} class="item">
-							<ChampImg name={champion.name} />
-							<span class="name lg">{champion.name}</span>
+							<div class="left">
+								<ChampImg name={champion.name} />
+								<span class="name lg">{champion.name}</span>
+							</div>
 							<span class="value lg">{champion.games ?? '   '}</span>
 						</a>
 					</li>
@@ -151,8 +158,11 @@
 				{#each mostActiveTeams as team}
 					<li>
 						<a href={`/teams/${team.name}`} class="item">
-							<TeamImg name={team.name} />
-							<span class="name lg">{team.name}</span>
+							<div class="left">
+								<TeamImg name={team.name} />
+								<span class="name lg">{team.name}</span>
+							</div>
+							<span class="value lg">{team.games ?? '   '}</span>
 						</a>
 					</li>
 				{/each}
@@ -435,12 +445,19 @@
 		.item {
 			display: flex;
 			align-items: center;
+			justify-content: space-between;
 			gap: 0.75rem;
 			padding-right: 1.5rem;
 			background: var(--c2);
 
 			&:hover {
 				background: var(--c3);
+			}
+
+			.left {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
 			}
 
 			&.more {
