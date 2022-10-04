@@ -116,6 +116,7 @@
 			<div class="install-container">
 				<InstallBtn />
 			</div>
+			<a class="twitter" href="https://twitter.com/JohnRiordan" target="__blank">@johnriordan</a>
 		</div>
 
 		<div class="bottom">
@@ -135,6 +136,10 @@
 				League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc.
 				<a href="https://www.leagueoflegends.com">League of Legends</a> ©
 				<a href="https://www.riotgames.com">Riot Games, Inc.</a>
+			</p>
+			<p class="twitter">
+				Designed, built, and maintained by
+				<a href="https://twitter.com/JohnRiordan" target="__blank">@johnriordan</a>
 			</p>
 		</footer>
 		{#if $store.loading && currURL !== '/'}
@@ -311,6 +316,17 @@
 				}
 			}
 		}
+
+		.twitter {
+			padding: 1rem 0 1rem var(--nav-indent);
+			color: var(--c6);
+			font-size: 0.875em;
+			transition: color var(--transition);
+
+			&:hover {
+				color: var(--yellow);
+			}
+		}
 	}
 
 	.top :global(svg) {
@@ -366,11 +382,18 @@
 		text-align: center;
 		margin-top: 7rem;
 		padding-bottom: 3rem;
-		color: var(--c8);
+		color: var(--c7);
 
 		a {
 			text-decoration: underline;
 			color: var(--c10);
+		}
+		a:hover {
+			color: var(--yellow);
+		}
+
+		.twitter {
+			padding: 1rem 0 1rem var(--nav-indent);
 		}
 	}
 </style>

@@ -10,7 +10,7 @@
 	import TeamImg from '$lib/components/TeamImg.svelte';
 	import GlobalSearch from '$lib/components/GlobalSearch.svelte';
 
-	const count = 5;
+	const count = 10;
 	const loadingArr = [...new Array(count)].map(() => ({ name: LOADING_STR }));
 
 	$: loading = $store.loading;
@@ -34,7 +34,7 @@
 		: loadingArr;
 	$: recentChampionCounts = $store.matches
 		? $store.matches
-				.filter((__dirname, i) => i < 10)
+				.filter((_, i) => i < 60)
 				.reduce((acc, curr) => {
 					const champs = [
 						...curr.teams[0].players.map((p) => p.championIcon),
@@ -287,10 +287,10 @@
 		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 		-webkit-mask-image: linear-gradient(
 			to right,
-			transparent 0%,
-			black 10%,
-			black 90%,
-			transparent 100%
+			transparent 1%,
+			black 5%,
+			black 95%,
+			transparent 99%
 		);
 
 		@media screen and (max-width: 1000px) {
@@ -304,7 +304,7 @@
 			flex-wrap: nowrap;
 			top: 0;
 			left: 0;
-			animation: marquee 90s linear infinite;
+			animation: marquee 145s linear infinite;
 		}
 
 		a {

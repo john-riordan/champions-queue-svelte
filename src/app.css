@@ -32,7 +32,7 @@
 	--green: hsl(var(--green-hsl));
 	--yellow-hsl: 47deg 95% 50%;
 	--yellow: hsl(var(--yellow-hsl));
-	--logo-hsl: 232deg 77% 52%;
+	--logo-hsl: var(--blue-h) var(--blue-s) var(--blue-l);
 	--logo: hsl(var(--logo-hsl));
 
 	--nav-width: 17rem;
