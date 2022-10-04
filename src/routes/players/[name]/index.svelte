@@ -18,6 +18,7 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { ordinal } from '$lib/helpers';
 	import { winrateColor, msToDays } from '$lib/helpers';
+	import { CORRECT_CHAMPION_DISPLAY_NAMES, correctChampionImage } from '$lib/constants';
 
 	export let name;
 	const perPage = 20;
@@ -96,7 +97,7 @@
 
 			// Champion stats
 			let champStats = acc.champions[player.championIcon] || {
-				name: player.championIcon,
+				name: CORRECT_CHAMPION_DISPLAY_NAMES[player.championIcon] || player.championIcon,
 				kills: 0,
 				deaths: 0,
 				assists: 0,
@@ -107,7 +108,7 @@
 			};
 
 			acc.champions[player.championIcon] = {
-				name: player.championIcon,
+				name: CORRECT_CHAMPION_DISPLAY_NAMES[player.championIcon] || player.championIcon,
 				kills: kills + champStats.kills,
 				deaths: deaths + champStats.deaths,
 				assists: assists + champStats.assists,
@@ -232,11 +233,11 @@
 	<div class="champ-stats">
 		<h4 class="group-title">Champion Stats:</h4>
 		<ol>
-			{#each championStats.slice(0, 4) as champ}
+			{#each championStats.slice(0, 6) as champ}
 				<li>
 					<ChampImg name={champ.name} />
 					<div>
-						<p class="games">{champ.games} Games</p>
+						<h5 class="name">{champ.name}</h5>
 						<p class="winrate">
 							{champ.wins}W - {champ.games - champ.wins}L
 						</p>
@@ -244,10 +245,7 @@
 				</li>
 			{/each}
 			<li>
-				<a href={`/players/${name}/champions`} class="link">
-					View All<br />Champion stats
-					<ChevronRight />
-				</a>
+				<a href={`/players/${name}/champions`} class="link lg">View All</a>
 			</li>
 		</ol>
 	</div>
@@ -295,7 +293,7 @@
 			display: flex;
 			flex-wrap: wrap;
 			column-gap: 2rem;
-			row-gap: 0.5rem;
+			row-gap: 0.75rem;
 
 			@media screen and (max-width: 800px) {
 				column-gap: 1.25rem;
@@ -309,16 +307,26 @@
 			line-height: 1.25;
 		}
 		:global(.champ-img) {
-			--size: 40;
+			--size: 60;
 
+			@media screen and (max-width: 1200px) {
+				--size: 48;
+			}
 			@media screen and (max-width: 800px) {
 				--size: 32;
 			}
 		}
 
-		.games {
-			font-weight: 900;
+		.name {
+			font-size: 1.5rem;
 			white-space: nowrap;
+
+			@media screen and (max-width: 1200px) {
+				font-size: 1.25rem;
+			}
+			@media screen and (max-width: 800px) {
+				font-size: 1rem;
+			}
 		}
 		.winrate {
 			color: var(--c8);
@@ -326,29 +334,22 @@
 
 		.link {
 			position: relative;
-			padding-right: 2rem;
-			background: var(--c2);
 			padding: 0.5rem 0.75rem;
 			padding-right: 2.25rem;
-			font-size: 0.875rem;
-			font-weight: 900;
+			font-size: 2rem;
 			line-height: 1.25;
 			color: var(--c8);
 			transition: color var(--transition), background var(--transition);
 
-			:global(svg) {
-				position: absolute;
-				width: 1rem;
-				top: 50%;
-				right: 0.5rem;
-				transform: translate(0, -50%);
-				transition: transform var(--transition);
-				opacity: 0.5;
+			@media screen and (max-width: 1200px) {
+				font-size: 1.5rem;
+			}
+			@media screen and (max-width: 800px) {
+				font-size: 1.25rem;
 			}
 
 			&:hover {
 				color: var(--c11);
-				background: var(--c3);
 			}
 		}
 	}

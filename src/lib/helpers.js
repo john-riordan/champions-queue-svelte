@@ -12,6 +12,10 @@ export function findPlayerTeam(playerName = '') {
 	return TEAMS[teamTag];
 }
 
+export function normalizeChampionName(championName = '') {
+	return championName.replace(' ', '').toLowerCase();
+}
+
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
 	const matches = (data.matches || []).filter((match) => {
