@@ -472,9 +472,9 @@
 			text-overflow: ellipsis;
 			white-space: nowrap;
 
-			@media screen and (min-width: 1800px) {
+			@media screen and (min-width: 1600px) {
 				font-size: 2rem;
-				max-width: 20ch;
+				width: 20ch;
 			}
 		}
 		.value {

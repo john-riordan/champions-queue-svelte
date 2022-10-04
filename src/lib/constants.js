@@ -320,6 +320,43 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
+	'CFO Mission': {
+		summonerName: 'Mission',
+		summonerNameWithTeam: 'CFO Mission',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656573218408_Mission.png'
+	},
+	'CFO Rest': {
+		summonerName: 'Rest',
+		summonerNameWithTeam: 'CFO Rest',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656573166856_Rest.png'
+	},
+	'CFO Gemini': {
+		summonerName: 'Gemini',
+		summonerNameWithTeam: 'CFO Gemini',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656573191292_Gemini.png'
+	},
+	'CFO Atlen': {
+		summonerName: 'Atlen',
+		summonerNameWithTeam: 'CFO Atlen',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656573301654_Atlen.png'
+	},
+	'CFO Koala': {
+		summonerName: 'Koala',
+		summonerNameWithTeam: 'CFO Koala',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656573278481_Koala.png'
+	},
+	'CFO Shunn': {
+		summonerName: 'Shunn',
+		summonerNameWithTeam: 'CFO Shunn',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1656573257478_Shunn.png'
+	},
+
 	'DK ShowMaker': {
 		summonerName: 'ShowMaker',
 		summonerNameWithTeam: 'DK ShowMaker',

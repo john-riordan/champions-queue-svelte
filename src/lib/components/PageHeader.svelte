@@ -172,7 +172,7 @@
 		width: 500px;
 		height: auto;
 		opacity: 0.25;
-		filter: saturate(0);
+		filter: contrast(0) grayscale(100%);
 		mix-blend-mode: color-dodge;
 		pointer-events: none;
 		transform: translateY(-50%);

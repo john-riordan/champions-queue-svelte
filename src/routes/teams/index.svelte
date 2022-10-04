@@ -282,9 +282,8 @@
 	.team-img--backdrop {
 		position: absolute;
 		right: -10%;
-		width: 200px;
-		filter: grayscale(1);
-		opacity: 0.05;
+		width: 300px;
+		opacity: 0.035;
 	}
 	.team-name {
 		font-size: 2.5rem;
