@@ -99,7 +99,7 @@
 			<SortDirection class={desc ? 'desc' : 'asc'} />
 		{/if}
 	</span>
-	<span class="stat sortable" on:click={() => setSort('kda')}>
+	<span class="stat kda sortable" on:click={() => setSort('kda')}>
 		KDA
 		{#if sort === 'kda'}
 			<SortDirection class={desc ? 'desc' : 'asc'} />
@@ -140,7 +140,7 @@
 				<span class="stat playrate">
 					{champ.wins} / {champ.games - champ.wins}
 				</span>
-				<span class="stat">
+				<span class="stat kda">
 					{((champ.kills + champ.assists) / champ.deaths).toLocaleString('en-us', {
 						minimumFractionDigits: 1,
 						maximumFractionDigits: 1
@@ -200,7 +200,13 @@
 			--size: 80;
 
 			@media screen and (max-width: 1000px) {
-				--size: 40;
+				--size: 60;
+			}
+			@media screen and (max-width: 600px) {
+				--size: 36;
+			}
+			@media screen and (max-width: 400px) {
+				--size: 32;
 			}
 		}
 
@@ -252,6 +258,11 @@
 	}
 	.cs {
 		@media screen and (max-width: 800px) {
+			display: none;
+		}
+	}
+	.kda {
+		@media screen and (max-width: 600px) {
 			display: none;
 		}
 	}
