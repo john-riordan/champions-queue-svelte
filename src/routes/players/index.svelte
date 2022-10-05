@@ -228,10 +228,13 @@
 				--size: 80;
 
 				@media screen and (max-width: 1000px) {
-					--size: 48;
+					--size: 60;
 				}
-				@media screen and (max-width: 800px) {
-					display: none;
+				@media screen and (max-width: 600px) {
+					--size: 36;
+				}
+				@media screen and (max-width: 400px) {
+					--size: 32;
 				}
 			}
 
@@ -241,6 +244,9 @@
 
 				@media screen and (min-width: 1700px) {
 					--size: 48;
+				}
+				@media screen and (max-width: 800px) {
+					display: none;
 				}
 			}
 			.no-team {
@@ -320,7 +326,7 @@
 		font-size: 2.5rem;
 
 		@media screen and (max-width: 600px) {
-			font-size: 1.5rem;
+			font-size: 1.25rem;
 		}
 
 		:global(.bar) {
