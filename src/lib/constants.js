@@ -367,7 +367,7 @@ export const PLAYERS = {
 		summonerName: 'Canyon',
 		summonerNameWithTeam: 'DK Canyon',
 		image:
-			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454865513_DK_deokdam_784x621.png'
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655454849646_DK_Canyon_784x621.png'
 	},
 	'DK deokdam': {
 		summonerName: 'deokdam',
