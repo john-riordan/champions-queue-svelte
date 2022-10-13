@@ -172,7 +172,7 @@
 	title={name}
 	player={name === 'Caedrel' && winrate < 0.5
 		? 'Caedrel Clown'
-		: (name === name) === 'Caedrel' && winrate > 0.5
+		: name === 'Caedrel' && winrate >= 0.5
 		? 'Caedrel Cowboy'
 		: name}
 >

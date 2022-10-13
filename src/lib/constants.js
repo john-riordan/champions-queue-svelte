@@ -323,7 +323,7 @@ export const PLAYERS = {
 	'Caedrel Cowboy': {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
-		image: '/caedrel-cowboy.webp',
+		image: 'https://cdn.7tv.app/emote/62caba05d94af3fa53a03fe3/4x.webp',
 		socialLinks: [
 			{
 				platform: 'twitter',

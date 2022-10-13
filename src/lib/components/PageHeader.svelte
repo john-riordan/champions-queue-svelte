@@ -1,6 +1,4 @@
 <script>
-	import RelativeTime from '@yaireo/relative-time';
-
 	import { store, pageBackground } from '$lib/stores';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
@@ -13,9 +11,7 @@
 	export let team;
 	export let center = false;
 
-	if (title === 'Caedrel') title = `Caedrel "Pedro"`;
-
-	const relativeTime = new RelativeTime();
+	$: playerName = title === 'Caedrel' ? `Caedrel "Pedro"` : title;
 </script>
 
 <header class="header" class:center>
@@ -38,7 +34,7 @@
 		{/if}
 		<div class="title-text">
 			<h1>
-				{title}
+				{playerName}
 				{#if player}
 					<PlayerSocials name={player} />
 				{/if}
