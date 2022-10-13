@@ -11,14 +11,13 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
-	import ChevronRight from '$lib/components/icons/ChevronRight.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { ordinal } from '$lib/helpers';
 	import { winrateColor, msToDays } from '$lib/helpers';
-	import { CORRECT_CHAMPION_DISPLAY_NAMES, correctChampionImage } from '$lib/constants';
+	import { CORRECT_CHAMPION_DISPLAY_NAMES, caedrelMemeThreshold } from '$lib/constants';
 
 	export let name;
 
@@ -170,10 +169,10 @@
 
 <PageHeader
 	title={name}
-	player={name === 'Caedrel' && winrate < 0.5
+	player={name === 'Caedrel' && winrate < caedrelMemeThreshold
 		? 'Caedrel Clown'
-		: name === 'Caedrel' && winrate >= 0.5
-		? 'Caedrel Cowboy'
+		: name === 'Caedrel' && winrate
+		? 'Caedrel Chad'
 		: name}
 >
 	<div slot="controls">
@@ -192,9 +191,11 @@
 
 {#if matchlistStats && leaderboardStats}
 	<div class="statblocks">
-		{#if name === 'Caedrel' && winrate < 0.5}
+		{#if name === 'Caedrel' && winrate < caedrelMemeThreshold}
 			<div class="statblock">
-				<img src="/sadge.png" width="112" height="77" alt="sadge" />
+				{#if winrate < caedrelMemeThreshold}
+					<img src="/sadge.png" width="112" height="77" alt="sadge" />
+				{/if}
 			</div>
 		{/if}
 		<div class="statblock">

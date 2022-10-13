@@ -1,3 +1,5 @@
+export const caedrelMemeThreshold = 0.25;
+
 export const LOADING_STR = 'Loading...';
 
 export const SPLITS_STARTS = {
@@ -320,7 +322,7 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
-	'Caedrel Cowboy': {
+	'Caedrel Chad': {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
 		image: 'https://cdn.7tv.app/emote/62caba05d94af3fa53a03fe3/4x.webp',
