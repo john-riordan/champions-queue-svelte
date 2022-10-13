@@ -168,7 +168,10 @@
 	<title>{name} - Champions Queue</title>
 </svelte:head>
 
-<PageHeader title={name} player={name}>
+<PageHeader
+	title={name}
+	player={name === 'Caedrel' && winrate < 0.5 ? 'Caedrel Clown' : 'Caedrel Cowboy'}
+>
 	<div slot="controls">
 		<FavoriteBtn />
 	</div>

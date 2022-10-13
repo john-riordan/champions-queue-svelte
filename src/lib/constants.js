@@ -320,10 +320,25 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
-	'Caedrel "Pedro"': {
+	'Caedrel Cowboy': {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
-		image: '/caedrel.webp',
+		image: '/caedrel-cowboy.png',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Caedrel'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/caedrel'
+			}
+		]
+	},
+	'Caedrel Clown': {
+		summonerName: 'Caedrel',
+		summonerNameWithTeam: 'Caedrel',
+		image: '/caedrel-clown.png',
 		socialLinks: [
 			{
 				platform: 'twitter',

@@ -95,6 +95,7 @@
 					<span class="group-header">Players</span>
 					<ul>
 						{#each playerResults as player, i}
+							{@const name = player.name === 'Caedrel' ? `Caedrel "Pedro"` : player.name}
 							<li>
 								<a
 									href={player.url}
@@ -103,8 +104,8 @@
 									on:mouseenter={(selectedIndex = i)}
 									on:mouseleave={(selectedIndex = null)}
 								>
-									<PlayerImg name={player.name} />
-									<span class="name">{player.name}</span>
+									<PlayerImg {name} />
+									<span class="name">{name}</span>
 								</a>
 							</li>
 						{/each}
