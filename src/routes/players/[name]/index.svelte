@@ -413,11 +413,11 @@
 
 	.caedrel-alert {
 		color: var(--c8);
-		font-weight: 600;
 
 		span {
 			text-decoration: underline;
-			color: var(--c9);
+			color: var(--c10);
+			font-weight: 600;
 		}
 	}
 </style>
