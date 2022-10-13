@@ -1,4 +1,4 @@
-export const caedrelMemeMin = 0.35;
+export const caedrelMemeMin = 0.4;
 export const caedrelMemeMax = 0.5;
 
 export const LOADING_STR = 'Loading...';
