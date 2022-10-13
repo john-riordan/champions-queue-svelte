@@ -191,18 +191,9 @@
 
 {#if matchlistStats && leaderboardStats}
 	<div class="statblocks">
-		{#if name === 'Caedrel'}
+		{#if name === 'Caedrel' && winrate < caedrelMemeThreshold}
 			<div class="statblock">
-				{#if winrate < caedrelMemeThreshold}
-					<img src="/sadge.png" width="112" height="77" alt="sadge" />
-				{:else}
-					<img
-						src="https://cdn.7tv.app/emote/603eaaa9115b55000d7282d8/2x.webp"
-						width="60"
-						height="60"
-						alt="pog"
-					/>
-				{/if}
+				<img src="/sadge.png" width="112" height="77" alt="sadge" />
 			</div>
 		{/if}
 		<div class="statblock">
