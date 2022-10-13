@@ -133,7 +133,7 @@
 		(a, b) => b.games - a.games || b.wins - a.wins
 	);
 
-	$: winrate = matchlistStats.wins / (matchlistStats.games || 1);
+	$: winrate = matchlistStats?.wins / (matchlistStats?.games || 1);
 
 	const dayFilterOptions = [
 		{
