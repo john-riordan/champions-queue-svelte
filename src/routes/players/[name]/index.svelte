@@ -170,7 +170,11 @@
 
 <PageHeader
 	title={name}
-	player={name === 'Caedrel' && winrate < 0.5 ? 'Caedrel Clown' : 'Caedrel Cowboy'}
+	player={name === 'Caedrel' && winrate < 0.5
+		? 'Caedrel Clown'
+		: (name === name) === 'Caedrel' && winrate > 0.5
+		? 'Caedrel Cowboy'
+		: name}
 >
 	<div slot="controls">
 		<FavoriteBtn />
