@@ -128,6 +128,10 @@
 	$: matchlistStats = !dayFilter ? ($store.players || {})[name] : aggregate.stats;
 	$: playerLP = leaderboardStats?.lp ?? 0;
 
+	$: maxPlace = Object.keys($store.leaderboard)?.length
+		? Object.keys($store.leaderboard)?.length
+		: 0;
+
 	$: championStats = Object.values(aggregate.champions).sort(
 		(a, b) => b.games - a.games || b.wins - a.wins
 	);
@@ -197,7 +201,14 @@
 			</div>
 		{/if}
 		<div class="statblock">
-			<h3 class="stat">{ordinal(leaderboardStats.rank)}</h3>
+			<h3 class="stat">
+				{ordinal(leaderboardStats.rank)}
+				{#if maxPlace}
+					<span class="subvalue">
+						/ {maxPlace}
+					</span>
+				{/if}
+			</h3>
 			<span class="stat-name">Rank</span>
 		</div>
 		<div class="statblock">

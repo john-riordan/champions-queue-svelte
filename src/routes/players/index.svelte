@@ -141,24 +141,18 @@
 <ul class="list">
 	{#each list as player (player.name)}
 		{@const playerTeam = findPlayerTeam(player.name)}
-		{@const winrate = player.wins / player.games}
+		{@const winrate = player.wins / (player.games || 1)}
 		<li>
 			<a href={`/players/${player.name}`}>
 				<div class="info">
-					<PlayerImg
-						name={player.name === 'Caedrel' && winrate >= caedrelMemeThreshold
-							? 'Caedrel Chad'
-							: player.name}
-					/>
+					<PlayerImg name={player.name} />
 					{#if playerTeam}
 						<TeamImg name={playerTeam?.name} />
 					{:else}
 						<div class="no-team" />
 					{/if}
-
 					<p class="name lg">{player.name}</p>
 				</div>
-
 				<span class="stat rank">
 					<RankBadge rank={player.rank} />
 				</span>
