@@ -320,6 +320,22 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
+	Caedrel: {
+		summonerName: 'Caedrel',
+		summonerNameWithTeam: 'Caedrel',
+		image: '/caedrel.webp',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Caedrel'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/caedrel'
+			}
+		]
+	},
+
 	'CFO Mission': {
 		summonerName: 'Mission',
 		summonerNameWithTeam: 'CFO Mission',
