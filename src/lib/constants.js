@@ -1,4 +1,4 @@
-export const caedrelMemeThreshold = 0.25;
+export const caedrelMemeThreshold = 0.5;
 
 export const LOADING_STR = 'Loading...';
 
