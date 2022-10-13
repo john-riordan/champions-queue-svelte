@@ -17,7 +17,7 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { ordinal } from '$lib/helpers';
 	import { winrateColor, msToDays } from '$lib/helpers';
-	import { CORRECT_CHAMPION_DISPLAY_NAMES, caedrelMemeThreshold } from '$lib/constants';
+	import { CORRECT_CHAMPION_DISPLAY_NAMES, caedrelMemeMin, caedrelMemeMax } from '$lib/constants';
 
 	export let name;
 
@@ -128,7 +128,7 @@
 	$: matchlistStats = !dayFilter ? ($store.players || {})[name] : aggregate.stats;
 	$: playerLP = leaderboardStats?.lp ?? 0;
 
-	$: maxPlace = Object.keys($store.leaderboard)?.length
+	$: maxPlace = Object.keys($store.leaderboard || {})?.length
 		? Object.keys($store.leaderboard)?.length
 		: 0;
 
@@ -164,6 +164,13 @@
 	function setDayFilter(event) {
 		dayFilter = event.detail;
 	}
+
+	$: caedrelMeme =
+		name === 'Caedrel' && winrate < caedrelMemeMin
+			? 'Caedrel Clown'
+			: name === 'Caedrel' && winrate >= caedrelMemeMax
+			? 'Caedrel Chad'
+			: name;
 </script>
 
 <svelte:head>
@@ -171,14 +178,7 @@
 	<title>{name} - Champions Queue</title>
 </svelte:head>
 
-<PageHeader
-	title={name}
-	player={name === 'Caedrel' && winrate < caedrelMemeThreshold
-		? 'Caedrel Clown'
-		: name === 'Caedrel' && winrate
-		? 'Caedrel Chad'
-		: name}
->
+<PageHeader title={name} player={caedrelMeme}>
 	<div slot="controls">
 		<FavoriteBtn />
 	</div>
@@ -195,11 +195,6 @@
 
 {#if matchlistStats && leaderboardStats}
 	<div class="statblocks">
-		{#if name === 'Caedrel' && winrate < caedrelMemeThreshold}
-			<div class="statblock">
-				<img src="/sadge.png" width="112" height="77" alt="sadge" />
-			</div>
-		{/if}
 		<div class="statblock">
 			<h3 class="stat">
 				{ordinal(leaderboardStats.rank)}
@@ -251,6 +246,20 @@
 			</h3>
 			<span class="stat-name">KDA</span>
 		</div>
+		{#if caedrelMeme === 'Caedrel Clown'}
+			<div class="statblock">
+				<img src="/sadge.png" width="112" height="77" alt="sadge" />
+			</div>
+		{:else if caedrelMeme === 'Caedrel Chad'}
+			<div class="statblock">
+				<img
+					src="https://cdn.7tv.app/emote/603eaaa9115b55000d7282d8/4x.avif"
+					width="60"
+					height="60"
+					alt="pog"
+				/>
+			</div>
+		{/if}
 	</div>
 {/if}
 

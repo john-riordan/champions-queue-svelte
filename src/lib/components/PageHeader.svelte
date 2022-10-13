@@ -11,7 +11,7 @@
 	export let team;
 	export let center = false;
 
-	$: playerName = title === 'Caedrel' ? `Caedrel "Pedro"` : title;
+	$: playerName = player === 'Caedrel Clown' ? `Caedrel "Pedro"` : title;
 </script>
 
 <header class="header" class:center>
