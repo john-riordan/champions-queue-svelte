@@ -248,15 +248,29 @@
 		</div>
 		{#if caedrelMeme === 'Caedrel Clown'}
 			<div class="statblock">
-				<img src="/sadge.png" width="112" height="77" alt="sadge" />
+				<img
+					src="https://cdn.7tv.app/emote/603cac391cd55c0014d989be/4x.webp"
+					width="60"
+					height="46"
+					alt="sadge"
+				/>
 			</div>
 		{:else if caedrelMeme === 'Caedrel Chad'}
 			<div class="statblock">
 				<img
-					src="https://cdn.7tv.app/emote/603eaaa9115b55000d7282d8/4x.avif"
+					src="https://cdn.7tv.app/emote/603eaaa9115b55000d7282d8/4x.webp"
+					width="48"
+					height="48"
+					alt="pog"
+				/>
+			</div>
+		{:else if caedrelMeme === 'Caedrel'}
+			<div class="statblock">
+				<img
+					src="https://cdn.7tv.app/emote/61d099df08bb84e20d5e331a/4x.webp"
 					width="60"
 					height="60"
-					alt="pog"
+					alt="peepolove"
 				/>
 			</div>
 		{/if}
