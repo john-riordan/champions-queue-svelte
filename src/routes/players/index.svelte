@@ -6,7 +6,6 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
-	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
@@ -16,7 +15,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS, TEAMS_WORLDS, teamImg, caedrelMemeThreshold } from '$lib/constants';
+	import { TEAMS, TEAMS_WORLDS, teamImg } from '$lib/constants';
 	import { winrateColor, findPlayerTeam } from '$lib/helpers';
 
 	export let title;
@@ -63,8 +62,6 @@
 		team = event.detail;
 		search = '';
 	}
-
-	$: console.log($store.leaderboardMaxLP, $store.leaderboardMinLP);
 
 	const teamOptions = Object.values(TEAMS).map((t) => ({
 		value: t.tag,
