@@ -323,7 +323,7 @@ export const PLAYERS = {
 	'Caedrel Cowboy': {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
-		image: '/caedrel-cowboy.png',
+		image: '/caedrel-cowboy.webp',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -338,7 +338,22 @@ export const PLAYERS = {
 	'Caedrel Clown': {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
-		image: '/caedrel-clown.png',
+		image: '/caedrel-clown.webp',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Caedrel'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/caedrel'
+			}
+		]
+	},
+	'Caedrel "Pedro"': {
+		summonerName: 'Caedrel',
+		summonerNameWithTeam: 'Caedrel',
+		image: '/caedrel.webp',
 		socialLinks: [
 			{
 				platform: 'twitter',
