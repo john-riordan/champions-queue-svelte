@@ -16,7 +16,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS, TEAMS_WORLDS, teamImg } from '$lib/constants';
+	import { TEAMS, TEAMS_WORLDS, teamImg, caedrelMemeThreshold } from '$lib/constants';
 	import { winrateColor, findPlayerTeam } from '$lib/helpers';
 
 	export let title;
@@ -141,18 +141,22 @@
 <ul class="list">
 	{#each list as player (player.name)}
 		{@const playerTeam = findPlayerTeam(player.name)}
-		{@const name = player.name === 'Caedrel' ? `Caedrel "Pedro"` : player.name}
+		{@const winrate = player.wins / player.games}
 		<li>
 			<a href={`/players/${player.name}`}>
 				<div class="info">
-					<PlayerImg {name} />
+					<PlayerImg
+						name={player.name === 'Caedrel' && winrate >= caedrelMemeThreshold
+							? 'Caedrel Chad'
+							: player.name}
+					/>
 					{#if playerTeam}
 						<TeamImg name={playerTeam?.name} />
 					{:else}
 						<div class="no-team" />
 					{/if}
 
-					<p class="name lg">{name}</p>
+					<p class="name lg">{player.name}</p>
 				</div>
 
 				<span class="stat rank">
@@ -172,9 +176,9 @@
 						maximumFractionDigits: 1
 					})}
 				</span>
-				<span class="stat winrate" style:color={winrateColor(player.wins / player.games)}>
+				<span class="stat winrate" style:color={winrateColor(winrate)}>
 					<span class="value">
-						{(player.wins / player.games).toLocaleString('en-us', {
+						{winrate.toLocaleString('en-us', {
 							style: 'percent',
 							minimumFractionDigits: 0,
 							maximumFractionDigits: 0
