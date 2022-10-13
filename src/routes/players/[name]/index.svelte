@@ -184,6 +184,15 @@
 	</div>
 </PageHeader>
 
+{#if name === 'Caedrel'}
+	<p class="caedrel-alert">
+		🚨🚨 This very special profile will update based on win-rate (less than <span
+			>{(caedrelMemeMin * 100).toFixed(0)}%</span
+		>
+		and greater than <span>{(caedrelMemeMax * 100).toFixed(0)}%)</span> 🚨🚨
+	</p>
+{/if}
+
 <div class="controls">
 	<Select
 		defaultText="Filter by:"
@@ -399,6 +408,16 @@
 			&:hover {
 				color: var(--c11);
 			}
+		}
+	}
+
+	.caedrel-alert {
+		color: var(--c8);
+		font-weight: 600;
+
+		span {
+			text-decoration: underline;
+			color: var(--c9);
 		}
 	}
 </style>
