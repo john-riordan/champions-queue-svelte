@@ -13,6 +13,8 @@
 	export let team;
 	export let center = false;
 
+	if (title === 'Caedrel') title = `Caedrel "Pedro"`;
+
 	const relativeTime = new RelativeTime();
 </script>
 

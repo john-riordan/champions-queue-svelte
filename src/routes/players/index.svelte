@@ -141,17 +141,18 @@
 <ul class="list">
 	{#each list as player (player.name)}
 		{@const playerTeam = findPlayerTeam(player.name)}
+		{@const name = player.name === 'Caedrel' ? `Caedrel "Pedro"` : player.name}
 		<li>
 			<a href={`/players/${player.name}`}>
 				<div class="info">
-					<PlayerImg name={player.name} />
+					<PlayerImg {name} />
 					{#if playerTeam}
 						<TeamImg name={playerTeam?.name} />
 					{:else}
 						<div class="no-team" />
 					{/if}
 
-					<p class="name lg">{player.name}</p>
+					<p class="name lg">{name}</p>
 				</div>
 
 				<span class="stat rank">

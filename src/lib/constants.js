@@ -320,7 +320,7 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
-	Caedrel: {
+	'Caedrel "Pedro"': {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
 		image: '/caedrel.webp',
