@@ -4,6 +4,8 @@
 	export let name;
 	export let round = false;
 
+	if (name === 'Caedrel') name = `Caedrel "Pedro"`;
+
 	$: src = PLAYERS[name]?.image ?? PLAYER_DEFAULT;
 </script>
 

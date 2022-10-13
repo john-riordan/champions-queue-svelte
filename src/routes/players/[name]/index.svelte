@@ -21,6 +21,7 @@
 	import { CORRECT_CHAMPION_DISPLAY_NAMES, correctChampionImage } from '$lib/constants';
 
 	export let name;
+
 	const perPage = 20;
 	let pageIndex = 0;
 	let dayFilter = 0;
@@ -132,6 +133,8 @@
 		(a, b) => b.games - a.games || b.wins - a.wins
 	);
 
+	$: winrate = matchlistStats.wins / (matchlistStats.games || 1);
+
 	const dayFilterOptions = [
 		{
 			value: 0,
@@ -182,6 +185,11 @@
 
 {#if matchlistStats && leaderboardStats}
 	<div class="statblocks">
+		{#if name === 'Caedrel' && winrate < 0.5}
+			<div class="statblock">
+				<img src="/sadge.png" width="112" height="77" alt="sadge" />
+			</div>
+		{/if}
 		<div class="statblock">
 			<h3 class="stat">{ordinal(leaderboardStats.rank)}</h3>
 			<span class="stat-name">Rank</span>
@@ -200,7 +208,7 @@
 		{/if} -->
 		<div class="statblock">
 			<h3 class="stat" style:color={winrateColor(matchlistStats.wins / matchlistStats.games)}>
-				{(matchlistStats.wins / (matchlistStats.games || 1)).toLocaleString('en-us', {
+				{winrate.toLocaleString('en-us', {
 					minimumFractionDigits: 0,
 					maximumFractionDigits: 0,
 					style: 'percent'
