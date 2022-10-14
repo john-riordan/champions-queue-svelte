@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@yaireo/relative-time": "^1.0.1"
+		"@yaireo/relative-time": "^1.0.1",
+		"svelte-confetti": "^1.2.0"
 	}
 }

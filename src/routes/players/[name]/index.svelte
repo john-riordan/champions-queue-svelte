@@ -6,6 +6,7 @@
 
 <script>
 	import RelativeTime from '@yaireo/relative-time';
+	import { Confetti } from 'svelte-confetti';
 
 	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
@@ -191,6 +192,19 @@
 		>
 		and greater than <span>{(caedrelMemeMax * 100).toFixed(0)}%)</span> 🚨🚨
 	</p>
+	{#if winrate >= caedrelMemeMax}
+		<div class="confetti">
+			<Confetti
+				x={[-5, 5]}
+				y={[0, 0.1]}
+				delay={[500, 2000]}
+				infinite
+				duration="5000"
+				amount="200"
+				fallDistance="100vh"
+			/>
+		</div>
+	{/if}
 {/if}
 
 <div class="controls">
@@ -419,5 +433,16 @@
 			color: var(--c10);
 			font-weight: 600;
 		}
+	}
+	.confetti {
+		position: fixed;
+		top: -50px;
+		left: 0;
+		height: 100vh;
+		width: 100vw;
+		display: flex;
+		justify-content: center;
+		overflow: hidden;
+		pointer-events: none;
 	}
 </style>
