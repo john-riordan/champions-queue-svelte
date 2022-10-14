@@ -11,14 +11,13 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import FavoriteBtn from '$lib/components/FavoriteBtn.svelte';
-	import ChevronRight from '$lib/components/icons/ChevronRight.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { ordinal } from '$lib/helpers';
 	import { winrateColor, msToDays } from '$lib/helpers';
-	import { CORRECT_CHAMPION_DISPLAY_NAMES, correctChampionImage } from '$lib/constants';
+	import { CORRECT_CHAMPION_DISPLAY_NAMES, caedrelMemeMin, caedrelMemeMax } from '$lib/constants';
 
 	export let name;
 
@@ -129,6 +128,10 @@
 	$: matchlistStats = !dayFilter ? ($store.players || {})[name] : aggregate.stats;
 	$: playerLP = leaderboardStats?.lp ?? 0;
 
+	$: maxPlace = Object.keys($store.leaderboard || {})?.length
+		? Object.keys($store.leaderboard)?.length
+		: 0;
+
 	$: championStats = Object.values(aggregate.champions).sort(
 		(a, b) => b.games - a.games || b.wins - a.wins
 	);
@@ -161,6 +164,13 @@
 	function setDayFilter(event) {
 		dayFilter = event.detail;
 	}
+
+	$: caedrelMeme =
+		name === 'Caedrel' && winrate < caedrelMemeMin
+			? 'Caedrel Clown'
+			: name === 'Caedrel' && winrate >= caedrelMemeMax
+			? 'Caedrel Chad'
+			: name;
 </script>
 
 <svelte:head>
@@ -168,18 +178,20 @@
 	<title>{name} - Champions Queue</title>
 </svelte:head>
 
-<PageHeader
-	title={name}
-	player={name === 'Caedrel' && winrate < 0.5
-		? 'Caedrel Clown'
-		: name === 'Caedrel' && winrate >= 0.5
-		? 'Caedrel Cowboy'
-		: name}
->
+<PageHeader title={name} player={caedrelMeme}>
 	<div slot="controls">
 		<FavoriteBtn />
 	</div>
 </PageHeader>
+
+{#if name === 'Caedrel'}
+	<p class="caedrel-alert">
+		🚨🚨 This very special profile will update based on win-rate (less than <span
+			>{(caedrelMemeMin * 100).toFixed(0)}%</span
+		>
+		and greater than <span>{(caedrelMemeMax * 100).toFixed(0)}%)</span> 🚨🚨
+	</p>
+{/if}
 
 <div class="controls">
 	<Select
@@ -192,13 +204,15 @@
 
 {#if matchlistStats && leaderboardStats}
 	<div class="statblocks">
-		{#if name === 'Caedrel' && winrate < 0.5}
-			<div class="statblock">
-				<img src="/sadge.png" width="112" height="77" alt="sadge" />
-			</div>
-		{/if}
 		<div class="statblock">
-			<h3 class="stat">{ordinal(leaderboardStats.rank)}</h3>
+			<h3 class="stat">
+				{ordinal(leaderboardStats.rank)}
+				{#if maxPlace}
+					<span class="subvalue">
+						/ {maxPlace}
+					</span>
+				{/if}
+			</h3>
 			<span class="stat-name">Rank</span>
 		</div>
 		<div class="statblock">
@@ -241,6 +255,34 @@
 			</h3>
 			<span class="stat-name">KDA</span>
 		</div>
+		{#if caedrelMeme === 'Caedrel Clown'}
+			<div class="statblock">
+				<img
+					src="https://cdn.7tv.app/emote/603cac391cd55c0014d989be/4x.webp"
+					width="60"
+					height="46"
+					alt="sadge"
+				/>
+			</div>
+		{:else if caedrelMeme === 'Caedrel Chad'}
+			<div class="statblock">
+				<img
+					src="https://cdn.7tv.app/emote/603eaaa9115b55000d7282d8/4x.webp"
+					width="48"
+					height="48"
+					alt="pog"
+				/>
+			</div>
+		{:else if caedrelMeme === 'Caedrel'}
+			<div class="statblock">
+				<img
+					src="https://cdn.7tv.app/emote/61d099df08bb84e20d5e331a/4x.webp"
+					width="60"
+					height="60"
+					alt="peepolove"
+				/>
+			</div>
+		{/if}
 	</div>
 {/if}
 
@@ -366,6 +408,16 @@
 			&:hover {
 				color: var(--c11);
 			}
+		}
+	}
+
+	.caedrel-alert {
+		color: var(--c8);
+
+		span {
+			text-decoration: underline;
+			color: var(--c10);
+			font-weight: 600;
 		}
 	}
 </style>

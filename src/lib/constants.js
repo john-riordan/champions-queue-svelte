@@ -1,3 +1,6 @@
+export const caedrelMemeMin = 0.4;
+export const caedrelMemeMax = 0.5;
+
 export const LOADING_STR = 'Loading...';
 
 export const SPLITS_STARTS = {
@@ -320,7 +323,7 @@ export const TEAMS_WORLDS = {
 };
 
 export const PLAYERS = {
-	'Caedrel Cowboy': {
+	'Caedrel Chad': {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
 		image: 'https://cdn.7tv.app/emote/62caba05d94af3fa53a03fe3/4x.webp',
@@ -351,6 +354,21 @@ export const PLAYERS = {
 		]
 	},
 	'Caedrel "Pedro"': {
+		summonerName: 'Caedrel',
+		summonerNameWithTeam: 'Caedrel',
+		image: '/caedrel.webp',
+		socialLinks: [
+			{
+				platform: 'twitter',
+				link: 'https://twitter.com/Caedrel'
+			},
+			{
+				platform: 'twitch',
+				link: 'https://www.twitch.tv/caedrel'
+			}
+		]
+	},
+	Caedrel: {
 		summonerName: 'Caedrel',
 		summonerNameWithTeam: 'Caedrel',
 		image: '/caedrel.webp',

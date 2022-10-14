@@ -6,7 +6,6 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
-	import RefreshBtn from '$lib/components/RefreshBtn.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
@@ -63,8 +62,6 @@
 		team = event.detail;
 		search = '';
 	}
-
-	$: console.log($store.leaderboardMaxLP, $store.leaderboardMinLP);
 
 	const teamOptions = Object.values(TEAMS).map((t) => ({
 		value: t.tag,
@@ -141,20 +138,18 @@
 <ul class="list">
 	{#each list as player (player.name)}
 		{@const playerTeam = findPlayerTeam(player.name)}
-		{@const name = player.name === 'Caedrel' ? `Caedrel "Pedro"` : player.name}
+		{@const winrate = player.wins / (player.games || 1)}
 		<li>
 			<a href={`/players/${player.name}`}>
 				<div class="info">
-					<PlayerImg {name} />
+					<PlayerImg name={player.name} />
 					{#if playerTeam}
 						<TeamImg name={playerTeam?.name} />
 					{:else}
 						<div class="no-team" />
 					{/if}
-
-					<p class="name lg">{name}</p>
+					<p class="name lg">{player.name}</p>
 				</div>
-
 				<span class="stat rank">
 					<RankBadge rank={player.rank} />
 				</span>
@@ -172,9 +167,9 @@
 						maximumFractionDigits: 1
 					})}
 				</span>
-				<span class="stat winrate" style:color={winrateColor(player.wins / player.games)}>
+				<span class="stat winrate" style:color={winrateColor(winrate)}>
 					<span class="value">
-						{(player.wins / player.games).toLocaleString('en-us', {
+						{winrate.toLocaleString('en-us', {
 							style: 'percent',
 							minimumFractionDigits: 0,
 							maximumFractionDigits: 0

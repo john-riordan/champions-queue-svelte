@@ -291,6 +291,10 @@ div[slot='controls'] {
 .statblocks {
 	gap: 3.5rem;
 }
+.statblocks .statblock {
+	display: grid;
+	place-content: center;
+}
 .statblock .stat {
 	position: relative;
 	font-size: 4.25rem;

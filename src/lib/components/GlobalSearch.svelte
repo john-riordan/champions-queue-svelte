@@ -95,7 +95,7 @@
 					<span class="group-header">Players</span>
 					<ul>
 						{#each playerResults as player, i}
-							{@const name = player.name === 'Caedrel' ? `Caedrel "Pedro"` : player.name}
+							{@const name = player.name}
 							<li>
 								<a
 									href={player.url}
