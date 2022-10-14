@@ -204,6 +204,21 @@
 				fallDistance="100vh"
 			/>
 		</div>
+	{:else if winrate < caedrelMemeMin}
+		<div class="confetti">
+			<Confetti
+				x={[-5, 5]}
+				y={[0, 0.1]}
+				colorRange={[194, 232]}
+				delay={[500, 2000]}
+				size={5}
+				infinite
+				duration="2500"
+				amount="200"
+				rounded="true"
+				fallDistance="200vh"
+			/>
+		</div>
 	{/if}
 {/if}
 
