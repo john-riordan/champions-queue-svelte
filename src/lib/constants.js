@@ -51,6 +51,17 @@ export function correctChampionImage(championName) {
 	return championImageName;
 }
 
+export const CORRECT_CHAMPION_SPLASH_POS = {
+	Heimerdinger: '-10%',
+	Maokai: '-8%',
+	Zac: '-26%'
+};
+
+export function correctChampionSplashPos(championName) {
+	if (!CORRECT_CHAMPION_SPLASH_POS[championName]) return null;
+	return CORRECT_CHAMPION_SPLASH_POS[championName];
+}
+
 export function correctChampionDisplayName(championName) {
 	return CORRECT_CHAMPION_DISPLAY_NAMES[championName] || championName;
 }

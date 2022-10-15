@@ -1,6 +1,6 @@
 <script>
 	import { store } from '$lib/stores';
-	import { correctChampionImage, LOADING_STR } from '$lib/constants';
+	import { correctChampionImage, correctChampionSplashPos, LOADING_STR } from '$lib/constants';
 
 	export let name;
 	export let size = 40;
@@ -14,9 +14,10 @@
 		type === 'splash'
 			? `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${fixedName}_0.jpg`
 			: `https://ddragon.leagueoflegends.com/cdn/${patch}.1/img/champion/${fixedName}.png`;
+	$: fixedSplashPos = type === 'splash' && correctChampionSplashPos(fixedName);
 </script>
 
-<div class="champ-img" class:splash={type === 'splash'}>
+<div class="champ-img" class:splash={type === 'splash'} style:--splashPos={fixedSplashPos}>
 	{#if fixedName}
 		<img
 			width={size}
@@ -48,6 +49,6 @@
 
 	.champ-img.splash img {
 		aspect-ratio: 308 / 560;
-		transform: scale(1.2) translate3d(0px, 4%, 0);
+		transform: scale(1.2) translate3d(0px, var(--splashPos, 4%), 0);
 	}
 </style>
