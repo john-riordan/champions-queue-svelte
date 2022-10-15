@@ -343,6 +343,36 @@ div[slot='controls'] {
 	flex-direction: column;
 }
 
+.list-item-img {
+	position: relative;
+}
+.list-item-img .index {
+	position: absolute;
+	display: grid;
+	place-content: center;
+	bottom: 0;
+	right: 0;
+	width: 1.5rem;
+	height: 1.5rem;
+	line-height: 1;
+	font-size: 0.75em;
+	font-weight: 600;
+	text-shadow: 0 2px 3px var(--c1);
+}
+.list-item-img .index > * {
+	position: relative;
+}
+.list-item-img .index::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--c1);
+	opacity: 0.5;
+}
+.list-item-img.no-bg .index::before {
+	content: unset;
+}
+
 @media screen and (max-width: 1400px) {
 	:root {
 		--content-padding: 1rem;
