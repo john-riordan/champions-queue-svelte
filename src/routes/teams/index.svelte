@@ -6,7 +6,7 @@
 
 <script>
 	import { store } from '$lib/stores';
-	import { TEAMS, TEAMS_WORLDS, teamImg } from '$lib/constants';
+	import { TEAMS, teamImg } from '$lib/constants';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import Select from '$lib/components/Select.svelte';
@@ -16,13 +16,9 @@
 	export let title;
 	let selectedPlayers = 'all';
 	let teamSort = 'games';
-	let worldsOnly = true;
 
 	$: players = $store.players || {};
 	$: teams = Object.entries($store.teams || {})
-		.filter(([tag]) => {
-			return worldsOnly ? TEAMS_WORLDS[tag] : true;
-		})
 		.map(([tag, team]) => {
 			const teamInfo = TEAMS[tag];
 			const teamMainRoster = (teamInfo.starters || []).reduce((acc, curr) => {
@@ -47,7 +43,7 @@
 			});
 
 			const teamLP = teamPlayers.reduce((acc, curr) => {
-				const playerLP = $store.leaderboard?.[curr.name]?.lp ?? 0;
+				const playerLP = $store.leaderboard.players[curr.name]?.lp ?? 0;
 				acc += playerLP;
 				return acc;
 			}, 0);
@@ -68,7 +64,7 @@
 				players: teamPlayers
 					.map((player) => ({
 						...player,
-						lp: $store.leaderboard?.[player.name]?.lp ?? 0
+						lp: $store.leaderboard.players?.[player.name]?.lp ?? 0
 					}))
 					.sort((a, b) => b[teamSort] - a[teamSort] || b.games - a.games)
 			};
@@ -119,15 +115,6 @@
 </div> -->
 
 <div class="controls">
-	<label class="boolean-btn" class:checked={worldsOnly} for="hide-low">
-		<span>Only Worlds Teams</span>
-		<input type="checkbox" bind:checked={worldsOnly} id="hide-low" />
-		{#if worldsOnly}
-			<CheckChecked />
-		{:else}
-			<CheckUnchecked />
-		{/if}
-	</label>
 	<Select
 		defaultText="Sort Teams by:"
 		value={teamSort}

@@ -7,15 +7,13 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
-	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
-	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS, TEAMS_WORLDS, teamImg } from '$lib/constants';
+	import { TEAMS, teamImg } from '$lib/constants';
 	import { winrateColor, findPlayerTeam } from '$lib/helpers';
 
 	export let title;
@@ -23,22 +21,19 @@
 	let team = null;
 	let sort = 'lp';
 	let desc = true;
-	let worldsOnly = false;
 
 	$: players = Object.values($store.players || {})
 		.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
 		.map((p, i) => ({ ...p, rank: i + 1 }));
-	$: leaderboard = $store.leaderboard || {};
+	$: leaderboard = $store.leaderboard.players || {};
 	$: list = players
 		.filter((p) => {
-			const playerTeam = findPlayerTeam(p.name);
-			const worldsTeam = worldsOnly ? TEAMS_WORLDS[playerTeam?.tag] : true;
 			const teamFilterMatch = team ? p.name.toLowerCase().startsWith(team.toLowerCase()) : true;
 			const searchMatch = search?.length
 				? p.name.toLowerCase().includes(search.toLowerCase())
 				: true;
 
-			return worldsTeam && teamFilterMatch && searchMatch;
+			return teamFilterMatch && searchMatch;
 		})
 		.map((p) => {
 			const lp = leaderboard[p.name]?.lp || 0;
@@ -89,15 +84,6 @@
 		placeholder="Search Players"
 		bind:value={search}
 	/>
-	<label class="boolean-btn" class:checked={worldsOnly} for="worlds-only">
-		<span>Only Worlds Teams</span>
-		<input type="checkbox" bind:checked={worldsOnly} id="worlds-only" />
-		{#if worldsOnly}
-			<CheckChecked />
-		{:else}
-			<CheckUnchecked />
-		{/if}
-	</label>
 	<Select defaultText="Select a Team" value={team} options={teamOptions} on:select={setTeam} />
 </div>
 
@@ -157,8 +143,8 @@
 					<span>{leaderboard[player.name]?.lp || 0}</span>
 					<WinRateBar
 						height={2}
-						wins={player.lp - $store.leaderboardMinLP}
-						games={$store.leaderboardMaxLP - $store.leaderboardMinLP}
+						wins={player.lp - $store.leaderboard.minLP}
+						games={$store.leaderboard.maxLP - $store.leaderboard.minLP}
 					/>
 				</span>
 				<span class="stat kda">

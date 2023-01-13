@@ -2,7 +2,6 @@
 	import { TEAMS, teamImg } from '$lib/constants';
 
 	export let name;
-	export let size;
 
 	$: teamInfo = TEAMS[name] || Object.values(TEAMS).find((team) => team.name === name);
 	$: src = teamInfo && teamImg(150, teamInfo.logo);
@@ -10,7 +9,7 @@
 
 <div class="team-img">
 	{#if src}
-		<img loading="lazy" alt={name} {src} width={size} />
+		<img loading="lazy" alt={name} {src} width="80" height="80" />
 	{/if}
 </div>
 

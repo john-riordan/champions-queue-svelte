@@ -4,10 +4,11 @@
 
 <script>
 	import { store } from '$lib/stores';
-	import { TEAMS, TEAMS_WORLDS, LOADING_STR } from '$lib/constants';
+	import { TEAMS, LOADING_STR } from '$lib/constants';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
+	import Mask from '$lib/components/icons/MaskLogo.svelte';
 	import GlobalSearch from '$lib/components/GlobalSearch.svelte';
 
 	const count = 10;
@@ -15,8 +16,8 @@
 
 	$: loading = $store.loading;
 
-	$: topRatedPlayers = $store.leaderboard
-		? Object.values($store.leaderboard)
+	$: topRatedPlayers = $store.leaderboard.players
+		? Object.values($store.leaderboard.players)
 				.sort((a, b) => b.lp - a.lp)
 				.slice(0, count)
 		: loadingArr;
@@ -27,7 +28,7 @@
 		: loadingArr;
 	$: mostActiveTeams = $store.teams
 		? Object.values($store.teams)
-				.filter((t) => TEAMS_WORLDS[t?.tag])
+				.filter((t) => TEAMS[t?.tag])
 				.sort((a, b) => b.games - a.games)
 				.map((t) => ({
 					...t,
@@ -69,7 +70,7 @@
 
 <div class="container">
 	<div class="top">
-		<img src="/logo-worlds-600.webp" width="600" loading="lazy" alt="Champions Queue Logo" />
+		<Mask class="mask" />
 		<div class="marquee-outer" class:invis={!$store.matches}>
 			<div class="marquee-inner">
 				{#each [...recentPopularChampions, ...recentPopularChampions] as champion}
@@ -90,12 +91,10 @@
 			</div>
 		</div>
 		<div>
-			<div class="worlds-banner">
-				<h1>Worlds 2022</h1>
-			</div>
+			<h1>Champions Queue</h1>
 			{#if $store.splitTitle}
 				<div class="split-details">
-					<span>Champions Queue</span>
+					<span>Season 2023 - Split 1</span>
 				</div>
 			{:else}
 				<div class="split-details">
@@ -224,7 +223,7 @@
 		flex-direction: column;
 		padding: 2rem 0 6rem 0;
 		width: 100%;
-		background: url('/flag-blue.webp') no-repeat;
+		background: url('/flag-black.webp') no-repeat;
 		background-size: cover;
 		background-position: center 50%;
 		overflow: hidden;
@@ -249,7 +248,8 @@
 			}
 		}
 
-		img {
+		img,
+		:global(.mask) {
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -257,6 +257,11 @@
 			opacity: 0.5;
 			mix-blend-mode: overlay;
 			pointer-events: none;
+		}
+		:global(.mask) {
+			width: 600px;
+			max-width: 100%;
+			height: auto;
 		}
 
 		@media screen and (max-width: 600px), screen and (max-height: 800px) {

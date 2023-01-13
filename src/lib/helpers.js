@@ -1,4 +1,11 @@
-import { SPLITS_STARTS, correctChampionDisplayName, INDEX_TO_ROLE, TEAMS } from './constants';
+import {
+	CURR_YEAR,
+	CURR_SEASON,
+	CURR_SPLIT,
+	correctChampionDisplayName,
+	INDEX_TO_ROLE,
+	TEAMS
+} from './constants';
 
 export async function fetchData(fullSeason = false) {
 	const res = await fetch(`/api?fullSeason=${fullSeason}`);
@@ -16,129 +23,146 @@ export function normalizeChampionName(championName = '') {
 	return championName.replace(' ', '').toLowerCase();
 }
 
-export function aggregateData(data = {}, leaderboard, fullSeason) {
-	fullSeason = JSON.parse(fullSeason);
-	const matches = (data.matches || []).filter((match) => {
-		// Filter matches for season WORLDS
-		const matchStart = new Date(match.matchStart);
-		// const splitStart = new Date(SPLITS_STARTS.season2.split3);
-		const splitStart = new Date(SPLITS_STARTS.worlds.split1);
+export function aggregateData(data = {}, leaderboard = {}) {
+	// Find the current season/split info from leaderboard
+	const { leaderboards = [] } = leaderboard;
+	const currSeason =
+		leaderboards.find((s) => {
+			const correctYear = s.year === CURR_YEAR;
+			const correctSeason = s.seasonId === CURR_SEASON;
+			const correctSplit = s.split?.splitId === CURR_SPLIT;
 
-		return fullSeason ? true : matchStart > splitStart ? true : false;
-	});
+			return correctYear && correctSeason && correctSplit;
+		}) || leaderboards[leaderboards.length - 1];
 
-	const aggregate = matches.reduce(
-		(acc, curr) => {
-			if (!curr) return acc;
+	// Aggregate matches & stats
+	const aggregate = { matches: [], players: {}, champions: {}, teams: {}, patches: [] };
+	const MAX_MATCHES = 2000;
 
-			const team1 = curr.teams[0].players.map((player, i) => ({
-				...player,
-				laneIndex: INDEX_TO_ROLE[i],
-				winner: curr.teams[0].winner
-			}));
-			const team2 = curr.teams[1].players.map((player, i) => ({
-				...player,
-				laneIndex: INDEX_TO_ROLE[i],
-				winner: curr.teams[1].winner
-			}));
-			const players = [...team1, ...team2];
-			const patch = formatPatch(curr.gameVersion);
+	let i = 0;
+	for (const curr of data.matches || []) {
+		if (i > MAX_MATCHES) break; // Hard cap server iterations
 
-			if (!acc.patches.includes(patch)) acc.patches.push(patch);
+		const matchStart = new Date(curr.matchStart);
+		const splitStart = new Date(currSeason.openDate);
+		const splitEnd = new Date(currSeason.closeDate);
 
-			for (const player of players) {
-				const champ = correctChampionDisplayName(player.championIcon);
-				const role = player.laneIndex;
+		if (matchStart < splitStart) continue;
 
-				// Player Stats
-				if (!acc.players[player.name]) acc.players[player.name] = {};
-				const win = player.winner ? 1 : 0;
+		aggregate.matches.push(curr);
 
-				acc.players[player.name] = {
-					name: player.name,
-					games: (acc.players[player.name]?.games || 0) + 1,
-					wins: (acc.players[player.name]?.wins || 0) + win,
-					kills: player.kills + (acc.players[player.name]?.kills || 0),
-					deaths: player.deaths + (acc.players[player.name]?.deaths || 0),
-					assists: player.assists + (acc.players[player.name]?.assists || 0)
-				};
+		const team1 = curr.teams[0].players.map((player, i) => ({
+			...player,
+			laneIndex: INDEX_TO_ROLE[i],
+			winner: curr.teams[0].winner
+		}));
+		const team2 = curr.teams[1].players.map((player, i) => ({
+			...player,
+			laneIndex: INDEX_TO_ROLE[i],
+			winner: curr.teams[1].winner
+		}));
+		const players = [...team1, ...team2];
+		const patch = formatPatch(curr.gameVersion);
 
-				// Champion Stats
-				if (!acc.champions[champ]) acc.champions[champ] = {};
+		if (!aggregate.patches.includes(patch)) aggregate.patches.push(patch);
 
-				const champRole = acc.champions[champ];
-				const champPatches = champRole.patches || {};
+		for (const player of players) {
+			const champ = correctChampionDisplayName(player.championIcon);
+			const role = player.laneIndex;
 
-				acc.champions[champ] = {
-					name: champ,
-					games: (champRole?.games || 0) + 1,
-					wins: (champRole?.wins || 0) + win,
-					kills: player.kills + (champRole?.kills || 0),
-					deaths: player.deaths + (champRole?.deaths || 0),
-					assists: player.assists + (champRole?.assists || 0),
-					cs: player.cs + (champRole?.cs || 0),
-					patches: {
-						...champPatches,
-						[patch]: true
+			// Player Stats
+			if (!aggregate.players[player.name]) aggregate.players[player.name] = {};
+			const win = player.winner ? 1 : 0;
+
+			aggregate.players[player.name] = {
+				name: player.name,
+				games: (aggregate.players[player.name]?.games || 0) + 1,
+				wins: (aggregate.players[player.name]?.wins || 0) + win,
+				kills: player.kills + (aggregate.players[player.name]?.kills || 0),
+				deaths: player.deaths + (aggregate.players[player.name]?.deaths || 0),
+				assists: player.assists + (aggregate.players[player.name]?.assists || 0)
+			};
+
+			// Champion Stats
+			if (!aggregate.champions[champ]) aggregate.champions[champ] = {};
+
+			const champRole = aggregate.champions[champ];
+			const champPatches = champRole.patches || {};
+
+			aggregate.champions[champ] = {
+				name: champ,
+				games: (champRole?.games || 0) + 1,
+				wins: (champRole?.wins || 0) + win,
+				kills: player.kills + (champRole?.kills || 0),
+				deaths: player.deaths + (champRole?.deaths || 0),
+				assists: player.assists + (champRole?.assists || 0),
+				cs: player.cs + (champRole?.cs || 0),
+				patches: {
+					...champPatches,
+					[patch]: true
+				}
+			};
+
+			// Team Stats
+			const playerTeam = findPlayerTeam(player.name)?.tag;
+
+			if (playerTeam) {
+				if (!aggregate.teams[playerTeam]) aggregate.teams[playerTeam] = {};
+
+				const teamPlayers = aggregate.teams[playerTeam].players || {};
+
+				aggregate.teams[playerTeam] = {
+					tag: playerTeam,
+					games: (aggregate.teams[playerTeam]?.games || 0) + 1,
+					wins: (aggregate.teams[playerTeam]?.wins || 0) + win,
+					kills: player.kills + (aggregate.teams[playerTeam]?.kills || 0),
+					deaths: player.deaths + (aggregate.teams[playerTeam]?.deaths || 0),
+					assists: player.assists + (aggregate.teams[playerTeam]?.assists || 0),
+					players: {
+						...teamPlayers,
+						[player.name]: true
 					}
 				};
-
-				// Team Stats
-				const playerTeam = findPlayerTeam(player.name)?.tag;
-
-				if (playerTeam) {
-					if (!acc.teams[playerTeam]) acc.teams[playerTeam] = {};
-
-					const teamPlayers = acc.teams[playerTeam].players || {};
-
-					acc.teams[playerTeam] = {
-						tag: playerTeam,
-						games: (acc.teams[playerTeam]?.games || 0) + 1,
-						wins: (acc.teams[playerTeam]?.wins || 0) + win,
-						kills: player.kills + (acc.teams[playerTeam]?.kills || 0),
-						deaths: player.deaths + (acc.teams[playerTeam]?.deaths || 0),
-						assists: player.assists + (acc.teams[playerTeam]?.assists || 0),
-						players: {
-							...teamPlayers,
-							[player.name]: true
-						}
-					};
-				}
 			}
+		}
 
-			return acc;
-		},
-		{ players: {}, champions: {}, teams: {}, totalGames: matches.length, patches: [] }
-	);
+		i += 1;
+	}
 
-	// Current split/season
-	const currSeasonId = 3;
-	const currSplitId = null;
+	// const aggregate = (data.matches || []).reduce(
+	// 	(acc, curr) => {
+	// 		if (!curr) return acc;
 
-	const currSeason = leaderboard.leaderboards.find(
-		(s) => s.seasonId === currSeasonId && (!s.split?.splitId || s.split?.splitId === currSplitId)
-	);
-	const lpList = (currSeason?.lineup || []).map((player) => player.lp).filter((lp) => lp > 0);
+	// 		return acc;
+	// 	},
+	// 	{ matches: [], players: {}, champions: {}, teams: {}, patches: [] }
+	// );
 
 	return {
 		fetchedAt: Date.now(),
 		loading: false,
-		matches,
-		totalGames: matches.length,
+		matches: aggregate.matches,
+		totalGames: aggregate.matches.length,
 		players: aggregate.players,
 		patches: aggregate.patches,
-		currentPatch: formatPatch(matches[0]?.gameVersion),
+		currentPatch: formatPatch(aggregate.matches[0]?.gameVersion),
 		champions: aggregate.champions,
 		teams: aggregate.teams,
 		seasonTitle: currSeason?.title || 'Unknown Season',
 		splitTitle: currSeason?.split?.title || 'Unknown Split',
 		splitEnd: currSeason?.split?.closeDate,
-		leaderboard: (currSeason?.lineup || []).reduce((acc, curr) => {
-			acc[curr.name] = curr;
-			return acc;
-		}, {}),
-		leaderboardMaxLP: Math.max(...lpList) ?? 0,
-		leaderboardMinLP: Math.min(...lpList) ?? 0
+		leaderboard: (currSeason?.lineup || []).reduce(
+			(acc, curr) => {
+				acc.players[curr.name] = curr;
+
+				// set highest and lowest lp
+				if (curr.lp > acc.maxLP) acc.maxLP = curr.lp;
+				if (curr.lp < acc.minLP) acc.minLP = curr.lp;
+
+				return acc;
+			},
+			{ players: {}, minLP: 0, maxLP: 0, minWR: 0, maxWR: 0 }
+		)
 	};
 }
 
@@ -154,7 +178,7 @@ export function ordinal(i) {
 export function formatPatch(version) {
 	if (!version) return '';
 	const patch = version.split('.');
-	const major = patch[0] ?? 12;
+	const major = patch[0] ?? 13;
 	const minor = patch[1] ?? 'x';
 
 	return `${major}.${minor}`;
