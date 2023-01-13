@@ -92,15 +92,9 @@
 		</div>
 		<div>
 			<h1>Champions Queue</h1>
-			{#if $store.splitTitle}
-				<div class="split-details">
-					<span>Season 2023 - Split 1</span>
-				</div>
-			{:else}
-				<div class="split-details">
-					<span>Loading...</span>
-				</div>
-			{/if}
+			<div class="split-details">
+				<span>Season 2023 </span>
+			</div>
 		</div>
 	</div>
 
