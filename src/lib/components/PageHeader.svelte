@@ -14,7 +14,7 @@
 	export let team;
 	export let center = false;
 
-	$: playerName = player === 'Caedrel Clown' ? `Caedrel "Pedro"` : title;
+	$: playerName = title;
 </script>
 
 <header class="header" class:center>
@@ -43,17 +43,17 @@
 				{/if}
 			</h1>
 
-			{#if $store.splitTitle}
-				<div class="split-details">
-					<span class="season">{$store.seasonTitle}</span>
+			<div class="split-details">
+				<span class="season">{$store.seasonTitle}</span>
+				{#if $store.splitTitle}
 					-
 					<span>{$store.splitTitle}</span>
-					{#if $store.splitEnd}
-						-
-						<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
-					{/if}
-				</div>
-			{/if}
+				{/if}
+				{#if $store.seasonEnd}
+					-
+					<span>Ends in {relativeTime.from(new Date($store.seasonEnd))}</span>
+				{/if}
+			</div>
 		</div>
 	</div>
 	<slot name="controls" />

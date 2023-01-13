@@ -186,6 +186,13 @@ export const PLAYERS = {
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655456904165_KT_VicLa_784x621.png',
 		socialLinks: []
 	},
+	'FLY Winsome': {
+		summonerName: 'Winsome',
+		summonerNameWithTeam: 'FLY Winsome',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645003141150_WINSOME.png',
+		socialLinks: []
+	},
 	'TL Yeon': {
 		summonerName: 'Yeon',
 		summonerNameWithTeam: 'TL Yeon',
@@ -952,9 +959,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645003618481_BREEZY.png'
 	},
-	'DIG FakeGod': {
+	'C9 FakeGod': {
 		summonerName: 'FakeGod',
-		summonerNameWithTeam: 'DIG FakeGod',
+		summonerNameWithTeam: 'C9 FakeGod',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -5520,7 +5527,7 @@ export const PLAYERS = {
 				link: 'https://twitter.com/TSMMaple'
 			}
 		],
-		image: null
+		image: `https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655452148285_MAPLE.png`
 	},
 	'XTN Seize': {
 		summonerName: 'Seize',

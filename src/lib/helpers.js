@@ -7,8 +7,8 @@ import {
 	TEAMS
 } from './constants';
 
-export async function fetchData(fullSeason = false) {
-	const res = await fetch(`/api?fullSeason=${fullSeason}`);
+export async function fetchData() {
+	const res = await fetch(`/api`);
 	const json = await res.json();
 
 	return json;
@@ -129,15 +129,6 @@ export function aggregateData(data = {}, leaderboard = {}) {
 		i += 1;
 	}
 
-	// const aggregate = (data.matches || []).reduce(
-	// 	(acc, curr) => {
-	// 		if (!curr) return acc;
-
-	// 		return acc;
-	// 	},
-	// 	{ matches: [], players: {}, champions: {}, teams: {}, patches: [] }
-	// );
-
 	return {
 		fetchedAt: Date.now(),
 		loading: false,
@@ -149,8 +140,9 @@ export function aggregateData(data = {}, leaderboard = {}) {
 		champions: aggregate.champions,
 		teams: aggregate.teams,
 		seasonTitle: currSeason?.title || 'Unknown Season',
+		seasonEnd: currSeason?.closeDate,
 		splitTitle: currSeason?.split?.title || 'Unknown Split',
-		splitEnd: currSeason?.split?.closeDate,
+		season: currSeason,
 		leaderboard: (currSeason?.lineup || []).reduce(
 			(acc, curr) => {
 				acc.players[curr.name] = curr;

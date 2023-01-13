@@ -142,8 +142,8 @@ function aggregateData(data = {}, leaderboard = {}) {
 		champions: aggregate.champions,
 		teams: aggregate.teams,
 		seasonTitle: currSeason?.title || 'Unknown Season',
-		splitTitle: currSeason?.split?.title || 'Unknown Split',
-		splitEnd: currSeason?.split?.closeDate,
+		splitTitle: currSeason?.split?.title,
+		seasonEnd: currSeason?.closeDate,
 		leaderboard: (currSeason?.lineup || []).reduce(
 			(acc, curr) => {
 				acc.players[curr.name] = curr;
