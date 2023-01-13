@@ -15,7 +15,7 @@
 	let focused = false;
 
 	$: disabled = !$store.champions;
-	$: players = Object.values($store.leaderboard.players || {})
+	$: players = Object.values($store.players || {})
 		.filter((p) => p.name.toLowerCase().includes(searchText.toLowerCase()))
 		.slice(0, maxCount)
 		.map((p) => ({ ...p, url: `/players/${p.name}` }));

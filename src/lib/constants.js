@@ -1577,9 +1577,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'IMT Arrow': {
+	'TL Arrow': {
 		summonerName: 'Arrow',
-		summonerNameWithTeam: 'IMT Arrow',
+		summonerNameWithTeam: 'TL Arrow',
 		socialLinks: [
 			{
 				platform: 'twitter',
