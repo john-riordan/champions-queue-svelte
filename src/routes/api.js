@@ -14,11 +14,11 @@ export async function get() {
 	const matchesRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/matches.json');
 	const matchesJSON = await matchesRes.json();
 
-	var startTime = performance.now();
+	// var startTime = performance.now();
 	const agg = aggregateData(matchesJSON, leaderboardJSON);
-	var endTime = performance.now();
+	// var endTime = performance.now();
 
-	console.log(`Call to aggregateData took ${endTime - startTime} milliseconds`);
+	// console.log(`Call to aggregateData took ${endTime - startTime} milliseconds`);
 
 	return {
 		body: agg
