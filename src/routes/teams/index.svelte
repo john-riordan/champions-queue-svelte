@@ -43,7 +43,7 @@
 			});
 
 			const teamLP = teamPlayers.reduce((acc, curr) => {
-				const playerLP = $store.leaderboard?.[curr.name]?.lp ?? 0;
+				const playerLP = $store.leaderboard.players[curr.name]?.lp ?? 0;
 				acc += playerLP;
 				return acc;
 			}, 0);
@@ -64,7 +64,7 @@
 				players: teamPlayers
 					.map((player) => ({
 						...player,
-						lp: $store.leaderboard?.[player.name]?.lp ?? 0
+						lp: $store.leaderboard.players?.[player.name]?.lp ?? 0
 					}))
 					.sort((a, b) => b[teamSort] - a[teamSort] || b.games - a.games)
 			};

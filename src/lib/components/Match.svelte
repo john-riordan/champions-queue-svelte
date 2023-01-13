@@ -9,8 +9,8 @@
 	import { correctChampionDisplayName, PLAYERS } from '$lib/constants';
 
 	export let match;
-	export let champion;
-	export let player;
+	export let champion = null;
+	export let player = null;
 
 	const relativeTime = new RelativeTime();
 	const dateRelative = relativeTime.from(new Date(match.matchStart));

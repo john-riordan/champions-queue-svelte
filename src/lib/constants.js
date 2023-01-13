@@ -3,13 +3,10 @@ export const caedrelMemeMax = 0.5;
 
 export const LOADING_STR = 'Loading...';
 
-export const SPLITS_STARTS = {
-	season1: {
-		split1: '2022-01-12T00:00:00.000000Z',
-		split2: '',
-		split3: ''
-	}
-};
+// Current split/season'
+export const CURR_YEAR = 2023;
+export const CURR_SEASON = 1;
+export const CURR_SPLIT = 1;
 
 export const ROLES = {
 	TOP: 'Top',

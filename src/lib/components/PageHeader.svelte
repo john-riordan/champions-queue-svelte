@@ -1,9 +1,12 @@
 <script>
+	import RelativeTime from '@yaireo/relative-time';
 	import { store, pageBackground } from '$lib/stores';
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
 	import PlayerSocials from '$lib/components/PlayerSocials.svelte';
+
+	const relativeTime = new RelativeTime();
 
 	export let title = '';
 	export let player;
@@ -43,8 +46,10 @@
 			{#if $store.splitTitle}
 				<div class="split-details">
 					<span class="season">{$store.seasonTitle}</span>
+					-
 					<span>{$store.splitTitle}</span>
 					{#if $store.splitEnd}
+						-
 						<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
 					{/if}
 				</div>
@@ -145,7 +150,7 @@
 		display: flex;
 		gap: 1rem;
 		text-transform: uppercase;
-		letter-spacing: 8px;
+		letter-spacing: 4px;
 		color: var(--c10);
 
 		@media screen and (max-width: 800px) {

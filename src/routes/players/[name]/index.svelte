@@ -125,12 +125,12 @@
 	);
 
 	$: noGamesPlayed = Object.keys(groups).length === 0;
-	$: leaderboardStats = $store.leaderboard?.[name];
+	$: leaderboardStats = $store.leaderboard.players?.[name];
 	$: matchlistStats = !dayFilter ? ($store.players || {})[name] : aggregate.stats;
 	$: playerLP = leaderboardStats?.lp ?? 0;
 
-	$: maxPlace = Object.keys($store.leaderboard || {})?.length
-		? Object.keys($store.leaderboard)?.length
+	$: maxPlace = Object.keys($store.leaderboard.players).length
+		? Object.keys($store.leaderboard.players).length
 		: 0;
 
 	$: championStats = Object.values(aggregate.champions).sort(

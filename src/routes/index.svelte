@@ -16,8 +16,8 @@
 
 	$: loading = $store.loading;
 
-	$: topRatedPlayers = $store.leaderboard
-		? Object.values($store.leaderboard)
+	$: topRatedPlayers = $store.leaderboard.players
+		? Object.values($store.leaderboard.players)
 				.sort((a, b) => b.lp - a.lp)
 				.slice(0, count)
 		: loadingArr;

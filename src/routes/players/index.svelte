@@ -7,8 +7,6 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
-	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
-	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
@@ -27,7 +25,7 @@
 	$: players = Object.values($store.players || {})
 		.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
 		.map((p, i) => ({ ...p, rank: i + 1 }));
-	$: leaderboard = $store.leaderboard || {};
+	$: leaderboard = $store.leaderboard.players || {};
 	$: list = players
 		.filter((p) => {
 			const teamFilterMatch = team ? p.name.toLowerCase().startsWith(team.toLowerCase()) : true;
@@ -145,8 +143,8 @@
 					<span>{leaderboard[player.name]?.lp || 0}</span>
 					<WinRateBar
 						height={2}
-						wins={player.lp - $store.leaderboardMinLP}
-						games={$store.leaderboardMaxLP - $store.leaderboardMinLP}
+						wins={player.lp - $store.leaderboard.minLP}
+						games={$store.leaderboard.maxLP - $store.leaderboard.minLP}
 					/>
 				</span>
 				<span class="stat kda">
