@@ -42,12 +42,11 @@
 
 			{#if $store.splitTitle}
 				<div class="split-details">
-					<span>Worlds 2022</span>
-					<!-- <span class="season">{$store.seasonTitle}</span>
+					<span class="season">{$store.seasonTitle}</span>
 					<span>{$store.splitTitle}</span>
 					{#if $store.splitEnd}
 						<span>Ends in {relativeTime.from(new Date($store.splitEnd))}</span>
-					{/if} -->
+					{/if}
 				</div>
 			{/if}
 		</div>
@@ -65,7 +64,7 @@
 		width: 100%;
 		height: 13rem;
 		background-color: var(--logo);
-		background: url('/flag-blue.webp') no-repeat;
+		background: url('/flag-black.webp') no-repeat;
 		background-size: 100% auto;
 		background-position: center 50%;
 		overflow: hidden;

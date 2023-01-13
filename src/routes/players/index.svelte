@@ -15,7 +15,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import RankBadge from '$lib/components/RankBadge.svelte';
 	import { store } from '$lib/stores';
-	import { TEAMS, TEAMS_WORLDS, teamImg } from '$lib/constants';
+	import { TEAMS, teamImg } from '$lib/constants';
 	import { winrateColor, findPlayerTeam } from '$lib/helpers';
 
 	export let title;
@@ -23,7 +23,6 @@
 	let team = null;
 	let sort = 'lp';
 	let desc = true;
-	let worldsOnly = false;
 
 	$: players = Object.values($store.players || {})
 		.sort((a, b) => b.lp - a.lp || b.wins / b.games - a.wins / a.games || b.wins - a.wins)
@@ -31,14 +30,12 @@
 	$: leaderboard = $store.leaderboard || {};
 	$: list = players
 		.filter((p) => {
-			const playerTeam = findPlayerTeam(p.name);
-			const worldsTeam = worldsOnly ? TEAMS_WORLDS[playerTeam?.tag] : true;
 			const teamFilterMatch = team ? p.name.toLowerCase().startsWith(team.toLowerCase()) : true;
 			const searchMatch = search?.length
 				? p.name.toLowerCase().includes(search.toLowerCase())
 				: true;
 
-			return worldsTeam && teamFilterMatch && searchMatch;
+			return teamFilterMatch && searchMatch;
 		})
 		.map((p) => {
 			const lp = leaderboard[p.name]?.lp || 0;
@@ -89,15 +86,6 @@
 		placeholder="Search Players"
 		bind:value={search}
 	/>
-	<label class="boolean-btn" class:checked={worldsOnly} for="worlds-only">
-		<span>Only Worlds Teams</span>
-		<input type="checkbox" bind:checked={worldsOnly} id="worlds-only" />
-		{#if worldsOnly}
-			<CheckChecked />
-		{:else}
-			<CheckUnchecked />
-		{/if}
-	</label>
 	<Select defaultText="Select a Team" value={team} options={teamOptions} on:select={setTeam} />
 </div>
 

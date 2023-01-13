@@ -16,13 +16,15 @@ export function normalizeChampionName(championName = '') {
 	return championName.replace(' ', '').toLowerCase();
 }
 
+// Current split/season
+const currSeasonId = 4;
+const currSplitId = 1;
+
 export function aggregateData(data = {}, leaderboard, fullSeason) {
 	fullSeason = JSON.parse(fullSeason);
 	const matches = (data.matches || []).filter((match) => {
-		// Filter matches for season WORLDS
 		const matchStart = new Date(match.matchStart);
-		// const splitStart = new Date(SPLITS_STARTS.season2.split3);
-		const splitStart = new Date(SPLITS_STARTS.worlds.split1);
+		const splitStart = new Date(SPLITS_STARTS.season1.split1);
 
 		return fullSeason ? true : matchStart > splitStart ? true : false;
 	});
@@ -110,10 +112,6 @@ export function aggregateData(data = {}, leaderboard, fullSeason) {
 		},
 		{ players: {}, champions: {}, teams: {}, totalGames: matches.length, patches: [] }
 	);
-
-	// Current split/season
-	const currSeasonId = 3;
-	const currSplitId = null;
 
 	const currSeason = leaderboard.leaderboards.find(
 		(s) => s.seasonId === currSeasonId && (!s.split?.splitId || s.split?.splitId === currSplitId)
