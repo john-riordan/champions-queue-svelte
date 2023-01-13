@@ -77,7 +77,7 @@ export function teamImg(size, logo) {
 
 export const TEAMS = {
 	C9: {
-		name: 'Cloud 9',
+		name: 'Cloud9',
 		tag: 'C9',
 		logo: 'F1631820065346_cloud9-2021-worlds.png',
 		hsl: '196deg 100% 39%',
@@ -105,7 +105,7 @@ export const TEAMS = {
 		starters: ['TSM Solo', 'TSM Bugi', 'TSM Maple', 'TSM Neo', 'TSM Chime']
 	},
 	TL: {
-		name: 'Team Liquid',
+		name: 'Team Liquid Honda',
 		tag: 'TL',
 		logo: 'F1631820014208_tl-2021-worlds.png',
 		hsl: '214deg 0% 80%',
