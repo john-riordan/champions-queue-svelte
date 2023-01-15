@@ -158,7 +158,7 @@ export const PLAYERS = {
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655318599074_armut.png',
 		socialLinks: []
 	},
-	'IMT Fleshy': {
+	'IMT  Fleshy': {
 		summonerName: 'Fleshy',
 		summonerNameWithTeam: 'IMT Fleshy',
 		image:
@@ -212,6 +212,20 @@ export const PLAYERS = {
 		summonerNameWithTeam: 'TSM Bugi',
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1654803894720_EMP.png',
+		socialLinks: []
+	},
+	'C9 Tomio': {
+		summonerName: 'Tomio',
+		summonerNameWithTeam: 'C9 Tomio',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1655453151011_TOMIO.png',
+		socialLinks: []
+	},
+	'C9 EMENES': {
+		summonerName: 'EMENES',
+		summonerNameWithTeam: 'C9 EMENES',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2FEmenes.png',
 		socialLinks: []
 	},
 	'C9 Diplex': {
@@ -1006,6 +1020,14 @@ export const PLAYERS = {
 		],
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004394441_BLUE.png'
+	},
+
+	'TSM WildTurtle': {
+		summonerName: 'WildTurtle',
+		summonerNameWithTeam: 'TSM WildTurtle',
+		socialLinks: [],
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645007023352_WILDTURTLE.png'
 	},
 	'TSM Neo': {
 		summonerName: 'Neo',
