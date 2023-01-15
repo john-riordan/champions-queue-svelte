@@ -14,17 +14,13 @@
 </div>
 
 <style>
-	.team-img {
+	.team-img,
+	img {
 		position: relative;
-		height: calc(var(--size) * 1px);
-		max-height: calc(var(--size) * 1px);
+		width: calc(var(--size) * 1px);
+		max-width: 100%;
+		height: auto;
 		aspect-ratio: 1;
 		overflow: hidden;
-	}
-	.team-img img {
-		display: block;
-		max-width: 100%;
-		min-height: auto;
-		aspect-ratio: 1;
 	}
 </style>

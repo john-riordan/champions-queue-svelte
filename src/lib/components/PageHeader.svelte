@@ -173,7 +173,7 @@
 		left: -5%;
 		width: 500px;
 		height: auto;
-		opacity: 0.25;
+		opacity: 0.5;
 		filter: contrast(0) grayscale(100%);
 		mix-blend-mode: color-dodge;
 		pointer-events: none;
