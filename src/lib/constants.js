@@ -5,8 +5,8 @@ export const LOADING_STR = 'Loading...';
 
 // Current split/season'
 export const CURR_YEAR = 2023;
-export const CURR_SEASON = 1;
-export const CURR_SPLIT = 1;
+export const CURR_SEASON = 4;
+export const CURR_SPLIT = 2;
 
 export const ROLES = {
 	TOP: 'Top',
