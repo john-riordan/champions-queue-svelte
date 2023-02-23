@@ -31,6 +31,11 @@ export const CORRECT_CHAMPION_DISPLAY_NAMES = {
 	TwistedFate: 'Twisted Fate'
 };
 
+export const CORRECT_PLAYER_NAMES = {
+	'GG Chime': 'TSM Chime',
+	'CLG Solo': 'TSM Solo'
+};
+
 export function correctChampionImage(championName) {
 	const championImageName =
 		Object.fromEntries(Object.entries(CORRECT_CHAMPION_DISPLAY_NAMES).map((a) => a.reverse()))[
@@ -53,6 +58,10 @@ export function correctChampionSplashPos(championName) {
 
 export function correctChampionDisplayName(championName) {
 	return CORRECT_CHAMPION_DISPLAY_NAMES[championName] || championName;
+}
+
+export function correctPlayerName(name) {
+	return CORRECT_PLAYER_NAMES[name] || name;
 }
 
 export const INDEX_TO_ROLE = {
@@ -137,7 +146,7 @@ export const TEAMS = {
 		tag: 'DIG',
 		logo: 'FDIG-FullonDark.png',
 		hsl: '48deg 100% 50%',
-		starters: ['DIG Armut', 'DIG Santorin', 'DIG Jensen', 'DIG Spawn', 'DIG Ignar']
+		starters: ['DIG Armut', 'DIG Santorin', 'DIG Jensen', 'DIG Spawn', 'DIG IgNar']
 	},
 	CLG: {
 		name: 'Counter Logic Gaming',

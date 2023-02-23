@@ -6,7 +6,7 @@
 	import PlayerImg from '$lib/components/PlayerImg.svelte';
 	import TeamImg from '$lib/components/TeamImg.svelte';
 	import { formatPatch, findPlayerTeam } from '$lib/helpers';
-	import { correctChampionDisplayName, PLAYERS } from '$lib/constants';
+	import { correctPlayerName, correctChampionDisplayName, PLAYERS } from '$lib/constants';
 
 	export let match;
 	export let champion = null;
@@ -20,12 +20,12 @@
 	$: teams = t1.concat(t2);
 	$: stats = champion
 		? teams.find((p) => correctChampionDisplayName(p.championIcon) === champion)
-		: teams.find((p) => p.name === player);
+		: teams.find((p) => correctPlayerName(p.name) === player);
 	$: nonSpecificMatch = !champion && !player;
 	$: outcome = stats?.winner ? 'Victory' : 'Defeat';
 	$: patch = formatPatch(match?.gameVersion);
 	$: proTeams = teams
-		.map((player) => findPlayerTeam(player.name))
+		.map((player) => findPlayerTeam(correctPlayerName(player.name)))
 		.filter(Boolean)
 		.reduce((acc, curr) => {
 			if (acc.includes(curr.name)) return acc;

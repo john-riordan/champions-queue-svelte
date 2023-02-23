@@ -18,7 +18,12 @@
 	import ChampImg from '$lib/components/ChampImg.svelte';
 	import { ordinal } from '$lib/helpers';
 	import { winrateColor, msToDays } from '$lib/helpers';
-	import { CORRECT_CHAMPION_DISPLAY_NAMES, caedrelMemeMin, caedrelMemeMax } from '$lib/constants';
+	import {
+		CORRECT_CHAMPION_DISPLAY_NAMES,
+		caedrelMemeMin,
+		caedrelMemeMax,
+		correctPlayerName
+	} from '$lib/constants';
 
 	export let name;
 
@@ -42,7 +47,7 @@
 
 			const players = [...team1, ...team2];
 
-			const player = players.find((p) => p.name === name);
+			const player = players.find((p) => correctPlayerName(p.name) === name);
 			return !player ? false : true;
 		})
 		.slice(0, pagination);
@@ -78,7 +83,7 @@
 			}));
 
 			const players = [...team1, ...team2];
-			const player = players.find((p) => p.name === name);
+			const player = players.find((p) => correctPlayerName(p.name) === name);
 			if (!player) return acc;
 
 			const { kills, deaths, assists, gold, cs } = player;
@@ -345,7 +350,7 @@
 				<ol>
 					<ul class="list">
 						{#each matches as match}
-							<Match {match} player={name} />
+							<Match {match} player={correctPlayerName(name)} />
 						{/each}
 					</ul>
 				</ol>

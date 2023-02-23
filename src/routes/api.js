@@ -3,6 +3,7 @@ import {
 	CURR_SEASON,
 	CURR_SPLIT,
 	correctChampionDisplayName,
+	correctPlayerName,
 	INDEX_TO_ROLE
 } from '$lib/constants';
 import { formatPatch, findPlayerTeam } from '$lib/helpers';
@@ -70,19 +71,20 @@ function aggregateData(data = {}, leaderboard = {}) {
 
 		for (const player of players) {
 			const champ = correctChampionDisplayName(player.championIcon);
+			const playerName = correctPlayerName(player.name);
 			// const role = player.laneIndex;
 
 			// Player Stats
-			if (!aggregate.players[player.name]) aggregate.players[player.name] = {};
+			if (!aggregate.players[playerName]) aggregate.players[playerName] = {};
 			const win = player.winner ? 1 : 0;
 
-			aggregate.players[player.name] = {
-				name: player.name,
-				games: (aggregate.players[player.name]?.games || 0) + 1,
-				wins: (aggregate.players[player.name]?.wins || 0) + win,
-				kills: player.kills + (aggregate.players[player.name]?.kills || 0),
-				deaths: player.deaths + (aggregate.players[player.name]?.deaths || 0),
-				assists: player.assists + (aggregate.players[player.name]?.assists || 0)
+			aggregate.players[playerName] = {
+				name: playerName,
+				games: (aggregate.players[playerName]?.games || 0) + 1,
+				wins: (aggregate.players[playerName]?.wins || 0) + win,
+				kills: player.kills + (aggregate.players[playerName]?.kills || 0),
+				deaths: player.deaths + (aggregate.players[playerName]?.deaths || 0),
+				assists: player.assists + (aggregate.players[playerName]?.assists || 0)
 			};
 
 			// Champion Stats
@@ -106,7 +108,7 @@ function aggregateData(data = {}, leaderboard = {}) {
 			};
 
 			// Team Stats
-			const playerTeam = findPlayerTeam(player.name)?.tag;
+			const playerTeam = findPlayerTeam(playerName)?.tag;
 
 			if (playerTeam) {
 				if (!aggregate.teams[playerTeam]) aggregate.teams[playerTeam] = {};
@@ -122,7 +124,7 @@ function aggregateData(data = {}, leaderboard = {}) {
 					assists: player.assists + (aggregate.teams[playerTeam]?.assists || 0),
 					players: {
 						...teamPlayers,
-						[player.name]: true
+						[playerName]: true
 					}
 				};
 			}
