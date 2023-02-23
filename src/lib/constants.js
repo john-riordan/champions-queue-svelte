@@ -33,7 +33,8 @@ export const CORRECT_CHAMPION_DISPLAY_NAMES = {
 
 export const CORRECT_PLAYER_NAMES = {
 	'GG Chime': 'TSM Chime',
-	'CLG Solo': 'TSM Solo'
+	'CLG Solo': 'TSM Solo',
+	'USTE Shogo': 'Shogo'
 };
 
 export function correctChampionImage(championName) {
