@@ -2388,6 +2388,12 @@ export const PLAYERS = {
 		],
 		image: null
 	},
+	'TSM Dragku': {
+		summonerName: 'Dragku',
+		summonerNameWithTeam: 'TSM Dragku',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=https%3A%2F%2Flolstatic-a.akamaihd.net%2Fesports-assets%2Fproduction%2Fplayer%2Fdragku-9znhn75e.png'
+	},
 	'BAY Seranok': {
 		summonerName: 'Seranok',
 		summonerNameWithTeam: 'BAY Seranok',
@@ -2820,6 +2826,12 @@ export const PLAYERS = {
 			}
 		],
 		image: null
+	},
+	'DIG Hoon': {
+		summonerName: 'Hoon',
+		summonerNameWithTeam: 'DIG Hoon',
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1674832107470_DIG_HOON.png'
 	},
 	'UCI Berik': {
 		summonerName: 'Berik',
@@ -4199,7 +4211,8 @@ export const PLAYERS = {
 				link: 'https://www.twitch.tv/SoloLCS'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1674834403362_TSM_SOLO.png'
 	},
 	AnDa: {
 		summonerName: 'AnDa',
@@ -4930,9 +4943,9 @@ export const PLAYERS = {
 		],
 		image: null
 	},
-	'MU APA': {
+	'TL APA': {
 		summonerName: 'APA',
-		summonerNameWithTeam: 'MU APA',
+		summonerNameWithTeam: 'TL APA',
 		socialLinks: [
 			{
 				platform: 'twitter',
@@ -4943,7 +4956,8 @@ export const PLAYERS = {
 				link: 'https://twitch.tv/alwaysplanahealol'
 			}
 		],
-		image: null
+		image:
+			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1674834011287_TL_APA.png'
 	},
 	'TG rovex': {
 		summonerName: 'rovex',
