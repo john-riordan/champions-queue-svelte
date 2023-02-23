@@ -34,7 +34,8 @@ export const CORRECT_CHAMPION_DISPLAY_NAMES = {
 export const CORRECT_PLAYER_NAMES = {
 	'GG Chime': 'TSM Chime',
 	'CLG Solo': 'TSM Solo',
-	'USTE Shogo': 'Shogo'
+	'USTE Shogo': 'Shogo',
+	'CLG Prismal': 'GG Prismal'
 };
 
 export function correctChampionImage(championName) {
@@ -947,9 +948,9 @@ export const PLAYERS = {
 		image:
 			'https://am-a.akamaihd.net/image?resize=375:&f=http%3A%2F%2Fstatic.lolesports.com%2Fplayers%2F1645004175043_TRIPLE.png'
 	},
-	'CLG Prismal': {
+	'GG Prismal': {
 		summonerName: 'Prismal',
-		summonerNameWithTeam: 'CLG Prismal',
+		summonerNameWithTeam: 'GG Prismal',
 		socialLinks: [
 			{
 				platform: 'twitter',
