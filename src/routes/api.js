@@ -8,12 +8,15 @@ import {
 } from '$lib/constants';
 import { formatPatch, findPlayerTeam } from '$lib/helpers';
 
-export async function get() {
-	const leaderboardRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/leaderboards.json');
-	const leaderboardJSON = await leaderboardRes.json();
+import leaderboardJSON from '$lib/data/8-1-2023-leaderboards.json';
+import matchesJSON from '$lib/data/8-1-2023-matches.json';
 
-	const matchesRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/matches.json');
-	const matchesJSON = await matchesRes.json();
+export async function get() {
+	// const leaderboardRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/leaderboards.json');
+	// const leaderboardJSON = await leaderboardRes.json();
+
+	// const matchesRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/matches.json');
+	// const matchesJSON = await matchesRes.json();
 
 	// var startTime = performance.now();
 	const agg = aggregateData(matchesJSON, leaderboardJSON);
