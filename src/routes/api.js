@@ -8,15 +8,15 @@ import {
 } from '$lib/constants';
 import { formatPatch, findPlayerTeam } from '$lib/helpers';
 
-import leaderboardJSON from '$lib/data/8-1-2023-leaderboards.json';
-import matchesJSON from '$lib/data/8-1-2023-matches.json';
+// import leaderboardJSON from '$lib/data/8-1-2023-leaderboards.json';
+// import matchesJSON from '$lib/data/8-1-2023-matches.json';
 
 export async function get() {
-	// const leaderboardRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/leaderboards.json');
-	// const leaderboardJSON = await leaderboardRes.json();
+	const leaderboardRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/leaderboards.json');
+	const leaderboardJSON = await leaderboardRes.json();
 
-	// const matchesRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/matches.json');
-	// const matchesJSON = await matchesRes.json();
+	const matchesRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/matches.json');
+	const matchesJSON = await matchesRes.json();
 
 	// var startTime = performance.now();
 	const agg = aggregateData(matchesJSON, leaderboardJSON);
@@ -51,9 +51,10 @@ function aggregateData(data = {}, leaderboard = {}) {
 
 		const matchStart = new Date(curr.matchStart);
 		const splitStart = new Date(currSeason.openDate);
+		// const splitStart = new Date('2023-12-10T08:00:00.000000Z');
 
 		// Skip match if its from before the current season
-		if (matchStart < splitStart) continue;
+		if (matchStart < splitStart) break;
 
 		aggregate.matches.push(curr);
 

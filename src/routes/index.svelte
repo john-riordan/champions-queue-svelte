@@ -93,7 +93,7 @@
 		<div>
 			<h1>Champions Queue</h1>
 			<div class="split-details">
-				<span>Season 2023 </span>
+				<span>Season 2024</span>
 			</div>
 		</div>
 	</div>
