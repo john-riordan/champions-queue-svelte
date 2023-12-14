@@ -4,6 +4,7 @@
 
 	import { store, searchModal } from '$lib/stores';
 	import { fetchData } from '$lib/helpers';
+	import Disclaimer from '$lib/components/Disclaimer.svelte';
 	import Hamburger from '$lib/components/icons/Hamburger.svelte';
 	import MatchModal from '$lib/components/MatchModal.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
@@ -123,6 +124,7 @@
 	</header>
 	<main class="content">
 		<div class="content-container" class:loading={$store.loading && currURL !== '/'}>
+			<Disclaimer />
 			<slot />
 		</div>
 		<footer>
