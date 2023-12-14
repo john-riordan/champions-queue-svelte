@@ -23,11 +23,12 @@
 		.filter((c) => c.name.toLowerCase().includes(searchText.toLowerCase()))
 		.slice(0, maxCount)
 		.map((c) => ({ ...c, url: `/champions/${c.name}` }));
-	$: teams = Object.keys($store.teams || {})
-		.map((tag) => TEAMS[tag])
-		.filter((t) => t.name.toLowerCase().includes(searchText.toLowerCase()))
-		.slice(0, maxCount)
-		.map((t) => ({ ...t, url: `/teams/${t.name}` }));
+	// $: teams = Object.keys($store.teams || {})
+	// 	.map((tag) => TEAMS[tag])
+	// 	.filter((t) => t.name.toLowerCase().includes(searchText.toLowerCase()))
+	// 	.slice(0, maxCount)
+	// 	.map((t) => ({ ...t, url: `/teams/${t.name}` }));
+	$: teams = [];
 	$: list = [...players, ...champions, ...teams];
 	$: isOpen = searchText.length;
 

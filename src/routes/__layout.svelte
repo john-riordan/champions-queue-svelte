@@ -4,10 +4,6 @@
 
 	import { store, searchModal } from '$lib/stores';
 	import { fetchData } from '$lib/helpers';
-	import Players from '$lib/components/icons/Players.svelte';
-	import Champions from '$lib/components/icons/Champions.svelte';
-	import Matches from '$lib/components/icons/Matches.svelte';
-	import Medal from '$lib/components/icons/Medal.svelte';
 	import Hamburger from '$lib/components/icons/Hamburger.svelte';
 	import MatchModal from '$lib/components/MatchModal.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
@@ -54,23 +50,20 @@
 	const routes = [
 		{
 			url: '/players',
-			title: 'Players',
-			icon: Players
+			title: 'Players'
 		},
 		{
 			url: '/champions',
-			title: 'Champions',
-			icon: Champions
+			title: 'Champions'
 		},
 		{
 			url: '/matches',
-			title: 'Matches',
-			icon: Matches
+			title: 'Matches'
 		},
 		{
 			url: '/teams',
 			title: 'Teams',
-			icon: Medal
+			disabled: true
 		}
 	];
 </script>
@@ -99,7 +92,12 @@
 			</div>
 			<nav>
 				{#each routes as route}
-					<a href={route.url} class="nav-item lg" class:active={currURL.startsWith(route.url)}>
+					<a
+						href={route.url}
+						class="nav-item lg"
+						class:active={currURL.startsWith(route.url)}
+						class:disabled={route.disabled}
+					>
 						<span class="text">{route.title}</span>
 					</a>
 				{/each}
@@ -314,6 +312,11 @@
 				&::after {
 					opacity: 0.75;
 				}
+			}
+
+			&.disabled {
+				pointer-events: none;
+				opacity: 0.38;
 			}
 		}
 

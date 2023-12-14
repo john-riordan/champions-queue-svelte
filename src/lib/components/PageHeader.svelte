@@ -18,9 +18,9 @@
 </script>
 
 <header class="header" class:center>
-	{#if $pageBackground}
+	<!-- {#if $pageBackground}
 		<img src={$pageBackground} class="background" loading="lazy" alt="background" />
-	{/if}
+	{/if} -->
 	<div class="info">
 		{#if player}
 			<div class="image-container">
@@ -32,9 +32,9 @@
 				<ChampImg name={champion} type="splash" />
 			</div>
 		{/if}
-		{#if team}
+		<!-- {#if team}
 			<TeamImg name={team} />
-		{/if}
+		{/if} -->
 		<div class="title-text">
 			<h1>
 				{playerName}

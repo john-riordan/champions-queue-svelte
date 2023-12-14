@@ -84,7 +84,7 @@
 		placeholder="Search Players"
 		bind:value={search}
 	/>
-	<Select defaultText="Select a Team" value={team} options={teamOptions} on:select={setTeam} />
+	<!-- <Select defaultText="Select a Team" value={team} options={teamOptions} on:select={setTeam} /> -->
 </div>
 
 <div class="sort">
@@ -129,11 +129,11 @@
 			<a href={`/players/${player.name}`}>
 				<div class="info">
 					<PlayerImg name={player.name} />
-					{#if playerTeam}
+					<!-- {#if playerTeam}
 						<TeamImg name={playerTeam?.name} />
 					{:else}
 						<div class="no-team" />
-					{/if}
+					{/if} -->
 					<p class="name lg">{player.name}</p>
 				</div>
 				<span class="stat rank">
