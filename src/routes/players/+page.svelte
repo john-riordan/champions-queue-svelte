@@ -198,6 +198,7 @@
 			}
 
 			.info {
+				flex: 2;
 				display: flex;
 				align-items: center;
 				gap: 0.75rem;
@@ -270,22 +271,8 @@
 		height: 1rem;
 	}
 	.nameSort {
+		flex: 2;
 		justify-content: flex-start;
-		width: 14rem;
-		margin-left: 8.5rem;
-
-		@media screen and (min-width: 1700px) {
-			margin-left: 9.5rem;
-		}
-		@media screen and (max-width: 1200px) {
-			width: 6.5rem;
-		}
-		@media screen and (max-width: 1000px) {
-			margin-left: 6rem;
-		}
-		@media screen and (max-width: 800px) {
-			margin-left: 2rem;
-		}
 	}
 
 	.stat {
