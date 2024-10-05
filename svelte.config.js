@@ -1,16 +1,18 @@
-import adapter from '@sveltejs/adapter-auto';
-import sveltePreprocess from 'svelte-preprocess';
+import adapter from "@sveltejs/adapter-static";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: sveltePreprocess(),
+	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
+	// for more information about preprocessors
+	preprocess: vitePreprocess(),
+
 	kit: {
 		adapter: adapter(),
 		serviceWorker: {
 			register: true,
 			files: (filepath) => !/\.DS_Store/.test(filepath)
 		},
-		trailingSlash: 'never',
 		version: {
 			name: Date.now().toString(),
 			pollInterval: 0
@@ -19,3 +21,4 @@ const config = {
 };
 
 export default config;
+

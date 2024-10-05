@@ -1,3 +1,5 @@
+import { json } from '@sveltejs/kit';
+
 import {
 	CURR_YEAR,
 	CURR_SEASON,
@@ -11,7 +13,7 @@ import { formatPatch, findPlayerTeam } from '$lib/helpers';
 // import leaderboardJSON from '$lib/data/8-1-2023-leaderboards.json';
 // import matchesJSON from '$lib/data/8-1-2023-matches.json';
 
-export async function get() {
+export async function GET() {
 	const leaderboardRes = await fetch('https://d1fodqbtqsx6d3.cloudfront.net/leaderboards.json');
 	const leaderboardJSON = await leaderboardRes.json();
 
@@ -24,9 +26,7 @@ export async function get() {
 
 	// console.log(`Call to aggregateData took ${endTime - startTime} milliseconds`);
 
-	return {
-		body: agg
-	};
+	return json(agg);
 }
 
 function aggregateData(data = {}, leaderboard = {}) {

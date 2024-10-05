@@ -1,9 +1,3 @@
-<script context="module">
-	export const load = async () => {
-		return { props: { title: 'Teams' } };
-	};
-</script>
-
 <script>
 	import { store } from '$lib/stores';
 	import { TEAMS, teamImg } from '$lib/constants';
@@ -13,7 +7,6 @@
 	import CheckChecked from '$lib/components/icons/CheckChecked.svelte';
 	import CheckUnchecked from '$lib/components/icons/CheckUnchecked.svelte';
 
-	export let title;
 	let selectedPlayers = 'all';
 	let teamSort = 'games';
 
@@ -81,7 +74,7 @@
 	<title>Teams - Champions Queue</title>
 </svelte:head>
 
-<PageHeader {title} center />
+<PageHeader title="Teams" center />
 
 <!-- <div class="controls">
 	<div class="button-group">

@@ -1,10 +1,6 @@
-<script context="module">
-	export const load = async ({ params }) => {
-		return { props: { name: params.name } };
-	};
-</script>
-
 <script>
+	import { page } from '$app/stores';
+
 	import { onMount } from 'svelte';
 	import RelativeTime from '@yaireo/relative-time';
 
@@ -18,7 +14,8 @@
 	import { ordinal } from '$lib/helpers';
 	import { winrateColor, msToDays } from '$lib/helpers';
 
-	export let name;
+	const { name } = $page.params;
+
 	const perPage = 20;
 	let pageIndex = 0;
 	const relativeTime = new RelativeTime();

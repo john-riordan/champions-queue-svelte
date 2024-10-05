@@ -1,10 +1,5 @@
-<script context="module">
-	export const load = ({ params }) => {
-		return { props: { name: params.name } };
-	};
-</script>
-
 <script>
+	import { page } from '$app/stores';
 	import RelativeTime from '@yaireo/relative-time';
 	import { Confetti } from 'svelte-confetti';
 
@@ -25,7 +20,7 @@
 		correctPlayerName
 	} from '$lib/constants';
 
-	export let name;
+	const { name } = $page.params;
 
 	const perPage = 20;
 	let pageIndex = 0;

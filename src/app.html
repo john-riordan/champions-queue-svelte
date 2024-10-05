@@ -38,9 +38,9 @@
 			gtag('config', 'G-10VZY3TRR3');
 		</script>
 		<meta name="darkreader-lock" />
-		%svelte.head%
+		%sveltekit.head%
 	</head>
-	<body>
-		<div>%svelte.body%</div>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
