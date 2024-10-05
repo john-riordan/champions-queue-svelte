@@ -3,14 +3,8 @@ https://championsqueue.gg/players
 https://championsqueue.gg/champions
 https://championsqueue.gg/matches
 https://championsqueue.gg/teams
-https://championsqueue.gg/teams/TSM
 https://championsqueue.gg/teams/Cloud%209
 https://championsqueue.gg/teams/100%20Thieves
-https://championsqueue.gg/teams/Evil%20Geniuses
-https://championsqueue.gg/teams/Fnatic
-https://championsqueue.gg/teams/LOUD
-https://championsqueue.gg/teams/MAD%20Lions
-https://championsqueue.gg/teams/DRX
 https://championsqueue.gg/teams/Team%20Liquid
-https://championsqueue.gg/players/Doublelift
-https://championsqueue.gg/players/Bjergsen
+https://championsqueue.gg/players/TL%20Yeon
+https://championsqueue.gg/players/TL%20CoreJJ
