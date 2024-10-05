@@ -9,7 +9,7 @@
 	$: src = PLAYERS[name]?.image ?? PLAYER_DEFAULT;
 </script>
 
-<div class="player-img" class:round>
+<div class="player-img" class:round style:--player-name={name.replace(' ', '')}>
 	<img loading="lazy" alt={name} {src} width={80} />
 </div>
 
@@ -19,7 +19,8 @@
 		height: calc(var(--size) * 1px);
 		max-height: calc(var(--size) * 1px);
 		aspect-ratio: 1;
-		overflow: hidden;
+		overflow: clip;
+		view-transition-name: var(--player-name);
 
 		&.round {
 			border-radius: 50%;

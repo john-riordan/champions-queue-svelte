@@ -14,8 +14,6 @@
 
 	const { title = "Players" } = $page.params;
 
-
-
 	let search = '';
 	let team = '';
 	let sort = 'lp';
