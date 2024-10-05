@@ -1,6 +1,6 @@
 {
 	"name": "champions-queue-svelte",
-	"version": "0.0.1",
+	"version": "2.0.0",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -11,16 +11,16 @@
 		"postbuild": "npx svelte-sitemap --domain https://championsqueue.gg"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
-		"eslint": "^7.32.0",
+		"@sveltejs/adapter-auto": "^3.2.5",
+		"@sveltejs/kit": "^2.6.1",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"eslint": "^8.0.0",
 		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^3.2.1",
-		"prettier": "^2.5.1",
-		"prettier-plugin-svelte": "^2.5.0",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
 		"sass": "^1.49.9",
-		"svelte": "^3.44.0",
-		"svelte-preprocess": "^4.10.4",
+		"svelte": "^4.0.0",
+		"svelte-preprocess": "^5.0.3",
 		"svelte-sitemap": "^2.5.2"
 	},
 	"type": "module",
