@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { page, navigating } from '$app/stores';
+	import { onNavigate } from '$app/navigation';
 
 	import { store, searchModal } from '$lib/stores';
 	import { fetchData } from '$lib/helpers';
@@ -44,6 +45,17 @@
 
 		const mountedData = await fetchData();
 		store.set(mountedData);
+	});
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
 	});
 
 	$: currURL = $page.url.pathname;
