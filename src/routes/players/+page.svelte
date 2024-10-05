@@ -1,10 +1,6 @@
-<script context="module">
-	export const load = async () => {
-		return { props: { title: 'Players' } };
-	};
-</script>
-
 <script>
+	import { page } from '$app/stores';
+	
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
 	import SortDirection from '$lib/components/SortDirection.svelte';
@@ -16,9 +12,12 @@
 	import { TEAMS, teamImg } from '$lib/constants';
 	import { winrateColor, findPlayerTeam } from '$lib/helpers';
 
-	export let title;
+	const { title = "Players" } = $page.params;
+
+
+
 	let search = '';
-	let team = null;
+	let team = '';
 	let sort = 'lp';
 	let desc = true;
 
@@ -28,9 +27,9 @@
 	$: leaderboard = $store.leaderboard.players || {};
 	$: list = players
 		.filter((p) => {
-			const teamFilterMatch = team ? p.name.toLowerCase().startsWith(team.toLowerCase()) : true;
+			const teamFilterMatch = team ? p.name?.toLowerCase().startsWith(team.toLowerCase()) : true;
 			const searchMatch = search?.length
-				? p.name.toLowerCase().includes(search.toLowerCase())
+				? p.name?.toLowerCase().includes(search.toLowerCase())
 				: true;
 
 			return teamFilterMatch && searchMatch;

@@ -51,20 +51,23 @@
 	const routes = [
 		{
 			url: '/players',
-			title: 'Players'
+			title: 'Players',
+			disabled: false
 		},
 		{
 			url: '/champions',
-			title: 'Champions'
+			title: 'Champions',
+			disabled: false
 		},
 		{
 			url: '/matches',
-			title: 'Matches'
+			title: 'Matches',
+			disabled: false
 		},
 		{
 			url: '/teams',
 			title: 'Teams',
-			disabled: true
+			disabled: false
 		}
 	];
 </script>

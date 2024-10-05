@@ -1,9 +1,3 @@
-<script context="module">
-	export const load = async () => {
-		return { props: { title: 'Matches' } };
-	};
-</script>
-
 <script>
 	import { store } from '$lib/stores';
 	import PageHeader from '$lib/components/PageHeader.svelte';
@@ -11,9 +5,9 @@
 	import Match from '$lib/components/Match.svelte';
 	import LoadMoreBtn from '$lib/components/LoadMoreBtn.svelte';
 
-	export let title;
 	const perPage = 20;
 	let pageIndex = 0;
+	
 	$: list = ($store.matches ?? []).slice(0, (pageIndex + 1) * perPage);
 </script>
 
@@ -22,7 +16,7 @@
 	<title>Matches - Champions Queue</title>
 </svelte:head>
 
-<PageHeader {title} center>
+<PageHeader title="Matches" center>
 	<!-- <div slot="controls">
 		<RefreshBtn />
 	</div> -->

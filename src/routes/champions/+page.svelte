@@ -1,7 +1,3 @@
-<script context="module">
-	export const load = async () => ({ props: { title: 'Champions' } });
-</script>
-
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import WinRateBar from '$lib/components/WinRateBar.svelte';
@@ -15,7 +11,6 @@
 
 	import { store } from '$lib/stores';
 
-	export let title;
 
 	const champSize = 56;
 
@@ -57,7 +52,7 @@
 	<title>Champions - Champions Queue</title>
 </svelte:head>
 
-<PageHeader {title} center>
+<PageHeader title="Champions" center>
 	<!-- <div slot="controls">
 		<RefreshBtn />
 	</div> -->

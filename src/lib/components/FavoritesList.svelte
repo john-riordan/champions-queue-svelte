@@ -2,7 +2,7 @@
 	import { fly } from 'svelte/transition';
 	import { quadOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 
 	import { favorites } from '$lib/stores';
 	import Star from '$lib/components/icons/Star.svelte';
